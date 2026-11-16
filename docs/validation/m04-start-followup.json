@@ -1,7 +1,7 @@
 {
   "at_utc": "2026-11-16T14:41:31.763363+00:00",
   "user_report": "Control activation or gesture confirmation does not work",
-  "status": "DIAGNOSED_CURRENT_NO_HAND_INPUT_AWAITING_HAND_IN_VIEW_RETEST",
+  "status": "REAL_HAND_G01_ACTIVATION_CONFIRMED_CHROME_EFFECT_PENDING",
   "observations": {
     "camera_preview": "Live UI showed ceiling/wall and no hand in frame; not evidence about every previous attempt",
     "camera_index": 1,
@@ -20,5 +20,6 @@
   "environment_fix": "Previous assistant-started hidden HAND executable PID22284 held F8. Verified exact executable path, terminated that owned idle instance, normally closed and restarted diagnostic app; F8 registration now succeeds.",
   "diagnostics_change": "No automatic close during an asynchronous manual trial. Optional output path; bounded numeric pose/angle/gap samples without frames or landmark coordinates. Current live file is ignored under .build-staging/diagnostics/start-failure-live.json.",
   "production_recognition_changed": false,
-  "next_gate": "User positions a whole hand in preview, holds V; determine no landmarks vs rejected pose vs activation gate from real samples. No claim that the reported hand recognition failure is resolved."
+  "next_gate": "Focus Chrome, release pose, and verify index swipe page effect",
+  "followup_evidence": "m04-human-activation.json"
 }

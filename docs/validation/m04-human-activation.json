@@ -1,0 +1,86 @@
+{
+  "at_utc": "2026-11-16T14:54:15.721212+00:00",
+  "source": "user replies and live production-camera diagnostic; no synthetic gestures",
+  "user_observed": [
+    "Camera image and green hand landmarks both visible",
+    "V hold changes HAND to active"
+  ],
+  "verified": "REAL_HAND_DETECTION_AND_G01_ACTIVATION",
+  "recognized_events": [
+    {
+      "event_id": "gesture-000003",
+      "gesture": "G01",
+      "hand_ids": [
+        "e1-9"
+      ],
+      "captured_at_ms": 387820937,
+      "emitted_at_ms": 387820984,
+      "context_version": 1,
+      "camera_epoch": 1
+    },
+    {
+      "event_id": "gesture-000004",
+      "gesture": "G07",
+      "hand_ids": [
+        "e1-10"
+      ],
+      "captured_at_ms": 387839046,
+      "emitted_at_ms": 387839109,
+      "context_version": 1,
+      "camera_epoch": 1
+    },
+    {
+      "event_id": "gesture-000005",
+      "gesture": "G12",
+      "hand_ids": [
+        "e1-22"
+      ],
+      "captured_at_ms": 387976218,
+      "emitted_at_ms": 387976296,
+      "context_version": 1,
+      "camera_epoch": 1
+    },
+    {
+      "event_id": "gesture-000006",
+      "gesture": "G05",
+      "hand_ids": [
+        "e1-22"
+      ],
+      "captured_at_ms": 387990953,
+      "emitted_at_ms": 387991031,
+      "context_version": 1,
+      "camera_epoch": 1
+    }
+  ],
+  "activation_at_snapshot": "ACTIVE",
+  "last_execution": {
+    "command_id": "gesture-000006",
+    "context_version": 1,
+    "completed_at_ms": 387991031,
+    "status": "BLOCKED",
+    "reason": "TARGET_NOT_CHROME",
+    "detail": ""
+  },
+  "tracking_counts": {
+    "frames": 23787,
+    "with_hands": 3108,
+    "gap_over_100ms": 126,
+    "pose_UNKNOWN": 741,
+    "pose_OPEN": 86,
+    "pose_FIST": 820,
+    "pose_INDEX": 82,
+    "pose_THUMB": 119,
+    "pose_L": 2,
+    "pose_V": 1335,
+    "pose_OTHER": 48,
+    "pose_THREE": 25
+  },
+  "hotkey_registered": true,
+  "interpretation": "G01 is confirmed by actual camera events and user observation. G07 was recognized but blocked with TARGET_NOT_CHROME. This verifies recognition and target guard, not a Chrome page effect.",
+  "next_gate": "Focus a Chrome tab with navigation history, release pose, then perform index swipe and observe page change.",
+  "limits": [
+    "Not a multi-person accuracy result",
+    "No actual Chrome effect confirmed by this observation",
+    "No image or raw hand-coordinate recording"
+  ]
+}

@@ -54,9 +54,11 @@
   "physical_checks": {
     "previous_user_observation": "Chrome remained foreground after panel STOP; camera labels/state changed",
     "latest_live_app": "4-minute source app diagnostic closed normally with release_pending false, empty owned_keys, camera stop579ms; no confirmed gesture events recorded",
-    "gesture_to_chrome": "FAILED_USER_REPORTED_START_OR_CONFIRMATION; follow-up awaiting real hand in frame",
+    "gesture_to_chrome": "PENDING_CHROME_EFFECT: actual G07 recognized, blocked TARGET_NOT_CHROME",
     "chrome_shortcut_effects": "M02 real-Chrome evidence retained; new recognizer output checked with fake keyboard, not a substitute for actual hands",
-    "followup": "m04-start-followup.json"
+    "followup": "m04-start-followup.json",
+    "human_activation": "PASS: user reports green landmarks and ACTIVE; actual G01 event recorded",
+    "human_activation_evidence": "m04-human-activation.json"
   },
   "defects_fixed": [
     "thumb MCP folded false UNKNOWN (M03)",
