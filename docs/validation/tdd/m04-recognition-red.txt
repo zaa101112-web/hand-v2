@@ -1,0 +1,225 @@
+FFFF..FFF....FFFFF....FF...                                              [100%]
+================================== FAILURES ===================================
+_______________ test_v_axis_swipes_emit_one_command[0.24-0-G05] _______________
+
+dx = 0.24, dy = 0, expected = <Gesture.TAB_LEFT: 'G05'>
+
+    @pytest.mark.parametrize('dx,dy,expected',[(.24,0,Gesture.TAB_LEFT),(-.24,0,Gesture.TAB_RIGHT),(0,-.24,Gesture.PAGE_UP),(0,.24,Gesture.PAGE_DOWN)])
+    def test_v_axis_swipes_emit_one_command(dx,dy,expected):
+        r=GestureRecognizer()
+        output=[r.process(frame(1000+t,shifted(sample_hand('V'),dx*t/500,dy*t/500)),True) for t in range(0,1001,50)]
+>       assert events(output)==[expected]
+E       AssertionError: assert [] == [<Gesture.TAB_LEFT: 'G05'>]
+E         
+E         Right contains one more item: <Gesture.TAB_LEFT: 'G05'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:23: AssertionError
+______________ test_v_axis_swipes_emit_one_command[-0.24-0-G06] _______________
+
+dx = -0.24, dy = 0, expected = <Gesture.TAB_RIGHT: 'G06'>
+
+    @pytest.mark.parametrize('dx,dy,expected',[(.24,0,Gesture.TAB_LEFT),(-.24,0,Gesture.TAB_RIGHT),(0,-.24,Gesture.PAGE_UP),(0,.24,Gesture.PAGE_DOWN)])
+    def test_v_axis_swipes_emit_one_command(dx,dy,expected):
+        r=GestureRecognizer()
+        output=[r.process(frame(1000+t,shifted(sample_hand('V'),dx*t/500,dy*t/500)),True) for t in range(0,1001,50)]
+>       assert events(output)==[expected]
+E       AssertionError: assert [] == [<Gesture.TAB_RIGHT: 'G06'>]
+E         
+E         Right contains one more item: <Gesture.TAB_RIGHT: 'G06'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:23: AssertionError
+______________ test_v_axis_swipes_emit_one_command[0--0.24-G07] _______________
+
+dx = 0, dy = -0.24, expected = <Gesture.PAGE_UP: 'G07'>
+
+    @pytest.mark.parametrize('dx,dy,expected',[(.24,0,Gesture.TAB_LEFT),(-.24,0,Gesture.TAB_RIGHT),(0,-.24,Gesture.PAGE_UP),(0,.24,Gesture.PAGE_DOWN)])
+    def test_v_axis_swipes_emit_one_command(dx,dy,expected):
+        r=GestureRecognizer()
+        output=[r.process(frame(1000+t,shifted(sample_hand('V'),dx*t/500,dy*t/500)),True) for t in range(0,1001,50)]
+>       assert events(output)==[expected]
+E       AssertionError: assert [] == [<Gesture.PAGE_UP: 'G07'>]
+E         
+E         Right contains one more item: <Gesture.PAGE_UP: 'G07'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:23: AssertionError
+_______________ test_v_axis_swipes_emit_one_command[0-0.24-G08] _______________
+
+dx = 0, dy = 0.24, expected = <Gesture.PAGE_DOWN: 'G08'>
+
+    @pytest.mark.parametrize('dx,dy,expected',[(.24,0,Gesture.TAB_LEFT),(-.24,0,Gesture.TAB_RIGHT),(0,-.24,Gesture.PAGE_UP),(0,.24,Gesture.PAGE_DOWN)])
+    def test_v_axis_swipes_emit_one_command(dx,dy,expected):
+        r=GestureRecognizer()
+        output=[r.process(frame(1000+t,shifted(sample_hand('V'),dx*t/500,dy*t/500)),True) for t in range(0,1001,50)]
+>       assert events(output)==[expected]
+E       AssertionError: assert [] == [<Gesture.PAGE_DOWN: 'G08'>]
+E         
+E         Right contains one more item: <Gesture.PAGE_DOWN: 'G08'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:23: AssertionError
+__________________ test_thumb_hold_boundary_once[600-want1] ___________________
+
+duration = 600, want = [<Gesture.THUMB: 'G12'>]
+
+    @pytest.mark.parametrize('duration,want',[(599,[]),(600,[Gesture.THUMB]),(1200,[Gesture.THUMB])])
+    def test_thumb_hold_boundary_once(duration,want):
+        r=GestureRecognizer()
+        result=[r.process(sample_frame(1000+t,'THUMB'),True) for t in list(range(0,duration,50))+[duration]]
+>       assert events(result)==want
+E       AssertionError: assert [] == [<Gesture.THUMB: 'G12'>]
+E         
+E         Right contains one more item: <Gesture.THUMB: 'G12'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:40: AssertionError
+__________________ test_thumb_hold_boundary_once[1200-want2] __________________
+
+duration = 1200, want = [<Gesture.THUMB: 'G12'>]
+
+    @pytest.mark.parametrize('duration,want',[(599,[]),(600,[Gesture.THUMB]),(1200,[Gesture.THUMB])])
+    def test_thumb_hold_boundary_once(duration,want):
+        r=GestureRecognizer()
+        result=[r.process(sample_frame(1000+t,'THUMB'),True) for t in list(range(0,duration,50))+[duration]]
+>       assert events(result)==want
+E       AssertionError: assert [] == [<Gesture.THUMB: 'G12'>]
+E         
+E         Right contains one more item: <Gesture.THUMB: 'G12'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:40: AssertionError
+___________ test_fist_open_requires_both_durations_and_never_stops ____________
+
+    def test_fist_open_requires_both_durations_and_never_stops():
+        r=GestureRecognizer()
+        assert events([r.process(sample_frame(1000+t,'FIST'),True) for t in range(0,301,50)])==[]
+        out=[r.process(sample_frame(1350+t,'OPEN'),True) for t in (0,50,100,149,150,200,500)]
+>       assert events(out)==[Gesture.FIST_OPEN]
+E       AssertionError: assert [] == [<Gesture.FIST_OPEN: 'G13'>]
+E         
+E         Right contains one more item: <Gesture.FIST_OPEN: 'G13'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:47: AssertionError
+_______ test_two_hand_zoom_baseline_confirmation_and_hold_once[0.7-G09] _______
+
+separation = 0.7, want = <Gesture.ZOOM_IN: 'G09'>
+
+    @pytest.mark.parametrize('separation,want',[(.70,Gesture.ZOOM_IN),(.38,Gesture.ZOOM_OUT)])
+    def test_two_hand_zoom_baseline_confirmation_and_hold_once(separation,want):
+        r=GestureRecognizer();out=[]
+        for t in range(0,201,20):out.append(r.process(zoom_frame(1000+t),True))
+        for t in range(220,1001,20):out.append(r.process(zoom_frame(1000+t,separation),True))
+>       assert events(out)==[want]
+E       AssertionError: assert [] == [<Gesture.ZOOM_IN: 'G09'>]
+E         
+E         Right contains one more item: <Gesture.ZOOM_IN: 'G09'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:75: AssertionError
+______ test_two_hand_zoom_baseline_confirmation_and_hold_once[0.38-G10] _______
+
+separation = 0.38, want = <Gesture.ZOOM_OUT: 'G10'>
+
+    @pytest.mark.parametrize('separation,want',[(.70,Gesture.ZOOM_IN),(.38,Gesture.ZOOM_OUT)])
+    def test_two_hand_zoom_baseline_confirmation_and_hold_once(separation,want):
+        r=GestureRecognizer();out=[]
+        for t in range(0,201,20):out.append(r.process(zoom_frame(1000+t),True))
+        for t in range(220,1001,20):out.append(r.process(zoom_frame(1000+t,separation),True))
+>       assert events(out)==[want]
+E       AssertionError: assert [] == [<Gesture.ZOOM_OUT: 'G10'>]
+E         
+E         Right contains one more item: <Gesture.ZOOM_OUT: 'G10'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:75: AssertionError
+_______________ test_zoom_release_hysteresis_loss_and_id_change _______________
+
+    def test_zoom_release_hysteresis_loss_and_id_change():
+        r=GestureRecognizer();out=[]
+        for t in range(0,201,20):out.append(r.process(zoom_frame(1000+t),True))
+        for t in range(220,501,20):out.append(r.process(zoom_frame(1000+t,.70,.36),True))
+>       assert events(out)==[Gesture.ZOOM_IN]  # Middle band keeps the previous pinch state.
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert [] == [<Gesture.ZOOM_IN: 'G09'>]
+E         
+E         Right contains one more item: <Gesture.ZOOM_IN: 'G09'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:84: AssertionError
+_______________ test_circle_both_directions_excludes_swipe[-1] ________________
+
+direction = -1
+
+    @pytest.mark.parametrize('direction',[-1,1])
+    def test_circle_both_directions_excludes_swipe(direction):
+        r=GestureRecognizer()
+>       assert events([r.process(f,True) for f in circle_frames(direction)])==[Gesture.CIRCLE]
+E       AssertionError: assert [] == [<Gesture.CIRCLE: 'G11'>]
+E         
+E         Right contains one more item: <Gesture.CIRCLE: 'G11'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:99: AssertionError
+________________ test_circle_both_directions_excludes_swipe[1] ________________
+
+direction = 1
+
+    @pytest.mark.parametrize('direction',[-1,1])
+    def test_circle_both_directions_excludes_swipe(direction):
+        r=GestureRecognizer()
+>       assert events([r.process(f,True) for f in circle_frames(direction)])==[Gesture.CIRCLE]
+E       AssertionError: assert [] == [<Gesture.CIRCLE: 'G11'>]
+E         
+E         Right contains one more item: <Gesture.CIRCLE: 'G11'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:99: AssertionError
+____________________ test_opposed_l_frame_hold[800-want1] _____________________
+
+duration = 800, want = [<Gesture.FRAME: 'G14'>]
+
+    @pytest.mark.parametrize('duration,want',[(799,[]),(800,[Gesture.FRAME]),(1000,[Gesture.FRAME])])
+    def test_opposed_l_frame_hold(duration,want):
+        r=GestureRecognizer()
+        out=[r.process(l_frame(1000+t),True) for t in list(range(0,duration,50))+[duration]]
+>       assert events(out)==want
+E       AssertionError: assert [] == [<Gesture.FRAME: 'G14'>]
+E         
+E         Right contains one more item: <Gesture.FRAME: 'G14'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:116: AssertionError
+____________________ test_opposed_l_frame_hold[1000-want2] ____________________
+
+duration = 1000, want = [<Gesture.FRAME: 'G14'>]
+
+    @pytest.mark.parametrize('duration,want',[(799,[]),(800,[Gesture.FRAME]),(1000,[Gesture.FRAME])])
+    def test_opposed_l_frame_hold(duration,want):
+        r=GestureRecognizer()
+        out=[r.process(l_frame(1000+t),True) for t in list(range(0,duration,50))+[duration]]
+>       assert events(out)==want
+E       AssertionError: assert [] == [<Gesture.FRAME: 'G14'>]
+E         
+E         Right contains one more item: <Gesture.FRAME: 'G14'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:116: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_extended_recognition.py::test_v_axis_swipes_emit_one_command[0.24-0-G05]
+FAILED tests/unit/test_extended_recognition.py::test_v_axis_swipes_emit_one_command[-0.24-0-G06]
+FAILED tests/unit/test_extended_recognition.py::test_v_axis_swipes_emit_one_command[0--0.24-G07]
+FAILED tests/unit/test_extended_recognition.py::test_v_axis_swipes_emit_one_command[0-0.24-G08]
+FAILED tests/unit/test_extended_recognition.py::test_thumb_hold_boundary_once[600-want1]
+FAILED tests/unit/test_extended_recognition.py::test_thumb_hold_boundary_once[1200-want2]
+FAILED tests/unit/test_extended_recognition.py::test_fist_open_requires_both_durations_and_never_stops
+FAILED tests/unit/test_extended_recognition.py::test_two_hand_zoom_baseline_confirmation_and_hold_once[0.7-G09]
+FAILED tests/unit/test_extended_recognition.py::test_two_hand_zoom_baseline_confirmation_and_hold_once[0.38-G10]
+FAILED tests/unit/test_extended_recognition.py::test_zoom_release_hysteresis_loss_and_id_change
+FAILED tests/unit/test_extended_recognition.py::test_circle_both_directions_excludes_swipe[-1]
+FAILED tests/unit/test_extended_recognition.py::test_circle_both_directions_excludes_swipe[1]
+FAILED tests/unit/test_extended_recognition.py::test_opposed_l_frame_hold[800-want1]
+FAILED tests/unit/test_extended_recognition.py::test_opposed_l_frame_hold[1000-want2]
+14 failed, 13 passed in 1.05s

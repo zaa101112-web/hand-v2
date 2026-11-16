@@ -1,0 +1,19 @@
+{
+  "at_utc": "2026-11-16T14:22:51.156953+00:00",
+  "stage": ".build-staging\\20261116-231932-365835",
+  "exit_code": 0,
+  "duration_seconds": 198.8,
+  "lock_sha256": "9d0375bd35dce287b5ffadd7a8b92192ee7fea2d5555865bd34d9406b9741a71",
+  "clean_pc_test": "NOT_RUN",
+  "fresh_staging": true,
+  "path_sanitized": true,
+  "exe": ".build-staging\\20261116-231932-365835\\dist\\HAND-v2\\HAND-v2.exe",
+  "exe_sha256": "e805eece1b90fba537ba95f2e2ecd58e8ff60652cdbafe9b994c3d4ba7346671",
+  "manifest_sha256": "2043b4e65935e5dca7b47825e4f9318bc299f2d24b81dbeda26301805fd18448",
+  "bundle_bytes": 408244383,
+  "offscreen_smoke_exit_code": 0,
+  "source_manifest_sha256": "c5eb69c6e779c9e91a839152baccdd3b195678bd3045adc623757bacb498f77c",
+  "deployed_exe": "dist/HAND-v2-M04-20261116-231932/HAND-v2.exe",
+  "deployed_exe_sha256": "e805eece1b90fba537ba95f2e2ecd58e8ff60652cdbafe9b994c3d4ba7346671",
+  "deployed_bundle_files_verified": 1302
+}

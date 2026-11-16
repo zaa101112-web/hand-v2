@@ -1,0 +1,75 @@
+{
+  "state": {
+    "revision": 6915,
+    "context_version": 3,
+    "mode": "BROWSER",
+    "phase": "RUNNING",
+    "activation": "WAITING",
+    "ready": false,
+    "execution_mode": "WINDOWS_REAL",
+    "camera_status": "DISCONNECTED",
+    "camera_epoch": 1,
+    "blocked_reasons": [
+      "CAMERA_OFF",
+      "CAMERA_UNAVAILABLE"
+    ],
+    "confirmation_pending": false,
+    "release_pending": false,
+    "keyboard_state": {
+      "revision": 5,
+      "observed_at_ms": 386240625,
+      "owned_keys": [],
+      "release_status": "CONFIRMED",
+      "release_request_id": "worker-shutdown"
+    },
+    "dialog_lock": false,
+    "last_stop_reason": "앱 종료",
+    "last_stop_at_ms": 386240625,
+    "last_candidate": "손 없음",
+    "last_execution": null,
+    "visible_hand_ids": []
+  },
+  "fps": 0,
+  "recognized_events": [],
+  "observations": [
+    {
+      "at_ms": 386000609,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손동작 대기",
+      "last_execution": null,
+      "last_stop_reason": "카메라 연결"
+    },
+    {
+      "at_ms": 386006562,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손 없음",
+      "last_execution": null,
+      "last_stop_reason": "카메라 연결"
+    },
+    {
+      "at_ms": 386240062,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손 없음",
+      "last_execution": null,
+      "last_stop_reason": "CAMERA_OFF"
+    },
+    {
+      "at_ms": 386240656,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손 없음",
+      "last_execution": null,
+      "last_stop_reason": "앱 종료"
+    }
+  ],
+  "camera_stop": {
+    "success": true,
+    "forced": false,
+    "elapsed_ms": 579
+  },
+  "hotkey_registered": false,
+  "raw_images_saved": false
+}

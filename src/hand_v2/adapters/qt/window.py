@@ -118,9 +118,9 @@ class MainWindow(QMainWindow):
         self._page_indices={}
         self._add_page("control", self._control_page())
         guide=QWidget();g=QVBoxLayout(guide);g.addWidget(label("손동작 안내","Title"))
-        for text in ("V 유지 · 제어 시작 / 숫자 3 유지 · 중단", "검지 좌우 · 뒤로 / 앞으로", "V 좌우 · 탭 이동 / V 위아래 · 페이지 이동", "양손 집기 간격 · 한 단계 확대 / 축소", "검지 원 · 새로고침 / 엄지 유지 · 북마크 창", "주먹 → 펼침 · 닫은 탭 복구 / 이미지 화면 맞춤", "양손 L 프레임 · 캡처 시작"):
+        for text in ("V 0.6초 · 시작 / 숫자 3(엄지·검지·중지) 0.35초 · 중단", "검지 좌우 · 뒤로 / 앞으로", "V 좌우 · 탭 이동 / V 위아래 · 페이지 이동", "양손 엄지·검지 집기 → 간격 벌리기/좁히기 · 한 단계 확대/축소", "검지 원 · 새로고침 / 엄지 0.6초 · 북마크 창", "주먹 0.25초 → 1.2초 이내 손 펼치기 · 닫은 탭 복구", "양손 L 0.8초 · 캡처 요청 인식 (실제 캡처 저장은 준비 중)"):
             g.addWidget(label(text))
-        g.addWidget(label("카메라를 켠 뒤 V를 0.6초 유지하여 시작합니다. 손을 펼쳐 자세를 해제한 뒤 검지만 펴서 좌우로 쓸면 뒤로/앞으로 갑니다. 숫자 3(엄지·검지·중지) 0.35초, 중단 버튼 또는 F8로 중단합니다.","Muted"));g.addStretch()
+        g.addWidget(label("각 명령 후 손을 펼쳐 자세를 해제하세요. 숫자 3, F8 또는 중단 버튼으로 중단합니다. 북마크 창을 닫은 뒤 작은 상태창에서 ‘계속’을 눌러야 다른 명령을 실행할 수 있습니다. 손을 내려도 활성 상태는 유지됩니다.","Muted"));g.addStretch()
         self._add_page("guide",guide)
         for key,title,detail in (("practice","연습하기","카메라를 사용한 동작 연습과 감도 추천은 구현 예정입니다."),("settings","환경설정","인식 감도·카메라·캡처 저장 폴더 설정은 구현 예정입니다.")):
             page=QWidget();page.setAccessibleDescription(detail);p=QVBoxLayout(page);p.addWidget(label(title,"Title"));p.addWidget(label(detail,"Muted"));p.addStretch();self._add_page(key,page)
@@ -131,7 +131,7 @@ class MainWindow(QMainWindow):
 
     def _control_page(self):
         page=QWidget();v=QVBoxLayout(page);v.setContentsMargins(0,0,0,0);v.setSpacing(15)
-        v.addWidget(label("손동작 제어","Title"));v.addWidget(label("확정 동작 예시로 명령의 승인·보류·중단을 확인하세요.","Muted"))
+        v.addWidget(label("손동작 제어","Title"));v.addWidget(label("카메라로 손동작을 인식해 단축키를 실행합니다. 시작 후 손을 펼쳐 자세를 해제하세요.","Muted"))
         modes=QHBoxLayout();self.mode_buttons={}
         for mode,title in ((Mode.BROWSER,"브라우저 · 페이지와 탭"),(Mode.IMAGE,"이미지·발표 · 사진 넘기기")):
             b=button(title,lambda checked=False,m=mode:self.controller.set_mode(m));b.setCheckable(True);modes.addWidget(b);self.mode_buttons[mode]=b
@@ -165,7 +165,7 @@ class MainWindow(QMainWindow):
             for layout in (row,extra):
                 for i in range(layout.count()):
                     layout.itemAt(i).widget().setVisible(False)
-            self.preview_label.setText('카메라를 켜고 손을 보여주세요.\nV 0.6초: 시작 · 숫자 3 0.35초: 중단\n검지만 펴서 좌우로 쓸면 뒤로/앞으로 갑니다.')
+            self.preview_label.setText('카메라를 켜고 손을 보여주세요.\nV 0.6초: 시작 · 숫자 3 0.35초: 중단\n검지 좌우: 뒤로/앞으로 · V 좌우: 탭 · V 위아래: 페이지')
             self.detail_label.setText('실행 결과는 OS 전송 여부입니다. 페이지 동작은 별도로 확인하세요.')
         return page
 

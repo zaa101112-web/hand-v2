@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="37" time="0.684" timestamp="2026-11-16T23:14:45.789300+09:00" hostname="준식"><testcase classname="tests.unit.test_extended_recognition" name="test_v_axis_swipes_emit_one_command[0.24-0-G05]" time="0.007" /><testcase classname="tests.unit.test_extended_recognition" name="test_v_axis_swipes_emit_one_command[-0.24-0-G06]" time="0.004" /><testcase classname="tests.unit.test_extended_recognition" name="test_v_axis_swipes_emit_one_command[0--0.24-G07]" time="0.004" /><testcase classname="tests.unit.test_extended_recognition" name="test_v_axis_swipes_emit_one_command[0-0.24-G08]" time="0.004" /><testcase classname="tests.unit.test_extended_recognition" name="test_v_axis_cannot_switch_and_diagonal_is_not_a_command" time="0.005" /><testcase classname="tests.unit.test_extended_recognition" name="test_thumb_hold_boundary_once[599-want0]" time="0.002" /><testcase classname="tests.unit.test_extended_recognition" name="test_thumb_hold_boundary_once[600-want1]" time="0.002" /><testcase classname="tests.unit.test_extended_recognition" name="test_thumb_hold_boundary_once[1200-want2]" time="0.004" /><testcase classname="tests.unit.test_extended_recognition" name="test_fist_open_requires_both_durations_and_never_stops" time="0.002" /><testcase classname="tests.unit.test_extended_recognition" name="test_fist_open_invalid_sequences[short_fist]" time="0.002" /><testcase classname="tests.unit.test_extended_recognition" name="test_fist_open_invalid_sequences[late_open]" time="0.004" /><testcase classname="tests.unit.test_extended_recognition" name="test_fist_open_invalid_sequences[hand_change]" time="0.002" /><testcase classname="tests.unit.test_extended_recognition" name="test_fist_open_invalid_sequences[unknown]" time="0.002" /><testcase classname="tests.unit.test_extended_recognition" name="test_two_hand_zoom_baseline_confirmation_and_hold_once[0.7-G09]" time="0.010" /><testcase classname="tests.unit.test_extended_recognition" name="test_two_hand_zoom_baseline_confirmation_and_hold_once[0.38-G10]" time="0.012" /><testcase classname="tests.unit.test_extended_recognition" name="test_zoom_release_hysteresis_loss_and_id_change" time="0.006" /><testcase classname="tests.unit.test_extended_recognition" name="test_circle_both_directions_excludes_swipe[-1]" time="0.008" /><testcase classname="tests.unit.test_extended_recognition" name="test_circle_both_directions_excludes_swipe[1]" time="0.008" /><testcase classname="tests.unit.test_extended_recognition" name="test_circle_wrong_radius_or_open_path_is_rejected[0.02-360]" time="0.007" /><testcase classname="tests.unit.test_extended_recognition" name="test_circle_wrong_radius_or_open_path_is_rejected[0.28-360]" time="0.009" /><testcase classname="tests.unit.test_extended_recognition" name="test_circle_wrong_radius_or_open_path_is_rejected[0.1-250]" time="0.008" /><testcase classname="tests.unit.test_extended_recognition" name="test_opposed_l_frame_hold[799-want0]" time="0.007" /><testcase classname="tests.unit.test_extended_recognition" name="test_opposed_l_frame_hold[800-want1]" time="0.005" /><testcase classname="tests.unit.test_extended_recognition" name="test_opposed_l_frame_hold[1000-want2]" time="0.008" /><testcase classname="tests.unit.test_extended_recognition" name="test_two_v_or_parallel_l_do_not_capture[V-True]" time="0.006" /><testcase classname="tests.unit.test_extended_recognition" name="test_two_v_or_parallel_l_do_not_capture[L-False]" time="0.007" /><testcase classname="tests.unit.test_extended_recognition" name="test_stop_preempts_two_hand_candidate" time="0.007" /><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[0]" time="0.008" /><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[45]" time="0.008"><failure message="AssertionError: assert [&lt;Gesture.RIGHT: 'G04'&gt;] == [&lt;Gesture.CIRCLE: 'G11'&gt;]&#10;  &#10;  At index 0 diff: &lt;Gesture.RIGHT: 'G04'&gt; != &lt;Gesture.CIRCLE: 'G11'&gt;&#10;  Use -v to get more diff">phase = 45
+
+    @pytest.mark.parametrize('phase',[0,45,90,135,180,225,270,315])
+    def test_wide_circle_initial_arc_never_emits_swipe(phase):
+        r=GestureRecognizer()
+&gt;       assert events([r.process(f,True) for f in circle_frames(radius=.18,phase=phase)])==[Gesture.CIRCLE]
+E       AssertionError: assert [&lt;Gesture.RIGHT: 'G04'&gt;] == [&lt;Gesture.CIRCLE: 'G11'&gt;]
+E         
+E         At index 0 diff: &lt;Gesture.RIGHT: 'G04'&gt; != &lt;Gesture.CIRCLE: 'G11'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:136: AssertionError</failure></testcase><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[90]" time="0.007" /><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[135]" time="0.009" /><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[180]" time="0.008" /><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[225]" time="0.009"><failure message="AssertionError: assert [&lt;Gesture.LEFT: 'G03'&gt;] == [&lt;Gesture.CIRCLE: 'G11'&gt;]&#10;  &#10;  At index 0 diff: &lt;Gesture.LEFT: 'G03'&gt; != &lt;Gesture.CIRCLE: 'G11'&gt;&#10;  Use -v to get more diff">phase = 225
+
+    @pytest.mark.parametrize('phase',[0,45,90,135,180,225,270,315])
+    def test_wide_circle_initial_arc_never_emits_swipe(phase):
+        r=GestureRecognizer()
+&gt;       assert events([r.process(f,True) for f in circle_frames(radius=.18,phase=phase)])==[Gesture.CIRCLE]
+E       AssertionError: assert [&lt;Gesture.LEFT: 'G03'&gt;] == [&lt;Gesture.CIRCLE: 'G11'&gt;]
+E         
+E         At index 0 diff: &lt;Gesture.LEFT: 'G03'&gt; != &lt;Gesture.CIRCLE: 'G11'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:136: AssertionError</failure></testcase><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[270]" time="0.010" /><testcase classname="tests.unit.test_extended_recognition" name="test_wide_circle_initial_arc_never_emits_swipe[315]" time="0.007" /><testcase classname="tests.unit.test_extended_recognition" name="test_three_interrupts_waiting_v_hold" time="0.004"><failure message="AssertionError: assert &lt;Gesture.START: 'G01'&gt; is None&#10; +  where &lt;Gesture.START: 'G01'&gt; = Recognition(gesture=&lt;Gesture.START: 'G01'&gt;, hand_ids=('h1',), neutral=False, candidate='V · 시작 준비', progress=1, reason='').gesture&#10;[+3 more lines; full report in element text]">def test_three_interrupts_waiting_v_hold():
+        r=GestureRecognizer()
+        for t in range(0,551,50):r.process(sample_frame(1000+t,'V'),False)
+        r.process(sample_frame(1575,'THREE'),False)
+&gt;       assert r.process(sample_frame(1600,'V'),False).gesture is None
+E       AssertionError: assert &lt;Gesture.START: 'G01'&gt; is None
+E        +  where &lt;Gesture.START: 'G01'&gt; = Recognition(gesture=&lt;Gesture.START: 'G01'&gt;, hand_ids=('h1',), neutral=False, candidate='V · 시작 준비', progress=1, reason='').gesture
+E        +    where Recognition(gesture=&lt;Gesture.START: 'G01'&gt;, hand_ids=('h1',), neutral=False, candidate='V · 시작 준비', progress=1, reason='') = process(TrackingFrame(frame_id=1600, captured_at_ms=1600, camera_epoch=1, image_width=640, image_height=480, hands=(Hand(hand_...k(x=0.68, y=0.67, z=0.0)), raw_handedness='UNKNOWN', handedness_score=None),), schema_name='hand-v2', schema_version=1), False)
+E        +      where process = &lt;hand_v2.domain.recognition.GestureRecognizer object at 0x000001A97EE25700&gt;.process
+E        +      and   TrackingFrame(frame_id=1600, captured_at_ms=1600, camera_epoch=1, image_width=640, image_height=480, hands=(Hand(hand_...k(x=0.68, y=0.67, z=0.0)), raw_handedness='UNKNOWN', handedness_score=None),), schema_name='hand-v2', schema_version=1) = sample_frame(1600, 'V')
+
+tests\unit\test_extended_recognition.py:143: AssertionError</failure></testcase><testcase classname="tests.unit.test_extended_recognition" name="test_short_fists_cannot_accumulate_across_open_pose" time="0.002"><failure message="AssertionError: assert [&lt;Gesture.FIST_OPEN: 'G13'&gt;] == []&#10;  &#10;  Left contains one more item: &lt;Gesture.FIST_OPEN: 'G13'&gt;&#10;  Use -v to get more diff">def test_short_fists_cannot_accumulate_across_open_pose():
+        r=GestureRecognizer();out=[]
+        for start in (1000,1300):
+            for t in range(0,201,50):out.append(r.process(sample_frame(start+t,'FIST'),True))
+            out.append(r.process(sample_frame(start+250,'OPEN'),True))
+        for t in range(1600,1801,50):out.append(r.process(sample_frame(t,'OPEN'),True))
+&gt;       assert events(out)==[]
+E       AssertionError: assert [&lt;Gesture.FIST_OPEN: 'G13'&gt;] == []
+E         
+E         Left contains one more item: &lt;Gesture.FIST_OPEN: 'G13'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:152: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,81 @@
+{
+  "milestone": "M04",
+  "scope": "D16-D20, 5 estimated man-days; not five elapsed working days",
+  "status": "IMPLEMENTED_AUTOMATED_AND_FROZEN_CAMERA_VERIFIED_EXTERNAL_GATES_PENDING",
+  "base_commit": "38a7d8a",
+  "requirements": [
+    "G01-G14",
+    "V2-T02",
+    "V2-T03",
+    "V2-T04",
+    "V2-T05",
+    "V2-T06",
+    "V2-T07",
+    "V2-T18",
+    "V2-T19",
+    "V2-T23",
+    "V2-T30",
+    "V2-T31",
+    "V2-T33"
+  ],
+  "implemented": [
+    "V horizontal/vertical axis lock -> tabs/pages",
+    "two-hand pinch baseline120ms, ratio1.15, confirmation80ms, one event until release",
+    "circle vs swipe exclusivity, both directions, radius/closure/time gates",
+    "thumb600ms bookmark and controller confirmation block",
+    "fist250ms -> open150ms within1200ms; fist alone never STOP",
+    "opposed L800ms -> START_CAPTURE semantic action; actual capture remains NOT_IMPLEMENTED"
+  ],
+  "automated": {
+    "passed": 187,
+    "report": "tdd/m04-final.txt",
+    "recognition_fixture_repetitions": 10,
+    "fixture_cases": 18,
+    "landmark_to_controller_integration": 12,
+    "actual_os_input_in_automated_tests": false
+  },
+  "frozen_bundle": {
+    "exe": "dist/HAND-v2-M04-20261116-231932/HAND-v2.exe",
+    "exe_sha256": "e805eece1b90fba537ba95f2e2ecd58e8ff60652cdbafe9b994c3d4ba7346671",
+    "bytes": 408244383,
+    "qt_import_resource_smoke_exit": 0,
+    "camera_frames": 166,
+    "camera_fps_after_start": 29.93,
+    "camera_startup_seconds": 9.453,
+    "normal_stop_ms": 812,
+    "preview_bytes_saved": 0,
+    "evidence": [
+      "m04-build.json",
+      "m04-bundle-smoke.json",
+      "m04-bundle-camera.json",
+      "m04-source-manifest.json"
+    ]
+  },
+  "physical_checks": {
+    "previous_user_observation": "Chrome remained foreground after panel STOP; camera labels/state changed",
+    "latest_live_app": "4-minute source app diagnostic closed normally with release_pending false, empty owned_keys, camera stop579ms; no confirmed gesture events recorded",
+    "gesture_to_chrome": "PENDING_USER_RETEST_AFTER_THUMB_FIX",
+    "chrome_shortcut_effects": "M02 real-Chrome evidence retained; new recognizer output checked with fake keyboard, not a substitute for actual hands"
+  },
+  "defects_fixed": [
+    "thumb MCP folded false UNKNOWN (M03)",
+    "final release ACK (M03)",
+    "wide-circle starts45/225deg incorrectly emitted swipe; direction-change guard now applies before any emission",
+    "waiting V timer continued across THREE pose",
+    "short fist intervals incorrectly accumulated across open pose"
+  ],
+  "remaining": [
+    "new hand -> real Chrome before/after verification after corrected thumb classifier",
+    "physical panel CONTINUE focus and separate Korean/English layout zoom verification",
+    "clean Windows PC without Python",
+    "3-participant accuracy, per-hand annotations and long-run latency/stability",
+    "D21-D40 image/capture/settings/practice and final gates"
+  ],
+  "effort": "Test durations recorded in tdd/runs.jsonl; elapsed automation time is not converted to human MD. No reserve-day claim.",
+  "final_app_launch": {
+    "exe": "dist/HAND-v2-M04-20261116-231932/HAND-v2.exe",
+    "process_id": 22284,
+    "camera_initially_off": true,
+    "window_observation": "Computer Use was stopped by the user with physical Escape. No further Computer Use calls; visible UI state not verified."
+  }
+}

@@ -10,7 +10,15 @@ def main():
     parser.add_argument("--smoke",action="store_true",help="Start Qt, verify initial state, then exit")
     parser.add_argument('--smoke-report',help='Write startup/resource diagnostics after an offscreen smoke test')
     parser.add_argument('--camera',type=int,default=0,choices=range(4),help='Initial camera selection; camera stays off until requested')
+    parser.add_argument('--camera-probe-report',help='Explicitly test the real camera/model without OS input and write JSON')
     args=parser.parse_args()
+    if args.camera_probe_report:
+        from pathlib import Path
+        from hand_v2.adapters.vision.probe import probe_camera
+        report=probe_camera(args.camera)
+        report['frozen']=bool(getattr(sys,'frozen',False))
+        Path(args.camera_probe_report).write_text(json.dumps(report,indent=2),encoding='utf-8')
+        return 0 if report['success'] else 1
     if args.replay:
         from hand_v2.adapters.replay import run_fixture
         print(json.dumps(run_fixture(args.replay),ensure_ascii=False,indent=2))

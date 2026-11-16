@@ -1,0 +1,65 @@
+............................F...F..FF                                    [100%]
+================================== FAILURES ===================================
+_____________ test_wide_circle_initial_arc_never_emits_swipe[45] ______________
+
+phase = 45
+
+    @pytest.mark.parametrize('phase',[0,45,90,135,180,225,270,315])
+    def test_wide_circle_initial_arc_never_emits_swipe(phase):
+        r=GestureRecognizer()
+>       assert events([r.process(f,True) for f in circle_frames(radius=.18,phase=phase)])==[Gesture.CIRCLE]
+E       AssertionError: assert [<Gesture.RIGHT: 'G04'>] == [<Gesture.CIRCLE: 'G11'>]
+E         
+E         At index 0 diff: <Gesture.RIGHT: 'G04'> != <Gesture.CIRCLE: 'G11'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:136: AssertionError
+_____________ test_wide_circle_initial_arc_never_emits_swipe[225] _____________
+
+phase = 225
+
+    @pytest.mark.parametrize('phase',[0,45,90,135,180,225,270,315])
+    def test_wide_circle_initial_arc_never_emits_swipe(phase):
+        r=GestureRecognizer()
+>       assert events([r.process(f,True) for f in circle_frames(radius=.18,phase=phase)])==[Gesture.CIRCLE]
+E       AssertionError: assert [<Gesture.LEFT: 'G03'>] == [<Gesture.CIRCLE: 'G11'>]
+E         
+E         At index 0 diff: <Gesture.LEFT: 'G03'> != <Gesture.CIRCLE: 'G11'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:136: AssertionError
+____________________ test_three_interrupts_waiting_v_hold _____________________
+
+    def test_three_interrupts_waiting_v_hold():
+        r=GestureRecognizer()
+        for t in range(0,551,50):r.process(sample_frame(1000+t,'V'),False)
+        r.process(sample_frame(1575,'THREE'),False)
+>       assert r.process(sample_frame(1600,'V'),False).gesture is None
+E       AssertionError: assert <Gesture.START: 'G01'> is None
+E        +  where <Gesture.START: 'G01'> = Recognition(gesture=<Gesture.START: 'G01'>, hand_ids=('h1',), neutral=False, candidate='V · 시작 준비', progress=1, reason='').gesture
+E        +    where Recognition(gesture=<Gesture.START: 'G01'>, hand_ids=('h1',), neutral=False, candidate='V · 시작 준비', progress=1, reason='') = process(TrackingFrame(frame_id=1600, captured_at_ms=1600, camera_epoch=1, image_width=640, image_height=480, hands=(Hand(hand_...k(x=0.68, y=0.67, z=0.0)), raw_handedness='UNKNOWN', handedness_score=None),), schema_name='hand-v2', schema_version=1), False)
+E        +      where process = <hand_v2.domain.recognition.GestureRecognizer object at 0x000001A97EE25700>.process
+E        +      and   TrackingFrame(frame_id=1600, captured_at_ms=1600, camera_epoch=1, image_width=640, image_height=480, hands=(Hand(hand_...k(x=0.68, y=0.67, z=0.0)), raw_handedness='UNKNOWN', handedness_score=None),), schema_name='hand-v2', schema_version=1) = sample_frame(1600, 'V')
+
+tests\unit\test_extended_recognition.py:143: AssertionError
+_____________ test_short_fists_cannot_accumulate_across_open_pose _____________
+
+    def test_short_fists_cannot_accumulate_across_open_pose():
+        r=GestureRecognizer();out=[]
+        for start in (1000,1300):
+            for t in range(0,201,50):out.append(r.process(sample_frame(start+t,'FIST'),True))
+            out.append(r.process(sample_frame(start+250,'OPEN'),True))
+        for t in range(1600,1801,50):out.append(r.process(sample_frame(t,'OPEN'),True))
+>       assert events(out)==[]
+E       AssertionError: assert [<Gesture.FIST_OPEN: 'G13'>] == []
+E         
+E         Left contains one more item: <Gesture.FIST_OPEN: 'G13'>
+E         Use -v to get more diff
+
+tests\unit\test_extended_recognition.py:152: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_extended_recognition.py::test_wide_circle_initial_arc_never_emits_swipe[45]
+FAILED tests/unit/test_extended_recognition.py::test_wide_circle_initial_arc_never_emits_swipe[225]
+FAILED tests/unit/test_extended_recognition.py::test_three_interrupts_waiting_v_hold
+FAILED tests/unit/test_extended_recognition.py::test_short_fists_cannot_accumulate_across_open_pose
+4 failed, 33 passed in 0.97s
