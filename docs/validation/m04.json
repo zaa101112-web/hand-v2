@@ -54,8 +54,9 @@
   "physical_checks": {
     "previous_user_observation": "Chrome remained foreground after panel STOP; camera labels/state changed",
     "latest_live_app": "4-minute source app diagnostic closed normally with release_pending false, empty owned_keys, camera stop579ms; no confirmed gesture events recorded",
-    "gesture_to_chrome": "PENDING_USER_RETEST_AFTER_THUMB_FIX",
-    "chrome_shortcut_effects": "M02 real-Chrome evidence retained; new recognizer output checked with fake keyboard, not a substitute for actual hands"
+    "gesture_to_chrome": "FAILED_USER_REPORTED_START_OR_CONFIRMATION; follow-up awaiting real hand in frame",
+    "chrome_shortcut_effects": "M02 real-Chrome evidence retained; new recognizer output checked with fake keyboard, not a substitute for actual hands",
+    "followup": "m04-start-followup.json"
   },
   "defects_fixed": [
     "thumb MCP folded false UNKNOWN (M03)",

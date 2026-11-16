@@ -1,0 +1,2482 @@
+{
+  "state": {
+    "revision": 7777,
+    "context_version": 3,
+    "mode": "BROWSER",
+    "phase": "RUNNING",
+    "activation": "WAITING",
+    "ready": false,
+    "execution_mode": "WINDOWS_REAL",
+    "camera_status": "DISCONNECTED",
+    "camera_epoch": 1,
+    "blocked_reasons": [
+      "CAMERA_OFF",
+      "CAMERA_UNAVAILABLE"
+    ],
+    "confirmation_pending": false,
+    "release_pending": false,
+    "keyboard_state": {
+      "revision": 5,
+      "observed_at_ms": 387173078,
+      "owned_keys": [],
+      "release_status": "CONFIRMED",
+      "release_request_id": "release-000004"
+    },
+    "dialog_lock": false,
+    "last_stop_reason": "앱 종료",
+    "last_stop_at_ms": 387173078,
+    "last_candidate": "손 없음",
+    "last_execution": null,
+    "visible_hand_ids": []
+  },
+  "fps": 0,
+  "recognized_events": [],
+  "observations": [
+    {
+      "at_ms": 386905578,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손동작 대기",
+      "last_execution": null,
+      "last_stop_reason": "카메라 연결"
+    },
+    {
+      "at_ms": 386910500,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손 없음",
+      "last_execution": null,
+      "last_stop_reason": "카메라 연결"
+    },
+    {
+      "at_ms": 387172500,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손 없음",
+      "last_execution": null,
+      "last_stop_reason": "CAMERA_OFF"
+    },
+    {
+      "at_ms": 387173140,
+      "activation": "WAITING",
+      "ready": false,
+      "last_candidate": "손 없음",
+      "last_execution": null,
+      "last_stop_reason": "앱 종료"
+    }
+  ],
+  "tracking_counts": {
+    "frames": 7755,
+    "with_hands": 0,
+    "gap_over_100ms": 0
+  },
+  "recent_pose_samples": [
+    {
+      "at_ms": 387135890,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136015,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136140,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136281,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136406,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136531,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136656,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136781,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387136890,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137015,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137140,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137265,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137531,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137656,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137781,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387137906,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138031,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138140,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138265,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138500,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138609,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138734,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138843,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387138968,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139078,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139203,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139312,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139421,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139546,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139671,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139781,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387139921,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140031,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140156,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140281,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140515,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140625,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140734,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140859,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387140968,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141093,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141234,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141343,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141468,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141609,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141734,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141875,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387141984,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142109,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142218,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142343,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142468,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142593,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142718,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142859,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387142984,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143109,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143234,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143359,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143500,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143625,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143750,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143859,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387143968,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144109,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144234,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144359,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144468,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144578,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144703,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144812,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387144937,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145046,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145171,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145281,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145515,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145640,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145750,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387145890,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146000,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146125,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146250,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146359,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146484,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146593,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146703,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146828,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387146937,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147062,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147187,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147312,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147437,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147546,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147671,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147796,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387147921,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148046,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148187,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148312,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148437,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148546,
+      "gap_ms": 15,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148656,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148781,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387148890,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149015,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149125,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149265,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149500,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149625,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149765,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387149890,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150000,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150109,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150234,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150375,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150515,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150640,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150750,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387150875,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151015,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151140,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151281,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151515,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151625,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151750,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387151875,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152000,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152125,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152265,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152515,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152640,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152765,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387152906,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153031,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153156,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153281,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153406,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153515,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153640,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153765,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387153890,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154031,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154140,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154250,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154375,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154484,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154593,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154718,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154828,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387154953,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155093,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155218,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155328,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155437,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155562,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155703,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155828,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387155937,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156046,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156171,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156296,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156406,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156531,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156656,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156781,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387156906,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157015,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157140,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157296,
+      "gap_ms": 62,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157421,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157546,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157656,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157781,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387157890,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158000,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158125,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158234,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158359,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158484,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158609,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158734,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158843,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387158968,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159093,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159203,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159312,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159437,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159546,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159671,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159781,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387159890,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160015,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160125,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160250,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160375,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160484,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160625,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160734,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160859,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387160984,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161093,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161234,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161375,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161500,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161625,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161734,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161843,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387161984,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162109,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162234,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162343,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162468,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162578,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162687,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162812,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387162921,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163046,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163171,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163296,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163421,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163562,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163687,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163812,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387163937,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164062,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164171,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164296,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164421,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164531,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164640,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164765,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387164875,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165000,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165109,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165250,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165375,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165484,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165609,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165750,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165875,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387165984,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166093,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166218,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166343,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166453,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166562,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166703,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166828,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387166953,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167062,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167203,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167343,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167468,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167593,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167703,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167828,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387167953,
+      "gap_ms": 63,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168078,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168203,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168312,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168437,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168593,
+      "gap_ms": 62,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168718,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168843,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387168953,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169078,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169187,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169296,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169421,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169531,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169656,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169781,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387169890,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170000,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170140,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170265,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170390,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170500,
+      "gap_ms": 16,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170609,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170734,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170843,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387170968,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171078,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171203,
+      "gap_ms": 32,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171312,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171421,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171546,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171671,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171812,
+      "gap_ms": 62,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387171921,
+      "gap_ms": 46,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387172031,
+      "gap_ms": 47,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387172156,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    },
+    {
+      "at_ms": 387172281,
+      "gap_ms": 31,
+      "accepted": true,
+      "hands": [],
+      "candidate": "손 없음",
+      "progress": 0.0
+    }
+  ],
+  "camera_stop": {
+    "success": true,
+    "forced": false,
+    "elapsed_ms": 672
+  },
+  "hotkey_registered": false,
+  "raw_images_saved": false
+}

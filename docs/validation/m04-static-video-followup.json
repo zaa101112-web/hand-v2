@@ -1,0 +1,36 @@
+[
+  {
+    "sample": "victory",
+    "frames": 46,
+    "pose_counts": {
+      "V": 46
+    },
+    "events": [
+      {
+        "gesture": "G01",
+        "at_ms": 1627
+      }
+    ]
+  },
+  {
+    "sample": "pointing_up",
+    "frames": 46,
+    "pose_counts": {
+      "INDEX": 46
+    },
+    "events": []
+  },
+  {
+    "sample": "thumb_up",
+    "frames": 46,
+    "pose_counts": {
+      "THUMB": 46
+    },
+    "events": [
+      {
+        "gesture": "G12",
+        "at_ms": 1627
+      }
+    ]
+  }
+]
