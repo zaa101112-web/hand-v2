@@ -1,0 +1,716 @@
+{
+  "actions": [
+    {
+      "action": "START",
+      "before_context": 0,
+      "at": 382555421,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "neutral",
+      "before_context": 0,
+      "at": 382555843,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "TAB_RIGHT",
+      "before_context": 0,
+      "at": 382556281,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "neutral",
+      "before_context": 0,
+      "at": 382620546,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "TAB_LEFT",
+      "before_context": 0,
+      "at": 382620953,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "neutral",
+      "before_context": 0,
+      "at": 382621906,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "TAB_RIGHT",
+      "before_context": 0,
+      "at": 382622390,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "neutral",
+      "before_context": 0,
+      "at": 382638484,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "FIST_OPEN",
+      "before_context": 0,
+      "at": 382638953,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "show_panel",
+      "before_context": 0,
+      "at": 382660015,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "neutral",
+      "before_context": 0,
+      "at": 382661046,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "THUMB",
+      "before_context": 0,
+      "at": 382661593,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "neutral",
+      "before_context": 0,
+      "at": 382710906,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "PAGE_DOWN",
+      "before_context": 0,
+      "at": 382711328,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "continue",
+      "before_context": 0,
+      "at": 382775250,
+      "foreground_hwnd": 396792
+    },
+    {
+      "action": "START",
+      "before_context": 1,
+      "at": 382834546,
+      "foreground_hwnd": 396792
+    }
+  ],
+  "outcomes": [
+    {
+      "action": "START",
+      "state": {
+        "revision": 17,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 1,
+          "observed_at_ms": 382513812,
+          "owned_keys": [],
+          "release_status": "CONFIRMED",
+          "release_request_id": "release-000001"
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": null,
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "neutral",
+      "state": {
+        "revision": 17,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 1,
+          "observed_at_ms": 382513812,
+          "owned_keys": [],
+          "release_status": "CONFIRMED",
+          "release_request_id": "release-000001"
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": null,
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "TAB_RIGHT",
+      "state": {
+        "revision": 19,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 1,
+          "observed_at_ms": 382513812,
+          "owned_keys": [],
+          "release_status": "CONFIRMED",
+          "release_request_id": "release-000001"
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": null,
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "neutral",
+      "state": {
+        "revision": 21,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 2,
+          "observed_at_ms": 382556296,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000004",
+          "context_version": 0,
+          "completed_at_ms": 382556296,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=4/4; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "TAB_LEFT",
+      "state": {
+        "revision": 23,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 2,
+          "observed_at_ms": 382556296,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000004",
+          "context_version": 0,
+          "completed_at_ms": 382556296,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=4/4; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "neutral",
+      "state": {
+        "revision": 25,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 3,
+          "observed_at_ms": 382620953,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000006",
+          "context_version": 0,
+          "completed_at_ms": 382620953,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=6/6; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "TAB_RIGHT",
+      "state": {
+        "revision": 27,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 3,
+          "observed_at_ms": 382620953,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000006",
+          "context_version": 0,
+          "completed_at_ms": 382620953,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=6/6; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "neutral",
+      "state": {
+        "revision": 29,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 4,
+          "observed_at_ms": 382622390,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000008",
+          "context_version": 0,
+          "completed_at_ms": 382622390,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=4/4; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "FIST_OPEN",
+      "state": {
+        "revision": 31,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 4,
+          "observed_at_ms": 382622390,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000008",
+          "context_version": 0,
+          "completed_at_ms": 382622390,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=4/4; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "show_panel",
+      "state": {
+        "revision": 33,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 5,
+          "observed_at_ms": 382638953,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000010",
+          "context_version": 0,
+          "completed_at_ms": 382638953,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=6/6; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "neutral",
+      "state": {
+        "revision": 33,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 5,
+          "observed_at_ms": 382638953,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000010",
+          "context_version": 0,
+          "completed_at_ms": 382638953,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=6/6; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "THUMB",
+      "state": {
+        "revision": 35,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 5,
+          "observed_at_ms": 382638953,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000010",
+          "context_version": 0,
+          "completed_at_ms": 382638953,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=6/6; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "neutral",
+      "state": {
+        "revision": 40,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": true,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 6,
+          "observed_at_ms": 382661593,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "command-000012",
+          "context_version": 0,
+          "completed_at_ms": 382661593,
+          "status": "SENT",
+          "reason": "OS_INPUT_SENT",
+          "detail": "accepted=4/4; page effect unverified"
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "PAGE_DOWN",
+      "state": {
+        "revision": 41,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": true,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 6,
+          "observed_at_ms": 382661593,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "qa-000013",
+          "context_version": 0,
+          "completed_at_ms": 382711328,
+          "status": "BLOCKED",
+          "reason": "INPUT_BLOCKED",
+          "detail": ""
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "continue",
+      "state": {
+        "revision": 42,
+        "context_version": 0,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 6,
+          "observed_at_ms": 382661593,
+          "owned_keys": [],
+          "release_status": "IDLE",
+          "release_request_id": null
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "",
+        "last_stop_at_ms": null,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "qa-000013",
+          "context_version": 0,
+          "completed_at_ms": 382711328,
+          "status": "BLOCKED",
+          "reason": "INPUT_BLOCKED",
+          "detail": ""
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    },
+    {
+      "action": "START",
+      "state": {
+        "revision": 47,
+        "context_version": 1,
+        "mode": "BROWSER",
+        "phase": "RUNNING",
+        "activation": "ACTIVE",
+        "ready": false,
+        "execution_mode": "WINDOWS_REAL",
+        "camera_status": "DISCONNECTED",
+        "camera_epoch": 0,
+        "blocked_reasons": "frozenset()",
+        "confirmation_pending": false,
+        "release_pending": false,
+        "keyboard_state": {
+          "revision": 7,
+          "observed_at_ms": 382805234,
+          "owned_keys": [],
+          "release_status": "CONFIRMED",
+          "release_request_id": "release-000014"
+        },
+        "dialog_lock": false,
+        "last_stop_reason": "전역 F8",
+        "last_stop_at_ms": 382805234,
+        "last_candidate": "손동작 대기",
+        "last_execution": {
+          "command_id": "qa-000013",
+          "context_version": 0,
+          "completed_at_ms": 382711328,
+          "status": "BLOCKED",
+          "reason": "INPUT_BLOCKED",
+          "detail": ""
+        },
+        "visible_hand_ids": []
+      },
+      "foreground_after": 396792
+    }
+  ],
+  "pages": {
+    "B": {
+      "name": "B",
+      "visible": "hidden",
+      "focused": false,
+      "scrollY": 0,
+      "ratio": 1.5,
+      "width": 1036,
+      "loads": 4,
+      "loaded": 1794835352695,
+      "received": 1794835444.1386588
+    },
+    "C": {
+      "name": "C",
+      "visible": "visible",
+      "focused": true,
+      "scrollY": 0,
+      "ratio": 1.5,
+      "width": 1707,
+      "loads": 2,
+      "loaded": 1794835443807,
+      "received": 1794835507.7187057
+    }
+  },
+  "shutdown_ok": true,
+  "exit_code": 0,
+  "source": "synthetic gestures -> production Controller/KeyboardWorker/Win32; real Chrome pages"
+}

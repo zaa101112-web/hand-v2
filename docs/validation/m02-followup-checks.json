@@ -1,0 +1,668 @@
+[
+  {
+    "label": "next-tab",
+    "at": 1794835398.0218558,
+    "state": {
+      "revision": 21,
+      "context_version": 0,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": false,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 2,
+        "observed_at_ms": 382556296,
+        "owned_keys": [],
+        "release_status": "IDLE",
+        "release_request_id": null
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "",
+      "last_stop_at_ms": null,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "command-000004",
+        "context_version": 0,
+        "completed_at_ms": 382556296,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382593312,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "C",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835361.138945
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 1,
+        "loaded": 1794832696368,
+        "received": 1794835361.074
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "PASS"
+  },
+  {
+    "label": "previous-tab",
+    "at": 1794835426.1495044,
+    "state": {
+      "revision": 25,
+      "context_version": 0,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": false,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 3,
+        "observed_at_ms": 382620953,
+        "owned_keys": [],
+        "release_status": "IDLE",
+        "release_request_id": null
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "",
+      "last_stop_at_ms": null,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "command-000006",
+        "context_version": 0,
+        "completed_at_ms": 382620953,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=6/6; page effect unverified"
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382621437,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "B",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835425.7001824
+      },
+      "C": {
+        "name": "C",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 1,
+        "loaded": 1794832696368,
+        "received": 1794835426.1377587
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "PASS"
+  },
+  {
+    "label": "reopen-tab",
+    "at": 1794835464.216695,
+    "state": {
+      "revision": 33,
+      "context_version": 0,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": false,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 5,
+        "observed_at_ms": 382638953,
+        "owned_keys": [],
+        "release_status": "IDLE",
+        "release_request_id": null
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "",
+      "last_stop_at_ms": null,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "command-000010",
+        "context_version": 0,
+        "completed_at_ms": 382638953,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=6/6; page effect unverified"
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382659500,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "C",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835444.1386588
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794835443807,
+        "received": 1794835443.9126768
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "PASS"
+  },
+  {
+    "label": "panel-show-focus",
+    "at": 1794835465.18911,
+    "state": {
+      "revision": 33,
+      "context_version": 0,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": false,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 5,
+        "observed_at_ms": 382638953,
+        "owned_keys": [],
+        "release_status": "IDLE",
+        "release_request_id": null
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "",
+      "last_stop_at_ms": null,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "command-000010",
+        "context_version": 0,
+        "completed_at_ms": 382638953,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=6/6; page effect unverified"
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382660468,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "C",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835444.1386588
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794835443807,
+        "received": 1794835443.9126768
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "PASS"
+  },
+  {
+    "label": "bookmark-open",
+    "at": 1794835494.9999158,
+    "state": {
+      "revision": 39,
+      "context_version": 0,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": true,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 6,
+        "observed_at_ms": 382661593,
+        "owned_keys": [],
+        "release_status": "IDLE",
+        "release_request_id": null
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "",
+      "last_stop_at_ms": null,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "command-000012",
+        "context_version": 0,
+        "completed_at_ms": 382661593,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382690281,
+      "hwnd": 1181590,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": null,
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835444.1386588
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794835443807,
+        "received": 1794835466.4163518
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "FAIL"
+  },
+  {
+    "label": "confirmation-blocks-new-input",
+    "at": 1794835516.4536116,
+    "state": {
+      "revision": 41,
+      "context_version": 0,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": true,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 6,
+        "observed_at_ms": 382661593,
+        "owned_keys": [],
+        "release_status": "IDLE",
+        "release_request_id": null
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "",
+      "last_stop_at_ms": null,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "qa-000013",
+        "context_version": 0,
+        "completed_at_ms": 382711328,
+        "status": "BLOCKED",
+        "reason": "INPUT_BLOCKED",
+        "detail": ""
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382711734,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "C",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835444.1386588
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1707,
+        "loads": 2,
+        "loaded": 1794835443807,
+        "received": 1794835507.7187057
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "PASS"
+  },
+  {
+    "label": "panel-continue-focus",
+    "at": 1794835544.016139,
+    "state": {
+      "revision": 41,
+      "context_version": 0,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": true,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 6,
+        "observed_at_ms": 382661593,
+        "owned_keys": [],
+        "release_status": "IDLE",
+        "release_request_id": null
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "",
+      "last_stop_at_ms": null,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "qa-000013",
+        "context_version": 0,
+        "completed_at_ms": 382711328,
+        "status": "BLOCKED",
+        "reason": "INPUT_BLOCKED",
+        "detail": ""
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382739296,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "C",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835444.1386588
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1707,
+        "loads": 2,
+        "loaded": 1794835443807,
+        "received": 1794835507.7187057
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "FAIL"
+  },
+  {
+    "label": "global-f8",
+    "at": 1794835616.3721664,
+    "state": {
+      "revision": 46,
+      "context_version": 1,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "WAITING",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": false,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 7,
+        "observed_at_ms": 382805234,
+        "owned_keys": [],
+        "release_status": "CONFIRMED",
+        "release_request_id": "release-000014"
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "전역 F8",
+      "last_stop_at_ms": 382805234,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "qa-000013",
+        "context_version": 0,
+        "completed_at_ms": 382711328,
+        "status": "BLOCKED",
+        "reason": "INPUT_BLOCKED",
+        "detail": ""
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 382811656,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "C",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835444.1386588
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1707,
+        "loads": 2,
+        "loaded": 1794835443807,
+        "received": 1794835507.7187057
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "PASS"
+  },
+  {
+    "label": "panel-manual-check",
+    "at": 1794836471.5173314,
+    "state": {
+      "revision": 47,
+      "context_version": 1,
+      "mode": "BROWSER",
+      "phase": "RUNNING",
+      "activation": "ACTIVE",
+      "ready": false,
+      "execution_mode": "WINDOWS_REAL",
+      "camera_status": "DISCONNECTED",
+      "camera_epoch": 0,
+      "blocked_reasons": "frozenset()",
+      "confirmation_pending": false,
+      "release_pending": false,
+      "keyboard_state": {
+        "revision": 7,
+        "observed_at_ms": 382805234,
+        "owned_keys": [],
+        "release_status": "CONFIRMED",
+        "release_request_id": "release-000014"
+      },
+      "dialog_lock": false,
+      "last_stop_reason": "전역 F8",
+      "last_stop_at_ms": 382805234,
+      "last_candidate": "손동작 대기",
+      "last_execution": {
+        "command_id": "qa-000013",
+        "context_version": 0,
+        "completed_at_ms": 382711328,
+        "status": "BLOCKED",
+        "reason": "INPUT_BLOCKED",
+        "detail": ""
+      },
+      "visible_hand_ids": []
+    },
+    "foreground": {
+      "observed_at_ms": 383666796,
+      "hwnd": 396792,
+      "pid": 33176,
+      "process_start_time": 134393060256352724,
+      "executable_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "query_status": "OK"
+    },
+    "page": "C",
+    "pages": {
+      "B": {
+        "name": "B",
+        "visible": "hidden",
+        "focused": false,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794835352695,
+        "received": 1794835444.1386588
+      },
+      "C": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1707,
+        "loads": 2,
+        "loaded": 1794835443807,
+        "received": 1794835507.7187057
+      }
+    },
+    "hotkey_registered": true,
+    "panel_hwnd": 9178600,
+    "status": "PASS"
+  }
+]

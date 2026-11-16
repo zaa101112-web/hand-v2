@@ -21,6 +21,8 @@ sys.path.insert(0,str(ROOT/'src'))
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--ack-real-input',action='store_true',required=True)
+    parser.add_argument('--port',type=int,default=0)
+    parser.add_argument('--label',default='m02-live-session')
     args=parser.parse_args()
     from PySide6.QtWidgets import QApplication
     from PySide6.QtCore import QTimer
@@ -75,7 +77,7 @@ function report(){const p={name,visible:document.visibilityState,focused:documen
                 queue.put(data);return self.reply({'queued':True})
             self.send_error(403)
 
-    server=ThreadingHTTPServer(('127.0.0.1',0),Handler)
+    server=ThreadingHTTPServer(('127.0.0.1',args.port),Handler)
     server.daemon_threads=True
     Thread(target=server.serve_forever,daemon=True).start()
     file.write_text(json.dumps({'port':server.server_port,'token':token,'pid':__import__('os').getpid()}),encoding='utf-8')
@@ -110,7 +112,7 @@ function report(){const p={name,visible:document.visibilityState,focused:documen
     timer=QTimer();timer.timeout.connect(pump);timer.start(20)
     result=app.exec()
     server.shutdown();server.server_close()
-    (ROOT/'docs/validation/m02-live-session.json').write_text(json.dumps({'actions':actions,'outcomes':outcomes,'pages':pages,
+    (ROOT/'docs/validation'/f'{args.label}.json').write_text(json.dumps({'actions':actions,'outcomes':outcomes,'pages':pages,
         'shutdown_ok':window.shutdown_ok,'exit_code':result,'source':'synthetic gestures -> production Controller/KeyboardWorker/Win32; real Chrome pages'},ensure_ascii=False,indent=2,default=str),encoding='utf-8')
     return result if window.shutdown_ok else 2
 
