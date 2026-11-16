@@ -1,0 +1,18 @@
+{
+  "source": "REAL_CAMERA_MEDIAPIPE_VIDEO_NO_OS_INPUT",
+  "index": 0,
+  "frames": 0,
+  "startup_seconds": null,
+  "fps_after_start": 0,
+  "errors": [
+    "CAMERA_START_TIMEOUT"
+  ],
+  "stop": {
+    "success": true,
+    "forced": true,
+    "elapsed_ms": 2046
+  },
+  "samples": [],
+  "raw_images_saved": false,
+  "human_gesture_accuracy_evaluated": false
+}

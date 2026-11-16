@@ -2,14 +2,33 @@
   "milestone": "M02",
   "status": "CHROME_COMMAND_EFFECTS_VERIFIED_WITH_EXTERNAL_GATES_PENDING",
   "previous_commit": "b6d8d9e",
-  "newly_verified_live": ["NEXT_TAB", "PREV_TAB", "REOPEN_TAB", "BOOKMARK_DIALOG", "CONFIRMATION_BLOCKS_NEW_INPUT", "GLOBAL_F8", "PANEL_SHOW_AND_UPDATE_PRESERVE_FOREGROUND"],
-  "evidence": ["m02-followup-checks.json", "m02-followup-session.json"],
-  "pending": ["physical click on nonactivating panel STOP/CONTINUE", "separate Korean and English input layout zoom checks", "separate clean Windows PC without Python"],
+  "newly_verified_live": [
+    "NEXT_TAB",
+    "PREV_TAB",
+    "REOPEN_TAB",
+    "BOOKMARK_DIALOG",
+    "CONFIRMATION_BLOCKS_NEW_INPUT",
+    "GLOBAL_F8",
+    "PANEL_SHOW_AND_UPDATE_PRESERVE_FOREGROUND"
+  ],
+  "evidence": [
+    "m02-followup-checks.json",
+    "m02-followup-session.json"
+  ],
+  "pending": [
+    "physical click on nonactivating panel CONTINUE",
+    "separate Korean and English input layout zoom checks",
+    "separate clean Windows PC without Python"
+  ],
   "notes": [
     "Previous URL-confidence interruption was not reproduced in this new user-authorized session; existing loaded QA tabs were used.",
     "Bookmark popup has its own foreground HWND. The first probe incorrectly expected the browser's original HWND and failed; confirmation_pending was true and the popup was visually observed. This is a probe assumption failure, not an input failure.",
     "The automation tool rejected a click crossing from the Chrome target to the topmost HAND panel. The no-activate panel was absent from the tool's targetable window inventory. No panel click was sent; direct user verification was requested.",
     "The actual F8 key stopped HAND while Chrome retained foreground HWND 396792, and owned_keys was empty.",
     "The test profile is separate from the user's regular Chrome data. The QA input server was stopped and F8 released before launching the actual camera app."
-  ]
+  ],
+  "user_observed": {
+    "panel_stop": "User clicked STOP; Chrome remained foreground and HAND changed to WAITING.",
+    "source": "2026-11-16 user reply; not an instrumented foreground sample"
+  }
 }

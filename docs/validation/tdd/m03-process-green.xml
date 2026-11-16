@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="4.738" timestamp="2026-11-16T22:45:06.847487+09:00" hostname="준식"><testcase classname="tests.integration.test_camera_process" name="test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_read]" time="1.907"><failure message="AssertionError: assert 'STOPPING' == 'CONNECTED'&#10;  &#10;  - CONNECTED&#10;  + STOPPING">target = &lt;function hanging_read at 0x000001B71659A700&gt;
+
+    @pytest.mark.parametrize('target',[hanging_read,hanging_release])
+    def test_owned_spawned_camera_is_terminated_without_freezing_parent(target):
+        supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+        supervisor.start(0)
+        session=supervisor.session
+        started=time.monotonic()
+        try:
+            while supervisor.status=='STARTING' and time.monotonic()-started&lt;5:
+                supervisor.poll();time.sleep(.01)
+&gt;           assert supervisor.status=='CONNECTED'
+E           AssertionError: assert 'STOPPING' == 'CONNECTED'
+E             
+E             - CONNECTED
+E             + STOPPING
+
+tests\integration\test_camera_process.py:28: AssertionError</failure></testcase><testcase classname="tests.integration.test_camera_process" name="test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_release]" time="1.465"><failure message="AssertionError: assert 'STOPPING' == 'CONNECTED'&#10;  &#10;  - CONNECTED&#10;  + STOPPING">target = &lt;function hanging_release at 0x000001B71659A660&gt;
+
+    @pytest.mark.parametrize('target',[hanging_read,hanging_release])
+    def test_owned_spawned_camera_is_terminated_without_freezing_parent(target):
+        supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+        supervisor.start(0)
+        session=supervisor.session
+        started=time.monotonic()
+        try:
+            while supervisor.status=='STARTING' and time.monotonic()-started&lt;5:
+                supervisor.poll();time.sleep(.01)
+&gt;           assert supervisor.status=='CONNECTED'
+E           AssertionError: assert 'STOPPING' == 'CONNECTED'
+E             
+E             - CONNECTED
+E             + STOPPING
+
+tests\integration\test_camera_process.py:28: AssertionError</failure></testcase></testsuite></testsuites>

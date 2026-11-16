@@ -9,6 +9,7 @@ def main():
     parser.add_argument("--replay",help="CONTROL fixture directory; no OS input")
     parser.add_argument("--smoke",action="store_true",help="Start Qt, verify initial state, then exit")
     parser.add_argument('--smoke-report',help='Write startup/resource diagnostics after an offscreen smoke test')
+    parser.add_argument('--camera',type=int,default=0,choices=range(4),help='Initial camera selection; camera stays off until requested')
     args=parser.parse_args()
     if args.replay:
         from hand_v2.adapters.replay import run_fixture
@@ -22,6 +23,7 @@ def main():
     app=QApplication(sys.argv[:1])
     runtime=build_runtime(args.mode)
     window=MainWindow(runtime)
+    window.camera_combo.setCurrentIndex(args.camera)
     window.show()
     if args.smoke:
         QTimer.singleShot(250,window.close)
@@ -44,4 +46,6 @@ def main():
 
 
 if __name__=="__main__":
+    from multiprocessing import freeze_support
+    freeze_support()
     raise SystemExit(main())

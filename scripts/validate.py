@@ -11,6 +11,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8',errors='replace')
     parser = argparse.ArgumentParser()
     parser.add_argument("--label", required=True)
     parser.add_argument("--expect-failure", action="store_true")

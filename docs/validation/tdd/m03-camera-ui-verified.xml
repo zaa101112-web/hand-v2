@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="0.774" timestamp="2026-11-16T22:40:13.670781+09:00" hostname="준식"><testcase classname="tests.integration.test_camera_ui" name="test_camera_controls_start_and_stop_without_blocking_ui" time="0.109"><failure message="assert not True&#10; +  where True = &lt;test_camera_ui.FakeCamera object at 0x0000024532559CD0&gt;.preview&#10; +    where &lt;test_camera_ui.FakeCamera object at 0x0000024532559CD0&gt; = Runtime(controller=&lt;hand_v2.application.controller.Controller object at 0x0000024532559AC0&gt;, clock=&lt;hand_v2.adapters.t...amera_wanted=True, camera_index=0, preview_enabled=True, camera_retries=0, retry_at=None, frame_times=[], camera_fps=0).camera">qtbot = &lt;pytestqt.qtbot.QtBot object at 0x00000245325598E0&gt;
+
+    def test_camera_controls_start_and_stop_without_blocking_ui(qtbot):
+        runtime=build_runtime();runtime.camera=FakeCamera()
+        window=MainWindow(runtime);qtbot.addWidget(window)
+        window.show()
+        qtbot.waitExposed(window)
+        qtbot.mouseClick(window.camera_button,Qt.MouseButton.LeftButton)
+        assert runtime.camera.session is not None
+        assert runtime.controller.state.camera_status=='CONNECTING'
+        assert runtime.controller.state.camera_epoch==1
+        qtbot.mouseClick(window.preview_checkbox,Qt.MouseButton.LeftButton)
+&gt;       assert not runtime.camera.preview
+E       assert not True
+E        +  where True = &lt;test_camera_ui.FakeCamera object at 0x0000024532559CD0&gt;.preview
+E        +    where &lt;test_camera_ui.FakeCamera object at 0x0000024532559CD0&gt; = Runtime(controller=&lt;hand_v2.application.controller.Controller object at 0x0000024532559AC0&gt;, clock=&lt;hand_v2.adapters.t...amera_wanted=True, camera_index=0, preview_enabled=True, camera_retries=0, retry_at=None, frame_times=[], camera_fps=0).camera
+
+tests\integration\test_camera_ui.py:25: AssertionError
+---------------------------- Captured Qt messages -----------------------------
+QtWarningMsg: QFontDatabase: Cannot find font directory C:/Users/zaa13/OneDrive/����/ChatGPT/��ǻ�ͺ���/hand-v2/.venv/Lib/site-packages/PySide6/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.</failure></testcase><testcase classname="tests.integration.test_camera_ui" name="test_real_window_does_not_expose_simulated_gesture_buttons" time="0.072" /><testcase classname="tests.unit.test_vision_control" name="test_landmarks_start_rearm_swipe_and_stop_reach_controller" time="0.007" /><testcase classname="tests.unit.test_vision_control" name="test_loss_is_not_stop_and_reacquired_command_needs_release" time="0.005" /><testcase classname="tests.unit.test_vision_control" name="test_stale_epoch_or_frame_cannot_affect_activation" time="0.001" /><testcase classname="tests.unit.test_vision_control" name="test_camera_recovery_does_not_clear_unrelated_fault_or_auto_activate" time="0.001" /></testsuite></testsuites>

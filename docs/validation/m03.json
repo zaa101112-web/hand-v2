@@ -1,0 +1,48 @@
+{
+  "milestone": "M03",
+  "planned_scope": "D11-D15 (5 estimated man-days, not elapsed days)",
+  "status": "IMPLEMENTED_AUTOMATED_VERIFIED_EXTERNAL_GATES_PENDING",
+  "requirements": [
+    "G01-G04",
+    "V2-T01",
+    "V2-T02",
+    "V2-T03",
+    "V2-T08",
+    "V2-T15",
+    "V2-T16",
+    "V2-T17",
+    "V2-T29",
+    "V2-T30",
+    "V2-T31",
+    "V2-T40"
+  ],
+  "automated": {
+    "passed": 137,
+    "report": "tdd/m03-final.txt",
+    "tdd_log": "tdd/runs.jsonl",
+    "landmark_replay_repetitions": 10,
+    "spawn_hung_read_and_release": "PASS"
+  },
+  "hardware": {
+    "camera_0": "startup timeout; forced shutdown succeeded",
+    "camera_1": "209 frames, 21.57fps after startup; normal stop 1328ms",
+    "evidence": "m03-camera-index1.json"
+  },
+  "user_observed": {
+    "camera_labels": "User reported state and recognition labels changed normally during V/open/index/THREE trial.",
+    "limits": "m03-live-app.json has no recognized_events; no claim of confirmed gesture-to-Chrome end-to-end success."
+  },
+  "defects_fixed": [
+    "Real model V/index UNKNOWN due to folded thumb MCP ignored: 2 Red failures -> regression Green",
+    "Final release ACK not delivered to controller after worker join: Red -> Green"
+  ],
+  "pending": [
+    "actual hands with confirmed events and visible Chrome back/forward effect after thumb fix",
+    "separate left/right hand annotation and 3-participant accuracy (D35-D37)",
+    "M04 G05-G14 recognition",
+    "image/capture/settings/practice D21 onward",
+    "separate clean Windows PC",
+    "updated frozen camera bundle verification"
+  ],
+  "effort": "Actual automated run durations in tdd/runs.jsonl. Human MD not measured. No reserve day consumed."
+}

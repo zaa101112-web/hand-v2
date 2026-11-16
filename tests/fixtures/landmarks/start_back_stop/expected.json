@@ -1,0 +1,27 @@
+{
+  "sent_chords": [
+    [
+      "ALT",
+      "LEFT"
+    ]
+  ],
+  "activation": "WAITING",
+  "owned_keys": [],
+  "release_pending": false,
+  "last_stop_reason": "숫자 3",
+  "context_version": 1,
+  "recognized": [
+    {
+      "gesture": "G01",
+      "at_ms": 1600
+    },
+    {
+      "gesture": "G03",
+      "at_ms": 2300
+    },
+    {
+      "gesture": "G02",
+      "at_ms": 2800
+    }
+  ]
+}

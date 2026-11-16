@@ -1,0 +1,18 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_________ test_shutdown_consumes_release_ack_before_final_diagnostics _________
+
+    def test_shutdown_consumes_release_ack_before_final_diagnostics():
+        runtime=build_runtime(ExecutionMode.REAL)
+        runtime.controller.stop('앱 종료')
+        assert runtime.close()
+>       assert not runtime.controller.state.release_pending
+E       AssertionError: assert not True
+E        +  where True = AppState(revision=4, context_version=1, mode=<Mode.BROWSER: 'BROWSER'>, phase='RUNNING', activation=<Activation.WAITIN... last_stop_reason='앱 종료', last_stop_at_ms=384852781, last_candidate='손동작 대기', last_execution=None, visible_hand_ids=()).release_pending
+E        +    where AppState(revision=4, context_version=1, mode=<Mode.BROWSER: 'BROWSER'>, phase='RUNNING', activation=<Activation.WAITIN... last_stop_reason='앱 종료', last_stop_at_ms=384852781, last_candidate='손동작 대기', last_execution=None, visible_hand_ids=()) = <hand_v2.application.controller.Controller object at 0x0000023A2973F800>.state
+E        +      where <hand_v2.application.controller.Controller object at 0x0000023A2973F800> = Runtime(controller=<hand_v2.application.controller.Controller object at 0x0000023A2973F800>, clock=<hand_v2.adapters.t...ra_wanted=False, camera_index=0, preview_enabled=True, camera_retries=0, retry_at=None, frame_times=[], camera_fps=0.0).controller
+
+tests\integration\test_shutdown_state.py:9: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_shutdown_state.py::test_shutdown_consumes_release_ack_before_final_diagnostics
+1 failed in 0.80s

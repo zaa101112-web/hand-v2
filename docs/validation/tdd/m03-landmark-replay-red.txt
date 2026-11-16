@@ -1,0 +1,33 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+___ test_landmark_pipeline_is_repeatable_and_never_constructs_real_adapters ___
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002377E20CF20>
+
+    def test_landmark_pipeline_is_repeatable_and_never_constructs_real_adapters(monkeypatch):
+        import hand_v2.adapters.windows.native as native
+        def forbidden(*args,**kwargs):raise AssertionError('Replay cannot construct Win32')
+        monkeypatch.setattr(native,'Win32',forbidden)
+        fixture=Path(__file__).parents[1]/'fixtures/landmarks/start_back_stop'
+>       results=[run_fixture(fixture) for _ in range(10)]
+                 ^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_landmark_replay.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Users/zaa13/OneDrive/문서/ChatGPT/컴퓨터비전/hand-v2/tests/fixtures/landmarks/start_back_stop')
+
+    def run_fixture(directory):
+        from hand_v2.bootstrap import build_runtime
+        directory = Path(directory)
+        manifest = json.loads((directory/"manifest.json").read_text(encoding="utf-8"))
+        if manifest["fixture_format_version"] != 1 or manifest["schema_name"] != "hand-v2" or manifest["schema_version"] != 1:
+            raise ValueError("unsupported fixture schema")
+        if manifest["kind"] != "CONTROL" or manifest["execution_mode"] != "REPLAY":
+>           raise ValueError("only CONTROL replay is implemented")
+E           ValueError: only CONTROL replay is implemented
+
+src\hand_v2\adapters\replay.py:15: ValueError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_landmark_replay.py::test_landmark_pipeline_is_repeatable_and_never_constructs_real_adapters
+1 failed in 0.99s

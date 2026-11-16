@@ -1,0 +1,41 @@
+{
+  "state": {
+    "revision": 11647,
+    "context_version": 9,
+    "mode": "BROWSER",
+    "phase": "RUNNING",
+    "activation": "WAITING",
+    "ready": false,
+    "execution_mode": "WINDOWS_REAL",
+    "camera_status": "DISCONNECTED",
+    "camera_epoch": 1,
+    "blocked_reasons": [
+      "CAMERA_OFF",
+      "CAMERA_UNAVAILABLE"
+    ],
+    "confirmation_pending": false,
+    "release_pending": true,
+    "keyboard_state": {
+      "revision": 9,
+      "observed_at_ms": 384667390,
+      "owned_keys": [],
+      "release_status": "CONFIRMED",
+      "release_request_id": "release-000009"
+    },
+    "dialog_lock": false,
+    "last_stop_reason": "앱 종료",
+    "last_stop_at_ms": 384667906,
+    "last_candidate": "손 없음",
+    "last_execution": null,
+    "visible_hand_ids": []
+  },
+  "fps": 0,
+  "recognized_events": [],
+  "camera_stop": {
+    "success": true,
+    "forced": false,
+    "elapsed_ms": 516
+  },
+  "hotkey_registered": false,
+  "raw_images_saved": false
+}

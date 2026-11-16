@@ -128,6 +128,23 @@ class Controller:
     def recover(self, reason):
         self._set(blocked_reasons=self.state.blocked_reasons - {reason})
 
+    def begin_camera(self,epoch):
+        self._set(camera_epoch=epoch,camera_status='CONNECTING',
+                  blocked_reasons=self.state.blocked_reasons | {'CAMERA_UNAVAILABLE'})
+        self.stop('카메라 연결')
+
+    def camera_connected(self,epoch):
+        if epoch!=self.state.camera_epoch:return
+        blocked=frozenset(reason for reason in self.state.blocked_reasons
+                          if not reason.startswith(('CAMERA_','VISION_ERROR:')))
+        self._set(camera_status='CONNECTED',blocked_reasons=blocked)
+
+    def camera_failed(self,reason):
+        self._set(camera_status='DISCONNECTED')
+        if reason not in self.state.blocked_reasons:
+            self._set(blocked_reasons=self.state.blocked_reasons | {'CAMERA_UNAVAILABLE',reason})
+            self.stop(reason)
+
     def set_mode(self, mode):
         if mode == self.state.mode:
             return

@@ -1,0 +1,50 @@
+FF...                                                                    [100%]
+================================== FAILURES ===================================
+______ test_real_model_poses_include_thumb_folded_at_mcp[victory-poses0] ______
+
+sample = 'victory', poses = ['V']
+
+    @pytest.mark.parametrize('sample,poses',[
+        ('victory',['V']),('pointing_up',['INDEX']),('thumb_up',['THUMB']),
+        ('right_hands',['OPEN','OPEN']),('fist',['FIST'])])
+    def test_real_model_poses_include_thumb_folded_at_mcp(sample,poses):
+        report=json.loads((Path(__file__).parents[1]/'fixtures/model_poses.json').read_text(encoding='utf-8'))
+        row=next(item for item in report['samples'] if item['sample']==sample)
+        found=[]
+        for record in row['hands']:
+            data=dict(record['hand'])
+            data['landmarks']=tuple(Landmark(**lm) for lm in data['landmarks'])
+            found.append(describe_hand(Hand(**data),*row['size']).pose)
+>       assert found==poses
+E       AssertionError: assert ['UNKNOWN'] == ['V']
+E         
+E         At index 0 diff: 'UNKNOWN' != 'V'
+E         Use -v to get more diff
+
+tests\unit\test_model_pose_regression.py:22: AssertionError
+____ test_real_model_poses_include_thumb_folded_at_mcp[pointing_up-poses1] ____
+
+sample = 'pointing_up', poses = ['INDEX']
+
+    @pytest.mark.parametrize('sample,poses',[
+        ('victory',['V']),('pointing_up',['INDEX']),('thumb_up',['THUMB']),
+        ('right_hands',['OPEN','OPEN']),('fist',['FIST'])])
+    def test_real_model_poses_include_thumb_folded_at_mcp(sample,poses):
+        report=json.loads((Path(__file__).parents[1]/'fixtures/model_poses.json').read_text(encoding='utf-8'))
+        row=next(item for item in report['samples'] if item['sample']==sample)
+        found=[]
+        for record in row['hands']:
+            data=dict(record['hand'])
+            data['landmarks']=tuple(Landmark(**lm) for lm in data['landmarks'])
+            found.append(describe_hand(Hand(**data),*row['size']).pose)
+>       assert found==poses
+E       AssertionError: assert ['UNKNOWN'] == ['INDEX']
+E         
+E         At index 0 diff: 'UNKNOWN' != 'INDEX'
+E         Use -v to get more diff
+
+tests\unit\test_model_pose_regression.py:22: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_pose_regression.py::test_real_model_poses_include_thumb_folded_at_mcp[victory-poses0]
+FAILED tests/unit/test_model_pose_regression.py::test_real_model_poses_include_thumb_folded_at_mcp[pointing_up-poses1]
+2 failed, 3 passed in 0.71s

@@ -1,0 +1,1 @@
+Hand-authored coordinates with explicit foreground, initial camera state and keyboard ACKs/results. Expect V at 1600ms, one mirrored-left swipe at 2300ms, STOP at 2800ms. No camera/model accuracy claim. Expected values are authored before running; do not replace them with observed results.

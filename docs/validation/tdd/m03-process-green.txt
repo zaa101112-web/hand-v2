@@ -1,0 +1,46 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_ test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_read] _
+
+target = <function hanging_read at 0x000001B71659A700>
+
+    @pytest.mark.parametrize('target',[hanging_read,hanging_release])
+    def test_owned_spawned_camera_is_terminated_without_freezing_parent(target):
+        supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+        supervisor.start(0)
+        session=supervisor.session
+        started=time.monotonic()
+        try:
+            while supervisor.status=='STARTING' and time.monotonic()-started<5:
+                supervisor.poll();time.sleep(.01)
+>           assert supervisor.status=='CONNECTED'
+E           AssertionError: assert 'STOPPING' == 'CONNECTED'
+E             
+E             - CONNECTED
+E             + STOPPING
+
+tests\integration\test_camera_process.py:28: AssertionError
+_ test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_release] _
+
+target = <function hanging_release at 0x000001B71659A660>
+
+    @pytest.mark.parametrize('target',[hanging_read,hanging_release])
+    def test_owned_spawned_camera_is_terminated_without_freezing_parent(target):
+        supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+        supervisor.start(0)
+        session=supervisor.session
+        started=time.monotonic()
+        try:
+            while supervisor.status=='STARTING' and time.monotonic()-started<5:
+                supervisor.poll();time.sleep(.01)
+>           assert supervisor.status=='CONNECTED'
+E           AssertionError: assert 'STOPPING' == 'CONNECTED'
+E             
+E             - CONNECTED
+E             + STOPPING
+
+tests\integration\test_camera_process.py:28: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_camera_process.py::test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_read]
+FAILED tests/integration/test_camera_process.py::test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_release]
+2 failed in 5.07s

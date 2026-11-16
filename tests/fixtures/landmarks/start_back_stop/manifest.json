@@ -1,0 +1,24 @@
+{
+  "fixture_format_version": 1,
+  "schema_name": "hand-v2",
+  "schema_version": 1,
+  "kind": "LANDMARKS",
+  "execution_mode": "REPLAY",
+  "seed": 0,
+  "source_commit": "b6d8d9eef09f63e01ba370edafe8691c0250394c",
+  "source": "hand-authored geometric V/open/index/three fixture, not camera footage",
+  "start_at_ms": 1000,
+  "end_at_ms": 3000,
+  "initial_state": "BROWSER + WAITING + STARTING",
+  "config_sha256": "b32c964b29729e7209db1dcb65e759cb0b2ba14c1475ef4310a85d850fbb542e",
+  "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "environment": {
+    "image_size": [
+      640,
+      480
+    ],
+    "model_input": "unmirrored",
+    "geometry_direction": "mirror x once",
+    "dpi": 96
+  }
+}

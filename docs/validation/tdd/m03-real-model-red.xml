@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="5" time="0.406" timestamp="2026-11-16T23:06:42.224321+09:00" hostname="준식"><testcase classname="tests.unit.test_model_pose_regression" name="test_real_model_poses_include_thumb_folded_at_mcp[victory-poses0]" time="0.031"><failure message="AssertionError: assert ['UNKNOWN'] == ['V']&#10;  &#10;  At index 0 diff: 'UNKNOWN' != 'V'&#10;  Use -v to get more diff">sample = 'victory', poses = ['V']
+
+    @pytest.mark.parametrize('sample,poses',[
+        ('victory',['V']),('pointing_up',['INDEX']),('thumb_up',['THUMB']),
+        ('right_hands',['OPEN','OPEN']),('fist',['FIST'])])
+    def test_real_model_poses_include_thumb_folded_at_mcp(sample,poses):
+        report=json.loads((Path(__file__).parents[1]/'fixtures/model_poses.json').read_text(encoding='utf-8'))
+        row=next(item for item in report['samples'] if item['sample']==sample)
+        found=[]
+        for record in row['hands']:
+            data=dict(record['hand'])
+            data['landmarks']=tuple(Landmark(**lm) for lm in data['landmarks'])
+            found.append(describe_hand(Hand(**data),*row['size']).pose)
+&gt;       assert found==poses
+E       AssertionError: assert ['UNKNOWN'] == ['V']
+E         
+E         At index 0 diff: 'UNKNOWN' != 'V'
+E         Use -v to get more diff
+
+tests\unit\test_model_pose_regression.py:22: AssertionError</failure></testcase><testcase classname="tests.unit.test_model_pose_regression" name="test_real_model_poses_include_thumb_folded_at_mcp[pointing_up-poses1]" time="0.002"><failure message="AssertionError: assert ['UNKNOWN'] == ['INDEX']&#10;  &#10;  At index 0 diff: 'UNKNOWN' != 'INDEX'&#10;  Use -v to get more diff">sample = 'pointing_up', poses = ['INDEX']
+
+    @pytest.mark.parametrize('sample,poses',[
+        ('victory',['V']),('pointing_up',['INDEX']),('thumb_up',['THUMB']),
+        ('right_hands',['OPEN','OPEN']),('fist',['FIST'])])
+    def test_real_model_poses_include_thumb_folded_at_mcp(sample,poses):
+        report=json.loads((Path(__file__).parents[1]/'fixtures/model_poses.json').read_text(encoding='utf-8'))
+        row=next(item for item in report['samples'] if item['sample']==sample)
+        found=[]
+        for record in row['hands']:
+            data=dict(record['hand'])
+            data['landmarks']=tuple(Landmark(**lm) for lm in data['landmarks'])
+            found.append(describe_hand(Hand(**data),*row['size']).pose)
+&gt;       assert found==poses
+E       AssertionError: assert ['UNKNOWN'] == ['INDEX']
+E         
+E         At index 0 diff: 'UNKNOWN' != 'INDEX'
+E         Use -v to get more diff
+
+tests\unit\test_model_pose_regression.py:22: AssertionError</failure></testcase><testcase classname="tests.unit.test_model_pose_regression" name="test_real_model_poses_include_thumb_folded_at_mcp[thumb_up-poses2]" time="0.002" /><testcase classname="tests.unit.test_model_pose_regression" name="test_real_model_poses_include_thumb_folded_at_mcp[right_hands-poses3]" time="0.003" /><testcase classname="tests.unit.test_model_pose_regression" name="test_real_model_poses_include_thumb_folded_at_mcp[fist-poses4]" time="0.003" /></testsuite></testsuites>

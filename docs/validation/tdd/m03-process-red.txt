@@ -1,0 +1,52 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_ test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_read] _
+
+target = <function hanging_read at 0x000001C0C292E5C0>
+
+    @pytest.mark.parametrize('target',[hanging_read,hanging_release])
+    def test_owned_spawned_camera_is_terminated_without_freezing_parent(target):
+        supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+>       supervisor.start(0)
+
+tests\integration\test_camera_process.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\hand_v2\adapters\vision\supervisor.py:36: in start
+    try:self.session=factory(self.epoch,index,preview)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+e = 1, i = 0, p = True
+
+>   supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: SpawnSession.__init__() got an unexpected keyword argument 'child_target'
+
+tests\integration\test_camera_process.py:21: TypeError
+_ test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_release] _
+
+target = <function hanging_release at 0x000001C0C292E520>
+
+    @pytest.mark.parametrize('target',[hanging_read,hanging_release])
+    def test_owned_spawned_camera_is_terminated_without_freezing_parent(target):
+        supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+>       supervisor.start(0)
+
+tests\integration\test_camera_process.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\hand_v2\adapters\vision\supervisor.py:36: in start
+    try:self.session=factory(self.epoch,index,preview)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+e = 1, i = 0, p = True
+
+>   supervisor=CameraSupervisor(MonotonicClock(),lambda e,i,p:SpawnSession(e,i,p,child_target=target))
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: SpawnSession.__init__() got an unexpected keyword argument 'child_target'
+
+tests\integration\test_camera_process.py:21: TypeError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_camera_process.py::test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_read]
+FAILED tests/integration/test_camera_process.py::test_owned_spawned_camera_is_terminated_without_freezing_parent[hanging_release]
+2 failed in 1.11s

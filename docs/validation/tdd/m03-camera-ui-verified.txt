@@ -1,0 +1,28 @@
+F.....                                                                   [100%]
+================================== FAILURES ===================================
+___________ test_camera_controls_start_and_stop_without_blocking_ui ___________
+
+qtbot = <pytestqt.qtbot.QtBot object at 0x00000245325598E0>
+
+    def test_camera_controls_start_and_stop_without_blocking_ui(qtbot):
+        runtime=build_runtime();runtime.camera=FakeCamera()
+        window=MainWindow(runtime);qtbot.addWidget(window)
+        window.show()
+        qtbot.waitExposed(window)
+        qtbot.mouseClick(window.camera_button,Qt.MouseButton.LeftButton)
+        assert runtime.camera.session is not None
+        assert runtime.controller.state.camera_status=='CONNECTING'
+        assert runtime.controller.state.camera_epoch==1
+        qtbot.mouseClick(window.preview_checkbox,Qt.MouseButton.LeftButton)
+>       assert not runtime.camera.preview
+E       assert not True
+E        +  where True = <test_camera_ui.FakeCamera object at 0x0000024532559CD0>.preview
+E        +    where <test_camera_ui.FakeCamera object at 0x0000024532559CD0> = Runtime(controller=<hand_v2.application.controller.Controller object at 0x0000024532559AC0>, clock=<hand_v2.adapters.t...amera_wanted=True, camera_index=0, preview_enabled=True, camera_retries=0, retry_at=None, frame_times=[], camera_fps=0).camera
+
+tests\integration\test_camera_ui.py:25: AssertionError
+---------------------------- Captured Qt messages -----------------------------
+QtWarningMsg: QFontDatabase: Cannot find font directory C:/Users/zaa13/OneDrive/����/ChatGPT/��ǻ�ͺ���/hand-v2/.venv/Lib/site-packages/PySide6/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+=========================== short test summary info ===========================
+FAILED tests/integration/test_camera_ui.py::test_camera_controls_start_and_stop_without_blocking_ui
+1 failed, 5 passed in 1.06s

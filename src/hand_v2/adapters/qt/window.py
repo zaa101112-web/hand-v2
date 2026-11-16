@@ -1,7 +1,7 @@
 from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QKeySequence, QShortcut
+from PySide6.QtGui import QKeySequence, QShortcut,QImage,QPixmap,QPainter,QPen,QColor
 from PySide6.QtWidgets import (QMainWindow, QWidget, QFrame, QLabel, QPushButton,
-    QVBoxLayout, QHBoxLayout, QGridLayout, QStackedWidget, QScrollArea, QComboBox)
+    QVBoxLayout, QHBoxLayout, QGridLayout, QStackedWidget, QScrollArea, QComboBox,QCheckBox)
 
 from hand_v2.domain.models import Activation, ExecutionMode, Gesture, GestureEvent, Mode, Status
 from .controller_bridge import ControllerBridge
@@ -63,6 +63,8 @@ class MainWindow(QMainWindow):
         ensure_readable_fonts()
         self.runtime = runtime
         self.controller = runtime.controller
+        self._closing=False
+        self._close_started=None
         self.setWindowTitle("HAND v2 — 손동작 단축키 제어")
         self.resize(1280,860)
         self.setMinimumSize(960,720)
@@ -75,11 +77,12 @@ class MainWindow(QMainWindow):
         if runtime.controller.state.execution_mode==ExecutionMode.REAL:
             from hand_v2.adapters.windows.hotkey import GlobalStopHotkey
             self.hotkey=GlobalStopHotkey(int(self.winId()),lambda:self.controller.stop('전역 F8'),runtime.foreground.native)
-            self.banner.setText('Windows 실제 입력 모드 · 카메라 연결은 다음 단계입니다. '+
+            self.banner.setText('카메라를 켜고 V를 0.6초 유지해 시작하세요. '+
                                 ('전역 F8 중단 사용 가능' if self.hotkey.registered else 'F8 등록 실패 · 중단 버튼/숫자 3을 사용하세요'))
         self.bridge = ControllerBridge(self)
         self.bridge.state_changed.connect(self.render_state)
         runtime.ui.listener = self.bridge.render_state
+        runtime.preview_listener=self.render_preview
         self.render_state(self.controller.state)
         self.timer = QTimer(self)
         self.timer.setInterval(20)
@@ -117,7 +120,7 @@ class MainWindow(QMainWindow):
         guide=QWidget();g=QVBoxLayout(guide);g.addWidget(label("손동작 안내","Title"))
         for text in ("V 유지 · 제어 시작 / 숫자 3 유지 · 중단", "검지 좌우 · 뒤로 / 앞으로", "V 좌우 · 탭 이동 / V 위아래 · 페이지 이동", "양손 집기 간격 · 한 단계 확대 / 축소", "검지 원 · 새로고침 / 엄지 유지 · 북마크 창", "주먹 → 펼침 · 닫은 탭 복구 / 이미지 화면 맞춤", "양손 L 프레임 · 캡처 시작"):
             g.addWidget(label(text))
-        g.addWidget(label("현재 화면은 명령 정책 시뮬레이션입니다. 실제 손 인식은 아직 연결하지 않았습니다.","Muted"));g.addStretch()
+        g.addWidget(label("카메라를 켠 뒤 V를 0.6초 유지하여 시작합니다. 손을 펼쳐 자세를 해제한 뒤 검지만 펴서 좌우로 쓸면 뒤로/앞으로 갑니다. 숫자 3(엄지·검지·중지) 0.35초, 중단 버튼 또는 F8로 중단합니다.","Muted"));g.addStretch()
         self._add_page("guide",guide)
         for key,title,detail in (("practice","연습하기","카메라를 사용한 동작 연습과 감도 추천은 구현 예정입니다."),("settings","환경설정","인식 감도·카메라·캡처 저장 폴더 설정은 구현 예정입니다.")):
             page=QWidget();page.setAccessibleDescription(detail);p=QVBoxLayout(page);p.addWidget(label(title,"Title"));p.addWidget(label(detail,"Muted"));p.addStretch();self._add_page(key,page)
@@ -135,7 +138,16 @@ class MainWindow(QMainWindow):
         v.addLayout(modes)
         self.target_label=label("가상 Chrome 대상","Muted");v.addWidget(self.target_label)
         area=QHBoxLayout();area.setSpacing(16)
-        preview,p=card();self.preview_label=label("카메라 미리보기\n\n카메라 연결 준비 중\n\n지금은 아래 버튼으로 명령 흐름을 시험할 수 있습니다.","Muted")
+        preview,p=card();self.preview_label=label("카메라 미리보기\n\n카메라를 켜면 손의 관절과 인식 결과가 표시됩니다.","Muted")
+        self.preview_label.setMinimumSize(360,270)
+        controls=QHBoxLayout()
+        self.camera_combo=QComboBox()
+        for index in range(4):self.camera_combo.addItem(f'카메라 {index}',index)
+        self.camera_button=button('카메라 켜기',self.toggle_camera,'Primary')
+        self.preview_checkbox=QCheckBox('미리보기');self.preview_checkbox.setChecked(True)
+        self.preview_checkbox.toggled.connect(self.toggle_preview)
+        controls.addWidget(self.camera_combo);controls.addWidget(self.camera_button);controls.addWidget(self.preview_checkbox);p.addLayout(controls)
+        self.camera_info=label('카메라 꺼짐','Muted');p.addWidget(self.camera_info)
         self.preview_label.setAlignment(Qt.AlignmentFlag.AlignCenter);p.addWidget(self.preview_label,1);area.addWidget(preview,3)
         feedback,f=card();f.addWidget(label("현재 인식","Muted"));self.gesture_label=label("손동작 대기","Value");f.addWidget(self.gesture_label)
         f.addWidget(label("최근 실행","Muted"));self.command_label=label("명령 대기","Value");f.addWidget(self.command_label)
@@ -153,7 +165,7 @@ class MainWindow(QMainWindow):
             for layout in (row,extra):
                 for i in range(layout.count()):
                     layout.itemAt(i).widget().setVisible(False)
-            self.preview_label.setText('카메라 미리보기\n\n카메라 연결 준비 중\n손 인식 기능은 아직 연결하지 않았습니다.')
+            self.preview_label.setText('카메라를 켜고 손을 보여주세요.\nV 0.6초: 시작 · 숫자 3 0.35초: 중단\n검지만 펴서 좌우로 쓸면 뒤로/앞으로 갑니다.')
             self.detail_label.setText('실행 결과는 OS 전송 여부입니다. 페이지 동작은 별도로 확인하세요.')
         return page
 
@@ -182,6 +194,46 @@ class MainWindow(QMainWindow):
         self.runtime.scheduler.run_due()
         self.controller.tick()
         self._render_target()
+        camera=self.runtime.camera
+        running=bool(camera and camera.session is not None)
+        self.camera_button.setText('카메라 끄기' if self.runtime.camera_wanted else '카메라 켜기')
+        self.camera_combo.setEnabled(not running)
+        state=self.controller.state.camera_status
+        self.camera_info.setText(f'카메라 연결됨 · {self.runtime.camera_fps:.1f} fps' if state=='CONNECTED' else
+                                 '카메라 연결 중…' if state=='CONNECTING' else '카메라 꺼짐 / 연결 확인 필요')
+        if self._closing:
+            if not running:self.close()
+            elif self.runtime.clock.now_ms()-self._close_started>=4500:
+                self.shutdown_ok=False
+                from PySide6.QtWidgets import QApplication
+                QApplication.instance().exit(2)
+
+    def toggle_camera(self):
+        if self.runtime.camera_wanted:
+            self.runtime.stop_camera();self.preview_label.clear();self.preview_label.setText('카메라를 껐습니다.')
+        else:
+            if not self.runtime.start_camera(self.camera_combo.currentData(),self.preview_checkbox.isChecked()):
+                self.preview_label.setText('카메라를 시작하지 못했습니다. 다른 카메라를 선택하세요.')
+        self._tick()
+
+    def toggle_preview(self,enabled):
+        self.runtime.set_preview(enabled)
+        if not enabled:self.preview_label.clear();self.preview_label.setText('미리보기 꺼짐 · 손동작 인식은 계속됩니다.')
+
+    def render_preview(self,packet):
+        if not self.preview_checkbox.isChecked() or self._closing:return
+        frame=packet.frame
+        image=QImage(packet.preview_rgb,frame.image_width,frame.image_height,frame.image_width*3,QImage.Format.Format_RGB888).copy().mirrored(True,False)
+        painter=QPainter(image);painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.setPen(QPen(QColor('#20e0b2'),2))
+        chains=((0,1,2,3,4),(0,5,6,7,8),(5,9,10,11,12),(9,13,14,15,16),(13,17,18,19,20),(0,17))
+        for hand in frame.hands:
+            points=[(int((1-p.x)*frame.image_width),int(p.y*frame.image_height)) for p in hand.landmarks]
+            for chain in chains:
+                for a,b in zip(chain,chain[1:]):painter.drawLine(*points[a],*points[b])
+            for x,y in points:painter.drawEllipse(x-3,y-3,6,6)
+        painter.end()
+        self.preview_label.setPixmap(QPixmap.fromImage(image).scaled(self.preview_label.size(),Qt.AspectRatioMode.KeepAspectRatio,Qt.TransformationMode.SmoothTransformation))
 
     def _render_target(self):
         simulated=self.controller.state.execution_mode==ExecutionMode.SIMULATED
@@ -227,10 +279,18 @@ class MainWindow(QMainWindow):
         self.reason_label.setText(f"최근 중단: {state.last_stop_reason}" if state.last_stop_reason else "")
 
     def closeEvent(self,event):
+        if not self._closing:
+            self._closing=True;self._close_started=self.runtime.clock.now_ms()
+            self.runtime.stop_camera()
+        if self.runtime.camera and self.runtime.camera.session is not None:
+            self.camera_button.setEnabled(False)
+            self.camera_info.setText('카메라와 입력을 정리하고 있습니다…')
+            event.ignore();return
         self.timer.stop()
         self.controller.stop("앱 종료")
         if self.hotkey:self.shutdown_ok=self.hotkey.close()
         self.mini_panel.close()
         self.shutdown_ok=self.runtime.close() and self.shutdown_ok
         self.runtime.ui.listener=None
+        self.runtime.preview_listener=None
         event.accept()

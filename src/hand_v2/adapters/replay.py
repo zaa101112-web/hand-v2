@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from hand_v2.domain.models import ForegroundSnapshot, Gesture, GestureEvent, KeyboardState, ReleaseResult, ExecutionMode
+from hand_v2.domain.models import ForegroundSnapshot, Gesture, GestureEvent, KeyboardState, ReleaseResult, ExecutionMode,TrackingFrame,Hand,Landmark
 from hand_v2.adapters.timing import ManualClock
 
 
@@ -11,8 +11,12 @@ def run_fixture(directory):
     manifest = json.loads((directory/"manifest.json").read_text(encoding="utf-8"))
     if manifest["fixture_format_version"] != 1 or manifest["schema_name"] != "hand-v2" or manifest["schema_version"] != 1:
         raise ValueError("unsupported fixture schema")
-    if manifest["kind"] != "CONTROL" or manifest["execution_mode"] != "REPLAY":
-        raise ValueError("only CONTROL replay is implemented")
+    if manifest["kind"] not in ('CONTROL','LANDMARKS') or manifest["execution_mode"] != "REPLAY":
+        raise ValueError("unsupported replay mode")
+    if manifest['kind']=='LANDMARKS':
+        from hand_v2.adapters.resources import EXPECTED_MODEL_SHA256
+        if manifest.get('model_sha256')!=EXPECTED_MODEL_SHA256 or not manifest.get('source_commit') or not manifest.get('config_sha256'):
+            raise ValueError('landmark replay requires pinned model/config/source')
     clock = ManualClock(manifest["start_at_ms"])
     runtime = build_runtime(ExecutionMode.REPLAY, clock, initialize=False)
     app = runtime.controller
@@ -37,6 +41,10 @@ def run_fixture(directory):
         elif channel == "gesture":
             app.handle(GestureEvent(value["event_id"], Gesture(value["gesture"]), tuple(value["hand_ids"]),
                                     value["captured_at_ms"], row["at_ms"], value["context_version"], value.get("camera_epoch",0)))
+        elif channel == 'tracking':
+            if manifest['kind']!='LANDMARKS':raise ValueError('tracking requires LANDMARKS fixture')
+            value['hands']=tuple(Hand(**{**h,'landmarks':tuple(Landmark(**p) for p in h['landmarks'])}) for h in value['hands'])
+            runtime.vision.accept(TrackingFrame(**value))
         elif channel == "keyboard_outcome":
             value["keyboard_state"]["owned_keys"] = tuple(value["keyboard_state"]["owned_keys"])
             runtime.keyboard.outcomes.append(value)
@@ -50,6 +58,8 @@ def run_fixture(directory):
     result = {"sent_chords":[list(c) for c in runtime.keyboard.sent_chords], "activation":app.state.activation.value,
               "owned_keys":list(app.state.keyboard_state.owned_keys), "release_pending":app.state.release_pending,
               "last_stop_reason":app.state.last_stop_reason, "context_version":app.state.context_version}
+    if manifest['kind']=='LANDMARKS':
+        result['recognized']=[{'gesture':event.gesture.value,'at_ms':event.captured_at_ms} for event in runtime.vision.recognized_events]
     expected = json.loads((directory/"expected.json").read_text(encoding="utf-8"))
     if result != expected or runtime.keyboard.outcomes:
         raise AssertionError(f"Replay mismatch: expected {expected}, got {result}; unused outcomes={len(runtime.keyboard.outcomes)}")
