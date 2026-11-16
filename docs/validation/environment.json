@@ -1,0 +1,36 @@
+{
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "architecture": "AMD64",
+  "packages": {
+    "PySide6": {
+      "version": "6.12.0",
+      "status": "PASS"
+    },
+    "opencv-contrib-python": {
+      "version": "5.0.0.93",
+      "status": "PASS"
+    },
+    "mediapipe": {
+      "version": "1.2.2",
+      "status": "PASS"
+    },
+    "numpy": {
+      "version": "2.5.4",
+      "status": "PASS"
+    },
+    "mss": {
+      "version": "10.2.0",
+      "status": "PASS"
+    },
+    "pytest": {
+      "version": "9.2.0",
+      "status": "PASS"
+    }
+  },
+  "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "model_verified": true,
+  "camera": "NOT_OPENED",
+  "os_input": "NOT_SENT",
+  "status": "PASS"
+}

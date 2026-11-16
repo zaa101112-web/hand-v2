@@ -1,0 +1,1 @@
+"""Qt UI adapters only."""

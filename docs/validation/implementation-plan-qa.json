@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-11-16T11:44:15.306Z",
+  "scope": "plan_document_only",
+  "browser": "157.0.8103.52",
+  "app_implementation": "NOT_STARTED",
+  "app_tests": "NOT_RUN",
+  "plan_structure": {
+    "base_days": 40,
+    "base_md": 40,
+    "base_hours": 320,
+    "reserve_days": 5,
+    "reserve_md": 5,
+    "reserve_hours": 40,
+    "total_planned_capacity_md": 45,
+    "test_scenarios_assigned": 40,
+    "dependency_order": "PASS",
+    "sequential_path": "PASS",
+    "each_day_has_completion_criteria": true
+  },
+  "interactions": [
+    "phase_filter",
+    "combined_search",
+    "test_id_search",
+    "reset_filter",
+    "empty_state",
+    "anchor_reveals_hidden_day",
+    "print_all_days",
+    "filter_restored_after_print"
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "scroll_width": 320,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "scroll_width": 390,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "scroll_width": 768,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "scroll_width": 1024,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "scroll_width": 1440,
+      "overflow": false
+    }
+  ],
+  "html_pages_checked": 7,
+  "broken_local_links": [],
+  "page_errors": [],
+  "failed_requests": [],
+  "external_runtime_requests": [],
+  "checked_artifacts": {
+    "docs/implementation-plan.html": "7e396e17fd5b111ff38b16ed6f89233703ee2a5580d14d648e799a55bd11ce9a",
+    "docs/implementation-plan.css": "ed0915bf818a96586ddae7ffcb294f5feeef73647a6b90346afd6ae1666de64c",
+    "docs/implementation-plan.js": "6e28660a40a46e4b0238f59a182dbbebe0a2ba889aca0566468e6919e8e312e2",
+    "docs/design.html": "ee3f69f1a9a084f5da780a5302575d4ab80f10a7cef2eece74a0c0ea35579741",
+    "AGENTS.md": "23f28d3eaf4661c6921bb88d300188b25576e46727aefdd3330d6c1b1998f48d",
+    "README.html": "2aaddc28f55efcf34567e27ffdd8fbd81212483e42cf0cb5ba9e30222fc4cf16"
+  },
+  "limitations": [
+    "HTML 및 일정/공수/링크 구조 검증이며 앱 구현·인식률·실제 Chrome 동작 검증이 아님",
+    "8시간 작업량은 추정이며 실제 작업 시간 측정 결과가 아님"
+  ],
+  "visual_review": {
+    "status": "PASS",
+    "inspected": [
+      "1440px cover",
+      "D15 desktop work card",
+      "D15 work card at 390px",
+      "8-week roadmap"
+    ],
+    "findings": "공수 요약·작업 지도·하루 작업 내용·완료 조건·연결 시험을 확인했으며 겹침이나 잘림 없음. 좁은 화면의 표는 내부 스크롤."
+  }
+}

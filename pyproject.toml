@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hand-v2"
+version = "0.1.0"
+description = "Local gesture-to-shortcut controller for Windows"
+requires-python = ">=3.12,<3.13"
+dynamic = ["dependencies"]
+
+[project.scripts]
+hand-v2 = "hand_v2.__main__:main"
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+markers = ["windows: requires Windows APIs", "hardware: requires a camera", "live: sends real keyboard input"]

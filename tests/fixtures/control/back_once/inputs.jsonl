@@ -1,0 +1,14 @@
+{"at_ms":1000,"seq":1,"channel":"foreground","value":{"observed_at_ms":1000,"hwnd":10,"pid":100,"process_start_time":1234,"executable_path":"C:/Chrome/chrome.exe","query_status":"OK"}}
+{"at_ms":1000,"seq":2,"channel":"initialize","value":{"camera_ready":true}}
+{"at_ms":1000,"seq":3,"channel":"keyboard_state","value":{"revision":1,"observed_at_ms":1000,"owned_keys":[],"release_status":"CONFIRMED","release_request_id":"release-000001"}}
+{"at_ms":1000,"seq":4,"channel":"release_result","value":{"request_id":"release-000001","success":true,"completed_at_ms":1000}}
+{"at_ms":1000,"seq":5,"channel":"gesture","value":{"event_id":"start-1","gesture":"G01","hand_ids":["hand-1"],"captured_at_ms":1000,"context_version":0}}
+{"at_ms":1000,"seq":6,"channel":"neutral","value":true}
+{"at_ms":1180,"seq":7,"channel":"gesture","value":{"event_id":"back-1","gesture":"G03","hand_ids":["hand-1"],"captured_at_ms":1180,"context_version":0}}
+{"at_ms":1180,"seq":8,"channel":"keyboard_outcome","value":{"command_id":"command-000002","status":"SENT","reason":"RECORDED_FAKE_OUTCOME","keyboard_state":{"revision":2,"observed_at_ms":1180,"owned_keys":[],"release_status":"IDLE","release_request_id":null}}}
+{"at_ms":1180,"seq":9,"channel":"flush","value":null}
+{"at_ms":1300,"seq":10,"channel":"gesture","value":{"event_id":"back-1","gesture":"G03","hand_ids":["hand-1"],"captured_at_ms":1180,"context_version":0}}
+{"at_ms":1300,"seq":11,"channel":"flush","value":null}
+{"at_ms":1500,"seq":12,"channel":"stop","value":"fixture STOP"}
+{"at_ms":1500,"seq":13,"channel":"keyboard_state","value":{"revision":3,"observed_at_ms":1500,"owned_keys":[],"release_status":"CONFIRMED","release_request_id":"release-000003"}}
+{"at_ms":1500,"seq":14,"channel":"release_result","value":{"request_id":"release-000003","success":true,"completed_at_ms":1500}}

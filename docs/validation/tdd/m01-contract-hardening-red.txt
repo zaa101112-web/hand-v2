@@ -1,0 +1,25 @@
+........FF                                                               [100%]
+================================== FAILURES ===================================
+_________ test_command_and_keyboard_contracts_reject_unsafe_payloads __________
+
+    def test_command_and_keyboard_contracts_reject_unsafe_payloads():
+        from hand_v2.domain.models import Command, Action, KeyboardState, AppState, ReleaseResult, Result, Status
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_contracts_time.py:73: Failed
+__________________ test_action_target_and_deadline_contract ___________________
+
+    def test_action_target_and_deadline_contract():
+        from hand_v2.domain.models import Command, Action, ForegroundSnapshot
+        snapshot=ForegroundSnapshot(0,10,100,1234,"C:/Chrome/chrome.exe","OK")
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_contracts_time.py:94: Failed
+=========================== short test summary info ===========================
+FAILED tests/unit/test_contracts_time.py::test_command_and_keyboard_contracts_reject_unsafe_payloads
+FAILED tests/unit/test_contracts_time.py::test_action_target_and_deadline_contract
+2 failed, 8 passed in 0.59s

@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-11-16T11:13:59.589Z",
+  "scope": "documentation_only",
+  "browser": "157.0.8103.52",
+  "pages": [
+    {
+      "path": "docs/design.html",
+      "title": "HAND v2 · 손동작 단축키 앱 설계서",
+      "duplicate_ids": [],
+      "desktop_overflow": false
+    },
+    {
+      "path": "docs/reference/proposal-scope.html",
+      "title": "원 제안서 · 기능 범위 발췌 · HAND v2",
+      "duplicate_ids": [],
+      "desktop_overflow": false
+    },
+    {
+      "path": "docs/reference/requirements-crosswalk.html",
+      "title": "v3.1 → HAND v2 검증 대응표 · HAND v2",
+      "duplicate_ids": [],
+      "desktop_overflow": false
+    },
+    {
+      "path": "docs/reference/spec-v3.1.html",
+      "title": "원본 v3.1 명세 · HAND v2 참고",
+      "duplicate_ids": [],
+      "desktop_overflow": false
+    },
+    {
+      "path": "docs/reference/ui-reference.html",
+      "title": "HAND ZIP · 화면 디자인 참고 기록 · HAND v2",
+      "duplicate_ids": [],
+      "desktop_overflow": false
+    },
+    {
+      "path": "README.html",
+      "title": "HAND v2",
+      "duplicate_ids": [],
+      "desktop_overflow": false
+    }
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "scroll_width": 320,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "scroll_width": 390,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "scroll_width": 768,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "scroll_width": 1024,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "scroll_width": 1440,
+      "overflow": false
+    }
+  ],
+  "interactions": [
+    "waiting_blocks_example",
+    "active_shortcut_example",
+    "wrong_target_blocks_example",
+    "image_internal_action_example",
+    "four_preview_views",
+    "practice_stops_control",
+    "filter_one_scenario",
+    "print_all_scenarios_and_restore_filter"
+  ],
+  "app_tests": "NOT_RUN",
+  "real_chrome_control": "NOT_RUN",
+  "real_camera_recognition": "NOT_RUN",
+  "release_build": "NOT_RUN",
+  "broken_local_links": [],
+  "scenario_count": 40,
+  "original_crosswalk_count": 52,
+  "original_spec_copy_sha256": "ea683df02602d6947f790715ad8c3b9f2c2709de1c8ac98702da5c5031a8c604",
+  "page_errors": [],
+  "failed_requests": [],
+  "external_runtime_requests": [],
+  "limitations": [
+    "문서 화면·로컬 링크·예시 동작 점검 결과이며 앱 구현/실기 검증 결과가 아님",
+    "인쇄 PDF는 점검용 파일로 tmp에 생성"
+  ],
+  "visual_review": {
+    "status": "PASS",
+    "inspected": [
+      "desktop cover at 1440px",
+      "application design preview",
+      "application design preview at 390px"
+    ],
+    "findings": "제목·본문·상태 카드·반응형 메뉴 표시 확인. 겹침이나 잘림 없음. 작은 화면 메뉴/넓은 표는 내부 스크롤."
+  },
+  "checked_artifacts": {
+    "docs/design.html": "adb970d5e395e9e96dac80150182aa44c6c4397233edb33ad16c8b15fb4ea244",
+    "docs/design.css": "10c4e6db97a45ee5cb7fa8f11c00dad6031b2d60c46d6fab361be1a877e67080",
+    "docs/design.js": "9fc01a099a302561dc1534f5c297351449f2d0ef420c95de3eb363d7d444e367"
+  },
+  "follow_up_document_check": {
+    "report": "implementation-plan-qa.json",
+    "change": "설계서에 구현 계획서 링크를 추가함. 최신 HTML/링크와 현재 파일 hash는 후속 문서 QA에 기록함. 원래 앱 화면 예시 코드·스타일은 변경하지 않음."
+  }
+}

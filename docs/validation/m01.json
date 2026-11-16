@@ -1,0 +1,23 @@
+{
+  "milestone": "M01",
+  "plan_days": ["D01", "D02", "D03", "D04", "D05"],
+  "planned_scope_md": 5,
+  "effort_note": "5 MD는 계획의 작업 범위이며 실제 5일/40시간 투입을 주장하지 않음. 실제 시험 시각·소요시간은 tdd/runs.jsonl에 기록.",
+  "status": "PASS_WITH_LATER_PHASES_NOT_IMPLEMENTED",
+  "automated_tests": {"passed": 58, "failed": 0, "skipped": 0, "report": "tdd/m01-verified.xml"},
+  "tdd_evidence": "tdd/runs.jsonl",
+  "environment": "environment.json",
+  "ui_smoke": "PASS_OFFSCREEN",
+  "ui_visual_review": "PASS_AFTER_LOADING_INSTALLED_KOREAN_FONT_FOR_OFFSCREEN_QT",
+  "replay": "CONTROL back_once repeated 10 times with explicit target, release ACKs and input result",
+  "real_chrome_control": "NOT_RUN_D06_D09",
+  "camera_recognition": "NOT_IMPLEMENTED_D11_D20",
+  "release_executable": "NOT_BUILT_D10",
+  "image_capture_practice_settings": "NOT_IMPLEMENTED_D21_D31",
+  "remaining_gates": "실기·사용자·배포 시험은 설계/계획의 후속 작업에 따라 별도 수행",
+  "issues_found_and_resolved": [
+    "명령/키 상태 데이터 검증 강화: 임의 action, 잘못된 대상, mutable keys, 오래된 schema 거절",
+    "Qt offscreen font database empty: 설치된 Windows Malgun Gothic 글꼴 로드 후 한글 표시 확인"
+  ],
+  "test_probe_note": "첫 글꼴 확인 시험(QRawFont만 검사)은 문제를 재현하지 못해 통과했으며 기록을 보존했다. font database 단언을 추가해 실패를 확인하고 수정했다."
+}

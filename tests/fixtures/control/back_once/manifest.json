@@ -1,0 +1,15 @@
+{
+  "fixture_format_version": 1,
+  "schema_name": "hand-v2",
+  "schema_version": 1,
+  "kind": "CONTROL",
+  "execution_mode": "REPLAY",
+  "seed": 0,
+  "source": "hand-authored M01 contract fixture; no real camera recording",
+  "start_at_ms": 1000,
+  "end_at_ms": 3000,
+  "initial_state": "BROWSER + WAITING + STARTING",
+  "config": {"neutral_ms": 180, "max_event_age_ms": 250, "cooldown_ms": 600},
+  "model_sha256": null,
+  "environment": {"camera": "none", "dpi": null}
+}

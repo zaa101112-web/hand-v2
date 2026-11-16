@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="2" time="0.456" timestamp="2026-11-16T21:12:02.118730+09:00" hostname="준식"><testcase classname="" name="tests.unit.test_queue_replay" time="0.000"><error message="collection failure">ImportError while importing test module 'C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\tests\unit\test_queue_replay.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\zaa13\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\unit\test_queue_replay.py:4: in &lt;module&gt;
+    from hand_v2.adapters.replay import run_fixture
+E   ModuleNotFoundError: No module named 'hand_v2.adapters.replay'</error></testcase><testcase classname="" name="tests.integration.test_ui_architecture" time="0.000"><error message="collection failure">ImportError while importing test module 'C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\tests\integration\test_ui_architecture.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\zaa13\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\integration\test_ui_architecture.py:5: in &lt;module&gt;
+    from hand_v2.bootstrap import build_runtime
+E   ModuleNotFoundError: No module named 'hand_v2.bootstrap'</error></testcase></testsuite></testsuites>

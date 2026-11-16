@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.271" timestamp="2026-11-16T21:17:30.563982+09:00" hostname="준식"><testcase classname="tests.integration.test_ui_architecture" name="test_offscreen_window_has_renderable_korean_fonts" time="0.053" /></testsuite></testsuites>

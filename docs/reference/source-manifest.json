@@ -1,0 +1,71 @@
+{
+  "recorded_at": "2026-11-16",
+  "design_baseline": "HAND v2 1.0",
+  "sources": [
+    {
+      "role": "specification",
+      "original_filename": "01_문서_목적과_개발_범위.md",
+      "size_bytes": 198678,
+      "sha256": "ea683df02602d6947f790715ad8c3b9f2c2709de1c8ac98702da5c5031a8c604"
+    },
+    {
+      "role": "proposal",
+      "original_filename": "7조 팀 프로젝트 제안서.docx",
+      "size_bytes": 24840,
+      "sha256": "b7040f5873631510a1b0ee6b7590b364c2239710e3aa1f82b7c5888bb915299e"
+    },
+    {
+      "role": "ui_reference",
+      "original_filename": "HAND_share_fixed.zip",
+      "size_bytes": 76146,
+      "sha256": "b2868cd68243092b0a20a8f1411d20ce67e5dcc842493c019634aa52a09591f7"
+    }
+  ],
+  "prototype_commit": "4463b5a8c73361ff217c03d217b109b0c1a224dd",
+  "verification_note": "정적 자료 검토 및 문서 표시 검증만 수행. 앱/ZIP 실행, 실제 Chrome, 인식률 검증은 수행하지 않음.",
+  "ui_reference_members": [
+    {
+      "path": "HAND/hand_app/ui.py",
+      "size_bytes": 58333,
+      "sha256": "0a66184a369aeb484013a040f8cddb6c43624c3caee485ec6a89c003399c1401"
+    },
+    {
+      "path": "HAND/hand_app/widgets.py",
+      "size_bytes": 18340,
+      "sha256": "b38feaa1e9a385dc195f4dc6190f6b3c69fb7e1904a2009c6a80c3220a0a6a81"
+    },
+    {
+      "path": "HAND/hand_app/calibration_ui.py",
+      "size_bytes": 12720,
+      "sha256": "90eae19cdd340966635ea4d8b6fb3b1bcadff0e756ec712af8d54990e376c98c"
+    },
+    {
+      "path": "HAND/hand_app/settings.py",
+      "size_bytes": 2477,
+      "sha256": "c6d65b36e6d9ca32e4c2f7b319fb13b0fe668d0a5c22e8428fb3263d7889cc15"
+    },
+    {
+      "path": "HAND/먼저 읽어주세요.txt",
+      "size_bytes": 3054,
+      "sha256": "bc8d5fcc64b960281e25011add789e893c899ad0774652217cc017226750c643"
+    }
+  ],
+  "prototype_evidence": [
+    {
+      "path": "hand/docs/issues.json",
+      "sha256": "4abe56fa22190a686c56bd74325c85bcd04c2dc66f030ad318af87f2801115c2"
+    },
+    {
+      "path": "hand/docs/validation-control-fix.json",
+      "sha256": "a45973efe6ab0c8a76ea676316ed252d44da8b34a90946cbced8759e8f8c1798"
+    },
+    {
+      "path": "hand/docs/validation-control-bundle.json",
+      "sha256": "34d717d2a4f1099417300e4e3ce9a6ee72dc77d0b79cea9c2bc18c2c3a44a9d0"
+    },
+    {
+      "path": "hand/docs/validation-tests.json",
+      "sha256": "785f54addc9e91926af3aa6bc7d444b498819679ae0a77409f195fc2cb3470ca"
+    }
+  ]
+}

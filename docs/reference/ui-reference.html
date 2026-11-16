@@ -1,0 +1,125 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HAND ZIP · 화면 디자인 참고 기록 · HAND v2</title><link rel="stylesheet" href="../design.css"></head><body class="reference"><header><a href="../design.html">← HAND v2 설계서</a><h1>HAND ZIP · 화면 디자인 참고 기록</h1></header><main><div class="ref-banner">사용자가 디자인 참고로 지정한 ZIP을 정적으로 읽었습니다. 앱·설치 스크립트·다운로드 스크립트를 실행하지 않았습니다. 기능 규칙은 새 설계가 우선합니다.</div>
+<h2>확인한 화면 요소</h2><ul><li>1280×860 기본 창, 흰 상단 헤더, HAND 청록 로고, 활성 상태, 카메라 버튼과 중단 버튼.</li><li>왼쪽 180px 메뉴: 제어 화면 / 손동작 안내 / 연습하기 / 환경설정.</li><li>브라우저와 이미지·발표를 고르는 카드형 버튼.</li><li>큰 카메라/이미지 영역과 오른쪽 현재 동작·최근 명령 카드.</li><li>작은 상태창, 연습의 단계·진행률, 감도 추천 후 직접 적용.</li></ul>
+<h2>새 설계에서 교체하는 내용</h2><ul><li>손바닥 시작·주먹 중단 → V 시작·숫자 3 중단.</li><li>마우스/커서·클릭·끌기·창 크기 조작 → 명령과 단축키 안내.</li><li>커서 표적 따라가기·커서 감도 → 제스처 성공/보류 이유·유지/재무장·인식 감도.</li><li>양손 V 캡처 → 양손 L 프레임 시작, 영역은 물리 마우스·키보드로 선택.</li><li>막연한 성공 메시지 → 인식/승인/전송/실기 확인 단계 구분.</li></ul>
+<h2>정적 검토 위치</h2><p>ui.py: STYLE 21–83행, MainWindow 207행 이후, 내비게이션 278–312행, 제어 화면 362–486행, 안내 546행 이후, 연습 650행 이후, 설정 685행 이후. 줄 번호는 첨부 ZIP의 원본을 기준으로 합니다.</p>
+<details><summary>첨부 UI의 스타일 원문</summary><pre><code>QMainWindow, QWidget#AppRoot { background: #f5f7fa; color: #172b3a; }
+
+QWidget { font-family: &#x27;Segoe UI&#x27;, &#x27;Malgun Gothic&#x27;, &#x27;Noto Sans CJK KR&#x27;, sans-serif; font-size: 13px; color: #172b3a; }
+
+QFrame#AppHeader { background: white; border-bottom: 1px solid #e1e7ed; }
+
+QFrame#Sidebar { background: white; border-right: 1px solid #e1e7ed; }
+
+QFrame[card=&quot;true&quot;] { background: white; border: 1px solid #e1e7ed; border-radius: 14px; }
+
+QFrame#SoftPanel { background: #f2f7f7; border: none; border-radius: 10px; }
+
+QFrame#Divider { background: #edf0f4; border: none; min-height: 1px; max-height: 1px; }
+
+QFrame#DemoToolbar { background: #fff7e7; border: 1px solid #f1e4c7; border-radius: 10px; }
+
+QLabel { background: transparent; }
+
+QLabel#Logo { font-size: 25px; font-weight: 700; letter-spacing: 3px; color: #087f76; }
+
+QLabel#PageTitle { font-size: 25px; font-weight: 700; }
+
+QLabel#SectionTitle { font-size: 15px; font-weight: 600; }
+
+QLabel#FeedbackValue { font-size: 20px; font-weight: 600; }
+
+QLabel#CommandValue { font-size: 16px; font-weight: 600; }
+
+QLabel#Muted { color: #64748b; font-size: 12px; }
+
+QLabel#Small { color: #738296; font-size: 11px; }
+
+QLabel#FieldLabel { color: #33485a; font-weight: 600; }
+
+QLabel#ValueBadge { background: #e7f4f1; color: #087f76; border-radius: 7px; padding: 4px 9px; font-weight: 700; }
+
+QLabel#StatusPill { background: #f0f3f6; color: #5e7081; border-radius: 13px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
+
+QLabel#StatusPill[active=&quot;true&quot;] { background: #e3f4ec; color: #11774f; }
+
+QLabel#DemoBanner { color: #90691f; font-size: 12px; }
+
+QPushButton { background: white; border: 1px solid #dbe3ea; border-radius: 8px; padding: 8px 12px; min-height: 20px; }
+
+QPushButton:hover { background: #f1f7f6; border-color: #9ec5bf; }
+
+QPushButton:focus { border-color: #087f76; }
+
+QPushButton:pressed { background: #e3f1ee; }
+
+QPushButton:disabled { color: #9caab8; border-color: #e6ebf0; background: #f7f9fb; }
+
+QPushButton#Primary { background: #087f76; color: white; border-color: #087f76; font-weight: 600; }
+
+QPushButton#Primary:hover { background: #076d66; }
+
+QPushButton#Primary:disabled { background: #b0ccc8; border-color: #b0ccc8; color: white; }
+
+QPushButton#StopButton { background: #fff7f7; border-color: #efd6d6; color: #af4141; font-weight: 600; }
+
+QPushButton#StopButton:hover { background: #ffeded; border-color: #dca5a5; }
+
+QPushButton#NavButton { border: 1px solid transparent; text-align: left; padding: 13px 12px; background: transparent; color: #64748b; font-size: 14px; }
+
+QPushButton#NavButton:hover { background: #f4f7f9; }
+
+QPushButton#NavButton:checked { background: #e8f4f1; color: #087f76; font-weight: 600; }
+
+QPushButton#NavButton:focus { border-color: #a8d2c9; }
+
+QPushButton#ModeButton { background: white; border: 1px solid #e1e7ed; border-radius: 11px; padding: 0; min-height: 66px; max-height: 66px; text-align: left; }
+
+QPushButton#ModeButton:hover { border-color: #91c3b8; background: #fafdfc; }
+
+QPushButton#ModeButton:checked { background: #e9f5f1; border: 2px solid #087f76; }
+
+QPushButton#LinkButton { background: transparent; border: none; color: #087f76; padding: 3px 0; font-size: 12px; }
+
+QComboBox, QLineEdit, QSpinBox { background: #fbfcfd; border: 1px solid #dce4eb; border-radius: 7px; padding: 8px 10px; min-height: 20px; selection-background-color: #cde9df; }
+
+QComboBox:focus, QLineEdit:focus, QSpinBox:focus { border-color: #087f76; }
+
+QComboBox { padding-right: 26px; }
+
+QComboBox QAbstractItemView { background: white; selection-background-color: #e7f4ef; color: #172b3a; border: 1px solid #dce4eb; }
+
+QComboBox::drop-down { border: none; width: 24px; }
+
+QComboBox::down-arrow { image: none; width: 0; height: 0; }
+
+QCheckBox { spacing: 9px; }
+
+QCheckBox::indicator { width: 17px; height: 17px; }
+
+QSlider { min-height: 25px; }
+
+QSlider::groove:horizontal { background: #e5ebef; height: 6px; border-radius: 3px; }
+
+QSlider::sub-page:horizontal { background: #087f76; border-radius: 3px; }
+
+QSlider::handle:horizontal { width: 16px; height: 16px; margin: -5px 0; background: #087f76; border: none; border-radius: 8px; }
+
+QSlider::handle:horizontal:focus { background: #055c56; }
+
+QScrollArea { border: none; background: transparent; }
+
+QScrollArea &gt; QWidget &gt; QWidget { background: transparent; }
+
+QScrollBar:vertical { background: transparent; width: 7px; margin: 2px 0; }
+
+QScrollBar::handle:vertical { background: #c9d5dd; border-radius: 3px; min-height: 28px; }
+
+QScrollBar::handle:vertical:hover { background: #a9bbc7; }
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: transparent; }
+
+QStatusBar { background: #f5f7fa; color: #738296; border-top: 1px solid #e5ebef; font-size: 11px; }
+
+QToolTip { background: #203744; color: white; border: none; padding: 7px; }</code></pre></details><p>이 기록에 원본 실행 성공 또는 새 앱 구현 완료를 뜻하는 내용은 없습니다. 첨부 README의 테스트 결과는 자체 보고로만 참고했습니다.</p></main><footer class="doc-footer">2026-11-16 · 참고 자료. 최신 설계 결정과 사용자 지시를 우선합니다.</footer></body></html>
