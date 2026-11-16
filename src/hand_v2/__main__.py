@@ -5,9 +5,10 @@ import sys
 
 def main():
     parser=argparse.ArgumentParser(description="HAND v2 gesture-to-shortcut controller")
-    parser.add_argument("--mode",choices=["DEV_SIMULATED","REPLAY","WINDOWS_REAL"],default="DEV_SIMULATED")
+    parser.add_argument("--mode",choices=["DEV_SIMULATED","REPLAY","WINDOWS_REAL"],default="WINDOWS_REAL")
     parser.add_argument("--replay",help="CONTROL fixture directory; no OS input")
     parser.add_argument("--smoke",action="store_true",help="Start Qt, verify initial state, then exit")
+    parser.add_argument('--smoke-report',help='Write startup/resource diagnostics after an offscreen smoke test')
     args=parser.parse_args()
     if args.replay:
         from hand_v2.adapters.replay import run_fixture
@@ -25,7 +26,21 @@ def main():
     if args.smoke:
         QTimer.singleShot(250,window.close)
         QTimer.singleShot(350,app.quit)
-    return app.exec()
+    result=app.exec()
+    exit_code=result if window.shutdown_ok else 2
+    if args.smoke_report:
+        from pathlib import Path
+        from hand_v2.adapters.resources import verify_bundle
+        import cv2
+        import mediapipe
+        import numpy
+        import mss
+        report=verify_bundle()
+        report.update({'exit_code':exit_code,'mode':args.mode,'shutdown_ok':window.shutdown_ok,
+                       'cv2':cv2.__version__,'mediapipe':mediapipe.__version__,'numpy':numpy.__version__,
+                       'mss':mss.__version__,'camera_tested':False,'input_effect_tested':False})
+        Path(args.smoke_report).write_text(json.dumps(report,indent=2),encoding='utf-8')
+    return exit_code
 
 
 if __name__=="__main__":

@@ -245,10 +245,18 @@ class Controller:
                     self._reset_neutral()
                     self._set(ready=False)
                     continue
-                result, keys = self.keyboard.submit_chord(cmd, chord_for(cmd.action))
+                reply = self.keyboard.submit_chord(cmd, chord_for(cmd.action))
+                if reply is None:
+                    continue  # Async adapter delivers immutable replies through the UI pump.
+                result, keys = reply
                 self.on_keyboard_state(keys)
-            self._record(result)
-            if result.status == Status.FAILED:
-                self.block("INPUT_FAILED")
-            elif result.status == Status.SENT and cmd.action == Action.BOOKMARK:
-                self._set(confirmation_pending=True, ready=False)
+            self.on_execution_result(result, cmd.action)
+
+    def on_execution_result(self, result, action):
+        if result.context_version != self.state.context_version:
+            return
+        self._record(result)
+        if result.status == Status.FAILED:
+            self.block("INPUT_FAILED")
+        elif result.status == Status.SENT and action == Action.BOOKMARK:
+            self._set(confirmation_pending=True, ready=False)

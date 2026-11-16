@@ -9,3 +9,15 @@
 {"label": "m01-font-red", "at_utc": "2026-11-16T12:17:31.286626+00:00", "duration_seconds": 1.969, "exit_code": 0, "expected_failure": true, "targets": ["tests/integration/test_ui_architecture.py::test_offscreen_window_has_renderable_korean_fonts"]}
 {"label": "m01-font-database-red", "at_utc": "2026-11-16T12:18:02.306319+00:00", "duration_seconds": 2.078, "exit_code": 1, "expected_failure": true, "targets": ["tests/integration/test_ui_architecture.py::test_offscreen_window_has_renderable_korean_fonts"]}
 {"label": "m01-verified", "at_utc": "2026-11-16T12:18:25.794048+00:00", "duration_seconds": 2.766, "exit_code": 0, "expected_failure": false, "targets": ["tests"]}
+{"label": "m02-native-red", "at_utc": "2026-11-16T12:26:03.542210+00:00", "duration_seconds": 1.953, "exit_code": 2, "expected_failure": true, "targets": ["tests/unit/test_windows_input.py"]}
+{"label": "m02-native-green", "at_utc": "2026-11-16T12:27:09.745543+00:00", "duration_seconds": 1.969, "exit_code": 0, "expected_failure": false, "targets": ["tests/unit/test_windows_input.py"]}
+{"label": "m02-worker-red", "at_utc": "2026-11-16T12:27:39.484759+00:00", "duration_seconds": 1.875, "exit_code": 2, "expected_failure": true, "targets": ["tests/unit/test_keyboard_worker.py"]}
+{"label": "m02-worker-green", "at_utc": "2026-11-16T12:28:29.543107+00:00", "duration_seconds": 2.0, "exit_code": 0, "expected_failure": false, "targets": ["tests/unit/test_keyboard_worker.py", "tests/unit/test_windows_input.py", "tests/unit/test_controller.py"]}
+{"label": "m02-ui-red", "at_utc": "2026-11-16T12:28:59.334790+00:00", "duration_seconds": 2.0, "exit_code": 2, "expected_failure": true, "targets": ["tests/integration/test_windows_ui.py"]}
+{"label": "m02-ui-green", "at_utc": "2026-11-16T12:29:43.820250+00:00", "duration_seconds": 2.047, "exit_code": 0, "expected_failure": false, "targets": ["tests/integration/test_windows_ui.py", "tests/unit/test_queue_replay.py"]}
+{"label": "m02-integrated", "at_utc": "2026-11-16T12:30:27.938111+00:00", "duration_seconds": 2.343, "exit_code": 0, "expected_failure": false, "targets": ["tests"]}
+{"label": "m02-shutdown-red", "at_utc": "2026-11-16T12:39:25.477885+00:00", "duration_seconds": 3.281, "exit_code": 1, "expected_failure": true, "targets": ["tests/unit/test_keyboard_worker.py"]}
+{"label": "m02-shutdown-green", "at_utc": "2026-11-16T12:39:42.608113+00:00", "duration_seconds": 2.969, "exit_code": 0, "expected_failure": false, "targets": ["tests/unit/test_keyboard_worker.py"]}
+{"label": "m02-bundle-red", "at_utc": "2026-11-16T12:40:37.073762+00:00", "duration_seconds": 3.344, "exit_code": 2, "expected_failure": true, "targets": ["tests/unit/test_bundle_resources.py"]}
+{"label": "m02-bundle-green", "at_utc": "2026-11-16T12:41:33.101870+00:00", "duration_seconds": 3.062, "exit_code": 0, "expected_failure": false, "targets": ["tests/unit/test_bundle_resources.py"]}
+{"label": "m02-final", "at_utc": "2026-11-16T12:45:28.674830+00:00", "duration_seconds": 3.937, "exit_code": 0, "expected_failure": false, "targets": ["tests"]}

@@ -1,0 +1,16 @@
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting tests/unit/test_keyboard_worker.py _____________
+ImportError while importing test module 'C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\tests\unit\test_keyboard_worker.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\zaa13\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\unit\test_keyboard_worker.py:4: in <module>
+    from hand_v2.adapters.keyboard_worker import KeyboardWorker
+E   ModuleNotFoundError: No module named 'hand_v2.adapters.keyboard_worker'
+=========================== short test summary info ===========================
+ERROR tests/unit/test_keyboard_worker.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.64s

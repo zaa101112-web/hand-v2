@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="HAND v2 — 손동작을 단축키로 연결하는 Windows 앱의 설계 기준. 경량 헥사고날, 생성자 DI, TDD."><title>HAND v2 · 손동작 단축키 앱 설계서</title><link rel="stylesheet" href="design.css"></head>
 <body>
 <a class="skip" href="#main">본문으로 이동</a>
-<aside class="sidebar"><div class="brand">HAND<span>v2</span></div><p class="side-caption">설계 기준 · 2026.11.16<br>Baseline 1.0 / 구현 전</p>
+<aside class="sidebar"><div class="brand">HAND<span>v2</span></div><p class="side-caption">설계 기준 · 2026.11.16<br>Baseline 1.0 / M02 구현 보충</p>
 <nav class="toc" aria-label="설계서 목차">
 <a href="#overview">01 · 목적과 범위</a><a href="#experience">02 · 화면 디자인</a><a href="#mapping">03 · 손동작과 단축키</a><a href="#architecture">04 · 구조와 의존성 주입</a><a href="#contracts">05 · 데이터 계약</a><a href="#state">06 · 상태와 실행 규칙</a><a href="#recognition">07 · 인식과 충돌 해소</a><a href="#keyboard">08 · 실제 Chrome 제어</a><a href="#capture">09 · 이미지와 캡처</a><a href="#runtime">10 · 실행·설정·종료</a><a href="#regressions">11 · 프로토타입 문제 반영</a><a href="#tdd">12 · TDD와 재생 검증</a><a href="#acceptance">13 · 테스트와 완료 기준</a><a href="#delivery">14 · 구현 순서와 배포</a><a href="#decisions">15 · 결정과 원본 대응</a><a href="#workflow">16 · 개발할 때 읽는 절차</a><a href="#sources">17 · 출처와 문서 상태</a>
 </nav><div class="nav-foot">사용자의 최신 요청을 우선합니다.<br>손동작 → 의미 명령 → 단축키<br><br><a href="reference/spec-v3.1.html">원본 v3.1 명세 보기 ↗</a></div></aside>
@@ -152,6 +152,7 @@ packaging/hand.spec    scripts/verify_release.py</code></pre>
 일반 명령: 시효 + context + 중복 ID + 대상 창을 승인 시 / 실행 직전에 검사</code></pre>
 <p>앱 명령 대기열은 최대 8개이며 일반 명령의 유효 시간은 촬영 시각부터 250ms입니다. 넘친 일반 명령은 QUEUE_FULL로 차단하고 다시 실행하지 않습니다. STOP·해제는 별도 제어 경로로 항상 처리합니다. 프레임·후보·미리보기는 최신 1개만 유지하고 버려진 후보를 실행 명령으로 복구하지 않습니다. 처리한 event_id·command_id는 60초 보관합니다. 키 해제와 이미 시작된 캡처의 결과 정리는 오래된 context라도 소유 ID로 끝까지 처리합니다.</p>
 <p>실제 키 조합은 짧은 down/up 한 묶음입니다. STOP보다 먼저 OS에 접수된 조합은 되돌릴 수 없으므로 완료 사실을 기록하고 이후 명령을 막습니다. ‘중단 요청’과 ‘해제 확인’을 분리하고 해제 완료 전에는 다시 시작하지 않습니다.</p>
+<div class="note"><strong>M02 구현 계약 보충</strong><p><code>KeyboardPort.submit_chord</code>는 동기 Fake의 결과 쌍 또는 비동기 접수의 <code>None</code>을 반환합니다. None은 성공을 뜻하지 않습니다. 실제 어댑터의 직렬 worker 결과는 Qt 타이머가 메인 스레드에서 수신해 Controller에 전달합니다. STOP/모드 전환/해제는 worker의 대기 명령을 취소하고 실행 직전 세대도 재검사합니다. 오래된 일반 결과는 현재 실행 표시를 덮어쓰지 않고 키 해제 상태는 요청 ID로 끝까지 확인합니다. 종료 성공은 worker 종료와 최신 소유 키 해제 ACK를 모두 요구합니다.</p><p>명시적 개발 시험 도구만 확정 이벤트를 주입합니다. 제품의 기본 CLI 모드는 WINDOWS_REAL이며, 카메라 미연결 동안 WAITING에서 차단합니다. DEV_SIMULATED는 명시적 옵션 또는 별도 실행 배치로 선택합니다.</p></div>
 </section>
 
 <section class="doc-section" id="recognition"><div class="section-no">07 / RECOGNITION</div><h2>마우스 좌표 대신 동작의 의미를 추출</h2><p>MediaPipe Hands Landmarker의 VIDEO 모드로 순차 처리하고 최대 두 손을 사용합니다. 프레임 타임스탬프는 엄격히 증가해야 하며 동일/역순 프레임은 버립니다. 모델 버전·SHA-256, Python/라이브러리 버전은 배포와 재생 기록에 남깁니다. <a href="https://developers.google.com/edge/mediapipe/solutions/vision/hand_landmarker?tab=Python">MediaPipe 공식 문서</a></p>

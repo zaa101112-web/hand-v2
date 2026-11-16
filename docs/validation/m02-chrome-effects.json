@@ -1,0 +1,209 @@
+{
+  "source": "REAL_CHROME_EFFECTS_SYNTHETIC_GESTURES",
+  "records": [
+    {
+      "gesture": "RIGHT",
+      "status": "PASS",
+      "before": {
+        "name": "A",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832603750,
+        "received": 1794832603.857487
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832671.3753004
+      },
+      "input_result": {
+        "command_id": "command-000006",
+        "context_version": 0,
+        "completed_at_ms": 379866515,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      }
+    },
+    {
+      "gesture": "PAGE_DOWN",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832671.3753004
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 792,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832672.27744
+      },
+      "input_result": {
+        "command_id": "command-000008",
+        "context_version": 0,
+        "completed_at_ms": 379867375,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=2/2; page effect unverified"
+      }
+    },
+    {
+      "gesture": "PAGE_UP",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 792,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832672.27744
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832673.0770874
+      },
+      "input_result": {
+        "command_id": "command-000010",
+        "context_version": 0,
+        "completed_at_ms": 379868140,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=2/2; page effect unverified"
+      }
+    },
+    {
+      "gesture": "ZOOM_IN",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832673.0770874
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.6500000953674316,
+        "width": 942,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832673.779825
+      },
+      "input_result": {
+        "command_id": "command-000012",
+        "context_version": 0,
+        "completed_at_ms": 379868968,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      }
+    },
+    {
+      "gesture": "ZOOM_OUT",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.6500000953674316,
+        "width": 942,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832673.779825
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832674.5760891
+      },
+      "input_result": {
+        "command_id": "command-000014",
+        "context_version": 0,
+        "completed_at_ms": 379869781,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      }
+    },
+    {
+      "gesture": "CIRCLE",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794832671263,
+        "received": 1794832674.5760891
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 3,
+        "loaded": 1794832675314,
+        "received": 1794832675.416991
+      },
+      "input_result": {
+        "command_id": "command-000016",
+        "context_version": 0,
+        "completed_at_ms": 379870562,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      }
+    }
+  ]
+}

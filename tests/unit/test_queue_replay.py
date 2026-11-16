@@ -39,6 +39,8 @@ def test_replay_output_does_not_autofill_success_or_target():
     assert not runtime.keyboard.sent_chords
 
 
-def test_unimplemented_real_mode_fails_closed():
-    with pytest.raises(RuntimeError, match="not implemented"):
+def test_real_mode_rejects_non_windows_platform(monkeypatch):
+    import sys
+    monkeypatch.setattr(sys,'platform','linux')
+    with pytest.raises(RuntimeError, match="requires Windows"):
         build_runtime(ExecutionMode.REAL)

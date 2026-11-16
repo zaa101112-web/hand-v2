@@ -3,7 +3,7 @@ from PySide6.QtGui import QKeySequence, QShortcut
 from PySide6.QtWidgets import (QMainWindow, QWidget, QFrame, QLabel, QPushButton,
     QVBoxLayout, QHBoxLayout, QGridLayout, QStackedWidget, QScrollArea, QComboBox)
 
-from hand_v2.domain.models import Activation, Gesture, GestureEvent, Mode, Status
+from hand_v2.domain.models import Activation, ExecutionMode, Gesture, GestureEvent, Mode, Status
 from .controller_bridge import ControllerBridge
 from .fonts import ensure_readable_fonts
 
@@ -68,6 +68,15 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(960,720)
         self.setStyleSheet(STYLE)
         self._build()
+        self.hotkey=None
+        self.shutdown_ok=True
+        from .mini_panel import MiniPanel
+        self.mini_panel=MiniPanel(self.controller,self.open_main)
+        if runtime.controller.state.execution_mode==ExecutionMode.REAL:
+            from hand_v2.adapters.windows.hotkey import GlobalStopHotkey
+            self.hotkey=GlobalStopHotkey(int(self.winId()),lambda:self.controller.stop('전역 F8'),runtime.foreground.native)
+            self.banner.setText('Windows 실제 입력 모드 · 카메라 연결은 다음 단계입니다. '+
+                                ('전역 F8 중단 사용 가능' if self.hotkey.registered else 'F8 등록 실패 · 중단 버튼/숫자 3을 사용하세요'))
         self.bridge = ControllerBridge(self)
         self.bridge.state_changed.connect(self.render_state)
         runtime.ui.listener = self.bridge.render_state
@@ -88,6 +97,7 @@ class MainWindow(QMainWindow):
         head.addWidget(label("HAND","Logo"));head.addWidget(label("손동작 단축키 제어","Muted"));head.addStretch()
         self.state_label = label("제어 대기");head.addWidget(self.state_label)
         self.stop_button = button("중단",lambda:self.controller.stop("중단 버튼"),"Stop");head.addWidget(self.stop_button)
+        head.addWidget(button('작은 상태창',self.show_mini_panel))
         outer.addWidget(header)
         body = QHBoxLayout();body.setSpacing(0);outer.addLayout(body,1)
         sidebar = QFrame();sidebar.setObjectName("Sidebar");sidebar.setFixedWidth(180)
@@ -139,6 +149,12 @@ class MainWindow(QMainWindow):
         extra=QHBoxLayout();self.gesture_combo=QComboBox()
         for gesture in Gesture:self.gesture_combo.addItem(f"{gesture.value} · {gesture.name}",gesture)
         extra.addWidget(self.gesture_combo);extra.addWidget(button("선택한 동작 예시",lambda:self._simulate(self.gesture_combo.currentData())));extra.addWidget(button("계속",self.controller.ack_confirmation));v.addLayout(extra)
+        if self.controller.state.execution_mode!=ExecutionMode.SIMULATED:
+            for layout in (row,extra):
+                for i in range(layout.count()):
+                    layout.itemAt(i).widget().setVisible(False)
+            self.preview_label.setText('카메라 미리보기\n\n카메라 연결 준비 중\n손 인식 기능은 아직 연결하지 않았습니다.')
+            self.detail_label.setText('실행 결과는 OS 전송 여부입니다. 페이지 동작은 별도로 확인하세요.')
         return page
 
     def select_page(self,key):
@@ -147,6 +163,8 @@ class MainWindow(QMainWindow):
         if key=="practice":self.controller.stop("연습 화면")
 
     def _simulate(self,gesture):
+        if self.controller.state.execution_mode!=ExecutionMode.SIMULATED:
+            return
         now=self.runtime.clock.now_ms()
         self.controller.show_candidate(f"동작 예시 · {gesture.value}",( "simulated-hand",))
         self.controller.handle(GestureEvent(self.runtime.ids.next_id("event"),gesture,("simulated-hand",),now,now,self.controller.state.context_version,self.controller.state.camera_epoch))
@@ -160,25 +178,59 @@ class MainWindow(QMainWindow):
         self.render_state(self.controller.state)
 
     def _tick(self):
+        self.runtime.pump()
         self.runtime.scheduler.run_due()
         self.controller.tick()
+        self._render_target()
+
+    def _render_target(self):
+        simulated=self.controller.state.execution_mode==ExecutionMode.SIMULATED
+        prefix='가상 대상: ' if simulated else '현재 전경: '
+        self.target_label.setText(prefix+('Chrome' if self.runtime.foreground.snapshot().is_chrome else '다른 앱 · Chrome를 선택하세요'))
+
+    def show_mini_panel(self):
+        screen=self.screen().availableGeometry()
+        self.mini_panel.move(screen.right()-350,screen.top()+35)
+        self.mini_panel.show()
+
+    def open_main(self):
+        # Only this explicit user action is allowed to activate HAND's main window.
+        self.showNormal()
+        self.raise_()
+        self.activateWindow()
+
+    def nativeEvent(self,event_type,message):
+        if getattr(self,'hotkey',None):
+            from ctypes import wintypes
+            msg=wintypes.MSG.from_address(int(message))
+            if self.hotkey.dispatch(msg.message,msg.wParam):
+                return True,0
+        return super().nativeEvent(event_type,message)
 
     def render_state(self,state):
         active=state.activation==Activation.ACTIVE
         self.state_label.setText("제어 중" if active and state.ready else "제어 중 · 새 동작 대기" if active else "제어 대기")
         self.gesture_label.setText(state.last_candidate)
         for mode,b in self.mode_buttons.items():b.setChecked(mode==state.mode)
-        self.target_label.setText("가상 대상: Chrome" if self.runtime.foreground.snapshot().is_chrome else "가상 대상: 다른 앱 · Chrome를 선택하세요")
+        self._render_target()
+        self.mini_panel.render_state(state)
         if state.last_execution:
             result=state.last_execution
             titles={Status.SENT:"가상 전송 기록",Status.APPLIED:"앱 내부 적용",Status.BLOCKED:"실행 보류",Status.FAILED:"입력 실패",Status.CANCELLED:"취소"}
+            if state.execution_mode==ExecutionMode.REAL:titles[Status.SENT]='OS 키 전송 완료'
             self.command_label.setText(titles[result.status])
             reasons={"SIMULATED":"실제 키 입력을 보내지 않은 시뮬레이션입니다.","WAITING":"V로 먼저 시작하세요.","REARM_REQUIRED":"자세를 풀고 잠시 기다리세요.","TARGET_NOT_CHROME":"Chrome 창을 선택하세요.","TARGET_CHANGED":"대상 창이 바뀌어 전송하지 않았습니다.","NOT_IMPLEMENTED":"이 기능은 아직 구현 중입니다.","INPUT_BLOCKED":"입력 보류 중입니다. 상태를 확인하세요.","DUPLICATE":"같은 동작을 중복 실행하지 않았습니다."}
+            reasons.update({'OS_INPUT_SENT':'OS에 키 입력을 전송했습니다. 페이지 동작까지 확인한 결과는 아닙니다.',
+                            'KEYBOARD_BUSY':'누르고 있는 키를 놓고 새 동작을 해주세요.',
+                            'SENDINPUT_PARTIAL':'키 전송에 실패해 제어를 중단했습니다. 입력 권한 또는 환경을 확인하세요.'})
             self.detail_label.setText(reasons.get(result.reason,result.reason))
         self.reason_label.setText(f"최근 중단: {state.last_stop_reason}" if state.last_stop_reason else "")
 
     def closeEvent(self,event):
         self.timer.stop()
         self.controller.stop("앱 종료")
+        if self.hotkey:self.shutdown_ok=self.hotkey.close()
+        self.mini_panel.close()
+        self.shutdown_ok=self.runtime.close() and self.shutdown_ok
         self.runtime.ui.listener=None
         event.accept()

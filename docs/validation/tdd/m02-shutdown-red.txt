@@ -1,0 +1,19 @@
+...F                                                                     [100%]
+================================== FAILURES ===================================
+_________ test_shutdown_cannot_report_success_when_release_ack_failed _________
+
+    def test_shutdown_cannot_report_success_when_release_ack_failed():
+        clock=ManualClock(1000)
+        backend=RecordingKeyboard(clock)
+        def broken(*args): raise OSError('release unavailable')
+        backend.release_owned_keys=broken
+        worker=KeyboardWorker(backend,clock)
+>       assert not worker.close()
+E       assert not True
+E        +  where True = close()
+E        +    where close = <hand_v2.adapters.keyboard_worker.KeyboardWorker object at 0x00000205E2FB6960>.close
+
+tests\unit\test_keyboard_worker.py:85: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_keyboard_worker.py::test_shutdown_cannot_report_success_when_release_ack_failed
+1 failed, 3 passed in 0.91s

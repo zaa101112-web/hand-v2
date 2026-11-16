@@ -1,0 +1,49 @@
+{
+  "milestone": "M02",
+  "plan_days": [
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10"
+  ],
+  "planned_scope_md": 5,
+  "at_utc": "2026-11-16T12:47:14.810604+00:00",
+  "status": "IMPLEMENTED_WITH_LIVE_GATES_PENDING",
+  "effort_note": "5 MD는 계획 작업 범위이며 실제 5일/40시간 투입을 의미하지 않음. 시험 시각·소요시간은 tdd/runs.jsonl.",
+  "automated_tests": {
+    "tests": 92,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "report": "tdd/m02-final.xml"
+  },
+  "tdd_evidence": "tdd/runs.jsonl",
+  "real_input_source": "SYNTHETIC_GESTURE_EVENTS_TO_PRODUCTION_CONTROLLER_AND_WIN32",
+  "real_chrome_verified": [
+    "BACK",
+    "FORWARD",
+    "PAGE_UP",
+    "PAGE_DOWN",
+    "ZOOM_IN",
+    "ZOOM_OUT",
+    "RELOAD"
+  ],
+  "real_chrome_pending": [
+    "PREV_TAB",
+    "NEXT_TAB",
+    "REOPEN_TAB",
+    "BOOKMARK_AND_CONTINUE",
+    "PANEL_FOCUS",
+    "F8_PRESS",
+    "KOREAN_AND_ENGLISH_LAYOUTS"
+  ],
+  "live_test_interruption": "Computer Use could not determine the current browser URL with sufficient confidence and stopped the Windows UI session; no alternative input tool used to continue remaining UI verification.",
+  "camera_recognition": "NOT_IMPLEMENTED_D11_D20",
+  "clean_pc": "NOT_RUN",
+  "image_capture_practice_settings": "NOT_IMPLEMENTED_D21_D31",
+  "build_report": "m02-build.json",
+  "build_smoke_report": "m02-bundle-smoke.json",
+  "review": "m02-review.html",
+  "remaining_gates": "Finish pending M02 live checks before claiming the whole checkpoint complete; then D11-D40."
+}

@@ -1,0 +1,20 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>M02 · Windows 입력 검증</title><link rel="stylesheet" href="../design.css"></head><body class="reference"><header><a href="../progress.html">← 진행 기록</a><h1>M02 · D06–D10 검증 기록</h1><p>2026-11-16 · 5 MD 계획 범위의 중간 상태 커밋. 전체 완료 판정은 보류합니다.</p></header><main>
+<section><h2>구현한 경로</h2><p>확정 이벤트 → Controller 승인 → 직렬 KeyboardWorker → WindowsKeyboard → SendInput. UI 스레드가 불변 결과를 수신하며 AppState 작성자는 Controller 하나입니다. 작업 대기열과 입력 시효, 대상 창 식별, 키 충돌과 해제 확인을 검증했습니다.</p>
+<ul><li>D06: HWND·PID·실행 파일·프로세스 시작 시각으로 전경 Chrome 판별. F8 등록 성공과 충돌을 구분하고 종료 시 해제.</li><li>D07: 단일 키 배열, 확장 키 플래그, 0/부분/전체 전송 분리. 소유 키만 최대 두 번 정리. 해제 응답 실패를 종료 성공으로 표시하지 않음.</li><li>D08: 비활성 작은 상태창, 중단/계속/명시적 메인 열기. Qt 플래그와 native 메시지 구현. 실제 클릭 시 포커스 유지 검증은 남음.</li><li>D09: Chrome 전체 키 연결표와 북마크 확인 보류. 실제 확인된 효과와 남은 기능은 아래 표 참조.</li><li>D10: 고유 staging·정제 PATH의 onedir 빌드, 모델·초기 defaults·라이브러리 포함. 실제 산출물/시작 결과는 빌드 JSON 참조.</li></ul></section>
+<section><h2>실제 Chrome 효과</h2><p>별도 Chrome 프로필과 127.0.0.1 시험 페이지를 사용했습니다. 손동작 이벤트는 시험 도구가 주입했습니다. <strong>실제 사람의 손 인식 시험이 아닙니다.</strong> 앱의 SENT와 별도로 페이지 값/화면을 관찰했습니다.</p>
+<div class="table-wrap"><table><thead><tr><th>기능</th><th>관찰 결과</th><th>판정</th></tr></thead><tbody>
+<tr><td>뒤로가기</td><td>Page B → Page A, 실제 Chrome 문서 제목·내용 확인</td><td>PASS</td></tr>
+<tr><td>앞으로가기</td><td>Page A → Page B, 페이지 telemetry 확인</td><td>PASS</td></tr>
+<tr><td>페이지 아래/위</td><td>scrollY 0 → 792 → 0</td><td>PASS</td></tr>
+<tr><td>확대/축소</td><td>devicePixelRatio 1.5 → 1.650000095 → 1.5, 폭 1036 → 942 → 1036</td><td>현재 시험 환경 PASS</td></tr>
+<tr><td>새로고침</td><td>Page B loads 2 → 3, 새로운 loaded 시각</td><td>PASS</td></tr>
+<tr><td>탭 이동/닫은 탭 복구</td><td>탭 준비·이동 시도 후 컴퓨터 조작 도구의 URL 확인 실패. 독립 화면 검증 미완료</td><td>NOT VERIFIED</td></tr>
+<tr><td>북마크 창/계속</td><td>확인 보류와 계속은 코어 자동 시험. 실제 Chrome 창 확인 미실행</td><td>NOT RUN LIVE</td></tr>
+<tr><td>작은 상태창·F8</td><td>플래그·등록 충돌·콜백·해제 자동 시험. 실세션 F8 등록 true·정상 종료 확인. 실제 F8 누름/상태창 클릭 포커스는 미실행</td><td>PARTIAL</td></tr>
+<tr><td>한국어/영어 입력 환경</td><td>Ctrl+VK_ADD/SUBTRACT가 현재 환경에서 작동. 두 입력 환경을 각각 전환해 검증하지 않음</td><td>PARTIAL</td></tr></tbody></table></div>
+<p>중단 사유: 컴퓨터 조작 도구가 “현재 브라우저 URL을 충분히 확신할 수 없어 정책을 적용할 수 없다”고 보고해 해당 조작 세션을 중단했습니다. 다른 입력 도구로 남은 UI 검증을 우회하지 않았습니다. 로컬 시험 서버는 종료했고 키 정리와 종료 코드 0을 기록했습니다.</p></section>
+<section><h2>TDD와 증거</h2><p>관련 항목: V2-T02/04/05/09/10/11/12/15/16/18/29/31/32/33/35/39. 이 목록은 연결 대상이며 항목 전체가 PASS라는 뜻은 아닙니다. 입력 ABI·부분 전송·키 충돌·실행 직전 대상 변경·비동기 중단·늦은 결과·F8 등록 실패·번들 손상·종료 응답 실패를 먼저 실패 시험으로 확인했습니다.</p><p><a href="tdd/runs.jsonl">실제 Red/Green 이력</a> · <a href="m02-chrome-effects.json">실제 페이지 값</a> · <a href="m02-live-session.json">시험 세션·종료 기록</a> · <a href="m02-build.json">빌드 결과</a> · <a href="m02-bundle-smoke.json">번들 시작/자원 확인</a></p>
+<p>시험 도구의 HTTP 상태 응답에서 Qt winId를 다른 스레드에서 조회해 첫 로컬 시험 응답이 멈추는 문제가 있었습니다. UI 생성 시 메인 스레드에서 핸들을 확보하도록 시험 도구를 수정한 뒤 실제 시험을 진행했습니다. 제품의 스레드 경계와 구분해 기록합니다.</p></section>
+<section><h2>초기 빌드 확인</h2><p>onedir 빌드 성공, 번들 약 389 MiB. 시스템 폴더만 남긴 PATH에서 실행 파일이 Qt offscreen으로 시작·종료했고 exit code 0, frozen=true, 모델 SHA-256 일치, OpenCV·MediaPipe·NumPy·MSS import를 확인했습니다. 실제 화면·카메라·키 전송은 이 번들 smoke의 검증 범위가 아닙니다. PyInstaller의 정적 누락 목록에는 POSIX 전용 모듈과 NumPy의 동적 속성 등이 있으며, 필수 라이브러리 import가 성공한 사실과 구분해 보관합니다.</p><p><a href="../../.build-staging/20261116-214133-619947/dist/HAND-v2/HAND-v2.exe">로컬 초기 실행 파일</a> · <a href="m02-artifact-manifest.json">전체 번들 파일·해시</a>. EXE만 복사하지 않고 같은 HAND-v2 폴더 전체를 사용합니다. 아직 손 인식 기능이 없는 초기 검증용 빌드입니다.</p></section>
+<section><h2>남은 완료 조건</h2><ol><li>D08–D09: 작은 상태창 표시/업데이트/중단/계속 이후 Chrome 포커스 유지, 실제 F8 중단, 전체 탭·북마크 효과 재검증.</li><li>D10: Python 없는 별도 Windows PC/VM 실행. 현재 PC의 정제 PATH 시험을 새 PC 시험으로 대체하지 않음.</li><li>D11 이후: 카메라 프로세스, 실제 손 인식, 이미지·캡처·설정·연습·사용자 평가.</li></ol><p>설계의 40 MD 전체를 완료하지 않았습니다. M02의 실기 게이트가 남아 있으므로 M03 완료로 진행 표시하지 않습니다. 초기 defaults는 번들 준비용이며 사용자 설정 병합·검증·저장·런타임 적용은 D28에서 구현합니다.</p></section>
+</main></body></html>

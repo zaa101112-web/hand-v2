@@ -8,7 +8,7 @@ from hand_v2.adapters.timing import ManualClock
 from hand_v2.domain.models import Activation
 
 
-def test_ui_reports_simulated_output_and_stop_separately(qtbot):
+def test_ui_reports_simulated_output_and_stop_separately(qtbot, tmp_path):
     runtime = build_runtime(clock=ManualClock(1000))
     window = MainWindow(runtime)
     qtbot.addWidget(window)
@@ -24,7 +24,7 @@ def test_ui_reports_simulated_output_and_stop_separately(qtbot):
     assert runtime.controller.state.activation == Activation.WAITING
     assert "가상 전송" in window.command_label.text()
     assert "중단 버튼" in window.reason_label.text()
-    window.grab().save(str(Path(__file__).parents[2]/"docs/validation/m01-ui.png"))
+    assert window.grab().save(str(tmp_path/"simulated-ui.png"))
 
 
 def test_menu_placeholders_do_not_claim_finished_features(qtbot):
