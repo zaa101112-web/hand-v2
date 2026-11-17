@@ -71,7 +71,7 @@ def main():
               'tracking_counts':dict(counts),'recent_pose_samples':list(samples),
               'camera_stop':asdict(runtime.camera.last_stop) if runtime.camera.last_stop else None,
               'hotkey_registered':bool(window.hotkey and window.hotkey.registered),'raw_images_saved':False}
-        output.write_text(json.dumps(data,ensure_ascii=False,indent=2,default=lambda o:sorted(o) if isinstance(o,frozenset) else str(o)),encoding='utf-8')
+        output.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'),default=lambda o:sorted(o) if isinstance(o,frozenset) else str(o)),encoding='utf-8')
     timer=QTimer();timer.timeout.connect(snapshot);timer.start(500)
     QTimer.singleShot(500,lambda:runtime.start_camera(args.camera,True))
     if args.seconds>0:QTimer.singleShot(args.seconds*1000,window.close)

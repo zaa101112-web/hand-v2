@@ -1,0 +1,16 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________ test_remaining_pinky_ambiguity_names_the_finger_to_adjust __________
+
+    def test_remaining_pinky_ambiguity_names_the_finger_to_adjust():
+        hand=with_bent_finger(sample_hand('INDEX'),150,150)
+        result=GestureRecognizer().process(TrackingFrame(1000,1000,1,640,480,(hand,)),True)
+        assert result.gesture is None
+>       assert '새끼손가락' in result.candidate
+E       AssertionError: assert '새끼손가락' in '나머지 손가락을 접어 자세를 분명히 해주세요'
+E        +  where '나머지 손가락을 접어 자세를 분명히 해주세요' = Recognition(gesture=None, hand_ids=('h1',), neutral=False, candidate='나머지 손가락을 접어 자세를 분명히 해주세요', progress=0.0, reason='UNKNOWN_POSE').candidate
+
+tests\unit\test_index_fold_regression.py:95: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_index_fold_regression.py::test_remaining_pinky_ambiguity_names_the_finger_to_adjust
+1 failed in 0.63s

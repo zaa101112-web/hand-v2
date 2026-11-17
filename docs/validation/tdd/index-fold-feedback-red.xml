@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.361" timestamp="2026-11-17T13:43:06.216245+09:00" hostname="준식"><testcase classname="tests.unit.test_index_fold_regression" name="test_remaining_pinky_ambiguity_names_the_finger_to_adjust" time="0.004"><failure message="AssertionError: assert '새끼손가락' in '나머지 손가락을 접어 자세를 분명히 해주세요'&#10; +  where '나머지 손가락을 접어 자세를 분명히 해주세요' = Recognition(gesture=None, hand_ids=('h1',), neutral=False, candidate='나머지 손가락을 접어 자세를 분명히 해주세요', progress=0.0, reason='UNKNOWN_POSE').candidate">def test_remaining_pinky_ambiguity_names_the_finger_to_adjust():
+        hand=with_bent_finger(sample_hand('INDEX'),150,150)
+        result=GestureRecognizer().process(TrackingFrame(1000,1000,1,640,480,(hand,)),True)
+        assert result.gesture is None
+&gt;       assert '새끼손가락' in result.candidate
+E       AssertionError: assert '새끼손가락' in '나머지 손가락을 접어 자세를 분명히 해주세요'
+E        +  where '나머지 손가락을 접어 자세를 분명히 해주세요' = Recognition(gesture=None, hand_ids=('h1',), neutral=False, candidate='나머지 손가락을 접어 자세를 분명히 해주세요', progress=0.0, reason='UNKNOWN_POSE').candidate
+
+tests\unit\test_index_fold_regression.py:95: AssertionError</failure></testcase></testsuite></testsuites>

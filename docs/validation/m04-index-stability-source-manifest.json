@@ -1,0 +1,254 @@
+[
+  {
+    "path": "requirements-lock.txt",
+    "sha256": "9d0375bd35dce287b5ffadd7a8b92192ee7fea2d5555865bd34d9406b9741a71"
+  },
+  {
+    "path": "run.py",
+    "sha256": "873ef19a5aa49a4bc1ea52885d129533a8d1da74a41acff9b938969f97b8d196"
+  },
+  {
+    "path": "src/hand_v2/__init__.py",
+    "sha256": "e1c8183e0f41c360af72fd77dedf0f3ae0bb9205f3af238f260a38bd72f42f05"
+  },
+  {
+    "path": "src/hand_v2/__main__.py",
+    "sha256": "ca7fcd674729f7f932a3c514bad86d9cdf44438015ff3a341cf654766a55483b"
+  },
+  {
+    "path": "src/hand_v2/adapters/__init__.py",
+    "sha256": "e9c1ba885b517e97e3525a247687dc89c1cb241ccca6b14a939969aae51ca570"
+  },
+  {
+    "path": "src/hand_v2/adapters/fakes.py",
+    "sha256": "0dea7d4f7ddb3f836de2f51289cace923987c72d434b29b41dd8852d49faaede"
+  },
+  {
+    "path": "src/hand_v2/adapters/keyboard_worker.py",
+    "sha256": "a1753e22e423af052b46fcfc34a6d3686bc6d8233d2c22f0b2e93ef2d8436c62"
+  },
+  {
+    "path": "src/hand_v2/adapters/qt/__init__.py",
+    "sha256": "676175900cbf572285b5b7bc962a2abc2e884a3942bb2488c66c7d3d784e6283"
+  },
+  {
+    "path": "src/hand_v2/adapters/qt/control_status.py",
+    "sha256": "14ff26dbe82c660d0605dafdb1dd4022ac428db5c69ba3c675bf270832d19657"
+  },
+  {
+    "path": "src/hand_v2/adapters/qt/controller_bridge.py",
+    "sha256": "489491c3455f6a1f9a89a889b5cc53d14c6aa231f0c4974c2312dc8bf8411823"
+  },
+  {
+    "path": "src/hand_v2/adapters/qt/fonts.py",
+    "sha256": "0f704ba1b4d99f32726bfce490948beb882afeb6149146fbf214f1217e112e13"
+  },
+  {
+    "path": "src/hand_v2/adapters/qt/mini_panel.py",
+    "sha256": "9e7223601ec080ad249ae7d9f3c5b9855e651c2392a83c5fd15bc58cff9ce923"
+  },
+  {
+    "path": "src/hand_v2/adapters/qt/window.py",
+    "sha256": "894202b6501d3247e80effc02c62c35e78a7480e383cc8ad4e38239a0f2947b9"
+  },
+  {
+    "path": "src/hand_v2/adapters/replay.py",
+    "sha256": "8fef1e8decbb2b9b1fc6d3d21a8329f76c722e96a1536916a44cbbee4e5d9a02"
+  },
+  {
+    "path": "src/hand_v2/adapters/resources.py",
+    "sha256": "53a76e7db9e063d8e78396b4ee7e36f8afecf7333c2993c6da715136f7d5c26b"
+  },
+  {
+    "path": "src/hand_v2/adapters/timing.py",
+    "sha256": "721a32a5533a77c7ec2c0c5ee221d8644ebd01784c6d7d9fba9cc2ea4d8a22f3"
+  },
+  {
+    "path": "src/hand_v2/adapters/vision/__init__.py",
+    "sha256": "e33c6631423dfb978599e6d3a8a2d180492401ee3b5a17a8e7f22d93357ce8fd"
+  },
+  {
+    "path": "src/hand_v2/adapters/vision/probe.py",
+    "sha256": "dcc687eb88f2009551520e7673a449e8f159f66ffa009bf737c6f4cf2d53c8f7"
+  },
+  {
+    "path": "src/hand_v2/adapters/vision/process.py",
+    "sha256": "faed2b30bdd0b834078db845209bd6b6bd8e96c45fac2b9f1ce890e4bc73ff79"
+  },
+  {
+    "path": "src/hand_v2/adapters/vision/supervisor.py",
+    "sha256": "dd188e04c1f1b8123b33279fb4f776dbf57949db886980c6199947ab1e082a03"
+  },
+  {
+    "path": "src/hand_v2/adapters/windows/__init__.py",
+    "sha256": "77a061851dcd239178dd9c86b3529d259679250052da42b0db45153e90d52402"
+  },
+  {
+    "path": "src/hand_v2/adapters/windows/foreground.py",
+    "sha256": "6f704a09bf9f65255e867e4850d6b2ca1117b89be9717c5eb788f1581d94e9d0"
+  },
+  {
+    "path": "src/hand_v2/adapters/windows/hotkey.py",
+    "sha256": "0e3edd6f4cc733f36e9d5bec07ebbb658970f0145cd002d99e9f4545ee7f9bfa"
+  },
+  {
+    "path": "src/hand_v2/adapters/windows/keyboard.py",
+    "sha256": "51f088f45679aad165ff4c63602aaf78a8506fa27db64e3ce3af50b869215fe5"
+  },
+  {
+    "path": "src/hand_v2/adapters/windows/native.py",
+    "sha256": "4955c988867d2190f2ae01e00454dad8aa34862323b74d0921671496c9b58189"
+  },
+  {
+    "path": "src/hand_v2/application/__init__.py",
+    "sha256": "467e1e43d0ae219e3dfb1c6b138fea88edb435bce3037775b987f8d858eb2adb"
+  },
+  {
+    "path": "src/hand_v2/application/controller.py",
+    "sha256": "bef03fc084361b93a0ae31bcadc7af2dcaa2ce6aecac4dc06d1b825f38ba48e6"
+  },
+  {
+    "path": "src/hand_v2/application/ports.py",
+    "sha256": "08abf114fca502a00397e72d5d33b9b9b22d06c906ef29615fc472330413648d"
+  },
+  {
+    "path": "src/hand_v2/application/vision_control.py",
+    "sha256": "98ca4cea1b0a395a103f4ddd0751e2b0234e125a23d30ffbc81877dabe60fdd5"
+  },
+  {
+    "path": "src/hand_v2/bootstrap.py",
+    "sha256": "1e8fd223b590d6c7d0829500ef9ca8e2e18873c14b6e61165873c52e6233433b"
+  },
+  {
+    "path": "src/hand_v2/domain/__init__.py",
+    "sha256": "ff4e63fc547386959fea4d2ec1f1ad6e09e848d68be695d4ea3c72bd03472640"
+  },
+  {
+    "path": "src/hand_v2/domain/features.py",
+    "sha256": "fb96c1628448d95459823a22372a6fdba5b4efab6c8e4f075fe0b30380ffb827"
+  },
+  {
+    "path": "src/hand_v2/domain/mapping.py",
+    "sha256": "8a4c731a574ebcb91b2848505621a8526add01cde0fce387ed6d75ac87976859"
+  },
+  {
+    "path": "src/hand_v2/domain/models.py",
+    "sha256": "33430bff4934b92380ace9d011f1958518aee41544da2379a1654772e3df1a73"
+  },
+  {
+    "path": "src/hand_v2/domain/motion.py",
+    "sha256": "891580671f5b2301080f6fe098c1626ba551f5d39895d364e114e52a4007cdd8"
+  },
+  {
+    "path": "src/hand_v2/domain/queue.py",
+    "sha256": "1351de739ac7dc2b21e57641c15616642ebbf91e7f55052fca26827dda0018b5"
+  },
+  {
+    "path": "src/hand_v2/domain/recognition.py",
+    "sha256": "ba74004f50d717844c22fd0c5736dfb5645298ed817edd29cfd20fa9f3185f0c"
+  },
+  {
+    "path": "src/hand_v2/domain/sequences.py",
+    "sha256": "7ee47d03cfeeaa9cb5255a31ae8441833cd64213fd72ae473828bdb271329a9e"
+  },
+  {
+    "path": "src/hand_v2/domain/tracking.py",
+    "sha256": "21acde57430d79899d154702900446b78007e524a5af95acd75afa7c9b74c1c8"
+  },
+  {
+    "path": "tests/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "tests/hand_samples.py",
+    "sha256": "a8650f31e3701e895c3ab3e450b8499f03e7b4edd18eb935c44a8934fa2f36a4"
+  },
+  {
+    "path": "tests/integration/test_camera_process.py",
+    "sha256": "e10f4a90eba423e08ecdd96f90d1480262faa79be6a437823cfb3ff197f79f42"
+  },
+  {
+    "path": "tests/integration/test_camera_ui.py",
+    "sha256": "9ff59dc605c413d59325e3dc2bf4d5c85b4e23d8e734a4073ff0bf286201663e"
+  },
+  {
+    "path": "tests/integration/test_readiness_feedback.py",
+    "sha256": "be07dfffad082b34f45fac94b1bb2654e2bd7791817b90778e0e0e953747d894"
+  },
+  {
+    "path": "tests/integration/test_shutdown_state.py",
+    "sha256": "aa5f052bb90cc08e2d7fcd64305e5a66c8774e3ee31d16fb001f64e5f7444447"
+  },
+  {
+    "path": "tests/integration/test_ui_architecture.py",
+    "sha256": "e16b1b9df755a381cf77b594074b97c423145eb4dee8c6e9b2df545ede89100f"
+  },
+  {
+    "path": "tests/integration/test_windows_ui.py",
+    "sha256": "f013fa177759a54b9fc015f6fe8ecd17268df4258c15682d373d3e41575f00cf"
+  },
+  {
+    "path": "tests/unit/test_bundle_resources.py",
+    "sha256": "4e32e71524836c405d597505facc361675f46748f0a3f9caa07478219bba4082"
+  },
+  {
+    "path": "tests/unit/test_camera_supervisor.py",
+    "sha256": "ce7b2c6ef46765a578bdb2b16c2fd0b7485c46755bd5634f4bae7a74bf1ba4c7"
+  },
+  {
+    "path": "tests/unit/test_contracts_time.py",
+    "sha256": "26ec5623ae923c1dc0acca38eb0c6a06b9e2f56057bb0cc3a4b1f30c878dbc85"
+  },
+  {
+    "path": "tests/unit/test_controller.py",
+    "sha256": "c2c61aa0ac74facdcda20f4b17b846b21b572b017e513ec2d79c8cf5ca157534"
+  },
+  {
+    "path": "tests/unit/test_extended_recognition.py",
+    "sha256": "44e53f571164c5db0bb27129edb46e50aa5de815ee1be6da34745fddaa5b32c8"
+  },
+  {
+    "path": "tests/unit/test_gesture_suite.py",
+    "sha256": "8c48408c2cc5e5ad20089a4c65b51f32c10a94253b82c54b59ad3139f2da04ed"
+  },
+  {
+    "path": "tests/unit/test_hand_features.py",
+    "sha256": "a98a79915c48fcee6f1650222ab318ff09a78a5d17610c4cf862a9deea000c35"
+  },
+  {
+    "path": "tests/unit/test_index_fold_regression.py",
+    "sha256": "0714e9958d26a358029db8a78241ed74e6d6e9f33b5fcd5046b57bd50e91e8da"
+  },
+  {
+    "path": "tests/unit/test_index_swipe_regression.py",
+    "sha256": "43fe94ec2fe3fd5397d1e9e9a76f64460a3e90482fb442944b47a175fea8a2cc"
+  },
+  {
+    "path": "tests/unit/test_keyboard_worker.py",
+    "sha256": "b92050837332cbc8c74d3d194afd64ca57c9ee2f027dca77a5430fe984c9610d"
+  },
+  {
+    "path": "tests/unit/test_landmark_replay.py",
+    "sha256": "faae5edc9bb6fc433f168faab444ea1124b1eb300af27d9b5e1ce61cbc831f12"
+  },
+  {
+    "path": "tests/unit/test_model_pose_regression.py",
+    "sha256": "8c71407ca3e63b0968994c82bef857f86e94350fbdaf6cfa5584c49e2b1a2585"
+  },
+  {
+    "path": "tests/unit/test_queue_replay.py",
+    "sha256": "79ec251b13d91aa49fdbd6edc97bb39c8a7ea9e55a72e96a19e965e5a3d0e3e4"
+  },
+  {
+    "path": "tests/unit/test_recognition.py",
+    "sha256": "d3e581d1975a3f1b073e025ee0d217ee6464faf545853d3f94a73b8c5910c70d"
+  },
+  {
+    "path": "tests/unit/test_vision_control.py",
+    "sha256": "e1ae347e7723ead6ddfcca0a7f7e2be6921fc29c8830deb0b9914a8cb615cca0"
+  },
+  {
+    "path": "tests/unit/test_windows_input.py",
+    "sha256": "26ee368f5a4ec79641b332b12b6e8b1c9d79e0a3c6c3d36ff7013cb0d4a4c5ef"
+  }
+]

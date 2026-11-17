@@ -85,5 +85,7 @@ class GestureRecognizer:
             if f.palm_size<20:label='손 전체를 카메라에 조금 더 가까이 보여주세요'
             elif f.fingers[1]==FingerState.UNKNOWN:label='검지를 끝까지 펴고 손바닥을 카메라 쪽으로 보여주세요'
             elif f.fingers[0]==FingerState.UNKNOWN:label='엄지를 손바닥 쪽으로 조금 접어주세요'
-            else:label='나머지 손가락을 접어 자세를 분명히 해주세요'
+            else:
+                unclear=[name for name,state in zip(('중지','약지','새끼손가락'),f.fingers[2:]) if state==FingerState.UNKNOWN]
+                label='·'.join(unclear)+': 조금 더 접어주세요' if unclear else '나머지 손가락을 접어 자세를 분명히 해주세요'
         return Recognition(hand_ids=ids,neutral=neutral,candidate=label,reason='UNKNOWN_POSE' if any(f.pose=='UNKNOWN' for f in features) else '')

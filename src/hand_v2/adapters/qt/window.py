@@ -5,6 +5,7 @@ from PySide6.QtWidgets import (QMainWindow, QWidget, QFrame, QLabel, QPushButton
 
 from hand_v2.domain.models import Activation, ExecutionMode, Gesture, GestureEvent, Mode, Status
 from .controller_bridge import ControllerBridge
+from .control_status import control_status
 from .fonts import ensure_readable_fonts
 
 
@@ -260,8 +261,7 @@ class MainWindow(QMainWindow):
         return super().nativeEvent(event_type,message)
 
     def render_state(self,state):
-        active=state.activation==Activation.ACTIVE
-        self.state_label.setText("제어 중" if active and state.ready else "제어 중 · 새 동작 대기" if active else "제어 대기")
+        self.state_label.setText(control_status(state))
         self.gesture_label.setText(state.last_candidate)
         for mode,b in self.mode_buttons.items():b.setChecked(mode==state.mode)
         self._render_target()
@@ -271,7 +271,7 @@ class MainWindow(QMainWindow):
             titles={Status.SENT:"가상 전송 기록",Status.APPLIED:"앱 내부 적용",Status.BLOCKED:"실행 보류",Status.FAILED:"입력 실패",Status.CANCELLED:"취소"}
             if state.execution_mode==ExecutionMode.REAL:titles[Status.SENT]='OS 키 전송 완료'
             self.command_label.setText(titles[result.status])
-            reasons={"SIMULATED":"실제 키 입력을 보내지 않은 시뮬레이션입니다.","WAITING":"V로 먼저 시작하세요.","REARM_REQUIRED":"자세를 풀고 잠시 기다리세요.","TARGET_NOT_CHROME":"Chrome 창을 선택하세요.","TARGET_CHANGED":"대상 창이 바뀌어 전송하지 않았습니다.","NOT_IMPLEMENTED":"이 기능은 아직 구현 중입니다.","INPUT_BLOCKED":"입력 보류 중입니다. 상태를 확인하세요.","DUPLICATE":"같은 동작을 중복 실행하지 않았습니다."}
+            reasons={"SIMULATED":"실제 키 입력을 보내지 않은 시뮬레이션입니다.","WAITING":"V로 먼저 시작하세요.","REARM_REQUIRED":"손을 펼쳐 ‘동작 가능’이 되면 다시 쓸어주세요.","TARGET_NOT_CHROME":"Chrome 창을 선택하세요.","TARGET_CHANGED":"대상 창이 바뀌어 전송하지 않았습니다.","NOT_IMPLEMENTED":"이 기능은 아직 구현 중입니다.","INPUT_BLOCKED":"입력 보류 중입니다. 상태를 확인하세요.","DUPLICATE":"같은 동작을 중복 실행하지 않았습니다."}
             reasons.update({'OS_INPUT_SENT':'OS에 키 입력을 전송했습니다. 페이지 동작까지 확인한 결과는 아닙니다.',
                             'KEYBOARD_BUSY':'누르고 있는 키를 놓고 새 동작을 해주세요.',
                             'SENDINPUT_PARTIAL':'키 전송에 실패해 제어를 중단했습니다. 입력 권한 또는 환경을 확인하세요.'})

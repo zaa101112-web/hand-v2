@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.181" timestamp="2026-11-17T13:44:21.166781+09:00" hostname="준식"><testcase classname="tests.unit.test_index_fold_regression" name="test_remaining_pinky_ambiguity_names_the_finger_to_adjust" time="0.004" /></testsuite></testsuites>

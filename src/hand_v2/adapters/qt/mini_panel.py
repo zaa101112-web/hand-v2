@@ -4,7 +4,8 @@ from ctypes import wintypes
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton
 
-from hand_v2.domain.models import Activation, ExecutionMode
+from hand_v2.domain.models import ExecutionMode
+from .control_status import control_status
 
 
 class MiniPanel(QWidget):
@@ -29,8 +30,7 @@ class MiniPanel(QWidget):
         self.render_state(controller.state)
 
     def render_state(self, state):
-        self.status.setText('HAND · '+('제어 중' if state.activation==Activation.ACTIVE else '대기')+
-                            (' · 확인 후 계속' if state.confirmation_pending else '')+
+        self.status.setText('HAND · '+control_status(state)+
                             (' · '+', '.join(sorted(state.blocked_reasons)) if state.blocked_reasons else ''))
         self.continue_button.setEnabled(state.confirmation_pending)
         if state.last_execution:

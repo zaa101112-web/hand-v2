@@ -46,7 +46,7 @@ def describe_hand(hand,width,height):
     p=tuple((lm.x*width,lm.y*height,lm.z*width) for lm in hand.landmarks)
     # Palm scale is measured in the image plane, matching the visible 20px gate.
     size=distance(p[5][:2],p[17][:2])
-    fingers=[]
+    fingers=[];finger_angles=[]
     if size<20:
         fingers=[FingerState.UNKNOWN]*5
     else:
@@ -58,6 +58,7 @@ def describe_hand(hand,width,height):
         else:fingers.append(FingerState.UNKNOWN)
         for base in (5,9,13,17):
             pip=angle(p[base],p[base+1],p[base+2]);dip=angle(p[base+1],p[base+2],p[base+3])
+            finger_angles.append((pip,dip))
             if pip is not None and dip is not None and pip>=160 and dip>=160:fingers.append(FingerState.EXTENDED)
             elif pip is not None and pip<=120:fingers.append(FingerState.FOLDED)
             else:fingers.append(FingerState.UNKNOWN)
@@ -66,13 +67,17 @@ def describe_hand(hand,width,height):
               (False,False,False,False,False):'FIST',(True,False,False,False,False):'THUMB',
               (True,True,False,False,False):'L'}
     pose='UNKNOWN' if FingerState.UNKNOWN in fingers else patterns.get(tuple(f==FingerState.EXTENDED for f in fingers),'OTHER')
-    # A one-finger pointing pose does not require squeezing the thumb shut.
-    # The three remaining fingers must still be unambiguously folded. Keep
-    # V/THREE/L and their safety/priority rules on the original strict classifier.
-    if (pose=='UNKNOWN' and size>=20 and fingers[0]==FingerState.UNKNOWN
-            and fingers[1:]==[FingerState.EXTENDED,FingerState.FOLDED,FingerState.FOLDED,FingerState.FOLDED]
-            and mcp is not None and ip is not None and min(mcp,ip)<=145+1e-9):
-        pose='INDEX'
+    # Pointing does not require tightly squeezing all other fingers. A tucked
+    # finger can bend at both PIP and DIP even when PIP alone exceeds 120deg.
+    # Preserve raw finger states and the strict V/THREE/L classifier.
+    if pose=='UNKNOWN' and size>=20 and fingers[1]==FingerState.EXTENDED:
+        thumb_tucked=(fingers[0]==FingerState.FOLDED or
+                      (fingers[0]==FingerState.UNKNOWN and mcp is not None and ip is not None and min(mcp,ip)<=145+1e-9))
+        others_tucked=all(state==FingerState.FOLDED or
+                         (state==FingerState.UNKNOWN and pip is not None and dip is not None
+                          and pip<=145+1e-9 and dip<=140+1e-9)
+                         for state,(pip,dip) in zip(fingers[2:],finger_angles[1:]))
+        if thumb_tucked and others_tucked:pose='INDEX'
     pointer=(1-hand.landmarks[8].x,hand.landmarks[8].y)
     center=(sum(1-hand.landmarks[i].x for i in (0,5,9,13,17))/5,sum(hand.landmarks[i].y for i in (0,5,9,13,17))/5)
     return HandFeatures(hand.hand_id,tuple(fingers),pose,size,pointer,center,distance(p[4],p[8])/max(size,1e-9))

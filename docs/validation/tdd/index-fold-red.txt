@@ -1,0 +1,164 @@
+FFFFFFF.....FFF........                                                  [100%]
+================================== FAILURES ===================================
+_ test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.5228094-118.4008724] _
+
+pip = 123.5228094, dip = 118.4008724
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+>       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError
+_ test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.0783434-136.1655656] _
+
+pip = 123.0783434, dip = 136.1655656
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+>       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError
+_ test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.9776854-103.9733278] _
+
+pip = 123.9776854, dip = 103.9733278
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+>       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError
+_ test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[134.6-109.9] _
+
+pip = 134.6, dip = 109.9
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+>       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError
+_ test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[145-140] _
+
+pip = 145, dip = 140
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+>       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError
+_______ test_same_two_joint_evidence_applies_to_other_tucked_fingers[9] _______
+
+base = 9
+
+    @pytest.mark.parametrize('base',[9,13])
+    def test_same_two_joint_evidence_applies_to_other_tucked_fingers(base):
+>       assert describe_hand(with_bent_finger(sample_hand('INDEX'),130,130,base),640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:38: AssertionError
+______ test_same_two_joint_evidence_applies_to_other_tucked_fingers[13] _______
+
+base = 13
+
+    @pytest.mark.parametrize('base',[9,13])
+    def test_same_two_joint_evidence_applies_to_other_tucked_fingers(base):
+>       assert describe_hand(with_bent_finger(sample_hand('INDEX'),130,130,base),640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:38: AssertionError
+_____ test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe[1-G03] ______
+
+direction = 1, expected = <Gesture.LEFT: 'G03'>
+
+    @pytest.mark.parametrize('direction,expected',[(1,Gesture.LEFT),(-1,Gesture.RIGHT)])
+    def test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe(direction,expected):
+        recognizer=GestureRecognizer();events=[]
+        for elapsed in range(0,501,50):
+            hand=sample_hand('INDEX',offset=direction*.24*elapsed/500)
+            hand=with_bent_finger(hand,110 if elapsed%100==0 else 128,120)
+            result=recognizer.process(TrackingFrame(1000+elapsed,1000+elapsed,1,640,480,(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.LEFT: 'G03'>]
+E         
+E         Right contains one more item: <Gesture.LEFT: 'G03'>
+E         Use -v to get more diff
+
+tests\unit\test_index_fold_regression.py:54: AssertionError
+_____ test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe[-1-G04] _____
+
+direction = -1, expected = <Gesture.RIGHT: 'G04'>
+
+    @pytest.mark.parametrize('direction,expected',[(1,Gesture.LEFT),(-1,Gesture.RIGHT)])
+    def test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe(direction,expected):
+        recognizer=GestureRecognizer();events=[]
+        for elapsed in range(0,501,50):
+            hand=sample_hand('INDEX',offset=direction*.24*elapsed/500)
+            hand=with_bent_finger(hand,110 if elapsed%100==0 else 128,120)
+            result=recognizer.process(TrackingFrame(1000+elapsed,1000+elapsed,1,640,480,(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.RIGHT: 'G04'>]
+E         
+E         Right contains one more item: <Gesture.RIGHT: 'G04'>
+E         Use -v to get more diff
+
+tests\unit\test_index_fold_regression.py:54: AssertionError
+_____________ test_supported_thumb_and_tucked_pinky_work_together _____________
+
+    def test_supported_thumb_and_tucked_pinky_work_together():
+        hand=with_bent_finger(bent_thumb_hand(140,155),130,130)
+>       assert describe_hand(hand,640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:59: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_index_fold_regression.py::test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.5228094-118.4008724]
+FAILED tests/unit/test_index_fold_regression.py::test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.0783434-136.1655656]
+FAILED tests/unit/test_index_fold_regression.py::test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.9776854-103.9733278]
+FAILED tests/unit/test_index_fold_regression.py::test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[134.6-109.9]
+FAILED tests/unit/test_index_fold_regression.py::test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[145-140]
+FAILED tests/unit/test_index_fold_regression.py::test_same_two_joint_evidence_applies_to_other_tucked_fingers[9]
+FAILED tests/unit/test_index_fold_regression.py::test_same_two_joint_evidence_applies_to_other_tucked_fingers[13]
+FAILED tests/unit/test_index_fold_regression.py::test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe[1-G03]
+FAILED tests/unit/test_index_fold_regression.py::test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe[-1-G04]
+FAILED tests/unit/test_index_fold_regression.py::test_supported_thumb_and_tucked_pinky_work_together
+10 failed, 13 passed in 1.00s

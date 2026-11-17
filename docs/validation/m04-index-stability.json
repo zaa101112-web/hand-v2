@@ -1,0 +1,327 @@
+{
+  "at_utc": "2026-11-17T04:50:07.770974+00:00",
+  "scope": "M03/M04 correction; not a new 5 MD milestone",
+  "requirements": [
+    "REQ-01",
+    "REQ-06",
+    "G03",
+    "G04",
+    "V2-T06",
+    "V2-T07",
+    "V2-T16",
+    "V2-T35"
+  ],
+  "user_report": "About one successful attempt out of ten; self-reported, not a measured accuracy evaluation",
+  "evidence": {
+    "source": "Actual camera/production recognizer diagnostic, before this correction",
+    "local_snapshot_sha256": "37f1a0faed77be11cd1dd8dc414190919199fab0cec11dd9a5c646a33e29447c",
+    "cumulative_counts": {
+      "frames": 7376,
+      "with_hands": 3532,
+      "gap_over_100ms": 173,
+      "rejected_frames": 0,
+      "reason_NO_HAND": 3844,
+      "reason_UNKNOWN_POSE": 783,
+      "pose_UNKNOWN": 837,
+      "unknown_fingers_UNKNOWN_UNKNOWN_UNKNOWN_UNKNOWN_UNKNOWN": 96,
+      "unknown_fingers_EXTENDED_EXTENDED_EXTENDED_UNKNOWN_EXTENDED": 6,
+      "unknown_fingers_EXTENDED_EXTENDED_UNKNOWN_UNKNOWN_UNKNOWN": 14,
+      "reason_NONE": 420,
+      "pose_OPEN": 178,
+      "unknown_fingers_EXTENDED_EXTENDED_UNKNOWN_UNKNOWN_EXTENDED": 4,
+      "unknown_fingers_EXTENDED_UNKNOWN_UNKNOWN_FOLDED_UNKNOWN": 3,
+      "unknown_fingers_EXTENDED_UNKNOWN_UNKNOWN_UNKNOWN_UNKNOWN": 17,
+      "unknown_fingers_EXTENDED_UNKNOWN_UNKNOWN_UNKNOWN_EXTENDED": 2,
+      "unknown_fingers_UNKNOWN_FOLDED_FOLDED_UNKNOWN_FOLDED": 1,
+      "unknown_fingers_FOLDED_UNKNOWN_UNKNOWN_UNKNOWN_UNKNOWN": 2,
+      "unknown_fingers_EXTENDED_UNKNOWN_FOLDED_FOLDED_UNKNOWN": 3,
+      "unknown_fingers_EXTENDED_EXTENDED_EXTENDED_EXTENDED_UNKNOWN": 13,
+      "unknown_fingers_EXTENDED_EXTENDED_UNKNOWN_EXTENDED_EXTENDED": 2,
+      "unknown_fingers_UNKNOWN_EXTENDED_EXTENDED_UNKNOWN_UNKNOWN": 1,
+      "unknown_fingers_EXTENDED_EXTENDED_EXTENDED_UNKNOWN_UNKNOWN": 15,
+      "unknown_fingers_UNKNOWN_UNKNOWN_FOLDED_FOLDED_UNKNOWN": 1,
+      "unknown_fingers_UNKNOWN_FOLDED_FOLDED_FOLDED_FOLDED": 65,
+      "unknown_fingers_EXTENDED_UNKNOWN_UNKNOWN_EXTENDED_UNKNOWN": 1,
+      "pose_THREE": 1,
+      "unknown_fingers_UNKNOWN_EXTENDED_EXTENDED_FOLDED_FOLDED": 17,
+      "pose_V": 475,
+      "reason_MOTION_READY": 519,
+      "pose_INDEX": 1868,
+      "reason_MOTION_IN_PROGRESS": 310,
+      "reason_CIRCLE_CANDIDATE": 402,
+      "unknown_fingers_FOLDED_EXTENDED_FOLDED_FOLDED_UNKNOWN": 263,
+      "reason_CONFIRMED": 35,
+      "reason_RELEASE_REQUIRED": 1031,
+      "reason_PINCH_RELEASE": 22,
+      "unknown_fingers_FOLDED_EXTENDED_UNKNOWN_FOLDED_FOLDED": 9,
+      "unknown_fingers_UNKNOWN_EXTENDED_FOLDED_FOLDED_UNKNOWN": 10,
+      "unknown_fingers_EXTENDED_UNKNOWN_UNKNOWN_UNKNOWN_FOLDED": 1,
+      "unknown_fingers_UNKNOWN_UNKNOWN_UNKNOWN_FOLDED_FOLDED": 1,
+      "unknown_fingers_FOLDED_UNKNOWN_FOLDED_FOLDED_FOLDED": 13,
+      "unknown_fingers_UNKNOWN_UNKNOWN_FOLDED_FOLDED_FOLDED": 12,
+      "pose_FIST": 171,
+      "unknown_fingers_FOLDED_FOLDED_FOLDED_FOLDED_UNKNOWN": 11,
+      "unknown_fingers_FOLDED_FOLDED_UNKNOWN_UNKNOWN_UNKNOWN": 3,
+      "unknown_fingers_FOLDED_FOLDED_UNKNOWN_FOLDED_UNKNOWN": 1,
+      "unknown_fingers_FOLDED_UNKNOWN_UNKNOWN_FOLDED_FOLDED": 3,
+      "unknown_fingers_FOLDED_EXTENDED_EXTENDED_FOLDED_UNKNOWN": 20,
+      "unknown_fingers_FOLDED_EXTENDED_FOLDED_UNKNOWN_UNKNOWN": 25,
+      "unknown_fingers_EXTENDED_EXTENDED_UNKNOWN_UNKNOWN_FOLDED": 2,
+      "unknown_fingers_FOLDED_UNKNOWN_UNKNOWN_UNKNOWN_FOLDED": 1,
+      "reason_MOTION_TOO_SLOW": 10,
+      "unknown_fingers_EXTENDED_EXTENDED_FOLDED_FOLDED_UNKNOWN": 5,
+      "unknown_fingers_FOLDED_EXTENDED_UNKNOWN_UNKNOWN_UNKNOWN": 66,
+      "unknown_fingers_UNKNOWN_EXTENDED_EXTENDED_EXTENDED_EXTENDED": 2,
+      "unknown_fingers_UNKNOWN_EXTENDED_EXTENDED_FOLDED_UNKNOWN": 1,
+      "unknown_fingers_FOLDED_FOLDED_FOLDED_UNKNOWN_UNKNOWN": 1,
+      "unknown_fingers_FOLDED_EXTENDED_UNKNOWN_FOLDED_UNKNOWN": 1,
+      "pose_THUMB": 82,
+      "unknown_fingers_EXTENDED_UNKNOWN_FOLDED_FOLDED_FOLDED": 87,
+      "unknown_fingers_EXTENDED_UNKNOWN_UNKNOWN_FOLDED_FOLDED": 3,
+      "unknown_fingers_EXTENDED_FOLDED_UNKNOWN_UNKNOWN_UNKNOWN": 3,
+      "unknown_fingers_EXTENDED_FOLDED_FOLDED_FOLDED_UNKNOWN": 2,
+      "unknown_fingers_EXTENDED_EXTENDED_UNKNOWN_FOLDED_UNKNOWN": 1,
+      "unknown_fingers_EXTENDED_EXTENDED_UNKNOWN_FOLDED_FOLDED": 26,
+      "unknown_fingers_FOLDED_UNKNOWN_UNKNOWN_FOLDED_UNKNOWN": 1
+    },
+    "observed_unique_execution_reasons": {
+      "REARM_REQUIRED": 26,
+      "TARGET_NOT_CHROME": 3,
+      "OS_INPUT_SENT": 6
+    },
+    "representative_unknown_pinky_frames": [
+      {
+        "at_ms": 437506046,
+        "gap_ms": 31,
+        "palm_px": 125.0,
+        "fingers": [
+          "FOLDED",
+          "EXTENDED",
+          "FOLDED",
+          "FOLDED",
+          "UNKNOWN"
+        ],
+        "thumb_angles": [
+          143.9158227250205,
+          88.04982779369365
+        ],
+        "thumb_gap_ratio": 0.7673622791755634,
+        "finger_pip_dip": [
+          [
+            177.25997487965995,
+            173.43230266237865
+          ],
+          [
+            95.17810035716847,
+            137.82188664987515
+          ],
+          [
+            103.41579835319953,
+            125.88049584871703
+          ],
+          [
+            123.52280939871903,
+            118.40087237095486
+          ]
+        ]
+      },
+      {
+        "at_ms": 437514281,
+        "gap_ms": 31,
+        "palm_px": 135.5,
+        "fingers": [
+          "FOLDED",
+          "EXTENDED",
+          "FOLDED",
+          "FOLDED",
+          "UNKNOWN"
+        ],
+        "thumb_angles": [
+          143.9561431901987,
+          95.0651796164688
+        ],
+        "thumb_gap_ratio": 0.7580388628438584,
+        "finger_pip_dip": [
+          [
+            176.12324269267592,
+            175.15138250177645
+          ],
+          [
+            97.6351663518671,
+            138.8777644891277
+          ],
+          [
+            104.11206817192175,
+            127.32215346720889
+          ],
+          [
+            123.07834338164358,
+            136.165565645949
+          ]
+        ]
+      },
+      {
+        "at_ms": 437517250,
+        "gap_ms": 32,
+        "palm_px": 130.4,
+        "fingers": [
+          "FOLDED",
+          "EXTENDED",
+          "FOLDED",
+          "FOLDED",
+          "UNKNOWN"
+        ],
+        "thumb_angles": [
+          149.7308172216008,
+          95.12974574153134
+        ],
+        "thumb_gap_ratio": 0.7780986267346054,
+        "finger_pip_dip": [
+          [
+            172.487674881835,
+            176.17979722192206
+          ],
+          [
+            100.01280343507509,
+            128.67408892019387
+          ],
+          [
+            107.35119019279216,
+            114.3732705013095
+          ],
+          [
+            123.977685359216,
+            103.97332778508184
+          ]
+        ]
+      }
+    ],
+    "images_or_raw_landmarks_saved": false,
+    "sampling_limit": "Bounded pose samples and state snapshots; command counts are not labeled attempts or Chrome effects"
+  },
+  "confirmed_failure_conditions": [
+    "PIP-only <=120 folding rule marks a visibly bent pinky UNKNOWN while both PIP and DIP are bent, cancelling INDEX paths",
+    "26 observed unique command outcomes were REARM_REQUIRED; old main/overlay text did not clearly request pose release"
+  ],
+  "corrections": [
+    "INDEX-only support for tucked middle/ring/pinky when PIP<=145 and DIP<=140; strict raw finger states retained",
+    "Strict index extension, thumb tuck, small-hand gate and ambiguous-frame cancellation preserved; V/THREE/L unchanged",
+    "Main window and overlay distinguish hand-opening preparation, gesture readiness, confirmation and input hold",
+    "Remaining ambiguity feedback names the finger; compact diagnostic JSON reduces formatting overhead"
+  ],
+  "tdd": {
+    "fold_red": {
+      "file": "tdd/index-fold-red.txt",
+      "failed": 10,
+      "passed": 13
+    },
+    "fold_green": {
+      "file": "tdd/index-fold-green.txt",
+      "passed": 111
+    },
+    "feedback_red": "tdd/index-fold-feedback-red.txt",
+    "feedback_green": "tdd/index-fold-feedback-green.txt",
+    "readiness_red": "tdd/index-readiness-red.txt",
+    "full": {
+      "file": "tdd/index-stability-final.txt",
+      "passed": 231
+    }
+  },
+  "fixture_provenance": "Authored landmark geometry using observed joint angle values; not captured user landmark replay",
+  "build": {
+    "exe": "dist/HAND-v2-M04-20261117-index-stability/HAND-v2.exe",
+    "exe_sha256": "f7de2c902b91935d5823c5952f2a4df2c39a256d4f0e970d25a1575c6707e860",
+    "verified_copy_files": 1302,
+    "bytes": 408246502,
+    "offscreen_smoke_exit_code": 0,
+    "manifest": "m04-index-stability-artifact-manifest.json",
+    "source_manifest": "m04-index-stability-source-manifest.json"
+  },
+  "real_camera": {
+    "source": "REAL_CAMERA_MEDIAPIPE_VIDEO_NO_OS_INPUT",
+    "success": true,
+    "frozen": true,
+    "frames": 314,
+    "startup_seconds": 4.312,
+    "fps_after_start": 29.38,
+    "stop": {
+      "success": true,
+      "forced": false,
+      "elapsed_ms": 859
+    },
+    "errors": [],
+    "raw_images_saved": false,
+    "human_gesture_accuracy_evaluated": false,
+    "evidence": "m04-index-stability-bundle-camera.json"
+  },
+  "physical_retest": "AWAITING_USER_RETEST",
+  "limits": [
+    "No improved success rate claimed before user retest",
+    "No actual Chrome effect inferred from OS_INPUT_SENT",
+    "Not a clean-PC or multi-person evaluation"
+  ],
+  "app_launch": {
+    "source": "scripts/live_app_diagnostics.py with the current code; same source as verified bundle",
+    "window_id": 1836602,
+    "camera": 1,
+    "camera_enabled": true,
+    "hotkey_registered": true,
+    "ui_observed": [
+      "Main window shows updated preparation guidance",
+      "Actual preview displays tracked index pose and INDEX recognized message",
+      "Small overlay displays hand-opening preparation guidance"
+    ],
+    "hand_effect_test": "User asked for three Chrome back swipes, opening hand until ready before each attempt; response pending"
+  },
+  "live_recognition_observation": {
+    "events": [
+      {
+        "event_id": "gesture-000003",
+        "gesture": "G01",
+        "hand_ids": [
+          "e1-42"
+        ],
+        "captured_at_ms": 439132140,
+        "emitted_at_ms": 439132171,
+        "context_version": 1,
+        "camera_epoch": 1
+      },
+      {
+        "event_id": "gesture-000004",
+        "gesture": "G03",
+        "hand_ids": [
+          "e1-42"
+        ],
+        "captured_at_ms": 439135765,
+        "emitted_at_ms": 439135796,
+        "context_version": 1,
+        "camera_epoch": 1
+      },
+      {
+        "event_id": "gesture-000005",
+        "gesture": "G03",
+        "hand_ids": [
+          "e1-42"
+        ],
+        "captured_at_ms": 439141078,
+        "emitted_at_ms": 439141125,
+        "context_version": 1,
+        "camera_epoch": 1
+      }
+    ],
+    "gesture_counts": {
+      "G01": 1,
+      "G03": 2
+    },
+    "last_execution": {
+      "command_id": "gesture-000005",
+      "context_version": 1,
+      "completed_at_ms": 439141125,
+      "status": "BLOCKED",
+      "reason": "TARGET_NOT_CHROME",
+      "detail": ""
+    },
+    "hotkey_registered": true,
+    "interpretation": "Actual index-left events recognized after correction. Latest event blocked TARGET_NOT_CHROME. This is not a count of successful Chrome trials or accuracy."
+  }
+}
