@@ -41,7 +41,7 @@ readme='''<h1>HAND v2</h1><p>손동작 단축키를 사용하는 Windows 앱의 
 <h2>검증 범위</h2><p>자동 테스트 __AUTOMATED_TESTS__개 통과. 실제 카메라·모델·Qt 20분, 28,125프레임, 평균 23.44fps, 오류 0, 정상 종료. 현재 150% 배율의 캡처 10개 영역에서 실제 크기와 기준 화면의 모든 픽셀이 일치했습니다.</p>
 <div class="note">3명 실손 정확도, 새 Python 없는 PC, 100/125% 실제 화면 배율, 일부 현재 빌드 Chrome 재검증과 명령별 실제 지연 표본은 남아 있습니다. 기능 구현 완료와 모든 배포 게이트 통과는 구분합니다.</div>
 <h2>개발 문서</h2><nav><a href="docs/design.html">설계서</a><a href="docs/implementation-plan.html">1 MD 구현 계획</a><a href="docs/progress.html">5 MD 검증·커밋</a><a href="AGENTS.md">개발 원칙</a></nav>
-<p>경량 헥사고날·생성자 DI·TDD. source/tests에 실제/가짜 외부 효과를 분리합니다. 로컬 Git 저장소이며 원격 저장소는 연결되지 않았습니다.</p>
+<p>경량 헥사고날·생성자 DI·TDD. source/tests에 실제/가짜 외부 효과를 분리합니다. 소스 공유: <a href="https://github.com/zaa101112-web/hand-v2">GitHub hand-v2</a>. 실행 ZIP은 <a href="https://github.com/zaa101112-web/hand-v2/releases/tag/m08-20261117-rc1">최종 확인용 사전 배포</a>에서 받습니다.</p>
 <pre>.venv\\Scripts\\python.exe scripts/validate.py --label local-check
 .venv\\Scripts\\python.exe run.py --mode DEV_SIMULATED
 .venv\\Scripts\\python.exe scripts/build_windows.py --label local-build</pre>'''
@@ -80,7 +80,7 @@ audit='''<nav><a href="../README.html">앱 안내</a><a href="user-guide.html">�
 <tr><td>M06 D26–30</td><td>설정·연습·복구 / 자동 348개 + 캡처 10영역</td><td>d7cd4af</td></tr>
 <tr><td>M07 D31–35</td><td>감도·로그 / 자동 354개, 실기 제한 기록</td><td>ba3dc9f</td></tr>
 <tr><td>M08 D36–40</td><td>통합 수정·최종 패키징·감사 / 자동 __AUTOMATED_TESTS__개, 외부 게이트 보류</td><td>최종 감사 커밋 참조</td></tr></table>
-<h2>빌드와 실행</h2><p><a href="validation/m08-final-bundle-camera.json">최종 EXE의 실제 카메라·모델 시작 및 종료 확인</a>. 진단 로그의 오류 등급 수정도 실패 테스트 후 반영했습니다.</p><p><a href="validation/m08-final.json">최종 기계 판독 보고서</a> · <a href="validation/m08-final-build.json">소스/EXE 해시와 빌드 결과</a> · <a href="validation/m08-final-artifact-manifest.json">동봉 파일 해시</a>. 로컬 Git 커밋이며 원격 저장소가 없어서 GitHub push는 하지 않았습니다.</p>
+<h2>빌드와 실행</h2><p><a href="validation/m08-final-bundle-camera.json">최종 EXE의 실제 카메라·모델 시작 및 종료 확인</a>. 진단 로그의 오류 등급 수정도 실패 테스트 후 반영했습니다.</p><p><a href="validation/m08-final.json">최종 기계 판독 보고서</a> · <a href="validation/m08-final-build.json">소스/EXE 해시와 빌드 결과</a> · <a href="validation/m08-final-artifact-manifest.json">동봉 파일 해시</a>. M08 빌드 당시에는 로컬 커밋만 있었습니다. 이후 사용자의 공유 요청에 따른 공개 저장소와 사전 배포 안내는 <a href="../README.md">GitHub 안내</a>를 확인하세요.</p>
 <h2>설계 검증 40항목 대응</h2><p>‘관련 자동 시험’은 실제 실행한 파일 연결입니다. 한 파일이 전체 시나리오의 모든 실기 조건을 충족한다는 뜻은 아닙니다. 유지/대체/제외된 원 제안서 항목은 <a href="design.html#decisions">설계서 결정 기록</a>을 따릅니다.</p><table><tr><th>설계 시험</th><th>근거</th><th>범위와 제한</th></tr>'''+''.join(rows)+'</table>'
 (ROOT/'docs/release-review.html').write_text(document('HAND v2 최종 확인 보고서',audit),encoding='utf-8')
 # Preserve the design as the requirements source, link its historical status to the current audit.
