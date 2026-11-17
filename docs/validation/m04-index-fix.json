@@ -40,13 +40,48 @@
     "bundle_bytes": 408245365,
     "offscreen_startup_exit_code": 0
   },
-  "real_camera": "NOT_RETESTED: Windows locked; prior app still owns camera. Awaiting user unlock before app restart.",
+  "real_camera": {
+    "evidence": "m04-index-fix-bundle-camera.json",
+    "source": "REAL_CAMERA_MEDIAPIPE_VIDEO_NO_OS_INPUT",
+    "frozen": true,
+    "success": true,
+    "frames": 308,
+    "startup_seconds": 4.672,
+    "fps_after_start": 29.82,
+    "errors": [],
+    "stop": {
+      "success": true,
+      "forced": false,
+      "elapsed_ms": 1031
+    },
+    "raw_images_saved": false,
+    "human_gesture_accuracy_evaluated": false
+  },
   "real_hand_chrome_effect": "AWAITING_USER_RETEST",
   "limits": [
     "Not a multi-person accuracy result",
     "Not a clean-PC distribution test",
     "Key transmission is not proof of Chrome page effects"
   ],
-  "app_replacement": "Launcher updated; running old diagnostic app has not been restarted because Windows is locked.",
-  "source_manifest": "m04-index-fix-source-manifest.json"
+  "app_replacement": {
+    "exe": "dist/HAND-v2-M04-20261117-index-fix/HAND-v2.exe",
+    "process_id": 26780,
+    "window_id": 1313192,
+    "observed": "New executable process and HAND window confirmed by window inventory",
+    "initial_camera_selection": 1,
+    "camera_initially_off": true,
+    "ui_automation": "Computer Use app approval timed out before screenshot/button interaction",
+    "next_action": "User asked to click camera on and retest actual index swipe after holding the pose"
+  },
+  "source_manifest": "m04-index-fix-source-manifest.json",
+  "followup_at_utc": "2026-11-17T01:47:16.043028+00:00",
+  "old_app_shutdown": {
+    "stop": {
+      "success": true,
+      "forced": false,
+      "elapsed_ms": 547
+    },
+    "activation": "WAITING",
+    "release_pending": false
+  }
 }
