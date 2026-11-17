@@ -1,7 +1,7 @@
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QKeySequence, QShortcut,QImage,QPixmap,QPainter,QPen,QColor
 from PySide6.QtWidgets import (QMainWindow, QWidget, QFrame, QLabel, QPushButton,
-    QVBoxLayout, QHBoxLayout, QGridLayout, QStackedWidget, QScrollArea, QComboBox,QCheckBox)
+    QVBoxLayout, QHBoxLayout, QGridLayout, QStackedWidget, QScrollArea, QComboBox,QCheckBox,QFileDialog)
 
 from hand_v2.domain.models import Activation, ExecutionMode, Gesture, GestureEvent, Mode, Status
 from .controller_bridge import ControllerBridge
@@ -75,6 +75,11 @@ class MainWindow(QMainWindow):
         self.shutdown_ok=True
         from .mini_panel import MiniPanel
         self.mini_panel=MiniPanel(self.controller,self.open_main)
+        from .capture_ui import CaptureUi
+        self.capture_ui=CaptureUi(self,runtime)
+        self.capture_shortcut=QShortcut(QKeySequence('Ctrl+Shift+S'),self)
+        self.capture_shortcut.activated.connect(runtime.workspace.request_capture)
+        self._dialog_request=None
         if runtime.controller.state.execution_mode==ExecutionMode.REAL:
             from hand_v2.adapters.windows.hotkey import GlobalStopHotkey
             self.hotkey=GlobalStopHotkey(int(self.winId()),lambda:self.controller.stop('전역 F8'),runtime.foreground.native)
@@ -119,7 +124,7 @@ class MainWindow(QMainWindow):
         self._page_indices={}
         self._add_page("control", self._control_page())
         guide=QWidget();g=QVBoxLayout(guide);g.addWidget(label("손동작 안내","Title"))
-        for text in ("V 0.6초 · 시작 / 숫자 3(엄지·검지·중지) 0.35초 · 중단", "검지 좌우 · 뒤로 / 앞으로", "V 좌우 · 탭 이동 / V 위아래 · 페이지 이동", "양손 엄지·검지 집기 → 간격 벌리기/좁히기 · 한 단계 확대/축소", "검지 원 · 새로고침 / 엄지 0.6초 · 북마크 창", "주먹 0.25초 → 1.2초 이내 손 펼치기 · 닫은 탭 복구", "양손 L 0.8초 · 캡처 요청 인식 (실제 캡처 저장은 준비 중)"):
+        for text in ("V 0.6초 · 시작 / 숫자 3(엄지·검지·중지) 0.35초 · 중단", "검지 좌우 · 뒤로 / 앞으로, 이미지 모드에서는 이전 / 다음", "V 좌우 · 탭 이동 / V 위아래 · 페이지 이동", "양손 엄지·검지 집기 → 간격 벌리기/좁히기 · 한 단계 확대/축소", "검지 원 · 새로고침 / 엄지 0.6초 · 북마크 창", "주먹 0.25초 → 1.2초 이내 손 펼치기 · 닫은 탭 복구 / 이미지 화면 맞춤", "양손 L 0.8초 · 영역 캡처 시작, 실제 마우스/키보드로 영역 선택 후 Enter 저장"):
             g.addWidget(label(text))
         g.addWidget(label("각 명령 후 손을 펼쳐 자세를 해제하세요. 숫자 3, F8 또는 중단 버튼으로 중단합니다. 북마크 창을 닫은 뒤 작은 상태창에서 ‘계속’을 눌러야 다른 명령을 실행할 수 있습니다. 손을 내려도 활성 상태는 유지됩니다.","Muted"));g.addStretch()
         self._add_page("guide",guide)
@@ -138,6 +143,12 @@ class MainWindow(QMainWindow):
             b=button(title,lambda checked=False,m=mode:self.controller.set_mode(m));b.setCheckable(True);modes.addWidget(b);self.mode_buttons[mode]=b
         v.addLayout(modes)
         self.target_label=label("가상 Chrome 대상","Muted");v.addWidget(self.target_label)
+        from .image_panel import ImagePanel
+        self.image_panel=ImagePanel(self.runtime.workspace,self.open_images)
+        v.addWidget(self.image_panel,1);self.image_panel.hide()
+        capture_row=QHBoxLayout();capture_row.addWidget(button('영역 캡처 · Ctrl+Shift+S',self.runtime.workspace.request_capture))
+        self.capture_notice=label('확인 버튼 또는 Enter를 눌렀을 때 현재 화면을 저장합니다.','Muted')
+        capture_row.addWidget(self.capture_notice,1);v.addLayout(capture_row)
         area=QHBoxLayout();area.setSpacing(16)
         preview,p=card();self.preview_label=label("카메라 미리보기\n\n카메라를 켜면 손의 관절과 인식 결과가 표시됩니다.","Muted")
         self.preview_label.setMinimumSize(360,270)
@@ -194,6 +205,16 @@ class MainWindow(QMainWindow):
         self.runtime.pump()
         self.runtime.scheduler.run_due()
         self.controller.tick()
+        self.capture_ui.tick()
+        self._poll_dialog()
+        for result,error in self.runtime.image_loader.poll():
+            if result:
+                self.runtime.workspace.gallery.replace(result.assets)
+                self.image_panel.excluded.setText('제외한 파일:\n'+'\n'.join(result.excluded) if result.excluded else '')
+                if not result.assets:self.image_panel.excluded.setText('열 수 있는 이미지가 없어 기존 목록을 유지했습니다.\n'+'\n'.join(result.excluded))
+            else:self.image_panel.excluded.setText('이미지를 열지 못했습니다: '+error)
+        self.image_panel.refresh()
+        self.image_panel.setVisible(self.controller.state.mode==Mode.IMAGE)
         self._render_target()
         camera=self.runtime.camera
         running=bool(camera and camera.session is not None)
@@ -216,6 +237,32 @@ class MainWindow(QMainWindow):
             if not self.runtime.start_camera(self.camera_combo.currentData(),self.preview_checkbox.isChecked()):
                 self.preview_label.setText('카메라를 시작하지 못했습니다. 다른 카메라를 선택하세요.')
         self._tick()
+
+    def after_release(self,callback):
+        if self._dialog_request or self.controller.state.dialog_lock or self.controller.state.mode==Mode.CAPTURE:return False
+        self.controller.set_dialog_lock(True)
+        self._dialog_request=(callback,self.controller.state.context_version,self.runtime.clock.now_ms()+1000)
+        return True
+
+    def _poll_dialog(self):
+        if not self._dialog_request:return
+        callback,context,deadline=self._dialog_request
+        if context!=self.controller.state.context_version or self.runtime.clock.now_ms()>deadline:
+            self._dialog_request=None;self.controller.set_dialog_lock(False)
+            self.capture_notice.setText('입력 해제 확인이 완료되지 않아 요청을 취소했습니다.');return
+        if self.controller.state.release_pending:return
+        self._dialog_request=None
+        try:callback()
+        finally:self.controller.set_dialog_lock(False)
+
+    def open_images(self,folder=False):
+        def select():
+            if folder:
+                path=QFileDialog.getExistingDirectory(self,'이미지 폴더 선택');paths=[path] if path else []
+            else:paths,_=QFileDialog.getOpenFileNames(self,'이미지 파일 선택','','이미지 (*.png *.jpg *.jpeg *.PNG *.JPG *.JPEG)')
+            if paths:
+                self.runtime.image_loader.submit(paths);self.image_panel.excluded.setText('이미지를 읽는 중입니다…')
+        self.after_release(select)
 
     def toggle_preview(self,enabled):
         self.runtime.set_preview(enabled)
@@ -282,6 +329,8 @@ class MainWindow(QMainWindow):
         if not self._closing:
             self._closing=True;self._close_started=self.runtime.clock.now_ms()
             self.runtime.stop_camera()
+            self.capture_ui.close()
+            self.runtime.image_loader.close()
         if self.runtime.camera and self.runtime.camera.session is not None:
             self.camera_button.setEnabled(False)
             self.camera_info.setText('카메라와 입력을 정리하고 있습니다…')

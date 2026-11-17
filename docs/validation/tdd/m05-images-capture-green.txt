@@ -1,0 +1,37 @@
+........F                                                                [100%]
+================================== FAILURES ===================================
+_______ test_png_publish_collision_and_failure_preserve_existing_files ________
+
+tmp_path = WindowsPath('C:/Users/zaa13/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/AC/#!sandbox.{3bb8c44e-b52c-49c3-ad0b-fb30b241d6a3}/Temp/pytest-of-zaa13/pytest-0/test_png_publish_collision_and0')
+
+    def test_png_publish_collision_and_failure_preserve_existing_files(tmp_path):
+        im=Image.new('RGB',(32,33),'red')
+>       first=atomic_png(im,tmp_path,stamp='20261117_120000_001')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_image_capture_storage.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+image = <PIL.Image.Image image mode=RGB size=32x33 at 0x1E10B595EE0>
+folder = WindowsPath('C:/Users/zaa13/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/AC/#!sandbox.{3bb8c44e-b52c-49c3-ad0b-fb30b241d6a3}/Temp/pytest-of-zaa13/pytest-0/test_png_publish_collision_and0')
+stamp = '20261117_120000_001'
+
+    def atomic_png(image, folder, stamp=None):
+        """Publish a verified PNG without replacing any existing path."""
+        folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
+        stamp=stamp or datetime.now().strftime('%Y%m%d_%H%M%S_%f')[:-3]
+        fd,temp=tempfile.mkstemp(prefix='.hand-capture-',suffix='.tmp',dir=folder)
+        os.close(fd)
+        try:
+            image.save(temp,format='PNG')
+            with Image.open(temp) as check:
+                check.load()
+                if check.format!='PNG' or check.size!=image.size:raise ValueError('PNG verification failed')
+>           with open(temp,'rb') as stream:os.fsync(stream.fileno())
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           OSError: [Errno 9] Bad file descriptor
+
+src\hand_v2\adapters\capture_files.py:19: OSError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_image_capture_storage.py::test_png_publish_collision_and_failure_preserve_existing_files
+1 failed, 8 passed in 1.51s

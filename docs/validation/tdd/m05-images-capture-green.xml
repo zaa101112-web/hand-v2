@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="9" time="1.194" timestamp="2026-11-17T15:37:26.973177+09:00" hostname="준식"><testcase classname="tests.unit.test_images_capture" name="test_gallery_preserves_slide_zoom_clamps_and_retains_on_empty_load" time="0.020" /><testcase classname="tests.unit.test_images_capture" name="test_physical_exclusive_rect_rounds_out_and_clamps[1]" time="0.001" /><testcase classname="tests.unit.test_images_capture" name="test_physical_exclusive_rect_rounds_out_and_clamps[1.25]" time="0.001" /><testcase classname="tests.unit.test_images_capture" name="test_physical_exclusive_rect_rounds_out_and_clamps[1.5]" time="0.001" /><testcase classname="tests.unit.test_images_capture" name="test_capture_requires_valid_selection_and_matching_hide_ack" time="0.001" /><testcase classname="tests.unit.test_images_capture" name="test_capture_timeout_retry_cancel_and_late_success_are_truthful" time="0.001" /><testcase classname="tests.unit.test_images_capture" name="test_cancel_before_worker_prevents_save_and_selection_keyboard_bounds" time="0.001" /><testcase classname="tests.integration.test_image_capture_storage" name="test_loader_natural_order_duplicates_bad_files_alpha_and_exif" time="0.421" /><testcase classname="tests.integration.test_image_capture_storage" name="test_png_publish_collision_and_failure_preserve_existing_files" time="0.028"><failure message="OSError: [Errno 9] Bad file descriptor">tmp_path = WindowsPath('C:/Users/zaa13/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/AC/#!sandbox.{3bb8c44e-b52c-49c3-ad0b-fb30b241d6a3}/Temp/pytest-of-zaa13/pytest-0/test_png_publish_collision_and0')
+
+    def test_png_publish_collision_and_failure_preserve_existing_files(tmp_path):
+        im=Image.new('RGB',(32,33),'red')
+&gt;       first=atomic_png(im,tmp_path,stamp='20261117_120000_001')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_image_capture_storage.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+image = &lt;PIL.Image.Image image mode=RGB size=32x33 at 0x1E10B595EE0&gt;
+folder = WindowsPath('C:/Users/zaa13/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/AC/#!sandbox.{3bb8c44e-b52c-49c3-ad0b-fb30b241d6a3}/Temp/pytest-of-zaa13/pytest-0/test_png_publish_collision_and0')
+stamp = '20261117_120000_001'
+
+    def atomic_png(image, folder, stamp=None):
+        """Publish a verified PNG without replacing any existing path."""
+        folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
+        stamp=stamp or datetime.now().strftime('%Y%m%d_%H%M%S_%f')[:-3]
+        fd,temp=tempfile.mkstemp(prefix='.hand-capture-',suffix='.tmp',dir=folder)
+        os.close(fd)
+        try:
+            image.save(temp,format='PNG')
+            with Image.open(temp) as check:
+                check.load()
+                if check.format!='PNG' or check.size!=image.size:raise ValueError('PNG verification failed')
+&gt;           with open(temp,'rb') as stream:os.fsync(stream.fileno())
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           OSError: [Errno 9] Bad file descriptor
+
+src\hand_v2\adapters\capture_files.py:19: OSError</failure></testcase></testsuite></testsuites>

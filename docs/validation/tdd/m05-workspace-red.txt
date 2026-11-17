@@ -1,0 +1,35 @@
+FFF                                                                      [100%]
+================================== FAILURES ===================================
+__________ test_image_actions_share_use_case_without_keyboard_output __________
+
+    def test_image_actions_share_use_case_without_keyboard_output():
+        r=build_runtime(clock=ManualClock(1000));r.controller.set_mode(Mode.IMAGE)
+>       r.workspace.gallery.replace([ImageAsset('a',1,1,b''),ImageAsset('b',1,1,b'')])
+        ^^^^^^^^^^^
+E       AttributeError: 'Runtime' object has no attribute 'workspace'
+
+tests\unit\test_desktop_workspace.py:10: AttributeError
+________ test_capture_waits_for_release_and_stop_never_restores_active ________
+
+    def test_capture_waits_for_release_and_stop_never_restores_active():
+        r=build_runtime(clock=ManualClock(1000));c=r.controller
+        c.activate()
+>       assert r.workspace.request_capture()
+               ^^^^^^^^^^^
+E       AttributeError: 'Runtime' object has no attribute 'workspace'
+
+tests\unit\test_desktop_workspace.py:21: AttributeError
+________ test_capture_cancel_without_stop_preserves_latest_activation _________
+
+    def test_capture_cancel_without_stop_preserves_latest_activation():
+        r=build_runtime(clock=ManualClock(1000));r.controller.activate()
+>       r.workspace.request_capture();s=r.workspace.open_capture(Display('x',0,0,100,100,1))
+        ^^^^^^^^^^^
+E       AttributeError: 'Runtime' object has no attribute 'workspace'
+
+tests\unit\test_desktop_workspace.py:33: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_desktop_workspace.py::test_image_actions_share_use_case_without_keyboard_output
+FAILED tests/unit/test_desktop_workspace.py::test_capture_waits_for_release_and_stop_never_restores_active
+FAILED tests/unit/test_desktop_workspace.py::test_capture_cancel_without_stop_preserves_latest_activation
+3 failed in 0.83s

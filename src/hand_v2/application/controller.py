@@ -146,6 +146,8 @@ class Controller:
             self.stop(reason)
 
     def set_mode(self, mode):
+        if self.state.mode == Mode.CAPTURE:
+            return
         if mode == self.state.mode:
             return
         if mode not in (Mode.IMAGE, Mode.BROWSER):
@@ -153,6 +155,18 @@ class Controller:
         self._reset_neutral()
         self._set(mode=mode, ready=False, context_version=self.state.context_version+1)
         self._clear_queue("MODE_CHANGED")
+        self.request_release()
+
+    def enter_capture(self):
+        self._reset_neutral()
+        self._set(mode=Mode.CAPTURE, ready=False, context_version=self.state.context_version+1)
+        self._clear_queue('CAPTURE_OPEN')
+        self.request_release()
+
+    def leave_capture(self, previous_mode):
+        self._reset_neutral()
+        self._set(mode=Mode(previous_mode), ready=False, context_version=self.state.context_version+1)
+        self._clear_queue('CAPTURE_CLOSED')
         self.request_release()
 
     def hands_lost(self):

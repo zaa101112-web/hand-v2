@@ -1,0 +1,10 @@
+{
+  "milestone": "M05",
+  "plan_scope": "D21-D25 (5 man-day planned scope, not elapsed labor)",
+  "date": "2026-11-17",
+  "implementation": ["PNG/JPEG natural sort, dedup, EXIF, transparency, invalid-file preservation", "shared image actions, per-slide zoom and direction animation", "capture session and attempt identity, explicit region and save", "physical rectangle, release/hide ACK, current-screen worker", "verified temporary PNG and no-clobber publication"],
+  "tdd": {"red": ["tdd/m05-images-capture-red.txt", "tdd/m05-workspace-red.txt", "tdd/m05-widgets-red.txt"], "regression": "tdd/m05-regression.txt", "passed": 325},
+  "actual_windows": {"capture": "m05-live-capture.json", "status": "PASS", "scale": 1.5, "png_size": [320, 240], "own_ui_absent": "all saved pixels equal the controlled background"},
+  "remaining": ["M06 configuration, practice and recovery", "M07 sensitivity and operational validation", "M08 final build and audit", "actual 100/125% DPI acceptance", "three-person gesture accuracy and independent Python-less PC"],
+  "git": "local checkpoint; repository has no remote"
+}

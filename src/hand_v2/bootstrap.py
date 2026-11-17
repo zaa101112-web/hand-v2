@@ -25,8 +25,13 @@ class Runtime:
     retry_at: int | None = None
     frame_times: list = field(default_factory=list)
     camera_fps: float = 0.0
+    workspace: object = None
+    image_loader: object = None
+    capture_worker: object = None
+    capture_folder: object = None
 
     def pump(self):
+        if self.workspace:self.workspace.tick()
         if hasattr(self.keyboard, 'drain'):
             for kind,payload in self.keyboard.drain():
                 if kind=='command':
@@ -115,6 +120,16 @@ def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True):
         keyboard = ScriptedKeyboard(clock)
     controller = Controller(clock, scheduler, ids, keyboard, foreground, ui, mode)
     runtime = Runtime(controller, clock, scheduler, ids, keyboard, foreground, ui)
+    from hand_v2.application.workspace import DesktopWorkspace
+    runtime.workspace=DesktopWorkspace(controller,clock,ids)
+    controller.app_actions=runtime.workspace
+    from hand_v2.adapters.jobs import LatestJob
+    from hand_v2.adapters.image_files import load_images
+    runtime.image_loader=LatestJob(load_images)
+    if mode==ExecutionMode.REAL:
+        from hand_v2.adapters.screen_capture import CaptureWorker,default_capture_folder
+        runtime.capture_worker=CaptureWorker()
+        runtime.capture_folder=default_capture_folder()
     from hand_v2.application.vision_control import VisionControl
     from hand_v2.domain.recognition import GestureRecognizer
     runtime.vision=VisionControl(controller,GestureRecognizer())
