@@ -26,7 +26,7 @@ def with_bent_finger(hand,pip,dip,base=17):
     return replace(hand,landmarks=tuple(points))
 
 
-@pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140)])
+@pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140),(120.6,146.2),(125.1,144.6),(121.4,151.1),(130,155)])
 def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
     feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
     assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
@@ -38,7 +38,7 @@ def test_same_two_joint_evidence_applies_to_other_tucked_fingers(base):
     assert describe_hand(with_bent_finger(sample_hand('INDEX'),130,130,base),640,480).pose=='INDEX'
 
 
-@pytest.mark.parametrize('pip,dip',[(145.01,140),(145,140.01),(150,130),(130,150),(170,170)])
+@pytest.mark.parametrize('pip,dip',[(145.01,140),(145,140.01),(150,130),(130,155.01),(170,170)])
 def test_unproven_or_extended_pinky_is_not_silently_ignored(pip,dip):
     assert describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480).pose!='INDEX'
 

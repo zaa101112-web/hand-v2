@@ -1,0 +1,221 @@
+{
+  "at_utc": "2026-11-17T05:36:23.264937+00:00",
+  "scope": "M03/M04 corrective followup, not a new 5 MD milestone",
+  "requirements": [
+    "REQ-01",
+    "G03",
+    "G04",
+    "G05",
+    "G06",
+    "G07",
+    "G08",
+    "G11",
+    "V2-T06",
+    "V2-T07",
+    "V2-T08",
+    "V2-T35"
+  ],
+  "user_report": "Only one or two of three Chrome back attempts succeeded after the prior change",
+  "before": {
+    "snapshot_sha256": "ad46e7584c3673b438e27014966fe2cab48b7dcb1aaf2d71540f0e2f90ac162a",
+    "recent_reasons": {
+      "MOTION_IN_PROGRESS": 94,
+      "CIRCLE_CANDIDATE": 127,
+      "UNKNOWN_POSE": 152,
+      "MOTION_READY": 156,
+      "CONFIRMED": 3,
+      "RELEASE_REQUIRED": 188,
+      "": 171,
+      "MOTION_TOO_SLOW": 2,
+      "NO_HAND": 5,
+      "PINCH_RELEASE": 2
+    },
+    "unique_execution_reasons": {
+      "TARGET_NOT_CHROME": 2,
+      "OS_INPUT_SENT": 7,
+      "REARM_REQUIRED": 2
+    },
+    "pinky_examples": [
+      {
+        "at_ms": 439714984,
+        "gap_ms": 47,
+        "palm_px": 125.8,
+        "fingers": [
+          "FOLDED",
+          "EXTENDED",
+          "FOLDED",
+          "FOLDED",
+          "UNKNOWN"
+        ],
+        "joints": [
+          [
+            176.37117975773785,
+            172.8433994037919
+          ],
+          [
+            97.71347068940585,
+            147.85191897888848
+          ],
+          [
+            105.38700639501963,
+            140.10871025703892
+          ],
+          [
+            120.60321003966895,
+            146.2273375193249
+          ]
+        ]
+      },
+      {
+        "at_ms": 439731468,
+        "gap_ms": 31,
+        "palm_px": 125.4,
+        "fingers": [
+          "FOLDED",
+          "EXTENDED",
+          "FOLDED",
+          "FOLDED",
+          "UNKNOWN"
+        ],
+        "joints": [
+          [
+            174.51176650672784,
+            174.56530276462817
+          ],
+          [
+            105.25994286830475,
+            142.7308082471429
+          ],
+          [
+            111.57054740583274,
+            133.64615530006475
+          ],
+          [
+            139.33331140244238,
+            126.43534747561091
+          ]
+        ]
+      },
+      {
+        "at_ms": 439740984,
+        "gap_ms": 94,
+        "palm_px": 131.6,
+        "fingers": [
+          "FOLDED",
+          "EXTENDED",
+          "FOLDED",
+          "FOLDED",
+          "UNKNOWN"
+        ],
+        "joints": [
+          [
+            172.90119681634363,
+            169.2025188379006
+          ],
+          [
+            102.75637282519392,
+            101.56264572286138
+          ],
+          [
+            108.81254647579259,
+            93.59503522985543
+          ],
+          [
+            126.85180950187099,
+            93.26556757036388
+          ]
+        ]
+      }
+    ],
+    "observed": "Continuous INDEX segments entered CIRCLE_CANDIDATE; some reached full movement progress without emitting a swipe. Remaining pinky UNKNOWN examples had PIP about 121-125 and DIP about 145-151.",
+    "limits": "No raw trajectory was recorded. Tiny-vector noise was reproduced with an authored path, not asserted to be the measured cause of every recorded circle candidate."
+  },
+  "fixes": [
+    "Determine turning direction over spans of 2.5% of the shorter image side, not per-frame vectors barely over one pixel; keep the 25-degree turn and 0.90 straightness guards",
+    "INDEX-only tucked-finger evidence uses PIP<=145 and PIP+DIP<=285 (at least 75 degrees combined bend); strict raw finger classification and V/THREE/L unchanged",
+    "Diagnostic records aggregate motion duration, straightness, travel and curve cause, without raw coordinates or camera images",
+    "Dedicated loopback browser page supplies three known back steps and observes only its own history events; no synthetic key input"
+  ],
+  "tdd": {
+    "red": {
+      "file": "tdd/swipe-noise-red.txt",
+      "failed": 8,
+      "passed": 24
+    },
+    "green": {
+      "file": "tdd/swipe-noise-green.txt",
+      "passed": 115
+    },
+    "boundaries": {
+      "file": "tdd/swipe-noise-boundaries.txt",
+      "passed": 87
+    },
+    "full": {
+      "file": "tdd/swipe-noise-final.txt",
+      "passed": 257
+    }
+  },
+  "coverage": [
+    "4px jitter at 640x480, scaled proportionally at larger resolutions; both horizontal directions, INDEX and V",
+    "V vertical swipes with horizontal jitter",
+    "Clockwise/counterclockwise wide circles at 600/2000ms from phases 45/225, existing all-phase circle regressions",
+    "Observed pinky angle examples and combined-bend boundary"
+  ],
+  "build": {
+    "exe": "dist/HAND-v2-M04-20261117-swipe-noise/HAND-v2.exe",
+    "exe_sha256": "e6183611cdb20345e60e5a758df52d62e189ad43d598764b48199c2f217c4592",
+    "verified_copy_files": 1302,
+    "bytes": 408246674,
+    "offscreen_smoke_exit_code": 0,
+    "manifest": "m04-swipe-noise-artifact-manifest.json",
+    "source_manifest": "m04-swipe-noise-source-manifest.json",
+    "current_source_matches_manifest": true
+  },
+  "real_camera": {
+    "source": "REAL_CAMERA_MEDIAPIPE_VIDEO_NO_OS_INPUT",
+    "success": true,
+    "index": 1,
+    "startup_seconds": 7.282,
+    "fps_after_start": 24.49,
+    "errors": [],
+    "stop": {
+      "success": true,
+      "forced": false,
+      "elapsed_ms": 1141
+    },
+    "frozen": true,
+    "raw_images_saved": false,
+    "human_gesture_accuracy_evaluated": false,
+    "frame_count": 189,
+    "evidence": "m04-swipe-noise-bundle-camera.json"
+  },
+  "physical_retest": "AWAITING_CONTROLLED_HISTORY_TRIAL",
+  "limits": [
+    "Do not infer human accuracy from automatic tests",
+    "Do not infer Chrome effects from SendInput alone",
+    "No clean-PC or multi-person acceptance claim"
+  ],
+  "app_launch": {
+    "entrypoint": "scripts/live_app_diagnostics.py",
+    "runtime": "Current source, real native Qt app with production camera and keyboard adapters",
+    "camera_index": 1,
+    "camera_connected": true,
+    "global_f8_registered": true,
+    "small_status_window_open": true,
+    "chrome_check_foreground": true,
+    "note": "The diagnostic wrapper is not bundled; application sources match the frozen build manifest."
+  },
+  "controlled_history_trial": {
+    "status": "AWAITING_PHYSICAL_HAND_TRIAL",
+    "url": "http://127.0.0.1:61808/",
+    "initial_step": 3,
+    "observed_events": [
+      {
+        "at_utc": "2026-11-17T05:27:26.275135+00:00",
+        "step": 3,
+        "event": "load"
+      }
+    ],
+    "no_synthetic_input": true
+  }
+}

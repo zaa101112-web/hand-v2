@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="32" time="0.906" timestamp="2026-11-17T14:19:27.016111+09:00" hostname="준식"><testcase classname="tests.unit.test_swipe_motion_noise" name="test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter[INDEX-1-G03]" time="0.017"><failure message="AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = 1, expected = &lt;Gesture.LEFT: 'G03'&gt;
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    def test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter(pose,direction,expected):
+        recognizer=GestureRecognizer();events=[]
+        offsets=[0,.03,.06,.09,.12,.14,.14,.14,.17,.20,.23,.26,.30]
+        for index,offset in enumerate(offsets):
+            frame=sample_frame(1000+50*index,pose,direction*offset)
+            jitter=4/480 if index==7 else 0
+            hand=frame.hands[0]
+            hand=replace(hand,landmarks=tuple(replace(p,y=p.y+jitter) for p in hand.landmarks))
+            result=recognizer.process(replace(frame,hands=(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_swipe_motion_noise.py:27: AssertionError</failure></testcase><testcase classname="tests.unit.test_swipe_motion_noise" name="test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter[INDEX--1-G04]" time="0.004"><failure message="AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = -1, expected = &lt;Gesture.RIGHT: 'G04'&gt;
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    def test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter(pose,direction,expected):
+        recognizer=GestureRecognizer();events=[]
+        offsets=[0,.03,.06,.09,.12,.14,.14,.14,.17,.20,.23,.26,.30]
+        for index,offset in enumerate(offsets):
+            frame=sample_frame(1000+50*index,pose,direction*offset)
+            jitter=4/480 if index==7 else 0
+            hand=frame.hands[0]
+            hand=replace(hand,landmarks=tuple(replace(p,y=p.y+jitter) for p in hand.landmarks))
+            result=recognizer.process(replace(frame,hands=(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_swipe_motion_noise.py:27: AssertionError</failure></testcase><testcase classname="tests.unit.test_swipe_motion_noise" name="test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter[V-1-G05]" time="0.004"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = 1, expected = &lt;Gesture.TAB_LEFT: 'G05'&gt;
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    def test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter(pose,direction,expected):
+        recognizer=GestureRecognizer();events=[]
+        offsets=[0,.03,.06,.09,.12,.14,.14,.14,.17,.20,.23,.26,.30]
+        for index,offset in enumerate(offsets):
+            frame=sample_frame(1000+50*index,pose,direction*offset)
+            jitter=4/480 if index==7 else 0
+            hand=frame.hands[0]
+            hand=replace(hand,landmarks=tuple(replace(p,y=p.y+jitter) for p in hand.landmarks))
+            result=recognizer.process(replace(frame,hands=(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_swipe_motion_noise.py:27: AssertionError</failure></testcase><testcase classname="tests.unit.test_swipe_motion_noise" name="test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter[V--1-G06]" time="0.004"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = -1, expected = &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    def test_nearly_straight_swipe_with_brief_slowdown_and_small_vertical_jitter(pose,direction,expected):
+        recognizer=GestureRecognizer();events=[]
+        offsets=[0,.03,.06,.09,.12,.14,.14,.14,.17,.20,.23,.26,.30]
+        for index,offset in enumerate(offsets):
+            frame=sample_frame(1000+50*index,pose,direction*offset)
+            jitter=4/480 if index==7 else 0
+            hand=frame.hands[0]
+            hand=replace(hand,landmarks=tuple(replace(p,y=p.y+jitter) for p in hand.landmarks))
+            result=recognizer.process(replace(frame,hands=(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_swipe_motion_noise.py:27: AssertionError</failure></testcase><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.5228094-118.4008724]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.0783434-136.1655656]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[123.9776854-103.9733278]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[134.6-109.9]" time="0.002" /><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[145-140]" time="0.002" /><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[120.6-146.2]" time="0.004"><failure message="AssertionError: assert 'UNKNOWN' == 'INDEX'&#10;  &#10;  - INDEX&#10;  + UNKNOWN">pip = 120.6, dip = 146.2
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140),(120.6,146.2),(125.1,144.6),(121.4,151.1),(130,155)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+&gt;       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError</failure></testcase><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[125.1-144.6]" time="0.002"><failure message="AssertionError: assert 'UNKNOWN' == 'INDEX'&#10;  &#10;  - INDEX&#10;  + UNKNOWN">pip = 125.1, dip = 144.6
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140),(120.6,146.2),(125.1,144.6),(121.4,151.1),(130,155)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+&gt;       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError</failure></testcase><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[121.4-151.1]" time="0.002"><failure message="AssertionError: assert 'UNKNOWN' == 'INDEX'&#10;  &#10;  - INDEX&#10;  + UNKNOWN">pip = 121.4, dip = 151.1
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140),(120.6,146.2),(125.1,144.6),(121.4,151.1),(130,155)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+&gt;       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError</failure></testcase><testcase classname="tests.unit.test_index_fold_regression" name="test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120[130-155]" time="0.002"><failure message="AssertionError: assert 'UNKNOWN' == 'INDEX'&#10;  &#10;  - INDEX&#10;  + UNKNOWN">pip = 130, dip = 155
+
+    @pytest.mark.parametrize('pip,dip',[(123.5228094,118.4008724),(123.0783434,136.1655656),(123.9776854,103.9733278),(134.6,109.9),(145,140),(120.6,146.2),(125.1,144.6),(121.4,151.1),(130,155)])
+    def test_both_bent_pinky_joints_support_index_even_when_pip_exceeds_120(pip,dip):
+        feature=describe_hand(with_bent_finger(sample_hand('INDEX'),pip,dip),640,480)
+        assert feature.fingers[4]==FingerState.UNKNOWN  # Preserve the strict raw classification.
+&gt;       assert feature.pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_fold_regression.py:33: AssertionError</failure></testcase><testcase classname="tests.unit.test_index_fold_regression" name="test_same_two_joint_evidence_applies_to_other_tucked_fingers[9]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_same_two_joint_evidence_applies_to_other_tucked_fingers[13]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_unproven_or_extended_pinky_is_not_silently_ignored[145.01-140]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_unproven_or_extended_pinky_is_not_silently_ignored[145-140.01]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_unproven_or_extended_pinky_is_not_silently_ignored[150-130]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_unproven_or_extended_pinky_is_not_silently_ignored[130-155.01]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_unproven_or_extended_pinky_is_not_silently_ignored[170-170]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe[1-G03]" time="0.003" /><testcase classname="tests.unit.test_index_fold_regression" name="test_pinky_crossing_old_fold_boundary_does_not_cancel_swipe[-1-G04]" time="0.004" /><testcase classname="tests.unit.test_index_fold_regression" name="test_supported_thumb_and_tucked_pinky_work_together" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_index_exception_does_not_reclassify_other_poses[V]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_index_exception_does_not_reclassify_other_poses[THREE]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_index_exception_does_not_reclassify_other_poses[L]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_index_exception_does_not_reclassify_other_poses[OPEN]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_index_exception_does_not_reclassify_other_poses[FIST]" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_no_start_or_stop_from_index_specific_fold_evidence" time="0.005" /><testcase classname="tests.unit.test_index_fold_regression" name="test_truly_ambiguous_frame_still_cancels_path" time="0.003" /><testcase classname="tests.unit.test_index_fold_regression" name="test_tucked_finger_rule_does_not_bypass_small_hand_gate" time="0.001" /><testcase classname="tests.unit.test_index_fold_regression" name="test_remaining_pinky_ambiguity_names_the_finger_to_adjust" time="0.001" /></testsuite></testsuites>

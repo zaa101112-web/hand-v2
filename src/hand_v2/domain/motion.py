@@ -11,7 +11,7 @@ class MotionRecognizer:
     def reset(self):
         self.key=None;self.since=None;self.path=[];self.fired=False
         self.ema=TimeEMA(60);self.curved=False;self.axis=None
-        self.initial_direction=None
+        self.initial_direction=None;self.direction_anchor=None;self.curve_reason=''
         self.pose_since=None;self.anchor=None;self.anchor_at=None
 
     def update(self,feature,at,width,height):
@@ -24,6 +24,7 @@ class MotionRecognizer:
         if self.fired:return None,1,'RELEASE_REQUIRED'
         if self.anchor is None:
             self.anchor=point;self.anchor_at=at
+            self.direction_anchor=point
             return None,0,'MOTION_READY'
         if self.since is None:
             # Start the motion clock after actual displacement, not when the
@@ -31,19 +32,26 @@ class MotionRecognizer:
             if distance(point,self.anchor)<.02:
                 if previous is not None and distance(point,previous)<.002:
                     self.anchor=point;self.anchor_at=at;self.path=[(at,point)]
+                    self.direction_anchor=point
                 return None,0,'MOTION_READY'
             self.since=self.anchor_at
         elapsed=at-self.since
         start=self.path[0][1];dx,dy=point[0]-start[0],point[1]-start[1]
         length=sum(distance(a[1],b[1]) for a,b in zip(self.path,self.path[1:]))
         straight=math.hypot(dx,dy)/length if length>1e-9 else 0
-        if length>.03 and straight<.90:self.curved=True
-        if len(self.path)>1:
-            prev=self.path[-2][1];sx,sy=(point[0]-prev[0])*width,(point[1]-prev[1])*height
-            if math.hypot(sx,sy)>1:
+        if not self.curved and length>.03 and straight<.90:
+            self.curved=True;self.curve_reason='NON_STRAIGHT_PATH'
+        if self.direction_anchor is not None:
+            sx,sy=(point[0]-self.direction_anchor[0])*width,(point[1]-self.direction_anchor[1])*height
+            # A one-pixel vector has no reliable direction during a slowdown.
+            # Measure turns over a resolution-scaled span, retaining the same
+            # 25deg rejection before any swipe can be emitted.
+            if math.hypot(sx,sy)>=.025*min(width,height):
                 direction=math.atan2(sy,sx)
                 if self.initial_direction is None:self.initial_direction=direction
-                elif abs(math.atan2(math.sin(direction-self.initial_direction),math.cos(direction-self.initial_direction)))>math.radians(25):self.curved=True
+                elif not self.curved and abs(math.atan2(math.sin(direction-self.initial_direction),math.cos(direction-self.initial_direction)))>math.radians(25):
+                    self.curved=True;self.curve_reason='DIRECTION_CHANGE'
+                self.direction_anchor=point
         if self.axis is None and max(abs(dx),abs(dy))>=.04:
             if abs(dx)>=1.8*abs(dy):self.axis='x'
             elif abs(dy)>=1.8*abs(dx):self.axis='y'

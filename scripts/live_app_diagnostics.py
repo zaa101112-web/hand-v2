@@ -2,6 +2,7 @@
 import argparse,json,multiprocessing,sys
 from collections import Counter,deque
 from dataclasses import asdict
+from datetime import datetime,timezone
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -51,9 +52,19 @@ def main():
                                 'thumb_angles':[angle(*points[1:4]),angle(*points[2:5])],
                                 'thumb_gap_ratio':distance(points[4],points[5])/max(f.palm_size,1e-9),
                                 'finger_pip_dip':[[angle(*points[b:b+3]),angle(*points[b+1:b+4])] for b in (5,9,13,17)]})
+            motion=runtime.vision.recognizer.motion
+            motion_summary=None
+            if motion.path:
+                length=sum(distance(a[1],b[1]) for a,b in zip(motion.path,motion.path[1:]))
+                displacement=distance(motion.path[0][1],motion.path[-1][1])
+                motion_summary={'elapsed_ms':None if motion.since is None else frame.captured_at_ms-motion.since,
+                                'curved':motion.curved,'curve_reason':motion.curve_reason,
+                                'straightness':round(displacement/length,4) if length else None,
+                                'travel':round(length,4)}
             samples.append({'at_ms':frame.captured_at_ms,'gap_ms':gap,'accepted':accepted,'hands':details,
                             'candidate':result.candidate if result else None,'progress':result.progress if result else 0,
-                            'reason':result.reason if result else None,'gesture':result.gesture if result else None})
+                            'reason':result.reason if result else None,'gesture':result.gesture if result else None,
+                            'motion':motion_summary})
         last_had_hands=bool(features)
         return accepted
     runtime.vision.accept=observe_frame
@@ -66,7 +77,8 @@ def main():
         if observation!=last:
             last=observation;observations.append({'at_ms':runtime.clock.now_ms(),**observation})
             del observations[:-500]
-        data={'state':state,'fps':runtime.camera_fps,'recognized_events':[asdict(e) for e in runtime.vision.recognized_events],
+        data={'at_utc':datetime.now(timezone.utc).isoformat(),'monotonic_at_ms':runtime.clock.now_ms(),
+              'state':state,'fps':runtime.camera_fps,'recognized_events':[asdict(e) for e in runtime.vision.recognized_events],
               'observations':observations,
               'tracking_counts':dict(counts),'recent_pose_samples':list(samples),
               'camera_stop':asdict(runtime.camera.last_stop) if runtime.camera.last_stop else None,

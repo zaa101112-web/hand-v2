@@ -254,7 +254,12 @@
     "human_gesture_accuracy_evaluated": false,
     "evidence": "m04-index-stability-bundle-camera.json"
   },
-  "physical_retest": "AWAITING_USER_RETEST",
+  "physical_retest": {
+    "status": "PARTIAL_FAILURE_REPORTED",
+    "user_report": "One or two of three actual Chrome back attempts succeeded",
+    "measured_accuracy": false,
+    "followup": "m04-swipe-noise.json"
+  },
   "limits": [
     "No improved success rate claimed before user retest",
     "No actual Chrome effect inferred from OS_INPUT_SENT",

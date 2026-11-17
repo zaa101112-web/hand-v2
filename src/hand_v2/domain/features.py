@@ -75,7 +75,7 @@ def describe_hand(hand,width,height):
                       (fingers[0]==FingerState.UNKNOWN and mcp is not None and ip is not None and min(mcp,ip)<=145+1e-9))
         others_tucked=all(state==FingerState.FOLDED or
                          (state==FingerState.UNKNOWN and pip is not None and dip is not None
-                          and pip<=145+1e-9 and dip<=140+1e-9)
+                          and pip<=145+1e-9 and pip+dip<=285+1e-9)
                          for state,(pip,dip) in zip(fingers[2:],finger_angles[1:]))
         if thumb_tucked and others_tucked:pose='INDEX'
     pointer=(1-hand.landmarks[8].x,hand.landmarks[8].y)
