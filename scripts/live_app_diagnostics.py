@@ -23,27 +23,38 @@ def main():
     output=args.output or ROOT/f'docs/validation/{args.label}.json'
     output.parent.mkdir(parents=True,exist_ok=True)
     from hand_v2.domain.features import describe_hand,angle,distance
-    samples=deque(maxlen=300);counts=Counter();last_frame_at=None;last_sample_at=-1000
+    samples=deque(maxlen=900);counts=Counter();last_frame_at=None;last_had_hands=False
     original_accept=runtime.vision.accept
     def observe_frame(frame):
-        nonlocal last_frame_at,last_sample_at
+        nonlocal last_frame_at,last_had_hands
         accepted=original_accept(frame)
         gap=None if last_frame_at is None else frame.captured_at_ms-last_frame_at
         last_frame_at=frame.captured_at_ms
         features=[describe_hand(h,frame.image_width,frame.image_height) for h in frame.hands]
         counts['frames']+=1;counts['with_hands']+=bool(features)
         counts['gap_over_100ms']+=gap is not None and gap>100
-        for f in features:counts['pose_'+f.pose]+=1
-        if frame.captured_at_ms-last_sample_at>=100:
-            last_sample_at=frame.captured_at_ms;details=[]
+        result=runtime.vision.last_recognition if accepted else None
+        counts['rejected_frames']+=not accepted
+        if result:counts['reason_'+(result.reason or 'NONE')]+=1
+        for f in features:
+            counts['pose_'+f.pose]+=1
+            if f.pose=='UNKNOWN':counts['unknown_fingers_'+'_'.join(f.fingers)]+=1
+        # Keep every hand-present frame: a single bad frame cancels a path and
+        # was invisible in the old 100ms diagnostic sampling interval.
+        # One no-hand transition cancels a path. Repeated empty frames should
+        # not erase the useful hand samples while the user types their reply.
+        if features or last_had_hands:
+            details=[]
             for hand,f in zip(frame.hands,features):
                 points=[(lm.x*frame.image_width,lm.y*frame.image_height,lm.z*frame.image_width) for lm in hand.landmarks]
                 details.append({'id':hand.hand_id,'pose':f.pose,'fingers':f.fingers,'palm_px':round(f.palm_size,1),
                                 'thumb_angles':[angle(*points[1:4]),angle(*points[2:5])],
+                                'thumb_gap_ratio':distance(points[4],points[5])/max(f.palm_size,1e-9),
                                 'finger_pip_dip':[[angle(*points[b:b+3]),angle(*points[b+1:b+4])] for b in (5,9,13,17)]})
-            result=runtime.vision.last_recognition
             samples.append({'at_ms':frame.captured_at_ms,'gap_ms':gap,'accepted':accepted,'hands':details,
-                            'candidate':result.candidate if result else None,'progress':result.progress if result else 0})
+                            'candidate':result.candidate if result else None,'progress':result.progress if result else 0,
+                            'reason':result.reason if result else None,'gesture':result.gesture if result else None})
+        last_had_hands=bool(features)
         return accepted
     runtime.vision.accept=observe_frame
     observations=[]

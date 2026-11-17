@@ -57,7 +57,7 @@
     "raw_images_saved": false,
     "human_gesture_accuracy_evaluated": false
   },
-  "real_hand_chrome_effect": "AWAITING_USER_RETEST",
+  "real_hand_chrome_effect": "FAILED_USER_RETEST: index recognition still interrupted; no Chrome success claim",
   "limits": [
     "Not a multi-person accuracy result",
     "Not a clean-PC distribution test",
@@ -83,5 +83,13 @@
     },
     "activation": "WAITING",
     "release_pending": false
+  },
+  "user_retest": {
+    "reported_at_utc": "2026-11-17T04:33:32.640497+00:00",
+    "observation": "User reports index recognition still drops with the corrected executable",
+    "next_evidence": "Live source diagnostic now retains every hand-present frame (bounded to 900), reason, thumb gap and UNKNOWN finger counts",
+    "runtime_change": "NONE: recognition rules unchanged pending actual failure samples",
+    "images_or_raw_landmarks_saved": false,
+    "manual_request": "Keep HAND foreground, V start, release, hold index for 1 second then swipe left, repeat 3 times"
   }
 }
