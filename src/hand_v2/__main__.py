@@ -9,13 +9,13 @@ def main():
     parser.add_argument("--replay",help="CONTROL fixture directory; no OS input")
     parser.add_argument("--smoke",action="store_true",help="Start Qt, verify initial state, then exit")
     parser.add_argument('--smoke-report',help='Write startup/resource diagnostics after an offscreen smoke test')
-    parser.add_argument('--camera',type=int,default=0,choices=range(4),help='Initial camera selection; camera stays off until requested')
+    parser.add_argument('--camera',type=int,default=None,choices=range(4),help='Initial camera selection; camera stays off until requested')
     parser.add_argument('--camera-probe-report',help='Explicitly test the real camera/model without OS input and write JSON')
     args=parser.parse_args()
     if args.camera_probe_report:
         from pathlib import Path
         from hand_v2.adapters.vision.probe import probe_camera
-        report=probe_camera(args.camera)
+        report=probe_camera(args.camera or 0)
         report['frozen']=bool(getattr(sys,'frozen',False))
         Path(args.camera_probe_report).write_text(json.dumps(report,indent=2),encoding='utf-8')
         return 0 if report['success'] else 1
@@ -25,13 +25,25 @@ def main():
         return 0
     if args.mode=="REPLAY":parser.error("--replay is required for REPLAY")
     from PySide6.QtCore import QTimer
-    from PySide6.QtWidgets import QApplication
+    from PySide6.QtWidgets import QApplication,QMessageBox
     from hand_v2.bootstrap import build_runtime
     from hand_v2.adapters.qt.window import MainWindow
     app=QApplication(sys.argv[:1])
-    runtime=build_runtime(args.mode)
+    from hand_v2.adapters.configuration import ConfigStore,read_defaults,user_data_dir
+    try:
+        defaults=read_defaults()
+    except (ValueError,OSError) as exc:
+        QMessageBox.critical(None,'HAND 시작 실패','기본 설정 파일이 손상되었습니다. 앱을 다시 설치하세요.\n'+str(exc));return 2
+    store=ConfigStore(defaults,user_data_dir()/'user.json') if args.mode=='WINDOWS_REAL' else None
+    loaded=store.load() if store else None
+    if loaded and loaded.error:
+        choice=QMessageBox.question(None,'설정 파일 확인','사용자 설정을 읽지 못했습니다. 원본을 보존하고 기본값으로 계속할까요?\n'+loaded.error,
+                                    QMessageBox.StandardButton.Yes|QMessageBox.StandardButton.No,QMessageBox.StandardButton.No)
+        if choice!=QMessageBox.StandardButton.Yes:return 2
+    settings=loaded.config if loaded else defaults
+    if args.camera is not None:settings['camera']['index']=args.camera
+    runtime=build_runtime(args.mode,settings=settings,config_store=store)
     window=MainWindow(runtime)
-    window.camera_combo.setCurrentIndex(args.camera)
     window.show()
     if args.smoke:
         QTimer.singleShot(250,window.close)

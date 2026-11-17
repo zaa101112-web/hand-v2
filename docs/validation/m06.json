@@ -1,0 +1,11 @@
+{
+  "milestone": "M06",
+  "plan_scope": "D26-D30 (5 man-day estimate scope, not elapsed labor)",
+  "date": "2026-11-17",
+  "implementation": ["capture late-result/STOP/error recovery and bounded shutdown", "display snapshot and physical exclusive pixel bounds", "strict config schema, atomic save, corrupt source preservation", "settings UI and candidate reset on apply", "independent practice controller and fake effects with shared real camera input", "four scrollable accessible menu pages"],
+  "automatic": {"passed": 348, "report": "tdd/m06-regression.txt", "red": ["tdd/m06-config-practice-red.txt", "tdd/m06-settings-ui-red.txt", "tdd/m06-recovery-red.txt"]},
+  "actual_capture": {"report": "m06-live-capture-baseline.json", "regions": 10, "scale": 1.5, "status": "PASS", "pixel_difference": 0, "size_difference_px": 0},
+  "qa_correction": "m06-live-capture.json retained: uniform-color assumption failed at screen border. Border already exists before HAND display. Corrected harness compares every pixel with the actual controlled background before HAND is shown; all 10 regions match exactly.",
+  "not_run": ["physical Windows scale 100% and 125% (pure mapping covers all three)", "three-person real gesture accuracy", "independent PC deployment"],
+  "next": "M07 D31-D35 sensitivity recommendation, logs, regression and latency/stability"
+}

@@ -5,12 +5,17 @@ import tempfile
 from PIL import Image
 
 
-def atomic_png(image, folder, stamp=None):
+def atomic_png(image, folder, stamp=None, temporary_path=None):
     """Publish a verified PNG without replacing any existing path."""
     folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
     stamp=stamp or datetime.now().strftime('%Y%m%d_%H%M%S_%f')[:-3]
-    fd,temp=tempfile.mkstemp(prefix='.hand-capture-',suffix='.tmp',dir=folder)
-    os.close(fd)
+    if temporary_path:
+        temp=str(temporary_path)
+        if Path(temp).parent.resolve()!=folder.resolve():raise ValueError('temporary PNG must share the destination folder')
+        with open(temp,'xb'):pass
+    else:
+        fd,temp=tempfile.mkstemp(prefix='.hand-capture-',suffix='.tmp',dir=folder)
+        os.close(fd)
     try:
         image.save(temp,format='PNG')
         with Image.open(temp) as check:

@@ -1,0 +1,80 @@
+{
+  "kind": "actual Windows screen capture; controlled pixels; production hide/save path",
+  "status": "FAIL",
+  "regions": [
+    {
+      "path": "C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.build-staging\\capture-qa\\capture_20261117_155353_881_0000.png",
+      "rect": {
+        "left": 300,
+        "top": 300,
+        "right": 620,
+        "bottom": 540
+      },
+      "size": [
+        320,
+        240
+      ],
+      "rgb_extrema": [
+        [
+          211,
+          211
+        ],
+        [
+          31,
+          31
+        ],
+        [
+          91,
+          91
+        ]
+      ],
+      "main_visible_after_restore": true,
+      "hide_ack_at_ms": 445628390,
+      "worker_start_at_ms": 445628515,
+      "own_ui_absent_by_exact_pixel_check": true,
+      "status": "PASS"
+    },
+    {
+      "path": "C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.build-staging\\capture-qa\\capture_20261117_155354_716_0000.png",
+      "rect": {
+        "left": 0,
+        "top": 0,
+        "right": 2560,
+        "bottom": 1600
+      },
+      "size": [
+        2560,
+        1600
+      ],
+      "rgb_extrema": [
+        [
+          53,
+          244
+        ],
+        [
+          8,
+          174
+        ],
+        [
+          23,
+          91
+        ]
+      ],
+      "main_visible_after_restore": true,
+      "hide_ack_at_ms": 445629390,
+      "worker_start_at_ms": 445629515,
+      "own_ui_absent_by_exact_pixel_check": false,
+      "status": "FAIL"
+    }
+  ],
+  "display": {
+    "name": "\\\\.\\DISPLAY1",
+    "left": 0,
+    "top": 0,
+    "width": 2560,
+    "height": 1600,
+    "scale": 1.5
+  },
+  "error": "PIXEL_OR_SIZE_MISMATCH",
+  "elapsed_seconds": 2.953
+}

@@ -34,10 +34,12 @@ class FistOpenRecognizer:
 
 
 class PairRecognizer:
-    def __init__(self):self.reset()
+    def __init__(self,pinch_enter=.30,pinch_exit=.45,zoom_step_ratio=1.15,smoothing_tau_ms=60):
+        self.pinch_enter=pinch_enter;self.pinch_exit=pinch_exit;self.zoom_step_ratio=zoom_step_ratio
+        self.smoothing_tau_ms=smoothing_tau_ms;self.reset()
     def reset(self):
         self.key=None;self.pinch={};self.pinch_since=None;self.baseline=None
-        self.zoom_fired=False;self.zoom_direction=None;self.zoom_since=None;self.ema=TimeEMA(60)
+        self.zoom_fired=False;self.zoom_direction=None;self.zoom_since=None;self.ema=TimeEMA(self.smoothing_tau_ms)
         self.l_since=None;self.l_fired=False
 
     def update(self,features,hands,width,height,at):
@@ -55,7 +57,7 @@ class PairRecognizer:
         self.l_since=None;self.l_fired=False
         for f in features:
             previous=self.pinch.get(f.hand_id,False)
-            self.pinch[f.hand_id]=f.palm_size>=20 and (f.pinch_ratio<.45 if previous else f.pinch_ratio<=.30)
+            self.pinch[f.hand_id]=f.palm_size>=20 and (f.pinch_ratio<self.pinch_exit if previous else f.pinch_ratio<=self.pinch_enter)
         if not all(self.pinch.values()):
             self.pinch_since=None;self.baseline=None;self.ema.reset();self.zoom_direction=None;self.zoom_since=None
             if not any(self.pinch.values()):self.zoom_fired=False
@@ -69,7 +71,7 @@ class PairRecognizer:
             if at-self.pinch_since>=120:self.baseline=smoothed
             return None,min(1,(at-self.pinch_since)/120),'PINCH_BASELINE'
         ratio=smoothed/self.baseline
-        direction=Gesture.ZOOM_IN if ratio>=1.15 else Gesture.ZOOM_OUT if ratio<=1/1.15 else None
+        direction=Gesture.ZOOM_IN if ratio>=self.zoom_step_ratio else Gesture.ZOOM_OUT if ratio<=1/self.zoom_step_ratio else None
         if direction!=self.zoom_direction:
             self.zoom_direction=direction;self.zoom_since=at if direction else None
         if direction and at-self.zoom_since>=80:

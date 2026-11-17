@@ -17,7 +17,14 @@ def physical_display(name,scale):
     def callback(handle,dc,rect,data):
         info=MonitorInfo();info.size=ctypes.sizeof(info)
         if get_info(handle,ctypes.byref(info)) and info.device==name:
-            r=info.monitor;found.append(Display(name,r.left,r.top,r.right-r.left,r.bottom-r.top,scale))
+            effective_scale=scale
+            if effective_scale is None:
+                dpi_x=wintypes.UINT();dpi_y=wintypes.UINT()
+                get_dpi=ctypes.windll.shcore.GetDpiForMonitor
+                get_dpi.argtypes=[wintypes.HMONITOR,ctypes.c_int,ctypes.POINTER(wintypes.UINT),ctypes.POINTER(wintypes.UINT)]
+                if get_dpi(handle,0,ctypes.byref(dpi_x),ctypes.byref(dpi_y))!=0:return True
+                effective_scale=dpi_x.value/96
+            r=info.monitor;found.append(Display(name,r.left,r.top,r.right-r.left,r.bottom-r.top,effective_scale))
         return True
     callback_ref=callback_type(callback)
     ctypes.windll.user32.EnumDisplayMonitors(None,None,callback_ref,0)

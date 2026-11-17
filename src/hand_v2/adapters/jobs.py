@@ -1,5 +1,5 @@
 """Single daemon worker, one replaceable pending image generation; no Qt in workers."""
-from threading import Thread, Lock
+from threading import Thread
 from queue import Queue, Empty
 
 
@@ -35,3 +35,6 @@ class LatestJob:
     def close(self):
         self.closed=True;self.pending=None;self.generation+=1
         return not self.thread or not self.thread.is_alive()
+
+    @property
+    def busy(self):return bool(self.thread and self.thread.is_alive())

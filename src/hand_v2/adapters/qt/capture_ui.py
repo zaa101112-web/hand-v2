@@ -62,6 +62,7 @@ class CaptureUi:
     def restore(self):
         if not self.hidden:return
         self.hidden=False
+        if self.window._closing:return
         if self.was_main:self.window.show()
         if self.was_mini:self.window.mini_panel.show()
 

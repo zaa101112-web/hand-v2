@@ -207,6 +207,12 @@ class Controller:
             self._clear_queue("DIALOG_OPEN")
             self.request_release()
 
+    def settings_changed(self):
+        self._reset_neutral()
+        self._set(ready=False,context_version=self.state.context_version+1)
+        self._clear_queue('SETTINGS_CHANGED')
+        self.request_release()
+
     def _record(self, result):
         self._set(last_execution=result)
         return result

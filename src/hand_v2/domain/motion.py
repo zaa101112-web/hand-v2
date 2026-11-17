@@ -6,11 +6,12 @@ from .models import Gesture
 
 
 class MotionRecognizer:
-    def __init__(self):self.reset()
+    def __init__(self,swipe_distance=.15,smoothing_tau_ms=60):
+        self.swipe_distance=swipe_distance;self.smoothing_tau_ms=smoothing_tau_ms;self.reset()
 
     def reset(self):
         self.key=None;self.since=None;self.path=[];self.fired=False
-        self.ema=TimeEMA(60);self.curved=False;self.axis=None
+        self.ema=TimeEMA(self.smoothing_tau_ms);self.curved=False;self.axis=None
         self.initial_direction=None;self.direction_anchor=None;self.curve_reason=''
         self.pose_since=None;self.anchor=None;self.anchor_at=None
         self.preparation_resets=0
@@ -69,7 +70,7 @@ class MotionRecognizer:
             self.fired=True;return None,0,'MOTION_TOO_SLOW'
         axis=self.axis if feature.pose=='V' else 'x'
         primary,secondary=(dx,dy) if axis=='x' else (dy,dx)
-        if axis and at-self.pose_since>=120 and 150<=elapsed<=600 and abs(primary)>=.15 and abs(primary)>=1.8*abs(secondary) and straight>=.90 and not self.curved:
+        if axis and at-self.pose_since>=120 and 150<=elapsed<=600 and abs(primary)>=self.swipe_distance and abs(primary)>=1.8*abs(secondary) and straight>=.90 and not self.curved:
             self.fired=True
             if feature.pose=='INDEX':gesture=Gesture.LEFT if dx<0 else Gesture.RIGHT
             elif axis=='x':gesture=Gesture.TAB_LEFT if dx<0 else Gesture.TAB_RIGHT
@@ -77,7 +78,7 @@ class MotionRecognizer:
             return gesture,1,'CONFIRMED'
         if feature.pose=='INDEX' and self.curved and 600<=elapsed<=2000 and self._circle(width,height):
             self.fired=True;return Gesture.CIRCLE,1,'CONFIRMED'
-        return None,min(1,max(abs(dx),abs(dy))/.15),'CIRCLE_CANDIDATE' if self.curved else 'MOTION_IN_PROGRESS'
+        return None,min(1,max(abs(dx),abs(dy))/self.swipe_distance),'CIRCLE_CANDIDATE' if self.curved else 'MOTION_IN_PROGRESS'
 
     def _settled(self,at,width,height):
         # Bound total excursion, not each frame's velocity: a slow continuous

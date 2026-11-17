@@ -3,5 +3,8 @@
   "version": 1,
   "camera": {"index": 0, "width": 640, "height": 480, "max_hands": 2},
   "timing": {"activate_ms": 600, "stop_ms": 350, "rearm_ms": 180, "cooldown_ms": 600, "confirmation_cooldown_ms": 1500, "event_ttl_ms": 250},
-  "gestures": {"swipe_min_ms": 150, "swipe_max_ms": 600, "swipe_distance": 0.15, "axis_ratio": 1.8, "straightness": 0.9, "zoom_step_ratio": 1.15, "capture_hold_ms": 800}
+  "gestures": {"swipe_min_ms": 150, "swipe_max_ms": 600, "swipe_distance": 0.15, "axis_ratio": 1.8, "straightness": 0.9, "zoom_step_ratio": 1.15, "capture_hold_ms": 800, "smoothing_tau_ms": 60, "pinch_enter": 0.30, "pinch_exit": 0.45},
+  "display": {"preview": true},
+  "capture": {"folder": null},
+  "logging": {"level": "INFO"}
 }

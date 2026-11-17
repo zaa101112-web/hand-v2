@@ -3,7 +3,7 @@ from dataclasses import asdict
 import multiprocessing as mp
 from queue import Empty
 from pathlib import Path
-import os
+import os,uuid
 
 
 def display_matches(display, monitors):
@@ -11,16 +11,19 @@ def display_matches(display, monitors):
                (display.left,display.top,display.width,display.height) for m in monitors)
 
 
-def capture_worker(result_queue, session, attempt, display, rect, folder):
+def capture_worker(result_queue, session, attempt, display, rect, folder,temporary_path):
     try:
         import mss
         from PIL import Image
         from .capture_files import atomic_png
         with mss.mss() as screen:
             if not display_matches(display,screen.monitors[1:]):raise ValueError('DISPLAY_CHANGED')
+            from .windows.display import physical_display
+            current=physical_display(display.name,None)
+            if current is not None and current!=display:raise ValueError('DISPLAY_CHANGED')
             shot=screen.grab({'left':display.left+rect.left,'top':display.top+rect.top,
                               'width':rect.width,'height':rect.height})
-            path=atomic_png(Image.frombytes('RGB',shot.size,shot.rgb),folder)
+            path=atomic_png(Image.frombytes('RGB',shot.size,shot.rgb),folder,temporary_path=temporary_path)
         result_queue.put((session,attempt,str(path),'',asdict(display)))
     except Exception as exc:
         result_queue.put((session,attempt,'',f'{type(exc).__name__}: {exc}',asdict(display)))
@@ -30,6 +33,7 @@ class CaptureWorker:
     def __init__(self):
         self.context=mp.get_context('spawn');self.process=None;self.queue=None
         self.request=None;self.received=False
+        self.temporary_path=None
 
     @property
     def busy(self):return self.process is not None
@@ -38,8 +42,9 @@ class CaptureWorker:
         if self.busy:return False
         self.queue=self.context.Queue();self.received=False
         self.request=(session.session_id,session.attempt,session.display)
+        self.temporary_path=Path(folder).resolve()/('.hand-capture-'+uuid.uuid4().hex+'.tmp')
         self.process=self.context.Process(target=capture_worker,args=(self.queue,session.session_id,
-            session.attempt,session.display,session.rect,str(folder)),name='HAND-capture',daemon=True)
+            session.attempt,session.display,session.rect,str(folder),str(self.temporary_path)),name='HAND-capture',daemon=True)
         try:self.process.start()
         except Exception:
             self.process=None;self.queue.close();self.queue=None;raise
@@ -67,6 +72,9 @@ class CaptureWorker:
             if self.process.is_alive():return False
             self.process.close();self.process=None
         if self.queue:self.queue.close();self.queue=None
+        if self.temporary_path:
+            try:self.temporary_path.unlink(missing_ok=True)
+            except OSError:return False
         return True
 
 

@@ -29,9 +29,60 @@ class Runtime:
     image_loader: object = None
     capture_worker: object = None
     capture_folder: object = None
+    settings: object = None
+    config_store: object = None
+    practice_runtime: object = None
+    practice_progress: object = None
+    restart_camera: bool = False
+
+    def enter_practice(self):
+        if self.practice_runtime:return True
+        if self.controller.state.mode.value=='CAPTURE':return False
+        self.workspace.practice=True
+        if self.controller.state.activation.value!='WAITING':self.controller.stop('연습 시작')
+        if self.controller.state.release_pending:return False
+        self.practice_runtime=build_runtime(ExecutionMode.SIMULATED,clock=self.clock,settings=self.settings)
+        from hand_v2.application.practice import PracticeProgress,PracticeActions
+        self.practice_progress=PracticeProgress()
+        p=self.practice_runtime
+        p.workspace.practice=True
+        p.controller.app_actions=PracticeActions(self.clock)
+        p.controller.begin_camera(self.controller.state.camera_epoch)
+        if self.controller.state.camera_status=='CONNECTED':p.controller.camera_connected(self.controller.state.camera_epoch)
+        return True
+
+    def stop(self,reason):
+        self.controller.stop(reason)
+        if self.practice_runtime:self.practice_runtime.controller.stop(reason)
+
+    def exit_practice(self):
+        if self.practice_runtime:
+            self.practice_runtime.controller.stop('연습 종료');self.practice_runtime.close()
+            self.practice_runtime=None
+        self.workspace.practice=False
+        self.controller.stop('연습 종료')
+
+    def apply_settings(self,settings):
+        from hand_v2.domain.configuration import validate_config
+        from hand_v2.domain.recognition import GestureRecognizer
+        value=validate_config(settings)
+        camera_changed=self.camera_index!=value['camera']['index']
+        wanted=self.camera_wanted
+        if camera_changed and self.camera:
+            self.stop_camera();self.restart_camera=wanted
+        self.settings=value;self.camera_index=value['camera']['index']
+        self.set_preview(value['display']['preview'])
+        if self.capture_worker:
+            from hand_v2.adapters.screen_capture import default_capture_folder
+            self.capture_folder=value['capture']['folder'] or default_capture_folder()
+        self.vision.recognizer=GestureRecognizer(value['gestures'])
+        self.controller.settings_changed()
+        if self.practice_runtime:self.practice_runtime.apply_settings(value)
 
     def pump(self):
         if self.workspace:self.workspace.tick()
+        if self.practice_runtime:
+            self.practice_runtime.scheduler.run_due();self.practice_runtime.controller.tick()
         if hasattr(self.keyboard, 'drain'):
             for kind,payload in self.keyboard.drain():
                 if kind=='command':
@@ -49,20 +100,29 @@ class Runtime:
                     if frame.camera_epoch!=self.controller.state.camera_epoch:continue
                     if not 0<=self.clock.now_ms()-frame.captured_at_ms<=250:continue
                     if self.controller.state.camera_status!='CONNECTED':self.controller.camera_connected(frame.camera_epoch)
-                    self.vision.accept(frame)
-                    self.controller.flush_executor()
+                    active=self.practice_runtime or self
+                    if active is not self:
+                        if active.controller.state.camera_epoch!=frame.camera_epoch:active.controller.begin_camera(frame.camera_epoch)
+                        active.controller.camera_connected(frame.camera_epoch)
+                    active.vision.accept(frame)
+                    active.controller.flush_executor()
+                    if self.practice_progress and active is not self:self.practice_progress.observe(active.vision.last_recognition,active.controller.state)
                     self.frame_times.append(frame.captured_at_ms)
                     self.frame_times=[t for t in self.frame_times if frame.captured_at_ms-t<=1000]
                     self.camera_fps=(len(self.frame_times)-1)*1000/max(1,self.frame_times[-1]-self.frame_times[0])
                     if payload.preview_rgb and self.preview_enabled and self.preview_listener:self.preview_listener(payload)
                 elif kind=='error':
                     self.controller.camera_failed(payload)
+                    if self.practice_runtime:self.practice_runtime.controller.camera_failed(payload)
                     self.camera_fps=0
                     if self.camera_wanted and self.camera_retries<3 and self.retry_at is None:self.retry_at=self.clock.now_ms()+1000
             if (self.camera_wanted and self.retry_at is not None and self.clock.now_ms()>=self.retry_at
                     and self.camera.session is None):
                 self.camera_retries+=1;self.retry_at=None
                 self._start_camera()
+            if self.restart_camera and self.camera.session is None:
+                self.restart_camera=False;self.start_camera(self.camera_index,self.preview_enabled)
+        if self.frame_times and self.clock.now_ms()-self.frame_times[-1]>1000:self.camera_fps=0.
 
     def _start_camera(self):
         try:
@@ -81,16 +141,18 @@ class Runtime:
         return self._start_camera()
 
     def stop_camera(self):
-        self.camera_wanted=False;self.retry_at=None
+        self.camera_wanted=False;self.retry_at=None;self.restart_camera=False
         if self.camera:self.camera.stop()
         self.camera_fps=0
         self.controller.camera_failed('CAMERA_OFF')
+        if self.practice_runtime:self.practice_runtime.controller.camera_failed('CAMERA_OFF')
 
     def set_preview(self,enabled):
         self.preview_enabled=enabled
         if self.camera:self.camera.set_preview(enabled)
 
     def close(self):
+        if self.image_loader:self.image_loader.close()
         if self.camera and self.camera.session is not None:return False
         closed = self.keyboard.close() if hasattr(self.keyboard,'close') else True
         # The worker can acknowledge release while close() waits for its thread.
@@ -99,7 +161,7 @@ class Runtime:
         return closed
 
 
-def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True):
+def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True,settings=None,config_store=None):
     mode = ExecutionMode(mode)
     clock = clock or MonotonicClock()
     scheduler, ids, ui = Scheduler(clock), SequenceIds(), RecordingUi()
@@ -120,6 +182,10 @@ def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True):
         keyboard = ScriptedKeyboard(clock)
     controller = Controller(clock, scheduler, ids, keyboard, foreground, ui, mode)
     runtime = Runtime(controller, clock, scheduler, ids, keyboard, foreground, ui)
+    from hand_v2.adapters.configuration import read_defaults
+    from hand_v2.domain.configuration import validate_config
+    runtime.settings=validate_config(settings or read_defaults());runtime.config_store=config_store
+    runtime.camera_index=runtime.settings['camera']['index'];runtime.preview_enabled=runtime.settings['display']['preview']
     from hand_v2.application.workspace import DesktopWorkspace
     runtime.workspace=DesktopWorkspace(controller,clock,ids)
     controller.app_actions=runtime.workspace
@@ -129,10 +195,10 @@ def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True):
     if mode==ExecutionMode.REAL:
         from hand_v2.adapters.screen_capture import CaptureWorker,default_capture_folder
         runtime.capture_worker=CaptureWorker()
-        runtime.capture_folder=default_capture_folder()
+        runtime.capture_folder=runtime.settings['capture']['folder'] or default_capture_folder()
     from hand_v2.application.vision_control import VisionControl
     from hand_v2.domain.recognition import GestureRecognizer
-    runtime.vision=VisionControl(controller,GestureRecognizer())
+    runtime.vision=VisionControl(controller,GestureRecognizer(runtime.settings['gestures']))
     if mode==ExecutionMode.REAL:
         from hand_v2.adapters.vision.supervisor import CameraSupervisor
         runtime.camera=CameraSupervisor(clock)

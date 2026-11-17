@@ -16,13 +16,17 @@ class Recognition:
 
 
 class GestureRecognizer:
-    def __init__(self):
+    def __init__(self,settings=None):
+        self.settings=settings or {}
         self.epoch=None;self.last_at=None
         self.reset()
 
     def reset(self):
         self._hold_key=None;self._hold_since=None;self._hold_fired=False
-        self.motion=MotionRecognizer();self.pair=PairRecognizer();self.fist=FistOpenRecognizer()
+        s=self.settings
+        self.motion=MotionRecognizer(s.get('swipe_distance',.15),s.get('smoothing_tau_ms',60))
+        self.pair=PairRecognizer(s.get('pinch_enter',.30),s.get('pinch_exit',.45),s.get('zoom_step_ratio',1.15),s.get('smoothing_tau_ms',60))
+        self.fist=FistOpenRecognizer()
 
     def _hold(self,key,at,ms,gesture,label):
         if key!=self._hold_key:

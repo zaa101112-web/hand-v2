@@ -66,9 +66,10 @@ class MainWindow(QMainWindow):
         self.controller = runtime.controller
         self._closing=False
         self._close_started=None
+        self._practice_requested=False
         self.setWindowTitle("HAND v2 — 손동작 단축키 제어")
         self.resize(1280,860)
-        self.setMinimumSize(960,720)
+        self.setMinimumSize(800,600)
         self.setStyleSheet(STYLE)
         self._build()
         self.hotkey=None
@@ -82,7 +83,7 @@ class MainWindow(QMainWindow):
         self._dialog_request=None
         if runtime.controller.state.execution_mode==ExecutionMode.REAL:
             from hand_v2.adapters.windows.hotkey import GlobalStopHotkey
-            self.hotkey=GlobalStopHotkey(int(self.winId()),lambda:self.controller.stop('전역 F8'),runtime.foreground.native)
+            self.hotkey=GlobalStopHotkey(int(self.winId()),lambda:runtime.stop('전역 F8'),runtime.foreground.native)
             self.banner.setText('카메라를 켜고 V를 0.6초 유지해 시작하세요. '+
                                 ('전역 F8 중단 사용 가능' if self.hotkey.registered else 'F8 등록 실패 · 중단 버튼/숫자 3을 사용하세요'))
         self.bridge = ControllerBridge(self)
@@ -95,7 +96,9 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self._tick)
         self.timer.start()
         self.escape = QShortcut(QKeySequence("Escape"),self)
-        self.escape.activated.connect(lambda:self.controller.stop("Esc"))
+        self.escape.activated.connect(lambda:runtime.stop("Esc"))
+        self.camera_combo.setCurrentIndex(runtime.camera_index)
+        self.preview_checkbox.setChecked(runtime.preview_enabled)
 
     def _build(self):
         root = QWidget(); root.setObjectName("Root")
@@ -105,7 +108,7 @@ class MainWindow(QMainWindow):
         head = QHBoxLayout(header);head.setContentsMargins(25,17,25,17)
         head.addWidget(label("HAND","Logo"));head.addWidget(label("손동작 단축키 제어","Muted"));head.addStretch()
         self.state_label = label("제어 대기");head.addWidget(self.state_label)
-        self.stop_button = button("중단",lambda:self.controller.stop("중단 버튼"),"Stop");head.addWidget(self.stop_button)
+        self.stop_button = button("중단",lambda:self.runtime.stop("중단 버튼"),"Stop");head.addWidget(self.stop_button)
         head.addWidget(button('작은 상태창',self.show_mini_panel))
         outer.addWidget(header)
         body = QHBoxLayout();body.setSpacing(0);outer.addLayout(body,1)
@@ -128,12 +131,17 @@ class MainWindow(QMainWindow):
             g.addWidget(label(text))
         g.addWidget(label("각 명령 후 손을 펼쳐 자세를 해제하세요. 숫자 3, F8 또는 중단 버튼으로 중단합니다. 북마크 창을 닫은 뒤 작은 상태창에서 ‘계속’을 눌러야 다른 명령을 실행할 수 있습니다. 손을 내려도 활성 상태는 유지됩니다.","Muted"));g.addStretch()
         self._add_page("guide",guide)
-        for key,title,detail in (("practice","연습하기","카메라를 사용한 동작 연습과 감도 추천은 구현 예정입니다."),("settings","환경설정","인식 감도·카메라·캡처 저장 폴더 설정은 구현 예정입니다.")):
-            page=QWidget();page.setAccessibleDescription(detail);p=QVBoxLayout(page);p.addWidget(label(title,"Title"));p.addWidget(label(detail,"Muted"));p.addStretch();self._add_page(key,page)
+        from .practice_panel import PracticePanel
+        from .settings_panel import SettingsPanel
+        self.practice_panel=PracticePanel(self.runtime,self.toggle_camera)
+        self.settings_panel=SettingsPanel(self.runtime,self.after_release,self.settings_applied)
+        self._add_page('practice',self.practice_panel);self._add_page('settings',self.settings_panel)
         self.select_page("control")
 
     def _add_page(self,key,page):
-        self._page_indices[key]=self.pages.addWidget(page)
+        scroll=QScrollArea();scroll.setWidgetResizable(True);scroll.setWidget(page)
+        scroll.setAccessibleDescription(page.accessibleDescription() or key)
+        self._page_indices[key]=self.pages.addWidget(scroll)
 
     def _control_page(self):
         page=QWidget();v=QVBoxLayout(page);v.setContentsMargins(0,0,0,0);v.setSpacing(15)
@@ -182,9 +190,14 @@ class MainWindow(QMainWindow):
         return page
 
     def select_page(self,key):
+        if key!='practice' and (self._practice_requested or self.runtime.practice_runtime):
+            self._practice_requested=False;self.runtime.exit_practice()
         self.pages.setCurrentIndex(self._page_indices[key])
         for name,b in self.nav_buttons.items():b.setChecked(name==key)
-        if key=="practice":self.controller.stop("연습 화면")
+        if key=="practice":
+            self.runtime.stop('연습 화면');self._practice_requested=True
+        if key=='settings' and hasattr(self,'_dialog_request'):
+            self.after_release(self.settings_panel.reload)
 
     def _simulate(self,gesture):
         if self.controller.state.execution_mode!=ExecutionMode.SIMULATED:
@@ -205,6 +218,8 @@ class MainWindow(QMainWindow):
         self.runtime.pump()
         self.runtime.scheduler.run_due()
         self.controller.tick()
+        if self._practice_requested:self.runtime.enter_practice()
+        self.practice_panel.refresh()
         self.capture_ui.tick()
         self._poll_dialog()
         for result,error in self.runtime.image_loader.poll():
@@ -224,8 +239,13 @@ class MainWindow(QMainWindow):
         self.camera_info.setText(f'카메라 연결됨 · {self.runtime.camera_fps:.1f} fps' if state=='CONNECTED' else
                                  '카메라 연결 중…' if state=='CONNECTING' else '카메라 꺼짐 / 연결 확인 필요')
         if self._closing:
-            if not running:self.close()
-            elif self.runtime.clock.now_ms()-self._close_started>=4500:
+            elapsed=self.runtime.clock.now_ms()-self._close_started
+            capture=self.runtime.capture_worker
+            if capture and capture.busy and elapsed>=5000:
+                self.shutdown_ok=False;capture.abort()
+            busy=running or bool(capture and capture.busy) or self.runtime.image_loader.busy
+            if not busy:self.close()
+            elif (running and elapsed>=4500) or elapsed>=10000:
                 self.shutdown_ok=False
                 from PySide6.QtWidgets import QApplication
                 QApplication.instance().exit(2)
@@ -264,6 +284,10 @@ class MainWindow(QMainWindow):
                 self.runtime.image_loader.submit(paths);self.image_panel.excluded.setText('이미지를 읽는 중입니다…')
         self.after_release(select)
 
+    def settings_applied(self):
+        self.camera_combo.setCurrentIndex(self.runtime.camera_index)
+        self.preview_checkbox.setChecked(self.runtime.preview_enabled)
+
     def toggle_preview(self,enabled):
         self.runtime.set_preview(enabled)
         if not enabled:self.preview_label.clear();self.preview_label.setText('미리보기 꺼짐 · 손동작 인식은 계속됩니다.')
@@ -282,6 +306,9 @@ class MainWindow(QMainWindow):
             for x,y in points:painter.drawEllipse(x-3,y-3,6,6)
         painter.end()
         self.preview_label.setPixmap(QPixmap.fromImage(image).scaled(self.preview_label.size(),Qt.AspectRatioMode.KeepAspectRatio,Qt.TransformationMode.SmoothTransformation))
+        if self.runtime.practice_runtime:
+            target=self.practice_panel.preview
+            target.setPixmap(QPixmap.fromImage(image).scaled(target.size(),Qt.AspectRatioMode.KeepAspectRatio,Qt.TransformationMode.SmoothTransformation))
 
     def _render_target(self):
         simulated=self.controller.state.execution_mode==ExecutionMode.SIMULATED
@@ -331,13 +358,15 @@ class MainWindow(QMainWindow):
             self.runtime.stop_camera()
             self.capture_ui.close()
             self.runtime.image_loader.close()
-        if self.runtime.camera and self.runtime.camera.session is not None:
+            if self.runtime.practice_runtime:self.runtime.exit_practice()
+        if ((self.runtime.camera and self.runtime.camera.session is not None) or
+            (self.runtime.capture_worker and self.runtime.capture_worker.busy) or self.runtime.image_loader.busy):
             self.camera_button.setEnabled(False)
-            self.camera_info.setText('카메라와 입력을 정리하고 있습니다…')
+            self.camera_info.setText('카메라·캡처·이미지 작업과 입력을 정리하고 있습니다…')
             event.ignore();return
         self.timer.stop()
         self.controller.stop("앱 종료")
-        if self.hotkey:self.shutdown_ok=self.hotkey.close()
+        if self.hotkey:self.shutdown_ok=self.hotkey.close() and self.shutdown_ok
         self.mini_panel.close()
         self.shutdown_ok=self.runtime.close() and self.shutdown_ok
         self.runtime.ui.listener=None

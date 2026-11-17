@@ -27,12 +27,13 @@ def test_ui_reports_simulated_output_and_stop_separately(qtbot, tmp_path):
     assert window.grab().save(str(tmp_path/"simulated-ui.png"))
 
 
-def test_menu_placeholders_do_not_claim_finished_features(qtbot):
+def test_menu_pages_have_accessible_descriptions(qtbot):
     window = MainWindow(build_runtime(clock=ManualClock(1000)))
     qtbot.addWidget(window)
     for key in ("practice", "settings"):
         window.select_page(key)
-        assert "구현 예정" in window.pages.currentWidget().accessibleDescription()
+        assert window.pages.currentWidget().accessibleDescription()
+        assert "구현 예정" not in window.pages.currentWidget().accessibleDescription()
 
 
 def test_core_dependencies_point_inwards():
