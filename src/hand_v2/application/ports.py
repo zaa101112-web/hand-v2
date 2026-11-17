@@ -30,3 +30,6 @@ class UiPort(Protocol):
 
 class AppActionPort(Protocol):
     def execute(self, command: Command) -> Result: ...
+class EventSink:
+    def record(self,kind,**fields):pass
+

@@ -34,6 +34,9 @@ class Runtime:
     practice_runtime: object = None
     practice_progress: object = None
     restart_camera: bool = False
+    events: object = None
+    calibration: object = None
+    last_camera_log: int = 0
 
     def enter_practice(self):
         if self.practice_runtime:return True
@@ -44,6 +47,8 @@ class Runtime:
         self.practice_runtime=build_runtime(ExecutionMode.SIMULATED,clock=self.clock,settings=self.settings)
         from hand_v2.application.practice import PracticeProgress,PracticeActions
         self.practice_progress=PracticeProgress()
+        from hand_v2.domain.calibration import Calibration
+        self.calibration=Calibration()
         p=self.practice_runtime
         p.workspace.practice=True
         p.controller.app_actions=PracticeActions(self.clock)
@@ -54,11 +59,13 @@ class Runtime:
     def stop(self,reason):
         self.controller.stop(reason)
         if self.practice_runtime:self.practice_runtime.controller.stop(reason)
+        if self.calibration:self.calibration.cancel()
 
     def exit_practice(self):
         if self.practice_runtime:
             self.practice_runtime.controller.stop('연습 종료');self.practice_runtime.close()
             self.practice_runtime=None
+        if self.calibration:self.calibration.cancel()
         self.workspace.practice=False
         self.controller.stop('연습 종료')
 
@@ -71,6 +78,7 @@ class Runtime:
         if camera_changed and self.camera:
             self.stop_camera();self.restart_camera=wanted
         self.settings=value;self.camera_index=value['camera']['index']
+        if self.events and hasattr(self.events,'level'):self.events.level=value['logging']['level']
         self.set_preview(value['display']['preview'])
         if self.capture_worker:
             from hand_v2.adapters.screen_capture import default_capture_folder
@@ -107,9 +115,14 @@ class Runtime:
                     active.vision.accept(frame)
                     active.controller.flush_executor()
                     if self.practice_progress and active is not self:self.practice_progress.observe(active.vision.last_recognition,active.controller.state)
+                    if self.calibration and active is not self:self.calibration.accept(frame)
                     self.frame_times.append(frame.captured_at_ms)
                     self.frame_times=[t for t in self.frame_times if frame.captured_at_ms-t<=1000]
                     self.camera_fps=(len(self.frame_times)-1)*1000/max(1,self.frame_times[-1]-self.frame_times[0])
+                    if self.events and self.clock.now_ms()-self.last_camera_log>=1000:
+                        self.last_camera_log=self.clock.now_ms()
+                        self.events.record('camera',frame_id=frame.frame_id,epoch=frame.camera_epoch,
+                                           frame_age_ms=self.clock.now_ms()-frame.captured_at_ms,fps=self.camera_fps)
                     if payload.preview_rgb and self.preview_enabled and self.preview_listener:self.preview_listener(payload)
                 elif kind=='error':
                     self.controller.camera_failed(payload)
@@ -146,6 +159,7 @@ class Runtime:
         self.camera_fps=0
         self.controller.camera_failed('CAMERA_OFF')
         if self.practice_runtime:self.practice_runtime.controller.camera_failed('CAMERA_OFF')
+        if self.calibration:self.calibration.cancel()
 
     def set_preview(self,enabled):
         self.preview_enabled=enabled
@@ -158,10 +172,11 @@ class Runtime:
         # The worker can acknowledge release while close() waits for its thread.
         # Deliver that acknowledgement before publishing the final app state.
         self.pump()
+        if self.events and hasattr(self.events,'close'):closed=self.events.close() and closed
         return closed
 
 
-def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True,settings=None,config_store=None):
+def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True,settings=None,config_store=None,events=None):
     mode = ExecutionMode(mode)
     clock = clock or MonotonicClock()
     scheduler, ids, ui = Scheduler(clock), SequenceIds(), RecordingUi()
@@ -180,8 +195,13 @@ def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True,sett
     else:
         foreground = FakeForeground(clock)
         keyboard = ScriptedKeyboard(clock)
-    controller = Controller(clock, scheduler, ids, keyboard, foreground, ui, mode)
+    if events is None and mode==ExecutionMode.REAL and config_store is not None:
+        from hand_v2.adapters.configuration import user_data_dir
+        from hand_v2.adapters.event_log import JsonlEvents
+        events=JsonlEvents(user_data_dir()/'logs',level=(settings or {}) .get('logging',{}).get('level','INFO'))
+    controller = Controller(clock, scheduler, ids, keyboard, foreground, ui, mode,events=events)
     runtime = Runtime(controller, clock, scheduler, ids, keyboard, foreground, ui)
+    runtime.events=controller.events
     from hand_v2.adapters.configuration import read_defaults
     from hand_v2.domain.configuration import validate_config
     runtime.settings=validate_config(settings or read_defaults());runtime.config_store=config_store

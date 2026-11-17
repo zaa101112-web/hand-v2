@@ -133,7 +133,7 @@ class MainWindow(QMainWindow):
         self._add_page("guide",guide)
         from .practice_panel import PracticePanel
         from .settings_panel import SettingsPanel
-        self.practice_panel=PracticePanel(self.runtime,self.toggle_camera)
+        self.practice_panel=PracticePanel(self.runtime,self.toggle_camera,self.after_release)
         self.settings_panel=SettingsPanel(self.runtime,self.after_release,self.settings_applied)
         self._add_page('practice',self.practice_panel);self._add_page('settings',self.settings_panel)
         self.select_page("control")
@@ -231,6 +231,8 @@ class MainWindow(QMainWindow):
         self.image_panel.refresh()
         self.image_panel.setVisible(self.controller.state.mode==Mode.IMAGE)
         self._render_target()
+        if getattr(self.runtime.events,'error',''):
+            self.capture_notice.setText('진단 로그 저장을 확인하세요. 제어 상태는 별도로 유지됩니다. '+self.runtime.events.error)
         camera=self.runtime.camera
         running=bool(camera and camera.session is not None)
         self.camera_button.setText('카메라 끄기' if self.runtime.camera_wanted else '카메라 켜기')

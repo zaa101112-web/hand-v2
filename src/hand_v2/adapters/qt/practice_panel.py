@@ -4,8 +4,8 @@ from hand_v2.application.practice import PracticeProgress
 
 
 class PracticePanel(QWidget):
-    def __init__(self,runtime,camera_toggle):
-        super().__init__();self.runtime=runtime;self.demo=False
+    def __init__(self,runtime,camera_toggle,after_release):
+        super().__init__();self.runtime=runtime;self.demo=False;self.after_release=after_release;self.applied=False
         self.setAccessibleDescription('카메라를 사용한 안전한 손동작 연습. 실제 키와 캡처 저장 없음.')
         v=QVBoxLayout(self);title=QLabel('연습하기');title.setObjectName('Title');v.addWidget(title)
         self.status=QLabel('실제 키 입력·파일 저장 없이 연습합니다.');self.status.setWordWrap(True);v.addWidget(self.status)
@@ -22,7 +22,31 @@ class PracticePanel(QWidget):
         demo_row.addWidget(self.gestures)
         demo=QPushButton('가상 동작 예시 실행');demo.clicked.connect(self.example);demo_row.addWidget(demo)
         neutral=QPushButton('가상 자세 해제');neutral.clicked.connect(self.neutral);demo_row.addWidget(neutral)
+        self.calibration_info=QLabel();self.calibration_info.setWordWrap(True);v.addWidget(self.calibration_info)
+        calibration_row=QHBoxLayout();v.addLayout(calibration_row)
+        start=QPushButton('감도 추천 측정 시작');start.clicked.connect(self.start_calibration);calibration_row.addWidget(start)
+        cancel=QPushButton('측정 취소');cancel.clicked.connect(lambda:runtime.calibration.cancel() if runtime.calibration else None);calibration_row.addWidget(cancel)
+        self.apply_recommendation=QPushButton('추천값 저장 및 적용');self.apply_recommendation.clicked.connect(self.apply_calibration);calibration_row.addWidget(self.apply_recommendation)
+        self.apply_recommendation.setEnabled(False)
+        self.calibration_message=QLabel();self.calibration_message.setWordWrap(True);v.addWidget(self.calibration_message)
         v.addStretch();self.layout_box=v
+
+    def start_calibration(self):
+        if self.runtime.calibration:
+            self.runtime.calibration.start();self.applied=False;self.calibration_message.setText('카메라 앞에서 검지만 펴고 5초 동안 정지하세요. 이후 매번 손을 펼친 뒤 좌우 각각 10회 쓸어주세요.')
+
+    def apply_calibration(self):
+        c=self.runtime.calibration
+        if not c or c.phase!='READY' or c.recommendation is None:return
+        patch={'gestures':{'swipe_distance':c.recommendation}}
+        def apply():
+            try:
+                from hand_v2.domain.configuration import merge_leaves,validate_config
+                value=self.runtime.config_store.save(patch) if self.runtime.config_store else validate_config(merge_leaves(self.runtime.settings,patch))
+                self.runtime.apply_settings(value);self.applied=True
+                self.calibration_message.setText('추천값을 적용했습니다. 손을 펼쳐 다시 준비하세요.')
+            except (ValueError,OSError) as exc:self.calibration_message.setText('추천값을 적용하지 않았습니다: '+str(exc))
+        self.after_release(apply)
 
     def example(self):
         p=self.runtime.practice_runtime
@@ -45,3 +69,9 @@ class PracticePanel(QWidget):
         self.feedback.setText(f'{s.activation.value} · {s.last_candidate}\n'+('가상 결과: '+s.last_execution.reason if s.last_execution else '명령 대기'))
         progress=self.runtime.practice_progress
         self.tasks.setText('\n'.join(('✓ ' if gesture in progress.completed else '○ ')+name for name,gesture in PracticeProgress.TASKS))
+        c=self.runtime.calibration
+        if c:
+            phases={'IDLE':'측정 전','STILL':'검지를 편 채 5초 정지','LEFT':'손 펼침 → 검지 왼쪽 쓸기','RIGHT':'손 펼침 → 검지 오른쪽 쓸기','READY':'추천 준비 완료','ERROR':'추천 보류'}
+            self.calibration_info.setText(f"감도 추천 · {phases.get(c.phase,c.phase)}\n정지 {min(c.still_ms,5000)/1000:.1f}/5초 · 왼쪽 {len(c.left)}/10 · 오른쪽 {len(c.right)}/10\n현재 {self.runtime.settings['gestures']['swipe_distance']:.2f}"+
+                (f' → 추천 {c.recommendation:.2f} (자동 적용하지 않음)' if c.recommendation is not None else '')+('\n'+c.error if c.error else ''))
+            self.apply_recommendation.setEnabled(c.phase=='READY' and not self.applied)

@@ -84,3 +84,7 @@
 {"label": "m06-settings-ui-green", "at_utc": "2026-11-17T06:50:39.142264+00:00", "duration_seconds": 2.516, "exit_code": 0, "expected_failure": false, "targets": ["tests/integration/test_settings_practice_ui.py", "tests/integration/test_ui_architecture.py", "tests/integration/test_practice_configuration.py", "tests/unit/test_configuration.py"]}
 {"label": "m06-recovery-red", "at_utc": "2026-11-17T06:51:39.052158+00:00", "duration_seconds": 2.109, "exit_code": 1, "expected_failure": true, "targets": ["tests/integration/test_worker_recovery.py"]}
 {"label": "m06-regression", "at_utc": "2026-11-17T06:52:47.005879+00:00", "duration_seconds": 11.156, "exit_code": 0, "expected_failure": false, "targets": ["tests"]}
+{"label": "m07-calibration-log-red", "at_utc": "2026-11-17T06:57:55.777854+00:00", "duration_seconds": 2.078, "exit_code": 2, "expected_failure": true, "targets": ["tests/unit/test_calibration.py", "tests/integration/test_event_log.py"]}
+{"label": "m07-calibration-log-green", "at_utc": "2026-11-17T06:59:27.785559+00:00", "duration_seconds": 2.438, "exit_code": 0, "expected_failure": false, "targets": ["tests/unit/test_calibration.py", "tests/integration/test_event_log.py"]}
+{"label": "m07-recommendation-ui-red", "at_utc": "2026-11-17T07:00:09.635626+00:00", "duration_seconds": 2.64, "exit_code": 1, "expected_failure": true, "targets": ["tests/integration/test_calibration_ui.py"]}
+{"label": "m07-regression", "at_utc": "2026-11-17T07:00:54.559766+00:00", "duration_seconds": 12.656, "exit_code": 0, "expected_failure": false, "targets": ["tests"]}

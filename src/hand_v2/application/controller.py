@@ -4,17 +4,19 @@ from hand_v2.domain.mapping import action_for, chord_for, target_for
 from hand_v2.domain.models import (Action, Activation, AppState, Command, ExecutionMode,
                                    Gesture, Mode, Result, Status)
 from hand_v2.domain.queue import CommandQueue
-from .ports import Clock, ForegroundPort, IdSource, KeyboardPort, TimerPort, UiPort
+from .ports import Clock, ForegroundPort, IdSource, KeyboardPort, TimerPort, UiPort,EventSink
 
 
 class Controller:
     """Single writer of application state. All external effects are injected."""
     def __init__(self, clock: Clock, scheduler: TimerPort, ids: IdSource,
                  keyboard: KeyboardPort, foreground: ForegroundPort, ui: UiPort,
-                 execution_mode=ExecutionMode.SIMULATED, app_actions=None):
+                 execution_mode=ExecutionMode.SIMULATED, app_actions=None,events=None):
         self.clock, self.scheduler, self.ids = clock, scheduler, ids
         self.keyboard, self.foreground, self.ui = keyboard, foreground, ui
         self.app_actions = app_actions
+        self.events=events or EventSink()
+        self._command_times={};self._release_at=None
         self.state = AppState(execution_mode=execution_mode)
         self.queue = CommandQueue()
         self._seen = {}
@@ -43,6 +45,7 @@ class Controller:
         self.request_release()
 
     def request_release(self):
+        self._release_at=self.clock.now_ms()
         self._pending_release = self.ids.next_id("release")
         self._release_ok = False
         self._release_revision = self.state.keyboard_state.revision
@@ -73,6 +76,7 @@ class Controller:
                 and state.release_request_id == self._pending_release
                 and state.release_status == "CONFIRMED" and not state.owned_keys):
             self._pending_release = None
+            self.events.record('release',release_ms=self.clock.now_ms()-self._release_at,owned_count=0,status='CONFIRMED',context=self.state.context_version)
             self._set(release_pending=False, blocked_reasons=self.state.blocked_reasons - {"INPUT_RELEASE_FAILED"})
 
     def activate(self):
@@ -115,6 +119,7 @@ class Controller:
             self._record(Result(cmd.command_id, cmd.context_version, self.clock.now_ms(), Status.CANCELLED, reason))
 
     def stop(self, reason="button"):
+        self.events.record('stop',reason='STOP_REQUEST',context=self.state.context_version,at_ms=self.clock.now_ms())
         self._reset_neutral()
         self._set(activation=Activation.WAITING, ready=False, context_version=self.state.context_version+1,
                   last_stop_reason=reason, last_stop_at_ms=self.clock.now_ms())
@@ -214,6 +219,10 @@ class Controller:
         self.request_release()
 
     def _record(self, result):
+        times=self._command_times.pop(result.command_id,None)
+        self.events.record('command',command_id=result.command_id,context=result.context_version,status=result.status,
+                           reason=result.reason,at_ms=result.completed_at_ms,
+                           **({'input_ms':result.completed_at_ms-times[0],'capture_to_result_ms':result.completed_at_ms-times[1]} if times else {}))
         self._set(last_execution=result)
         return result
 
@@ -254,6 +263,9 @@ class Controller:
                       self.state.context_version, now, event.captured_at_ms+250, snapshot)
         if not self.queue.offer(cmd):
             return self._blocked(event.event_id, "QUEUE_FULL")
+        self._command_times[cmd.command_id]=(now,event.captured_at_ms)
+        self.events.record('gesture',event_id=event.event_id,command_id=cmd.command_id,context=event.context_version,
+                           epoch=event.camera_epoch,gesture=event.gesture,action=action,target=target,at_ms=now)
         self._cooldown_until = now + (1500 if action in (Action.BOOKMARK, Action.CAPTURE) else 600)
         self._reset_neutral()
         self._set(ready=False)

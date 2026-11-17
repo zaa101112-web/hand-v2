@@ -1,0 +1,16 @@
+{
+  "milestone": "M07",
+  "plan_scope": "D31-D35 (5 man-day estimated scope)",
+  "date": "2026-11-17",
+  "implementation": ["evidence-based sensitivity recommendation, explicit atomic apply", "bounded asynchronous JSONL diagnostics: 5 MiB x 3 files, no images/URLs/raw typing", "recognition/controller/result and key release timing records", "complete deterministic regression and separate practice/replay effects"],
+  "automatic": {"passed": 354, "report": "tdd/m07-regression.txt", "red": ["tdd/m07-calibration-log-red.txt", "tdd/m07-recommendation-ui-red.txt"]},
+  "actual_chrome": {
+    "accepted_report": "m07-chrome-effects-retry.json",
+    "accepted_gestures": ["PAGE_DOWN", "PAGE_UP", "ZOOM_IN", "ZOOM_OUT", "CIRCLE", "LEFT", "RIGHT"],
+    "excluded_after_safety_stop": ["TAB_LEFT", "TAB_RIGHT"],
+    "reason": "Computer Use could not confidently determine the current URL after opening the test tab and stopped. Subsequent already-queued CLI tab checks are retained but excluded. No further browser input or alternate input route is authorized by this evidence.",
+    "initial_failure": "m07-chrome-effects.json retained: initial navigation changed Chrome page focus to toolbar. Body-focus retry passed seven effects; no claim that the initial run passed."
+  },
+  "stability": {"status": "RUNNING_AT_CHECKPOINT", "report": "m07-stability.json", "note": "Actual camera/model/Qt with exclusively fake outputs; final result belongs in M08 audit."},
+  "not_run": ["remaining actual Chrome cases after URL safety stop", "100 actual OS latency samples per command", "D35 two-person hand accuracy (deferred to final acceptance per user)"]
+}

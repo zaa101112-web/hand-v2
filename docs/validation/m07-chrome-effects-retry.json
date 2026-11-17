@@ -1,0 +1,329 @@
+{
+  "source": "synthetic semantic gestures -> actual Windows input -> controlled Chrome page effects",
+  "records": [
+    {
+      "case": "scroll_zoom_reload",
+      "gesture": "PAGE_DOWN",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899389.689721
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 792,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899397.4804144
+      },
+      "result": {
+        "command_id": "command-000008",
+        "context_version": 0,
+        "completed_at_ms": 446592578,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=2/2; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "scroll_zoom_reload",
+      "gesture": "PAGE_UP",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 792,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899397.4804144
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899398.2858226
+      },
+      "result": {
+        "command_id": "command-000010",
+        "context_version": 0,
+        "completed_at_ms": 446593359,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=2/2; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "scroll_zoom_reload",
+      "gesture": "ZOOM_IN",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899398.2858226
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.6500000953674316,
+        "width": 942,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899398.981038
+      },
+      "result": {
+        "command_id": "command-000012",
+        "context_version": 0,
+        "completed_at_ms": 446594187,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "scroll_zoom_reload",
+      "gesture": "ZOOM_OUT",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.6500000953674316,
+        "width": 942,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899398.981038
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899399.779903
+      },
+      "result": {
+        "command_id": "command-000014",
+        "context_version": 0,
+        "completed_at_ms": 446594984,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "scroll_zoom_reload",
+      "gesture": "CIRCLE",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 2,
+        "loaded": 1794899296272,
+        "received": 1794899399.779903
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 3,
+        "loaded": 1794899400504,
+        "received": 1794899400.615644
+      },
+      "result": {
+        "command_id": "command-000016",
+        "context_version": 0,
+        "completed_at_ms": 446595765,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "back_forward",
+      "gesture": "LEFT",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 3,
+        "loaded": 1794899400504,
+        "received": 1794899400.615644
+      },
+      "after": {
+        "name": "A",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 3,
+        "loaded": 1794899427392,
+        "received": 1794899427.5011096
+      },
+      "result": {
+        "command_id": "command-000018",
+        "context_version": 0,
+        "completed_at_ms": 446622640,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "back_forward",
+      "gesture": "RIGHT",
+      "status": "PASS",
+      "before": {
+        "name": "A",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 3,
+        "loaded": 1794899427392,
+        "received": 1794899427.5011096
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794899428333,
+        "received": 1794899428.442282
+      },
+      "result": {
+        "command_id": "command-000020",
+        "context_version": 0,
+        "completed_at_ms": 446623593,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "previous_tab",
+      "gesture": "TAB_LEFT",
+      "status": "PASS",
+      "before": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 1,
+        "loaded": 1794899473555,
+        "received": 1794899473.6018684
+      },
+      "after": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794899428333,
+        "received": 1794899481.3407385
+      },
+      "result": {
+        "command_id": "command-000022",
+        "context_version": 0,
+        "completed_at_ms": 446676531,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=6/6; page effect unverified"
+      },
+      "confirmation_pending": false
+    },
+    {
+      "case": "next_tab",
+      "gesture": "TAB_RIGHT",
+      "status": "PASS",
+      "before": {
+        "name": "B",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 4,
+        "loaded": 1794899428333,
+        "received": 1794899481.3407385
+      },
+      "after": {
+        "name": "C",
+        "visible": "visible",
+        "focused": true,
+        "scrollY": 0,
+        "ratio": 1.5,
+        "width": 1036,
+        "loads": 1,
+        "loaded": 1794899473555,
+        "received": 1794899482.8664474
+      },
+      "result": {
+        "command_id": "command-000024",
+        "context_version": 0,
+        "completed_at_ms": 446678078,
+        "status": "SENT",
+        "reason": "OS_INPUT_SENT",
+        "detail": "accepted=4/4; page effect unverified"
+      },
+      "confirmation_pending": false
+    }
+  ]
+}
