@@ -37,6 +37,28 @@ class Runtime:
     events: object = None
     calibration: object = None
     last_camera_log: int = 0
+    shutdown_guard: object = None
+
+    def emergency_cleanup(self):
+        # Called only after the normal close deadline is about to expire. No Qt calls.
+        details={'status':'FORCED','exit_code':2,'keys_confirmed':False,'file_completion':'UNCONFIRMED'}
+        if self.config_store:
+            from hand_v2.adapters.shutdown import write_shutdown_report
+            from hand_v2.adapters.configuration import user_data_dir
+            write_shutdown_report(user_data_dir(),details)
+        try:
+            self.keyboard.release_owned_keys('watchdog-shutdown',self.controller.state.context_version)
+            if hasattr(self.keyboard,'wait_idle'):self.keyboard.wait_idle(.1)
+        except Exception:pass
+        try:
+            if self.camera and self.camera.session:
+                session=self.camera.session;session.request_stop()
+                if session.is_alive():session.terminate()
+                if session.is_alive():session.kill()
+        except Exception:pass
+        try:
+            if self.capture_worker and self.capture_worker.busy:self.capture_worker.abort()
+        except Exception:pass
 
     def enter_practice(self):
         if self.practice_runtime:return True
@@ -173,6 +195,8 @@ class Runtime:
         # Deliver that acknowledgement before publishing the final app state.
         self.pump()
         if self.events and hasattr(self.events,'close'):closed=self.events.close() and closed
+        if self.shutdown_guard:
+            self.shutdown_guard.cancel();closed=closed and not self.shutdown_guard.triggered
         return closed
 
 
@@ -216,6 +240,8 @@ def build_runtime(mode=ExecutionMode.SIMULATED, clock=None, initialize=True,sett
         from hand_v2.adapters.screen_capture import CaptureWorker,default_capture_folder
         runtime.capture_worker=CaptureWorker()
         runtime.capture_folder=runtime.settings['capture']['folder'] or default_capture_folder()
+        from hand_v2.adapters.shutdown import ShutdownWatchdog
+        runtime.shutdown_guard=ShutdownWatchdog(runtime.emergency_cleanup)
     from hand_v2.application.vision_control import VisionControl
     from hand_v2.domain.recognition import GestureRecognizer
     runtime.vision=VisionControl(controller,GestureRecognizer(runtime.settings['gestures']))

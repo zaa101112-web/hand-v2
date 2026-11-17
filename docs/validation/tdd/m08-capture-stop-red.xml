@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.289" timestamp="2026-11-17T16:17:11.689646+09:00" hostname="준식"><testcase classname="tests.integration.test_final_workflows" name="test_numeric_three_cancels_ui_capture_even_when_started_waiting" time="0.397"><failure message="assert (False)&#10; +  where False = &lt;hand_v2.domain.capture.CaptureSession object at 0x00000296D8D34E60&gt;.closed">def test_numeric_three_cancels_ui_capture_even_when_started_waiting():
+        clock=ManualClock(1000);r=build_runtime(clock=clock)
+        r.controller.begin_camera(1);r.controller.camera_connected(1)
+        r.workspace.request_capture();s=r.workspace.open_capture(Display('screen',0,0,800,600,1))
+        assert r.controller.state.activation==Activation.WAITING
+        for at in range(1000,1401,50):
+            clock.advance_to(at);r.vision.accept(sample_frame(at,'THREE'));r.workspace.tick()
+&gt;       assert s.closed and r.controller.state.mode==Mode.BROWSER
+E       assert (False)
+E        +  where False = &lt;hand_v2.domain.capture.CaptureSession object at 0x00000296D8D34E60&gt;.closed
+
+tests\integration\test_final_workflows.py:19: AssertionError</failure></testcase></testsuite></testsuites>

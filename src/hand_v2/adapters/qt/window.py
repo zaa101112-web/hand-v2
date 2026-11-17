@@ -148,7 +148,7 @@ class MainWindow(QMainWindow):
         v.addWidget(label("손동작 제어","Title"));v.addWidget(label("카메라로 손동작을 인식해 단축키를 실행합니다. 시작 후 손을 펼쳐 자세를 해제하세요.","Muted"))
         modes=QHBoxLayout();self.mode_buttons={}
         for mode,title in ((Mode.BROWSER,"브라우저 · 페이지와 탭"),(Mode.IMAGE,"이미지·발표 · 사진 넘기기")):
-            b=button(title,lambda checked=False,m=mode:self.controller.set_mode(m));b.setCheckable(True);modes.addWidget(b);self.mode_buttons[mode]=b
+            b=button(title,lambda checked=False,m=mode:self.select_mode(m));b.setCheckable(True);modes.addWidget(b);self.mode_buttons[mode]=b
         v.addLayout(modes)
         self.target_label=label("가상 Chrome 대상","Muted");v.addWidget(self.target_label)
         from .image_panel import ImagePanel
@@ -198,6 +198,11 @@ class MainWindow(QMainWindow):
             self.runtime.stop('연습 화면');self._practice_requested=True
         if key=='settings' and hasattr(self,'_dialog_request'):
             self.after_release(self.settings_panel.reload)
+
+    def select_mode(self,mode):
+        self.controller.set_mode(mode)
+        self.image_panel.setVisible(self.controller.state.mode==Mode.IMAGE)
+        if self.controller.state.mode==Mode.IMAGE:self.image_panel.setFocus()
 
     def _simulate(self,gesture):
         if self.controller.state.execution_mode!=ExecutionMode.SIMULATED:
@@ -313,6 +318,10 @@ class MainWindow(QMainWindow):
             target.setPixmap(QPixmap.fromImage(image).scaled(target.size(),Qt.AspectRatioMode.KeepAspectRatio,Qt.TransformationMode.SmoothTransformation))
 
     def _render_target(self):
+        if self.controller.state.mode==Mode.IMAGE:
+            self.target_label.setText('이미지·발표 · 앱 내부에서 사진을 넘기고 확대합니다.');return
+        if self.controller.state.mode==Mode.CAPTURE:
+            self.target_label.setText('캡처 영역 선택 중 · 확인/취소 또는 중단을 사용하세요.');return
         simulated=self.controller.state.execution_mode==ExecutionMode.SIMULATED
         prefix='가상 대상: ' if simulated else '현재 전경: '
         self.target_label.setText(prefix+('Chrome' if self.runtime.foreground.snapshot().is_chrome else '다른 앱 · Chrome를 선택하세요'))
@@ -349,6 +358,10 @@ class MainWindow(QMainWindow):
             self.command_label.setText(titles[result.status])
             reasons={"SIMULATED":"실제 키 입력을 보내지 않은 시뮬레이션입니다.","WAITING":"V로 먼저 시작하세요.","REARM_REQUIRED":"손을 펼쳐 ‘동작 가능’이 되면 다시 쓸어주세요.","TARGET_NOT_CHROME":"Chrome 창을 선택하세요.","TARGET_CHANGED":"대상 창이 바뀌어 전송하지 않았습니다.","NOT_IMPLEMENTED":"이 기능은 아직 구현 중입니다.","INPUT_BLOCKED":"입력 보류 중입니다. 상태를 확인하세요.","DUPLICATE":"같은 동작을 중복 실행하지 않았습니다."}
             reasons.update({'OS_INPUT_SENT':'OS에 키 입력을 전송했습니다. 페이지 동작까지 확인한 결과는 아닙니다.',
+                            'IMAGE_APPLIED':'이미지에 동작을 적용했습니다.',
+                            'CAPTURE_ACCEPTED':'캡처 영역을 선택한 뒤 확인 버튼 또는 Enter로 저장하세요.',
+                            'APP_ACTION_UNAVAILABLE':'이미지를 먼저 열거나 진행 중인 작업을 마무리하세요.',
+                            'PRACTICE_ONLY':'연습 화면에만 적용했습니다. 실제 입력이나 저장은 없습니다.',
                             'KEYBOARD_BUSY':'누르고 있는 키를 놓고 새 동작을 해주세요.',
                             'SENDINPUT_PARTIAL':'키 전송에 실패해 제어를 중단했습니다. 입력 권한 또는 환경을 확인하세요.'})
             self.detail_label.setText(reasons.get(result.reason,result.reason))
@@ -356,7 +369,9 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self,event):
         if not self._closing:
+            if self.runtime.shutdown_guard:self.runtime.shutdown_guard.arm(10)
             self._closing=True;self._close_started=self.runtime.clock.now_ms()
+            self._practice_requested=False
             self.runtime.stop_camera()
             self.capture_ui.close()
             self.runtime.image_loader.close()

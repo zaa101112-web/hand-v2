@@ -1,0 +1,53 @@
+FFF                                                                      [100%]
+================================== FAILURES ===================================
+________ test_execution_failures_are_error_level_not_filtered_as_info _________
+
+    def test_execution_failures_are_error_level_not_filtered_as_info():
+        class Sink:
+            def __init__(self):self.rows=[]
+            def record(self,kind,**fields):self.rows.append((kind,fields))
+        sink=Sink();r=build_runtime(events=sink)
+        r.controller.on_execution_result(Result('failed',r.controller.state.context_version,r.clock.now_ms(),Status.FAILED,'SENDINPUT_PARTIAL'),Action.BACK)
+        failure=next(fields for kind,fields in sink.rows if kind=='command' and fields['status']==Status.FAILED)
+>       assert failure.get('level')=='ERROR'
+E       AssertionError: assert None == 'ERROR'
+E        +  where None = <built-in method get of dict object at 0x000001FC48286240>('level')
+E        +    where <built-in method get of dict object at 0x000001FC48286240> = {'command_id': 'failed', 'context': 0, 'status': <Status.FAILED: 'FAILED'>, 'reason': 'SENDINPUT_PARTIAL', ...}.get
+
+tests\unit\test_diagnostic_levels.py:14: AssertionError
+_______________ test_failed_key_release_has_an_error_diagnostic _______________
+
+    def test_failed_key_release_has_an_error_diagnostic():
+        from hand_v2.domain.models import ReleaseResult
+        class Sink:
+            def __init__(self):self.rows=[]
+            def record(self,kind,**fields):self.rows.append((kind,fields))
+        sink=Sink();r=build_runtime(events=sink);r.keyboard.auto_release=False;r.controller.request_release()
+        request=r.keyboard.release_requests[-1]
+        r.controller.on_release_result(ReleaseResult(request,False,r.clock.now_ms()))
+>       assert any(kind=='release' and fields.get('level')=='ERROR' for kind,fields in sink.rows)
+E       assert False
+E        +  where False = any(<generator object test_failed_key_release_has_an_error_diagnostic.<locals>.<genexpr> at 0x000001FC4830C3C0>)
+
+tests\unit\test_diagnostic_levels.py:25: AssertionError
+_____ test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error _____
+
+    def test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error():
+        class Sink:
+            def __init__(self):self.rows=[]
+            def record(self,kind,**fields):self.rows.append((kind,fields))
+        sink=Sink();r=build_runtime(events=sink)
+        r.controller.camera_failed('CAMERA_OFF')
+        assert not any(kind=='camera' and fields.get('level')=='ERROR' for kind,fields in sink.rows)
+        r.controller.camera_failed('CAMERA_READ_FAILED')
+>       assert any(kind=='camera' and fields.get('level')=='ERROR' and fields.get('reason')=='CAMERA_READ_FAILED'
+                   for kind,fields in sink.rows)
+E       assert False
+E        +  where False = any(<generator object test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error.<locals>.<genexpr> at 0x000001FC4830D380>)
+
+tests\unit\test_diagnostic_levels.py:36: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_diagnostic_levels.py::test_execution_failures_are_error_level_not_filtered_as_info
+FAILED tests/unit/test_diagnostic_levels.py::test_failed_key_release_has_an_error_diagnostic
+FAILED tests/unit/test_diagnostic_levels.py::test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error
+3 failed in 1.37s

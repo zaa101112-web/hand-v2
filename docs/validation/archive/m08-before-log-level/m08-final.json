@@ -1,0 +1,74 @@
+{
+  "milestone": "M08",
+  "date": "2026-11-17",
+  "status": "FINAL_ACCEPTANCE_CANDIDATE",
+  "plan_scope": "D36-D40 implementation, integration repair, packaging and audit; human/new-PC acceptance remains NOT_RUN",
+  "functional_scope": "Browser gestures, image presentation, explicit region capture, settings, practice, sensitivity recommendation, logging and bounded shutdown implemented",
+  "automatic": {
+    "passed": 360,
+    "report": "tdd/m08-complete-regression.txt"
+  },
+  "tdd_repairs": [
+    "WAITING UI capture accepts numeric-three STOP",
+    "dialog entry/exit invalidates recognition candidates",
+    "image-mode physical arrow shortcut focus",
+    "closing cannot reenter practice",
+    "shutdown watchdog exits 2 after blocked main callback"
+  ],
+  "stability": {
+    "report": "m07-stability.json",
+    "actual_seconds": 1200.015,
+    "frames": 28125,
+    "fps": 23.44,
+    "arrival_p95_ms": 78,
+    "inference_p95_ms": 62,
+    "errors": 0,
+    "shutdown_ok": true,
+    "scope": "M07 camera/model/Qt with fake outputs; source hashes recorded. M08 workflow/shutdown changes covered by affected regressions, not a second 20-minute run."
+  },
+  "capture": {
+    "report": "m06-live-capture-baseline.json",
+    "scale": 1.5,
+    "regions": 10,
+    "pixel_and_size_mismatches": 0
+  },
+  "chrome": {
+    "current_valid_effects": [
+      "BACK",
+      "FORWARD",
+      "PAGE_UP",
+      "PAGE_DOWN",
+      "ZOOM_IN",
+      "ZOOM_OUT",
+      "RELOAD"
+    ],
+    "current_report": "m07-chrome-effects-retry.json",
+    "previous_other_effects": "m02-followup.json",
+    "remaining_recheck": "Computer Use URL-confidence safety stop; no alternative input used after recognizing the stop. Already-queued tab outcomes are excluded."
+  },
+  "external_acceptance_not_run": [
+    "3 participants x 20 trials per command and 15-minute noncommand accuracy",
+    "independent Python-less Windows PC offline acceptance",
+    "physical 100% and 125% capture scaling",
+    "100 actual OS latency samples per command and true last-evidence-camera-to-key latency",
+    "remaining current-build Chrome native UI checks after URL safety stop"
+  ],
+  "release_tag_created": false,
+  "remote": "No Git remote configured; local commits only",
+  "build": {
+    "exe": "dist/HAND-v2-M08-20261117/HAND-v2.exe",
+    "exe_sha256": "e7b9669e66b68c00e3705434e1659a9d949f70aa11da19a5f53b5b583633dd02",
+    "verified_copy_files": 1302,
+    "bytes": 408369846,
+    "offscreen_smoke_exit_code": 0,
+    "manifest": "m08-final-artifact-manifest.json",
+    "source_manifest": "m08-final-source-manifest.json"
+  },
+  "portable_archive": {
+    "path": "dist/HAND-v2-M08-20261117.zip",
+    "bytes": 162777485,
+    "sha256": "1f09021828a63135513b20bcbb4b152fa5c377f8aaf81aa0d77c5bdc5c61c602",
+    "files": 1304,
+    "crc_verified": true
+  }
+}

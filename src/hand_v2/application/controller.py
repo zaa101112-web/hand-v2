@@ -67,6 +67,7 @@ class Controller:
             return
         self._release_ok = result.success
         if not result.success:
+            self.events.record('release',level='ERROR',status='FAILED',reason='INPUT_RELEASE_FAILED',context=self.state.context_version)
             self._set(blocked_reasons=self.state.blocked_reasons | {"INPUT_RELEASE_FAILED"})
         self._check_release()
 
@@ -147,6 +148,8 @@ class Controller:
     def camera_failed(self,reason):
         self._set(camera_status='DISCONNECTED')
         if reason not in self.state.blocked_reasons:
+            if reason!='CAMERA_OFF':
+                self.events.record('camera',level='ERROR',reason=reason,epoch=self.state.camera_epoch,context=self.state.context_version)
             self._set(blocked_reasons=self.state.blocked_reasons | {'CAMERA_UNAVAILABLE',reason})
             self.stop(reason)
 
@@ -206,8 +209,9 @@ class Controller:
             self._set(confirmation_pending=False, ready=False)
 
     def set_dialog_lock(self, locked):
+        if locked==self.state.dialog_lock:return
         self._reset_neutral()
-        self._set(dialog_lock=locked, ready=False)
+        self._set(dialog_lock=locked, ready=False,context_version=self.state.context_version+1)
         if locked:
             self._clear_queue("DIALOG_OPEN")
             self.request_release()
@@ -220,7 +224,8 @@ class Controller:
 
     def _record(self, result):
         times=self._command_times.pop(result.command_id,None)
-        self.events.record('command',command_id=result.command_id,context=result.context_version,status=result.status,
+        level='ERROR' if result.status==Status.FAILED else 'WARNING' if result.status==Status.BLOCKED else 'INFO'
+        self.events.record('command',level=level,command_id=result.command_id,context=result.context_version,status=result.status,
                            reason=result.reason,at_ms=result.completed_at_ms,
                            **({'input_ms':result.completed_at_ms-times[0],'capture_to_result_ms':result.completed_at_ms-times[1]} if times else {}))
         self._set(last_execution=result)

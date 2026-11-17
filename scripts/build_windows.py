@@ -31,6 +31,8 @@ cmd=[sys.executable,'-m','PyInstaller','--onedir','--windowed','--clean','--name
      '--add-data',str(ROOT/'config')+':config','--collect-all','mediapipe','--collect-all','cv2',
      '--hidden-import','mss','--hidden-import','numpy',str(ROOT/'run.py')]
 started=time.monotonic()
+source_files=sorted(set(ROOT.glob('src/**/*.py'))|set(ROOT.glob('config/*.json'))|{ROOT/'run.py',ROOT/'requirements-lock.txt'})
+source_before={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in source_files}
 log=ROOT/f'docs/validation/{label}-build.log'
 with log.open('w',encoding='utf-8') as stream:
     result=subprocess.run(cmd,cwd=ROOT,env=env,stdout=stream,stderr=subprocess.STDOUT)
@@ -38,6 +40,9 @@ report={'at_utc':datetime.now(timezone.utc).isoformat(),'stage':str(stage.relati
         'exit_code':result.returncode,'duration_seconds':round(time.monotonic()-started,2),
         'lock_sha256':hashlib.sha256((ROOT/'requirements-lock.txt').read_bytes()).hexdigest(),
         'clean_pc_test':'NOT_RUN','fresh_staging':True,'path_sanitized':True}
+report['source_sha256']=source_before
+report['source_unchanged_during_build']=source_before=={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in source_files}
+if not report['source_unchanged_during_build']:result.returncode=2;report['exit_code']=2
 if result.returncode==0:
     exe=stage/'dist/HAND-v2/HAND-v2.exe'
     report['exe']=str(exe.relative_to(ROOT))

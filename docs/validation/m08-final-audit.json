@@ -1,0 +1,14 @@
+{
+  "at_utc": "2026-11-17T07:51:09.423367+00:00",
+  "status": "PASS_WITH_EXTERNAL_ACCEPTANCE_PENDING",
+  "source_files_match_frozen_build": 59,
+  "automated_tests": 363,
+  "html_documents_checked": 7,
+  "html_link_errors": [],
+  "acceptance_items_linked": 40,
+  "archive_files": 1304,
+  "archive_crc_verified_by_packager": true,
+  "exe_sha256": "e5fc7c474ca418101172de6fb65982e70e56534fc137d86d705884d7bebfd93e",
+  "human_acceptance": "NOT_RUN",
+  "new_pc_acceptance": "NOT_RUN"
+}

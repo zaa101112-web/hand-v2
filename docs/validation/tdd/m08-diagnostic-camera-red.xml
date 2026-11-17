@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="1.036" timestamp="2026-11-17T16:41:05.080459+09:00" hostname="준식"><testcase classname="tests.unit.test_diagnostic_levels" name="test_execution_failures_are_error_level_not_filtered_as_info" time="0.246"><failure message="AssertionError: assert None == 'ERROR'&#10; +  where None = &lt;built-in method get of dict object at 0x000001FC48286240&gt;('level')&#10; +    where &lt;built-in method get of dict object at 0x000001FC48286240&gt; = {'command_id': 'failed', 'context': 0, 'status': &lt;Status.FAILED: 'FAILED'&gt;, 'reason': 'SENDINPUT_PARTIAL', ...}.get">def test_execution_failures_are_error_level_not_filtered_as_info():
+        class Sink:
+            def __init__(self):self.rows=[]
+            def record(self,kind,**fields):self.rows.append((kind,fields))
+        sink=Sink();r=build_runtime(events=sink)
+        r.controller.on_execution_result(Result('failed',r.controller.state.context_version,r.clock.now_ms(),Status.FAILED,'SENDINPUT_PARTIAL'),Action.BACK)
+        failure=next(fields for kind,fields in sink.rows if kind=='command' and fields['status']==Status.FAILED)
+&gt;       assert failure.get('level')=='ERROR'
+E       AssertionError: assert None == 'ERROR'
+E        +  where None = &lt;built-in method get of dict object at 0x000001FC48286240&gt;('level')
+E        +    where &lt;built-in method get of dict object at 0x000001FC48286240&gt; = {'command_id': 'failed', 'context': 0, 'status': &lt;Status.FAILED: 'FAILED'&gt;, 'reason': 'SENDINPUT_PARTIAL', ...}.get
+
+tests\unit\test_diagnostic_levels.py:14: AssertionError</failure></testcase><testcase classname="tests.unit.test_diagnostic_levels" name="test_failed_key_release_has_an_error_diagnostic" time="0.005"><failure message="assert False&#10; +  where False = any(&lt;generator object test_failed_key_release_has_an_error_diagnostic.&lt;locals&gt;.&lt;genexpr&gt; at 0x000001FC4830C3C0&gt;)">def test_failed_key_release_has_an_error_diagnostic():
+        from hand_v2.domain.models import ReleaseResult
+        class Sink:
+            def __init__(self):self.rows=[]
+            def record(self,kind,**fields):self.rows.append((kind,fields))
+        sink=Sink();r=build_runtime(events=sink);r.keyboard.auto_release=False;r.controller.request_release()
+        request=r.keyboard.release_requests[-1]
+        r.controller.on_release_result(ReleaseResult(request,False,r.clock.now_ms()))
+&gt;       assert any(kind=='release' and fields.get('level')=='ERROR' for kind,fields in sink.rows)
+E       assert False
+E        +  where False = any(&lt;generator object test_failed_key_release_has_an_error_diagnostic.&lt;locals&gt;.&lt;genexpr&gt; at 0x000001FC4830C3C0&gt;)
+
+tests\unit\test_diagnostic_levels.py:25: AssertionError</failure></testcase><testcase classname="tests.unit.test_diagnostic_levels" name="test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error" time="0.004"><failure message="assert False&#10; +  where False = any(&lt;generator object test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error.&lt;locals&gt;.&lt;genexpr&gt; at 0x000001FC4830D380&gt;)">def test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error():
+        class Sink:
+            def __init__(self):self.rows=[]
+            def record(self,kind,**fields):self.rows.append((kind,fields))
+        sink=Sink();r=build_runtime(events=sink)
+        r.controller.camera_failed('CAMERA_OFF')
+        assert not any(kind=='camera' and fields.get('level')=='ERROR' for kind,fields in sink.rows)
+        r.controller.camera_failed('CAMERA_READ_FAILED')
+&gt;       assert any(kind=='camera' and fields.get('level')=='ERROR' and fields.get('reason')=='CAMERA_READ_FAILED'
+                   for kind,fields in sink.rows)
+E       assert False
+E        +  where False = any(&lt;generator object test_camera_errors_are_logged_but_normal_camera_off_is_not_an_error.&lt;locals&gt;.&lt;genexpr&gt; at 0x000001FC4830D380&gt;)
+
+tests\unit\test_diagnostic_levels.py:36: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,5 +1,5 @@
 from PySide6.QtCore import Qt, QVariantAnimation, QRectF, QEasingCurve
-from PySide6.QtGui import QPainter, QImage, QColor
+from PySide6.QtGui import QPainter, QImage, QColor,QShortcut,QKeySequence
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel
 from hand_v2.domain.models import Action
 
@@ -50,6 +50,11 @@ class ImagePanel(QWidget):
         self.canvas=ImageCanvas(workspace.gallery);layout.addWidget(self.canvas,1)
         self.info=QLabel();self.info.setWordWrap(True);layout.addWidget(self.info)
         self.excluded=QLabel();self.excluded.setWordWrap(True);layout.addWidget(self.excluded)
+        self.shortcuts=[]
+        for key,action in [('Left',Action.PREV_IMAGE),('Right',Action.NEXT_IMAGE),('+',Action.ZOOM_IN),('=',Action.ZOOM_IN),('-',Action.ZOOM_OUT),('0',Action.FIT_IMAGE)]:
+            shortcut=QShortcut(QKeySequence(key),self)
+            shortcut.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+            shortcut.activated.connect(lambda a=action:self.apply(a));self.shortcuts.append(shortcut)
 
     def _button(self,title,action,row):
         b=QPushButton(title);b.clicked.connect(lambda:self.apply(action));row.addWidget(b);return b

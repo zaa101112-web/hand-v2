@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="4" time="3.100" timestamp="2026-11-17T16:16:49.063617+09:00" hostname="준식"><testcase classname="tests.integration.test_final_workflows" name="test_numeric_three_cancels_ui_capture_even_when_started_waiting" time="0.408"><failure message="KeyError: 1000">def test_numeric_three_cancels_ui_capture_even_when_started_waiting():
+        clock=ManualClock(1000);r=build_runtime(clock=clock)
+        r.controller.begin_camera(1);r.controller.camera_connected(1)
+        r.workspace.request_capture();s=r.workspace.open_capture(Display('screen',0,0,800,600,1))
+        assert r.controller.state.activation==Activation.WAITING
+        for at in range(1000,1401,50):
+&gt;           clock.advance_to(at);r.vision.accept(sample_frame('THREE',at));r.workspace.tick()
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_final_workflows.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\hand_samples.py:23: in sample_frame
+    return TrackingFrame(at,at,epoch,640,480,(sample_hand(pose,hand_id,offset),))
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+pose = 1000, hand_id = 'h1', offset = 0.0, scale = 1.0
+
+    def sample_hand(pose='V',hand_id='h1',offset=0.0,scale=1.0):
+        points=[(.5,.8)]*21
+        points[1:5]=[(.38,.72),(.33,.66),(.40,.66),(.45,.65)]
+        patterns={'V':(False,True,True,False,False),'THREE':(True,True,True,False,False),
+                  'INDEX':(False,True,False,False,False),'OPEN':(True,True,True,True,True),
+                  'FIST':(False,False,False,False,False),'THUMB':(True,False,False,False,False),
+                  'L':(True,True,False,False,False)}
+&gt;       extended=patterns[pose]
+                 ^^^^^^^^^^^^^^
+E       KeyError: 1000
+
+tests\hand_samples.py:12: KeyError</failure></testcase><testcase classname="tests.integration.test_final_workflows" name="test_dialog_open_and_close_invalidate_old_recognition_context" time="0.012"><failure message="assert 0 &lt; 0">def test_dialog_open_and_close_invalidate_old_recognition_context():
+        r=build_runtime();c=r.controller;old=c.state.context_version
+        c.set_dialog_lock(True);opened=c.state.context_version
+        c.set_dialog_lock(False)
+&gt;       assert old&lt;opened&lt;c.state.context_version
+E       assert 0 &lt; 0
+
+tests\integration\test_final_workflows.py:27: AssertionError</failure></testcase><testcase classname="tests.integration.test_final_workflows" name="test_mode_button_then_arrow_changes_image_without_extra_click" time="0.542"><failure message="assert 0 == 1&#10; +  where 0 = &lt;hand_v2.domain.images.Gallery object at 0x0000023CD1D7FF80&gt;.index&#10; +    where &lt;hand_v2.domain.images.Gallery object at 0x0000023CD1D7FF80&gt; = &lt;hand_v2.application.workspace.DesktopWorkspace object at 0x0000023CD1D7FF50&gt;.gallery&#10;[+1 more line; full report in element text]">qtbot = &lt;pytestqt.qtbot.QtBot object at 0x0000023CD1D7FA70&gt;
+
+    def test_mode_button_then_arrow_changes_image_without_extra_click(qtbot):
+        r=build_runtime();w=MainWindow(r);qtbot.addWidget(w);w.show();w.activateWindow();qtbot.wait(10)
+        r.workspace.gallery.replace([ImageAsset(str(i),2,2,bytes([0,100,200,255])*4) for i in range(2)])
+        qtbot.mouseClick(w.mode_buttons[Mode.IMAGE],Qt.MouseButton.LeftButton);w._tick()
+        from PySide6.QtWidgets import QApplication
+        focus=QApplication.focusWidget()
+        assert focus is not None
+        qtbot.keyClick(focus,Qt.Key.Key_Right)
+&gt;       assert r.workspace.gallery.index==1
+E       assert 0 == 1
+E        +  where 0 = &lt;hand_v2.domain.images.Gallery object at 0x0000023CD1D7FF80&gt;.index
+E        +    where &lt;hand_v2.domain.images.Gallery object at 0x0000023CD1D7FF80&gt; = &lt;hand_v2.application.workspace.DesktopWorkspace object at 0x0000023CD1D7FF50&gt;.gallery
+E        +      where &lt;hand_v2.application.workspace.DesktopWorkspace object at 0x0000023CD1D7FF50&gt; = Runtime(controller=&lt;hand_v2.application.controller.Controller object at 0x0000023CD1D7FB60&gt;, clock=&lt;hand_v2.adapters.t...=False, events=&lt;hand_v2.application.ports.EventSink object at 0x0000023CD1D7FB30&gt;, calibration=None, last_camera_log=0).workspace
+
+tests\integration\test_final_workflows.py:38: AssertionError
+---------------------------- Captured Qt messages -----------------------------
+QtWarningMsg: QFontDatabase: Cannot find font directory C:/Users/zaa13/OneDrive/����/ChatGPT/��ǻ�ͺ���/hand-v2/.venv/Lib/site-packages/PySide6/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.</failure></testcase><testcase classname="tests.integration.test_final_workflows" name="test_closing_does_not_reenter_practice" time="0.162"><failure message="assert (not True)&#10; +  where True = &lt;hand_v2.adapters.qt.window.MainWindow(0x23cd13216a0) at 0x0000023CD1E24180&gt;._practice_requested">qtbot = &lt;pytestqt.qtbot.QtBot object at 0x0000023CD222D7F0&gt;
+
+    def test_closing_does_not_reenter_practice(qtbot):
+        r=build_runtime();w=MainWindow(r);qtbot.addWidget(w);w.select_page('practice');w._tick()
+        w.close()
+&gt;       assert not w._practice_requested and r.practice_runtime is None
+E       assert (not True)
+E        +  where True = &lt;hand_v2.adapters.qt.window.MainWindow(0x23cd13216a0) at 0x0000023CD1E24180&gt;._practice_requested
+
+tests\integration\test_final_workflows.py:46: AssertionError</failure></testcase></testsuite></testsuites>
