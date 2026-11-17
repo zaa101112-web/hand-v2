@@ -1,0 +1,15 @@
+{
+  "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "defaults_sha256": "b32c964b29729e7209db1dcb65e759cb0b2ba14c1475ef4310a85d850fbb542e",
+  "defaults_schema": "hand-v2-config",
+  "frozen": true,
+  "exit_code": 0,
+  "mode": "DEV_SIMULATED",
+  "shutdown_ok": true,
+  "cv2": "5.0.0",
+  "mediapipe": "1.2.2",
+  "numpy": "2.5.4",
+  "mss": "10.2.0",
+  "camera_tested": false,
+  "input_effect_tested": false
+}

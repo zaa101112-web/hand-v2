@@ -24,7 +24,7 @@ def main():
     output=args.output or ROOT/f'docs/validation/{args.label}.json'
     output.parent.mkdir(parents=True,exist_ok=True)
     from hand_v2.domain.features import describe_hand,angle,distance
-    samples=deque(maxlen=900);counts=Counter();last_frame_at=None;last_had_hands=False
+    samples=deque(maxlen=900);segments=deque(maxlen=400);counts=Counter();last_frame_at=None;last_had_hands=False
     original_accept=runtime.vision.accept
     def observe_frame(frame):
         nonlocal last_frame_at,last_had_hands
@@ -59,12 +59,21 @@ def main():
                 displacement=distance(motion.path[0][1],motion.path[-1][1])
                 motion_summary={'elapsed_ms':None if motion.since is None else frame.captured_at_ms-motion.since,
                                 'curved':motion.curved,'curve_reason':motion.curve_reason,
+                                'preparation_resets':motion.preparation_resets,'axis':motion.axis,
                                 'straightness':round(displacement/length,4) if length else None,
                                 'travel':round(length,4)}
             samples.append({'at_ms':frame.captured_at_ms,'gap_ms':gap,'accepted':accepted,'hands':details,
                             'candidate':result.candidate if result else None,'progress':result.progress if result else 0,
                             'reason':result.reason if result else None,'gesture':result.gesture if result else None,
                             'motion':motion_summary})
+            key=(tuple((f.hand_id,f.pose) for f in features),result.reason if result else None,
+                 motion_summary['curve_reason'] if motion_summary else None)
+            if not segments or segments[-1]['key']!=key or (gap is not None and gap>100):
+                segments.append({'key':key,'start_ms':frame.captured_at_ms,'end_ms':frame.captured_at_ms,
+                                 'frames':0,'max_progress':0,'motion_first':motion_summary})
+            segment=segments[-1];segment['end_ms']=frame.captured_at_ms;segment['frames']+=1
+            segment['max_progress']=max(segment['max_progress'],result.progress if result else 0)
+            segment['motion_last']=motion_summary
         last_had_hands=bool(features)
         return accepted
     runtime.vision.accept=observe_frame
@@ -81,6 +90,7 @@ def main():
               'state':state,'fps':runtime.camera_fps,'recognized_events':[asdict(e) for e in runtime.vision.recognized_events],
               'observations':observations,
               'tracking_counts':dict(counts),'recent_pose_samples':list(samples),
+              'recognition_segments':list(segments),
               'camera_stop':asdict(runtime.camera.last_stop) if runtime.camera.last_stop else None,
               'hotkey_registered':bool(window.hotkey and window.hotkey.registered),'raw_images_saved':False}
         output.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'),default=lambda o:sorted(o) if isinstance(o,frozenset) else str(o)),encoding='utf-8')

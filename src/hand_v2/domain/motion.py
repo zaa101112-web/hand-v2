@@ -13,6 +13,7 @@ class MotionRecognizer:
         self.ema=TimeEMA(60);self.curved=False;self.axis=None
         self.initial_direction=None;self.direction_anchor=None;self.curve_reason=''
         self.pose_since=None;self.anchor=None;self.anchor_at=None
+        self.preparation_resets=0
 
     def update(self,feature,at,width,height):
         key=(feature.hand_id,feature.pose)
@@ -22,6 +23,15 @@ class MotionRecognizer:
         previous=self.path[-1][1] if self.path else None
         self.path.append((at,point));self.path=self.path[-256:]
         if self.fired:return None,1,'RELEASE_REQUIRED'
+        if self.since is not None and self._settled(at,width,height):
+            # Finger extension/repositioning may start a short path before the
+            # intended swipe. A genuine pause ends that unfinished path. Never
+            # reset a fired path here: release still owns command rearming.
+            self.since=None;self.path=[(at,point)]
+            self.anchor=point;self.anchor_at=at;self.direction_anchor=point
+            self.initial_direction=None;self.curved=False;self.curve_reason='';self.axis=None
+            self.preparation_resets+=1
+            return None,0,'MOTION_READY'
         if self.anchor is None:
             self.anchor=point;self.anchor_at=at
             self.direction_anchor=point
@@ -68,6 +78,18 @@ class MotionRecognizer:
         if feature.pose=='INDEX' and self.curved and 600<=elapsed<=2000 and self._circle(width,height):
             self.fired=True;return Gesture.CIRCLE,1,'CONFIRMED'
         return None,min(1,max(abs(dx),abs(dy))/.15),'CIRCLE_CANDIDATE' if self.curved else 'MOTION_IN_PROGRESS'
+
+    def _settled(self,at,width,height):
+        # Bound total excursion, not each frame's velocity: a slow continuous
+        # movement or a circle must not be mistaken for a stationary pause.
+        recent=[]
+        for timestamp,point in reversed(self.path):
+            recent.append((point[0]*width,point[1]*height))
+            if at-timestamp>=180:
+                span_x=max(p[0] for p in recent)-min(p[0] for p in recent)
+                span_y=max(p[1] for p in recent)-min(p[1] for p in recent)
+                return math.hypot(span_x,span_y)<=.008*min(width,height)
+        return False
 
     def _circle(self,width,height):
         points=[(p[0]*width,p[1]*height) for _,p in self.path]

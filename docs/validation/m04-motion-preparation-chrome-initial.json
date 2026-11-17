@@ -1,0 +1,684 @@
+{
+  "source": "AUTHORED_LANDMARKS_PRODUCTION_RECOGNIZER_REAL_CHROME",
+  "status": "PASS",
+  "error": null,
+  "checks": [
+    {
+      "case": 1,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 1,
+      "actual_step": 19,
+      "actual_events": 1,
+      "status": "PASS"
+    },
+    {
+      "case": 2,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 2,
+      "actual_step": 20,
+      "actual_events": 2,
+      "status": "PASS"
+    },
+    {
+      "case": 3,
+      "direction": "BACK",
+      "pause_ms": 3000,
+      "expected_step": 19,
+      "expected_events": 3,
+      "actual_step": 19,
+      "actual_events": 3,
+      "status": "PASS"
+    },
+    {
+      "case": 4,
+      "direction": "FORWARD",
+      "pause_ms": 400,
+      "expected_step": 20,
+      "expected_events": 4,
+      "actual_step": 20,
+      "actual_events": 4,
+      "status": "PASS"
+    },
+    {
+      "case": 5,
+      "direction": "BACK",
+      "pause_ms": 1000,
+      "expected_step": 19,
+      "expected_events": 5,
+      "actual_step": 19,
+      "actual_events": 5,
+      "status": "PASS"
+    },
+    {
+      "case": 6,
+      "direction": "FORWARD",
+      "pause_ms": 3000,
+      "expected_step": 20,
+      "expected_events": 6,
+      "actual_step": 20,
+      "actual_events": 6,
+      "status": "PASS"
+    },
+    {
+      "case": 7,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 7,
+      "actual_step": 19,
+      "actual_events": 7,
+      "status": "PASS"
+    },
+    {
+      "case": 8,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 8,
+      "actual_step": 20,
+      "actual_events": 8,
+      "status": "PASS"
+    },
+    {
+      "case": 9,
+      "direction": "BACK",
+      "pause_ms": 3000,
+      "expected_step": 19,
+      "expected_events": 9,
+      "actual_step": 19,
+      "actual_events": 9,
+      "status": "PASS"
+    },
+    {
+      "case": 10,
+      "direction": "FORWARD",
+      "pause_ms": 400,
+      "expected_step": 20,
+      "expected_events": 10,
+      "actual_step": 20,
+      "actual_events": 10,
+      "status": "PASS"
+    },
+    {
+      "case": 11,
+      "direction": "BACK",
+      "pause_ms": 1000,
+      "expected_step": 19,
+      "expected_events": 11,
+      "actual_step": 19,
+      "actual_events": 11,
+      "status": "PASS"
+    },
+    {
+      "case": 12,
+      "direction": "FORWARD",
+      "pause_ms": 3000,
+      "expected_step": 20,
+      "expected_events": 12,
+      "actual_step": 20,
+      "actual_events": 12,
+      "status": "PASS"
+    },
+    {
+      "case": 13,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 13,
+      "actual_step": 19,
+      "actual_events": 13,
+      "status": "PASS"
+    },
+    {
+      "case": 14,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 14,
+      "actual_step": 20,
+      "actual_events": 14,
+      "status": "PASS"
+    },
+    {
+      "case": 15,
+      "direction": "BACK",
+      "pause_ms": 3000,
+      "expected_step": 19,
+      "expected_events": 15,
+      "actual_step": 19,
+      "actual_events": 15,
+      "status": "PASS"
+    },
+    {
+      "case": 16,
+      "direction": "FORWARD",
+      "pause_ms": 400,
+      "expected_step": 20,
+      "expected_events": 16,
+      "actual_step": 20,
+      "actual_events": 16,
+      "status": "PASS"
+    },
+    {
+      "case": 17,
+      "direction": "BACK",
+      "pause_ms": 1000,
+      "expected_step": 19,
+      "expected_events": 17,
+      "actual_step": 19,
+      "actual_events": 17,
+      "status": "PASS"
+    },
+    {
+      "case": 18,
+      "direction": "FORWARD",
+      "pause_ms": 3000,
+      "expected_step": 20,
+      "expected_events": 18,
+      "actual_step": 20,
+      "actual_events": 18,
+      "status": "PASS"
+    },
+    {
+      "case": 19,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 19,
+      "actual_step": 19,
+      "actual_events": 19,
+      "status": "PASS"
+    },
+    {
+      "case": 20,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 20,
+      "actual_step": 20,
+      "actual_events": 20,
+      "status": "PASS"
+    }
+  ],
+  "history": [
+    {
+      "at_utc": "2026-11-17T06:10:57.798042+00:00",
+      "step": 20,
+      "event": "load"
+    },
+    {
+      "at_utc": "2026-11-17T06:10:59.891881+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:04.072601+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:09.629471+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:13.271681+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:16.879631+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:23.066235+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:26.064933+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:30.276777+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:35.891441+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:39.427005+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:43.068423+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:49.277431+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:52.279177+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:11:56.438372+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:12:02.073074+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:12:05.629294+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:12:09.276248+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:12:15.430921+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:12:18.426830+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:12:22.639572+00:00",
+      "step": 20,
+      "event": "popstate"
+    }
+  ],
+  "executions": [
+    {
+      "command_id": "command-000004",
+      "context_version": 0,
+      "completed_at_ms": 443055171,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000005",
+      "context_version": 0,
+      "completed_at_ms": 443056656,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000007",
+      "context_version": 0,
+      "completed_at_ms": 443059343,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000009",
+      "context_version": 0,
+      "completed_at_ms": 443060671,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=6/6; page effect unverified"
+    },
+    {
+      "command_id": "command-000011",
+      "context_version": 0,
+      "completed_at_ms": 443064906,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000012",
+      "context_version": 0,
+      "completed_at_ms": 443066406,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000014",
+      "context_version": 0,
+      "completed_at_ms": 443068546,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000016",
+      "context_version": 0,
+      "completed_at_ms": 443069843,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=6/6; page effect unverified"
+    },
+    {
+      "command_id": "command-000018",
+      "context_version": 0,
+      "completed_at_ms": 443072156,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000019",
+      "context_version": 0,
+      "completed_at_ms": 443073656,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000021",
+      "context_version": 0,
+      "completed_at_ms": 443078343,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000023",
+      "context_version": 0,
+      "completed_at_ms": 443079656,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=6/6; page effect unverified"
+    },
+    {
+      "command_id": "command-000025",
+      "context_version": 0,
+      "completed_at_ms": 443081343,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000026",
+      "context_version": 0,
+      "completed_at_ms": 443082843,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000028",
+      "context_version": 0,
+      "completed_at_ms": 443085562,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000030",
+      "context_version": 0,
+      "completed_at_ms": 443086843,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=6/6; page effect unverified"
+    },
+    {
+      "command_id": "command-000032",
+      "context_version": 0,
+      "completed_at_ms": 443091171,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000033",
+      "context_version": 0,
+      "completed_at_ms": 443092656,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000035",
+      "context_version": 0,
+      "completed_at_ms": 443094703,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000036",
+      "context_version": 0,
+      "completed_at_ms": 443096000,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000038",
+      "context_version": 0,
+      "completed_at_ms": 443098343,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000039",
+      "context_version": 0,
+      "completed_at_ms": 443099843,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000041",
+      "context_version": 0,
+      "completed_at_ms": 443104546,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000043",
+      "context_version": 0,
+      "completed_at_ms": 443105843,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=6/6; page effect unverified"
+    },
+    {
+      "command_id": "command-000045",
+      "context_version": 0,
+      "completed_at_ms": 443107562,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000046",
+      "context_version": 0,
+      "completed_at_ms": 443109046,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000048",
+      "context_version": 0,
+      "completed_at_ms": 443111718,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000049",
+      "context_version": 0,
+      "completed_at_ms": 443113000,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000051",
+      "context_version": 0,
+      "completed_at_ms": 443117343,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000052",
+      "context_version": 0,
+      "completed_at_ms": 443118843,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000054",
+      "context_version": 0,
+      "completed_at_ms": 443120906,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000055",
+      "context_version": 0,
+      "completed_at_ms": 443122203,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000057",
+      "context_version": 0,
+      "completed_at_ms": 443124546,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000058",
+      "context_version": 0,
+      "completed_at_ms": 443126046,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000060",
+      "context_version": 0,
+      "completed_at_ms": 443130703,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000061",
+      "context_version": 0,
+      "completed_at_ms": 443132000,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000063",
+      "context_version": 0,
+      "completed_at_ms": 443133703,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000064",
+      "context_version": 0,
+      "completed_at_ms": 443135203,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000066",
+      "context_version": 0,
+      "completed_at_ms": 443137906,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000067",
+      "context_version": 0,
+      "completed_at_ms": 443139203,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    }
+  ],
+  "frames": 1718,
+  "max_frame_gap_ms": 110,
+  "camera_tested": false,
+  "human_accuracy_evaluated": false,
+  "foreground_hwnd": 34868582,
+  "state": {
+    "revision": 1846,
+    "context_version": 1,
+    "mode": "BROWSER",
+    "phase": "RUNNING",
+    "activation": "WAITING",
+    "ready": false,
+    "execution_mode": "WINDOWS_REAL",
+    "camera_status": "DISCONNECTED",
+    "camera_epoch": 0,
+    "blocked_reasons": [],
+    "confirmation_pending": false,
+    "release_pending": false,
+    "keyboard_state": {
+      "revision": 28,
+      "observed_at_ms": 443139953,
+      "owned_keys": [],
+      "release_status": "CONFIRMED",
+      "release_request_id": "release-000068"
+    },
+    "dialog_lock": false,
+    "last_stop_reason": "Autonomous QA complete",
+    "last_stop_at_ms": 443139953,
+    "last_candidate": "펼친 손 · 자세 해제",
+    "last_execution": {
+      "command_id": "gesture-000067",
+      "context_version": 0,
+      "completed_at_ms": 443139203,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    "visible_hand_ids": [
+      "h1"
+    ]
+  },
+  "post_run_audit": {
+    "status": "FAIL",
+    "reason": "Page effect assertion alone missed extra OS input",
+    "expected_sent": 20,
+    "actual_sent": 25,
+    "unexpected_six_key_transmissions": 5
+  }
+}

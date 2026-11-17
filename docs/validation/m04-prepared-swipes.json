@@ -1,0 +1,638 @@
+{
+  "at_utc": "2026-11-17T06:27:24.924663+00:00",
+  "scope": "M03/M04 corrective followup; not a new 5 MD milestone",
+  "requirements": [
+    "REQ-01",
+    "REQ-06",
+    "G03",
+    "G04",
+    "G13",
+    "V2-T04",
+    "V2-T07",
+    "V2-T08",
+    "V2-T16",
+    "V2-T19",
+    "V2-T35"
+  ],
+  "user_report": "Controlled history page only reached 1 or 2; user requests autonomous intermediate verification and physical checking only on the final verification build.",
+  "before": {
+    "snapshot_sha256": "d26faee1d54c0647d51c3b67ab73c136e161e46d0ee27a16dfd1ef074c8026cb",
+    "history": [
+      {
+        "at_utc": "2026-11-17T05:27:26.275135+00:00",
+        "step": 3,
+        "event": "load"
+      },
+      {
+        "at_utc": "2026-11-17T05:54:34.637671+00:00",
+        "step": 2,
+        "event": "popstate"
+      },
+      {
+        "at_utc": "2026-11-17T05:55:06.832393+00:00",
+        "step": 3,
+        "event": "popstate"
+      },
+      {
+        "at_utc": "2026-11-17T05:55:43.848077+00:00",
+        "step": 2,
+        "event": "popstate"
+      }
+    ],
+    "recognized_events": [
+      {
+        "event_id": "gesture-000003",
+        "gesture": "G01",
+        "hand_ids": [
+          "e1-9"
+        ],
+        "captured_at_ms": 442040718,
+        "emitted_at_ms": 442040781,
+        "context_version": 1,
+        "camera_epoch": 1,
+        "estimated_utc": "2026-11-17T05:54:05.487810+00:00"
+      },
+      {
+        "event_id": "gesture-000004",
+        "gesture": "G03",
+        "hand_ids": [
+          "e1-12"
+        ],
+        "captured_at_ms": 442069828,
+        "emitted_at_ms": 442069890,
+        "context_version": 1,
+        "camera_epoch": 1,
+        "estimated_utc": "2026-11-17T05:54:34.596810+00:00"
+      },
+      {
+        "event_id": "gesture-000006",
+        "gesture": "G13",
+        "hand_ids": [
+          "e1-12"
+        ],
+        "captured_at_ms": 442078171,
+        "emitted_at_ms": 442078250,
+        "context_version": 1,
+        "camera_epoch": 1,
+        "estimated_utc": "2026-11-17T05:54:42.956810+00:00"
+      },
+      {
+        "event_id": "gesture-000008",
+        "gesture": "G03",
+        "hand_ids": [
+          "e1-12"
+        ],
+        "captured_at_ms": 442081390,
+        "emitted_at_ms": 442081468,
+        "context_version": 1,
+        "camera_epoch": 1,
+        "estimated_utc": "2026-11-17T05:54:46.174810+00:00"
+      },
+      {
+        "event_id": "gesture-000010",
+        "gesture": "G04",
+        "hand_ids": [
+          "e1-12"
+        ],
+        "captured_at_ms": 442082265,
+        "emitted_at_ms": 442082328,
+        "context_version": 1,
+        "camera_epoch": 1,
+        "estimated_utc": "2026-11-17T05:54:47.034810+00:00"
+      },
+      {
+        "event_id": "gesture-000011",
+        "gesture": "G04",
+        "hand_ids": [
+          "e1-13"
+        ],
+        "captured_at_ms": 442102015,
+        "emitted_at_ms": 442102093,
+        "context_version": 1,
+        "camera_epoch": 1,
+        "estimated_utc": "2026-11-17T05:55:06.799810+00:00"
+      },
+      {
+        "event_id": "gesture-000013",
+        "gesture": "G03",
+        "hand_ids": [
+          "e1-14"
+        ],
+        "captured_at_ms": 442139031,
+        "emitted_at_ms": 442139109,
+        "context_version": 1,
+        "camera_epoch": 1,
+        "estimated_utc": "2026-11-17T05:55:43.815810+00:00"
+      }
+    ],
+    "motion_samples": [
+      {
+        "at_ms": 442141531,
+        "reason": "MOTION_READY",
+        "progress": 0,
+        "motion": {
+          "elapsed_ms": null,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": null,
+          "travel": 0
+        }
+      },
+      {
+        "at_ms": 442141578,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.15053930455890652,
+        "motion": {
+          "elapsed_ms": 47,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 1.0,
+          "travel": 0.0227
+        }
+      },
+      {
+        "at_ms": 442141625,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.29979772557521417,
+        "motion": {
+          "elapsed_ms": 94,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9967,
+          "travel": 0.0451
+        }
+      },
+      {
+        "at_ms": 442141671,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.373968249689014,
+        "motion": {
+          "elapsed_ms": 140,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9948,
+          "travel": 0.0564
+        }
+      },
+      {
+        "at_ms": 442141734,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.4120831711042269,
+        "motion": {
+          "elapsed_ms": 203,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9932,
+          "travel": 0.0623
+        }
+      },
+      {
+        "at_ms": 442141781,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.4219706311083282,
+        "motion": {
+          "elapsed_ms": 250,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9873,
+          "travel": 0.0643
+        }
+      },
+      {
+        "at_ms": 442141828,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.42719158021579257,
+        "motion": {
+          "elapsed_ms": 297,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9869,
+          "travel": 0.0652
+        }
+      },
+      {
+        "at_ms": 442141890,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.43025295608071223,
+        "motion": {
+          "elapsed_ms": 359,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9869,
+          "travel": 0.0656
+        }
+      },
+      {
+        "at_ms": 442141937,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.427665099375214,
+        "motion": {
+          "elapsed_ms": 406,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9721,
+          "travel": 0.0662
+        }
+      },
+      {
+        "at_ms": 442141984,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.4265089796973861,
+        "motion": {
+          "elapsed_ms": 453,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9669,
+          "travel": 0.0664
+        }
+      },
+      {
+        "at_ms": 442142046,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.4242366956090053,
+        "motion": {
+          "elapsed_ms": 515,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9568,
+          "travel": 0.0667
+        }
+      },
+      {
+        "at_ms": 442142109,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.419878566379995,
+        "motion": {
+          "elapsed_ms": 578,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9361,
+          "travel": 0.0675
+        }
+      },
+      {
+        "at_ms": 442142187,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.4160848101202219,
+        "motion": {
+          "elapsed_ms": 656,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9184,
+          "travel": 0.0681
+        }
+      },
+      {
+        "at_ms": 442142250,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.41852709137942,
+        "motion": {
+          "elapsed_ms": 719,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9189,
+          "travel": 0.0685
+        }
+      },
+      {
+        "at_ms": 442142312,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.42166536203154215,
+        "motion": {
+          "elapsed_ms": 781,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9133,
+          "travel": 0.0695
+        }
+      },
+      {
+        "at_ms": 442142390,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.4249057983145096,
+        "motion": {
+          "elapsed_ms": 859,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9034,
+          "travel": 0.0709
+        }
+      },
+      {
+        "at_ms": 442142453,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 0.4310341221760831,
+        "motion": {
+          "elapsed_ms": 922,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.8759,
+          "travel": 0.0747
+        }
+      },
+      {
+        "at_ms": 442142515,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 0.4711869614161531,
+        "motion": {
+          "elapsed_ms": 984,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.8162,
+          "travel": 0.0928
+        }
+      },
+      {
+        "at_ms": 442142578,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 0.4951230598966613,
+        "motion": {
+          "elapsed_ms": 1047,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.7795,
+          "travel": 0.1125
+        }
+      },
+      {
+        "at_ms": 442142640,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 0.5122635061701253,
+        "motion": {
+          "elapsed_ms": 1109,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.7712,
+          "travel": 0.1278
+        }
+      },
+      {
+        "at_ms": 442142703,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 0.5927768511736872,
+        "motion": {
+          "elapsed_ms": 1172,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.761,
+          "travel": 0.155
+        }
+      },
+      {
+        "at_ms": 442142750,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 0.7982774867753769,
+        "motion": {
+          "elapsed_ms": 1219,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.7595,
+          "travel": 0.1859
+        }
+      },
+      {
+        "at_ms": 442142796,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 0.9944351118462424,
+        "motion": {
+          "elapsed_ms": 1265,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.7731,
+          "travel": 0.2154
+        }
+      },
+      {
+        "at_ms": 442142859,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 1328,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.7907,
+          "travel": 0.2634
+        }
+      },
+      {
+        "at_ms": 442142906,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 1375,
+          "curved": true,
+          "curve_reason": "NON_STRAIGHT_PATH",
+          "straightness": 0.8011,
+          "travel": 0.2928
+        }
+      },
+      {
+        "at_ms": 442143984,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.6440055831852436,
+        "motion": {
+          "elapsed_ms": 188,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9799,
+          "travel": 0.1073
+        }
+      },
+      {
+        "at_ms": 442144031,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.8213508639166611,
+        "motion": {
+          "elapsed_ms": 235,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9771,
+          "travel": 0.1341
+        }
+      },
+      {
+        "at_ms": 442144078,
+        "reason": "MOTION_IN_PROGRESS",
+        "progress": 0.9450470191342405,
+        "motion": {
+          "elapsed_ms": 282,
+          "curved": false,
+          "curve_reason": "",
+          "straightness": 0.9765,
+          "travel": 0.1527
+        }
+      },
+      {
+        "at_ms": 442144125,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 329,
+          "curved": true,
+          "curve_reason": "DIRECTION_CHANGE",
+          "straightness": 0.974,
+          "travel": 0.1773
+        }
+      },
+      {
+        "at_ms": 442144171,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 375,
+          "curved": true,
+          "curve_reason": "DIRECTION_CHANGE",
+          "straightness": 0.973,
+          "travel": 0.195
+        }
+      },
+      {
+        "at_ms": 442144218,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 422,
+          "curved": true,
+          "curve_reason": "DIRECTION_CHANGE",
+          "straightness": 0.9733,
+          "travel": 0.2112
+        }
+      },
+      {
+        "at_ms": 442144265,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 469,
+          "curved": true,
+          "curve_reason": "DIRECTION_CHANGE",
+          "straightness": 0.9747,
+          "travel": 0.2258
+        }
+      },
+      {
+        "at_ms": 442144312,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 516,
+          "curved": true,
+          "curve_reason": "DIRECTION_CHANGE",
+          "straightness": 0.9763,
+          "travel": 0.2442
+        }
+      },
+      {
+        "at_ms": 442144359,
+        "reason": "CIRCLE_CANDIDATE",
+        "progress": 1,
+        "motion": {
+          "elapsed_ms": 563,
+          "curved": true,
+          "curve_reason": "DIRECTION_CHANGE",
+          "straightness": 0.9776,
+          "travel": 0.2656
+        }
+      }
+    ],
+    "observed": "Finger-pose setup moved about 6-8% then paused. The motion clock kept the setup path; later swipes reached the distance threshold after 600ms or inherited NON_STRAIGHT_PATH. A separate path with straightness 0.974 was rejected by DIRECTION_CHANGE; that conservative rejection is not loosened in this correction.",
+    "navigation": "Observed own-page sequence 3->2->3->2. A G04 forward transmission coincided with the 2->3 transition. A G13 reopen-tab command was also sent. The human intent of those individual motions cannot be inferred from this log."
+  },
+  "changes": [
+    "Before a command fires, a 180ms pause bounded by 0.8% of the short image side starts a fresh path. It clears preparation time, axis and curve flags; a completed path stays latched until release.",
+    "Only OPEN counts as neutral release. FIST and OTHER no longer rearm commands. An already-ready deliberate fist/open command still works.",
+    "Diagnostic transition summaries preserve failure phase evidence beyond the 900-frame detail ring; no images or raw landmark coordinates are saved.",
+    "FIST_OPEN eligibility is captured when FIST begins. A subsequent OPEN neutral timer cannot authorize an already-started sequence. Deterministic 40/49/60/64/66/90ms frame intervals cover ready and rearming starts."
+  ],
+  "tdd": {
+    "motion_red": {
+      "failed": 13,
+      "passed": 25,
+      "file": "tdd/motion-preparation-red.txt"
+    },
+    "motion_green": {
+      "passed": 133,
+      "file": "tdd/motion-preparation-green.txt"
+    },
+    "rearm_red": {
+      "failed": 2,
+      "passed": 6,
+      "file": "tdd/open-rearm-red.txt"
+    },
+    "full": {
+      "passed": 311,
+      "file": "tdd/motion-preparation-final.txt"
+    },
+    "sequence_red": {
+      "failed": 5,
+      "passed": 15,
+      "file": "tdd/rearm-sequence-red.txt"
+    }
+  },
+  "physical_retest": "DEFERRED_TO_FINAL_VERIFICATION_BUILD_AT_USER_REQUEST",
+  "limits": [
+    "Authored coordinate replay does not measure human gesture accuracy.",
+    "Actual camera capture and actual Chrome effects are separate checks.",
+    "D21+ feature work and clean-PC / multi-person acceptance remain incomplete."
+  ],
+  "qa_harness_first_attempt": "Invalidated by JSON serialization of frozenset in the report writer; input stopped, harness corrected and a fresh isolated run requested. No success claim from that incomplete evidence.",
+  "build": {
+    "exe": "dist/HAND-v2-M04-20261117-prepared-swipes/HAND-v2.exe",
+    "exe_sha256": "1ae8b31f2f36cb48508d48d86cffd244eaaf485089f5e2a7d83c9f7326878cb6",
+    "verified_copy_files": 1302,
+    "bytes": 408247406,
+    "offscreen_smoke_exit_code": 0,
+    "manifest": "m04-prepared-swipes-artifact-manifest.json",
+    "source_manifest": "m04-prepared-swipes-source-manifest.json",
+    "source_unchanged_during_build_and_validation": true
+  },
+  "camera": {
+    "source": "REAL_CAMERA_MEDIAPIPE_VIDEO_NO_OS_INPUT",
+    "success": true,
+    "index": 1,
+    "frames": 222,
+    "startup_seconds": 6.469,
+    "fps_after_start": 26.02,
+    "errors": [],
+    "stop": {
+      "success": true,
+      "forced": false,
+      "elapsed_ms": 1000
+    },
+    "frozen": true,
+    "evidence": "m04-prepared-swipes-bundle-camera.json"
+  },
+  "chrome": {
+    "status": "PASS",
+    "source": "AUTHORED_LANDMARKS_PRODUCTION_RECOGNIZER_REAL_CHROME",
+    "back": 10,
+    "forward": 10,
+    "actual_navigation_events": 20,
+    "sent_commands": 20,
+    "extra_commands": 0,
+    "frames": 1718,
+    "max_frame_gap_ms": 109,
+    "keyboard_release": "CONFIRMED",
+    "evidence": "m04-prepared-swipes-chrome.json",
+    "camera_tested": false,
+    "human_accuracy_evaluated": false
+  },
+  "prior_chrome_audit": {
+    "status": "FAIL_AFTER_INPUT_AUDIT",
+    "evidence": "m04-motion-preparation-chrome-initial.json",
+    "page_checks_passed": 20,
+    "sent_expected": 20,
+    "sent_actual": 25
+  },
+  "probe_invocation_retry": "First probe captured but could not write its report because the launch command added spaces around the absolute output path. Closed the error dialog, corrected the diagnostic argument, reran successfully; no production source change.",
+  "chrome_fixture_retry": "An initial fresh-tab run sent one chord without page navigation. Retained the failed report. Final fixture creates history in a real Start-button click and requires fresh focused-page heartbeat before starting. No claim that the failed run was a product success.",
+  "app_launch": {
+    "exe": "dist/HAND-v2-M04-20261117-prepared-swipes/HAND-v2.exe",
+    "native_window_seen": true,
+    "activation": "WAITING",
+    "global_f8_displayed_available": true,
+    "camera_preview": "VERIFIED_VISIBLE_IN_FROZEN_NATIVE_APP",
+    "observed_ui_fps": 29.5,
+    "camera_left_off_after_check": true
+  }
+}

@@ -1,0 +1,109 @@
+........FFFFF.......                                                     [100%]
+================================== FAILURES ===================================
+__ test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-49] ___
+
+interval = 49, already_ready = False
+
+    @pytest.mark.parametrize('interval',[40,49,60,64,66,90])
+    @pytest.mark.parametrize('already_ready',[False,True])
+    def test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible(interval,already_ready):
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        if not already_ready:feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450)
+        for at in range(3500,4201,interval):
+            r.scheduler.advance_to(at);v.accept(sample_frame(at,'OPEN'));r.controller.flush_executor()
+        expected=[('CTRL','SHIFT','T')] if already_ready else [('ALT','LEFT')]
+>       assert r.keyboard.sent_chords==expected
+E       AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]
+E         
+E         Left contains one more item: ('CTRL', 'SHIFT', 'T')
+E         Use -v to get more diff
+
+tests\unit\test_vision_control.py:96: AssertionError
+__ test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-60] ___
+
+interval = 60, already_ready = False
+
+    @pytest.mark.parametrize('interval',[40,49,60,64,66,90])
+    @pytest.mark.parametrize('already_ready',[False,True])
+    def test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible(interval,already_ready):
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        if not already_ready:feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450)
+        for at in range(3500,4201,interval):
+            r.scheduler.advance_to(at);v.accept(sample_frame(at,'OPEN'));r.controller.flush_executor()
+        expected=[('CTRL','SHIFT','T')] if already_ready else [('ALT','LEFT')]
+>       assert r.keyboard.sent_chords==expected
+E       AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]
+E         
+E         Left contains one more item: ('CTRL', 'SHIFT', 'T')
+E         Use -v to get more diff
+
+tests\unit\test_vision_control.py:96: AssertionError
+__ test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-64] ___
+
+interval = 64, already_ready = False
+
+    @pytest.mark.parametrize('interval',[40,49,60,64,66,90])
+    @pytest.mark.parametrize('already_ready',[False,True])
+    def test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible(interval,already_ready):
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        if not already_ready:feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450)
+        for at in range(3500,4201,interval):
+            r.scheduler.advance_to(at);v.accept(sample_frame(at,'OPEN'));r.controller.flush_executor()
+        expected=[('CTRL','SHIFT','T')] if already_ready else [('ALT','LEFT')]
+>       assert r.keyboard.sent_chords==expected
+E       AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]
+E         
+E         Left contains one more item: ('CTRL', 'SHIFT', 'T')
+E         Use -v to get more diff
+
+tests\unit\test_vision_control.py:96: AssertionError
+__ test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-66] ___
+
+interval = 66, already_ready = False
+
+    @pytest.mark.parametrize('interval',[40,49,60,64,66,90])
+    @pytest.mark.parametrize('already_ready',[False,True])
+    def test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible(interval,already_ready):
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        if not already_ready:feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450)
+        for at in range(3500,4201,interval):
+            r.scheduler.advance_to(at);v.accept(sample_frame(at,'OPEN'));r.controller.flush_executor()
+        expected=[('CTRL','SHIFT','T')] if already_ready else [('ALT','LEFT')]
+>       assert r.keyboard.sent_chords==expected
+E       AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]
+E         
+E         Left contains one more item: ('CTRL', 'SHIFT', 'T')
+E         Use -v to get more diff
+
+tests\unit\test_vision_control.py:96: AssertionError
+__ test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-90] ___
+
+interval = 90, already_ready = False
+
+    @pytest.mark.parametrize('interval',[40,49,60,64,66,90])
+    @pytest.mark.parametrize('already_ready',[False,True])
+    def test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible(interval,already_ready):
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        if not already_ready:feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450)
+        for at in range(3500,4201,interval):
+            r.scheduler.advance_to(at);v.accept(sample_frame(at,'OPEN'));r.controller.flush_executor()
+        expected=[('CTRL','SHIFT','T')] if already_ready else [('ALT','LEFT')]
+>       assert r.keyboard.sent_chords==expected
+E       AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]
+E         
+E         Left contains one more item: ('CTRL', 'SHIFT', 'T')
+E         Use -v to get more diff
+
+tests\unit\test_vision_control.py:96: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_vision_control.py::test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-49]
+FAILED tests/unit/test_vision_control.py::test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-60]
+FAILED tests/unit/test_vision_control.py::test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-64]
+FAILED tests/unit/test_vision_control.py::test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-66]
+FAILED tests/unit/test_vision_control.py::test_rearm_timer_cannot_make_an_in_progress_fist_open_eligible[False-90]
+5 failed, 15 passed in 1.74s

@@ -6,13 +6,14 @@ class FistOpenRecognizer:
     def __init__(self):self.reset()
     def reset(self):
         self.hand_id=None;self.since=None;self.qualified=None;self.open_since=None;self.fired=False
-    def update(self,feature,at):
+        self.eligible=False
+    def update(self,feature,at,ready=True):
         if self.hand_id!=feature.hand_id:
             self.reset();self.hand_id=feature.hand_id
         if feature.pose=='FIST':
             if self.open_since is not None or self.fired:
                 self.reset();self.hand_id=feature.hand_id
-            if self.since is None:self.since=at
+            if self.since is None:self.since=at;self.eligible=ready
             if self.qualified is None and at-self.since>=250:self.qualified=at
         elif feature.pose=='OPEN':
             if self.qualified is None:
@@ -23,7 +24,11 @@ class FistOpenRecognizer:
                         self.reset();return None
                     self.open_since=at
                 if at-self.open_since>=150:
-                    self.fired=True;return Gesture.FIST_OPEN
+                    self.fired=True
+                    # OPEN may make the controller ready while this sequence
+                    # is still being measured. Eligibility belongs to its
+                    # starting FIST, never to a later neutral-timer callback.
+                    return Gesture.FIST_OPEN if self.eligible else None
         else:self.reset()
         return None
 

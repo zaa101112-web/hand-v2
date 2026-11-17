@@ -19,7 +19,7 @@ class VisionControl:
         self.last_frame=frame.frame_id;self.last_at=frame.captured_at_ms
         if self.context!=state.context_version:
             self.recognizer.reset();self.context=state.context_version
-        result=self.recognizer.process(frame,state.activation==Activation.ACTIVE)
+        result=self.recognizer.process(frame,state.activation==Activation.ACTIVE,ready=state.ready)
         self.last_recognition=result
         if not frame.hands:
             core.hands_lost();return True

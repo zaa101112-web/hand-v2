@@ -1,0 +1,15 @@
+{
+  "at_utc": "2026-11-17T06:07:12.816974+00:00",
+  "stage": ".build-staging\\20261117-150331-345797",
+  "exit_code": 0,
+  "duration_seconds": 221.47,
+  "lock_sha256": "9d0375bd35dce287b5ffadd7a8b92192ee7fea2d5555865bd34d9406b9741a71",
+  "clean_pc_test": "NOT_RUN",
+  "fresh_staging": true,
+  "path_sanitized": true,
+  "exe": ".build-staging\\20261117-150331-345797\\dist\\HAND-v2\\HAND-v2.exe",
+  "exe_sha256": "874eec7d2f0a4f5b228a10700d244db2a55a29907a203a9c8947868dadc11d94",
+  "manifest_sha256": "bd23914a026ed7962f837326ec53d25a8575aa1b9664cbb446dfa5409ed13a0a",
+  "bundle_bytes": 408247299,
+  "offscreen_smoke_exit_code": 0
+}

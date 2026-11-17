@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="8" time="1.151" timestamp="2026-11-17T15:02:06.536287+09:00" hostname="준식"><testcase classname="tests.unit.test_vision_control" name="test_landmarks_start_rearm_swipe_and_stop_reach_controller" time="0.027" /><testcase classname="tests.unit.test_vision_control" name="test_loss_is_not_stop_and_reacquired_command_needs_release" time="0.010" /><testcase classname="tests.unit.test_vision_control" name="test_stale_epoch_or_frame_cannot_affect_activation" time="0.001" /><testcase classname="tests.unit.test_vision_control" name="test_camera_recovery_does_not_clear_unrelated_fault_or_auto_activate" time="0.001" /><testcase classname="tests.unit.test_vision_control" name="test_fist_reposition_after_swipe_cannot_rearm_forward_command" time="0.014"><failure message="AssertionError: assert not True&#10; +  where True = AppState(revision=66, context_version=1, mode=&lt;Mode.BROWSER: 'BROWSER'&gt;, phase='RUNNING', activation=&lt;Activation.ACTIV...ersion=1, completed_at_ms=2300, status=&lt;Status.SENT: 'SENT'&gt;, reason='SIMULATED', detail=''), visible_hand_ids=('h1',)).ready&#10;[+2 more lines; full report in element text]">def test_fist_reposition_after_swipe_cannot_rearm_forward_command():
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450)
+&gt;       assert not r.controller.state.ready
+E       AssertionError: assert not True
+E        +  where True = AppState(revision=66, context_version=1, mode=&lt;Mode.BROWSER: 'BROWSER'&gt;, phase='RUNNING', activation=&lt;Activation.ACTIV...ersion=1, completed_at_ms=2300, status=&lt;Status.SENT: 'SENT'&gt;, reason='SIMULATED', detail=''), visible_hand_ids=('h1',)).ready
+E        +    where AppState(revision=66, context_version=1, mode=&lt;Mode.BROWSER: 'BROWSER'&gt;, phase='RUNNING', activation=&lt;Activation.ACTIV...ersion=1, completed_at_ms=2300, status=&lt;Status.SENT: 'SENT'&gt;, reason='SIMULATED', detail=''), visible_hand_ids=('h1',)) = &lt;hand_v2.application.controller.Controller object at 0x000002DCC4D40E30&gt;.state
+E        +      where &lt;hand_v2.application.controller.Controller object at 0x000002DCC4D40E30&gt; = Runtime(controller=&lt;hand_v2.application.controller.Controller object at 0x000002DCC4D40E30&gt;, clock=&lt;hand_v2.adapters.t...ra_wanted=False, camera_index=0, preview_enabled=True, camera_retries=0, retry_at=None, frame_times=[], camera_fps=0.0).controller
+
+tests\unit\test_vision_control.py:65: AssertionError</failure></testcase><testcase classname="tests.unit.test_vision_control" name="test_fist_open_during_rearm_does_not_restore_an_unrelated_tab" time="0.015"><failure message="AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]&#10;  &#10;  Left contains one more item: ('CTRL', 'SHIFT', 'T')&#10;  Use -v to get more diff">def test_fist_open_during_rearm_does_not_restore_an_unrelated_tab():
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450);feed(r,v,'OPEN',3500,4000)
+&gt;       assert r.keyboard.sent_chords==[('ALT','LEFT')]
+E       AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]
+E         
+E         Left contains one more item: ('CTRL', 'SHIFT', 'T')
+E         Use -v to get more diff
+
+tests\unit\test_vision_control.py:76: AssertionError</failure></testcase><testcase classname="tests.unit.test_vision_control" name="test_fist_open_from_ready_still_restores_tab_once" time="0.010" /><testcase classname="tests.unit.test_vision_control" name="test_three_prepared_swipes_reach_keyboard_after_explicit_open_release" time="0.060" /></testsuite></testsuites>

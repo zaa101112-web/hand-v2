@@ -33,7 +33,7 @@ class GestureRecognizer:
             event=gesture;self._hold_fired=True
         return Recognition(event,(key[1],),False,label,progress)
 
-    def process(self,frame,active):
+    def process(self,frame,active,ready=True):
         at=frame.captured_at_ms
         if frame.camera_epoch!=self.epoch:
             self.reset();self.last_at=None;self.epoch=frame.camera_epoch
@@ -64,7 +64,7 @@ class GestureRecognizer:
             return Recognition(gesture,tuple(f.hand_id for f in features),all(f.pose=='OPEN' for f in features),labels.get(reason,'두 손 인식 중'),progress,reason)
         self.pair.reset()
         if active and len(features)==1:
-            gesture=self.fist.update(features[0],at)
+            gesture=self.fist.update(features[0],at,ready)
             if gesture:
                 self.motion.reset();return Recognition(gesture,(features[0].hand_id,),False,'주먹 → 펼침 확정',1)
             if features[0].pose in ('INDEX','V'):
@@ -77,8 +77,11 @@ class GestureRecognizer:
         else:self.fist.reset()
         self.motion.reset()
         ids=tuple(f.hand_id for f in features)
-        neutral=all(f.pose in ('OPEN','FIST','OTHER') for f in features)
-        names={'V':'V 자세','OPEN':'펼친 손 · 자세 해제','FIST':'주먹 · 자세 해제','UNKNOWN':'손가락을 분명히 보여주세요','THUMB':'엄지 자세','L':'L 자세'}
+        # Rearm only with the explicit open-palm release shown in the UI.
+        # A fist is part of G13 and often a return movement after a swipe;
+        # treating it as neutral can restore tabs or arm an unintended reverse.
+        neutral=all(f.pose=='OPEN' for f in features)
+        names={'V':'V 자세','OPEN':'펼친 손 · 자세 해제','FIST':'주먹 · 준비하려면 손을 펼치세요','UNKNOWN':'손가락을 분명히 보여주세요','THUMB':'엄지 자세','L':'L 자세'}
         label=names.get(features[0].pose,'손동작 준비') if len(features)==1 else '두 손 인식 중'
         if len(features)==1 and features[0].pose=='UNKNOWN':
             f=features[0]

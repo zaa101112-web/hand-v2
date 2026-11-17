@@ -1,0 +1,32 @@
+....FF..                                                                 [100%]
+================================== FAILURES ===================================
+________ test_fist_reposition_after_swipe_cannot_rearm_forward_command ________
+
+    def test_fist_reposition_after_swipe_cannot_rearm_forward_command():
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450)
+>       assert not r.controller.state.ready
+E       AssertionError: assert not True
+E        +  where True = AppState(revision=66, context_version=1, mode=<Mode.BROWSER: 'BROWSER'>, phase='RUNNING', activation=<Activation.ACTIV...ersion=1, completed_at_ms=2300, status=<Status.SENT: 'SENT'>, reason='SIMULATED', detail=''), visible_hand_ids=('h1',)).ready
+E        +    where AppState(revision=66, context_version=1, mode=<Mode.BROWSER: 'BROWSER'>, phase='RUNNING', activation=<Activation.ACTIV...ersion=1, completed_at_ms=2300, status=<Status.SENT: 'SENT'>, reason='SIMULATED', detail=''), visible_hand_ids=('h1',)) = <hand_v2.application.controller.Controller object at 0x000002DCC4D40E30>.state
+E        +      where <hand_v2.application.controller.Controller object at 0x000002DCC4D40E30> = Runtime(controller=<hand_v2.application.controller.Controller object at 0x000002DCC4D40E30>, clock=<hand_v2.adapters.t...ra_wanted=False, camera_index=0, preview_enabled=True, camera_retries=0, retry_at=None, frame_times=[], camera_fps=0.0).controller
+
+tests\unit\test_vision_control.py:65: AssertionError
+________ test_fist_open_during_rearm_does_not_restore_an_unrelated_tab ________
+
+    def test_fist_open_during_rearm_does_not_restore_an_unrelated_tab():
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'OPEN',1650,1850)
+        feed(r,v,'INDEX',1900,2400,lambda t:.24*t/500)
+        feed(r,v,'FIST',2450,3450);feed(r,v,'OPEN',3500,4000)
+>       assert r.keyboard.sent_chords==[('ALT','LEFT')]
+E       AssertionError: assert [('ALT', 'LEF...'SHIFT', 'T')] == [('ALT', 'LEFT')]
+E         
+E         Left contains one more item: ('CTRL', 'SHIFT', 'T')
+E         Use -v to get more diff
+
+tests\unit\test_vision_control.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_vision_control.py::test_fist_reposition_after_swipe_cannot_rearm_forward_command
+FAILED tests/unit/test_vision_control.py::test_fist_open_during_rearm_does_not_restore_an_unrelated_tab
+2 failed, 6 passed in 1.48s

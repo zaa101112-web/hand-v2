@@ -189,7 +189,7 @@
     "frame_count": 189,
     "evidence": "m04-swipe-noise-bundle-camera.json"
   },
-  "physical_retest": "AWAITING_CONTROLLED_HISTORY_TRIAL",
+  "physical_retest": "PARTIAL_FAILURE_REPORTED_AND_CONFIRMED_BY_OWN_PAGE_HISTORY",
   "limits": [
     "Do not infer human accuracy from automatic tests",
     "Do not infer Chrome effects from SendInput alone",
@@ -206,7 +206,7 @@
     "note": "The diagnostic wrapper is not bundled; application sources match the frozen build manifest."
   },
   "controlled_history_trial": {
-    "status": "AWAITING_PHYSICAL_HAND_TRIAL",
+    "status": "PARTIAL_FAILURE",
     "url": "http://127.0.0.1:61808/",
     "initial_step": 3,
     "observed_events": [
@@ -214,8 +214,24 @@
         "at_utc": "2026-11-17T05:27:26.275135+00:00",
         "step": 3,
         "event": "load"
+      },
+      {
+        "at_utc": "2026-11-17T05:54:34.637671+00:00",
+        "step": 2,
+        "event": "popstate"
+      },
+      {
+        "at_utc": "2026-11-17T05:55:06.832393+00:00",
+        "step": 3,
+        "event": "popstate"
+      },
+      {
+        "at_utc": "2026-11-17T05:55:43.848077+00:00",
+        "step": 2,
+        "event": "popstate"
       }
     ],
     "no_synthetic_input": true
-  }
+  },
+  "followup": "m04-motion-preparation.json"
 }

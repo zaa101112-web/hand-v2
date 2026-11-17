@@ -1,0 +1,84 @@
+{
+  "source": "AUTHORED_LANDMARKS_PRODUCTION_RECOGNIZER_REAL_CHROME",
+  "status": "FAIL",
+  "error": "Browser effect or unexpected extra navigation",
+  "checks": [
+    {
+      "case": 1,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 1,
+      "actual_step": 20,
+      "actual_events": 0,
+      "sent_commands": 1,
+      "status": "FAIL"
+    }
+  ],
+  "history": [
+    {
+      "at_utc": "2026-11-17T06:16:27.081846+00:00",
+      "step": 20,
+      "event": "load"
+    }
+  ],
+  "executions": [
+    {
+      "command_id": "command-000004",
+      "context_version": 0,
+      "completed_at_ms": 443384453,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000005",
+      "context_version": 0,
+      "completed_at_ms": 443385937,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    }
+  ],
+  "frames": 93,
+  "max_frame_gap_ms": 62,
+  "camera_tested": false,
+  "human_accuracy_evaluated": false,
+  "foreground_hwnd": 34868582,
+  "state": {
+    "revision": 110,
+    "context_version": 1,
+    "mode": "BROWSER",
+    "phase": "RUNNING",
+    "activation": "WAITING",
+    "ready": false,
+    "execution_mode": "WINDOWS_REAL",
+    "camera_status": "DISCONNECTED",
+    "camera_epoch": 0,
+    "blocked_reasons": [],
+    "confirmation_pending": false,
+    "release_pending": false,
+    "keyboard_state": {
+      "revision": 4,
+      "observed_at_ms": 443387031,
+      "owned_keys": [],
+      "release_status": "CONFIRMED",
+      "release_request_id": "release-000006"
+    },
+    "dialog_lock": false,
+    "last_stop_reason": "Autonomous QA complete",
+    "last_stop_at_ms": 443387031,
+    "last_candidate": "펼친 손 · 자세 해제",
+    "last_execution": {
+      "command_id": "gesture-000005",
+      "context_version": 0,
+      "completed_at_ms": 443385937,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    "visible_hand_ids": [
+      "h1"
+    ]
+  }
+}

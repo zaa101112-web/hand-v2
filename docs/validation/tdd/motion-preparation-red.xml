@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="13" skipped="0" tests="38" time="1.847" timestamp="2026-11-17T14:59:39.184662+09:00" hostname="준식"><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[400-INDEX-1-G03]" time="0.019"><failure message="AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = 1, expected = &lt;Gesture.LEFT: 'G03'&gt;, pause_ms = 400
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[400-INDEX--1-G04]" time="0.010"><failure message="AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = -1, expected = &lt;Gesture.RIGHT: 'G04'&gt;
+pause_ms = 400
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[400-V-1-G05]" time="0.008"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = 1, expected = &lt;Gesture.TAB_LEFT: 'G05'&gt;, pause_ms = 400
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[400-V--1-G06]" time="0.010"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = -1, expected = &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+pause_ms = 400
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[1000-INDEX-1-G03]" time="0.011"><failure message="AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = 1, expected = &lt;Gesture.LEFT: 'G03'&gt;, pause_ms = 1000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[1000-INDEX--1-G04]" time="0.012"><failure message="AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = -1, expected = &lt;Gesture.RIGHT: 'G04'&gt;
+pause_ms = 1000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[1000-V-1-G05]" time="0.011"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = 1, expected = &lt;Gesture.TAB_LEFT: 'G05'&gt;, pause_ms = 1000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[1000-V--1-G06]" time="0.010"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = -1, expected = &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+pause_ms = 1000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[3000-INDEX-1-G03]" time="0.023"><failure message="AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = 1, expected = &lt;Gesture.LEFT: 'G03'&gt;, pause_ms = 3000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[3000-INDEX--1-G04]" time="0.023"><failure message="AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;&#10;  Use -v to get more diff">pose = 'INDEX', direction = -1, expected = &lt;Gesture.RIGHT: 'G04'&gt;
+pause_ms = 3000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.RIGHT: 'G04'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.RIGHT: 'G04'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[3000-V-1-G05]" time="0.023"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = 1, expected = &lt;Gesture.TAB_LEFT: 'G05'&gt;, pause_ms = 3000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_LEFT: 'G05'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_LEFT: 'G05'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_move_to_pointing_pose_then_pause_then_swipe[3000-V--1-G06]" time="0.024"><failure message="AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;&#10;  Use -v to get more diff">pose = 'V', direction = -1, expected = &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+pause_ms = 3000
+
+    @pytest.mark.parametrize('pose,direction,expected',[
+        ('INDEX',1,Gesture.LEFT),('INDEX',-1,Gesture.RIGHT),
+        ('V',1,Gesture.TAB_LEFT),('V',-1,Gesture.TAB_RIGHT),
+    ])
+    @pytest.mark.parametrize('pause_ms',[400,1000,3000])
+    def test_move_to_pointing_pose_then_pause_then_swipe(pose,direction,expected,pause_ms):
+        recognizer=GestureRecognizer();events=[]
+        # Extending the finger moves its tip 8% vertically, then it settles.
+        frames=[moved_frame(1000+t,pose,dy=-.08*t/150) for t in range(0,151,50)]
+        frames += [moved_frame(1150+t,pose,dy=-.08+(1/480 if t%100 else 0)) for t in range(50,pause_ms+1,50)]
+        frames += [moved_frame(1150+pause_ms+t,pose,direction*.24*t/500,-.08) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[expected]
+E       AssertionError: assert [] == [&lt;Gesture.TAB_RIGHT: 'G06'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.TAB_RIGHT: 'G06'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:36: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_small_preparation_reversal_then_pause_does_not_lock_circle_candidate" time="0.010"><failure message="AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]&#10;  &#10;  Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;&#10;  Use -v to get more diff">def test_small_preparation_reversal_then_pause_does_not_lock_circle_candidate():
+        recognizer=GestureRecognizer();events=[]
+        offsets=[0,.02,.04,.06,.04,.03]
+        frames=[moved_frame(1000+i*50,'INDEX',dx) for i,dx in enumerate(offsets)]
+        frames += [moved_frame(t,'INDEX',.03) for t in range(1300,2101,50)]
+        frames += [moved_frame(2100+t,'INDEX',.03+.24*t/500) for t in range(50,551,50)]
+        for frame in frames:
+            result=recognizer.process(frame,True)
+            if result.gesture:events.append(result.gesture)
+&gt;       assert events==[Gesture.LEFT]
+E       AssertionError: assert [] == [&lt;Gesture.LEFT: 'G03'&gt;]
+E         
+E         Right contains one more item: &lt;Gesture.LEFT: 'G03'&gt;
+E         Use -v to get more diff
+
+tests\unit\test_motion_preparation.py:48: AssertionError</failure></testcase><testcase classname="tests.unit.test_motion_preparation" name="test_pause_after_success_never_rearms_a_second_command" time="0.013" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-0]" time="0.017" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-45]" time="0.017" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-90]" time="0.016" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-135]" time="0.020" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-180]" time="0.018" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-225]" time="0.018" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-270]" time="0.020" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.04-315]" time="0.022" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-0]" time="0.017" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-45]" time="0.018" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-90]" time="0.038" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-135]" time="0.020" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-180]" time="0.020" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-225]" time="0.019" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-270]" time="0.017" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.1-315]" time="0.015" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-0]" time="0.021" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-45]" time="0.020" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-90]" time="0.019" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-135]" time="0.024" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-180]" time="0.023" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-225]" time="0.020" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-270]" time="0.021" /><testcase classname="tests.unit.test_motion_preparation" name="test_continuous_circle_is_not_reset_as_a_preparation_pause[0.18-315]" time="0.026" /></testsuite></testsuites>

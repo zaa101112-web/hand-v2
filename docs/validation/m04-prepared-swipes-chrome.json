@@ -1,0 +1,622 @@
+{
+  "source": "AUTHORED_LANDMARKS_PRODUCTION_RECOGNIZER_REAL_CHROME",
+  "status": "PASS",
+  "error": null,
+  "checks": [
+    {
+      "case": 1,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 1,
+      "actual_step": 19,
+      "actual_events": 1,
+      "sent_commands": 1,
+      "status": "PASS"
+    },
+    {
+      "case": 2,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 2,
+      "actual_step": 20,
+      "actual_events": 2,
+      "sent_commands": 2,
+      "status": "PASS"
+    },
+    {
+      "case": 3,
+      "direction": "BACK",
+      "pause_ms": 3000,
+      "expected_step": 19,
+      "expected_events": 3,
+      "actual_step": 19,
+      "actual_events": 3,
+      "sent_commands": 3,
+      "status": "PASS"
+    },
+    {
+      "case": 4,
+      "direction": "FORWARD",
+      "pause_ms": 400,
+      "expected_step": 20,
+      "expected_events": 4,
+      "actual_step": 20,
+      "actual_events": 4,
+      "sent_commands": 4,
+      "status": "PASS"
+    },
+    {
+      "case": 5,
+      "direction": "BACK",
+      "pause_ms": 1000,
+      "expected_step": 19,
+      "expected_events": 5,
+      "actual_step": 19,
+      "actual_events": 5,
+      "sent_commands": 5,
+      "status": "PASS"
+    },
+    {
+      "case": 6,
+      "direction": "FORWARD",
+      "pause_ms": 3000,
+      "expected_step": 20,
+      "expected_events": 6,
+      "actual_step": 20,
+      "actual_events": 6,
+      "sent_commands": 6,
+      "status": "PASS"
+    },
+    {
+      "case": 7,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 7,
+      "actual_step": 19,
+      "actual_events": 7,
+      "sent_commands": 7,
+      "status": "PASS"
+    },
+    {
+      "case": 8,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 8,
+      "actual_step": 20,
+      "actual_events": 8,
+      "sent_commands": 8,
+      "status": "PASS"
+    },
+    {
+      "case": 9,
+      "direction": "BACK",
+      "pause_ms": 3000,
+      "expected_step": 19,
+      "expected_events": 9,
+      "actual_step": 19,
+      "actual_events": 9,
+      "sent_commands": 9,
+      "status": "PASS"
+    },
+    {
+      "case": 10,
+      "direction": "FORWARD",
+      "pause_ms": 400,
+      "expected_step": 20,
+      "expected_events": 10,
+      "actual_step": 20,
+      "actual_events": 10,
+      "sent_commands": 10,
+      "status": "PASS"
+    },
+    {
+      "case": 11,
+      "direction": "BACK",
+      "pause_ms": 1000,
+      "expected_step": 19,
+      "expected_events": 11,
+      "actual_step": 19,
+      "actual_events": 11,
+      "sent_commands": 11,
+      "status": "PASS"
+    },
+    {
+      "case": 12,
+      "direction": "FORWARD",
+      "pause_ms": 3000,
+      "expected_step": 20,
+      "expected_events": 12,
+      "actual_step": 20,
+      "actual_events": 12,
+      "sent_commands": 12,
+      "status": "PASS"
+    },
+    {
+      "case": 13,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 13,
+      "actual_step": 19,
+      "actual_events": 13,
+      "sent_commands": 13,
+      "status": "PASS"
+    },
+    {
+      "case": 14,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 14,
+      "actual_step": 20,
+      "actual_events": 14,
+      "sent_commands": 14,
+      "status": "PASS"
+    },
+    {
+      "case": 15,
+      "direction": "BACK",
+      "pause_ms": 3000,
+      "expected_step": 19,
+      "expected_events": 15,
+      "actual_step": 19,
+      "actual_events": 15,
+      "sent_commands": 15,
+      "status": "PASS"
+    },
+    {
+      "case": 16,
+      "direction": "FORWARD",
+      "pause_ms": 400,
+      "expected_step": 20,
+      "expected_events": 16,
+      "actual_step": 20,
+      "actual_events": 16,
+      "sent_commands": 16,
+      "status": "PASS"
+    },
+    {
+      "case": 17,
+      "direction": "BACK",
+      "pause_ms": 1000,
+      "expected_step": 19,
+      "expected_events": 17,
+      "actual_step": 19,
+      "actual_events": 17,
+      "sent_commands": 17,
+      "status": "PASS"
+    },
+    {
+      "case": 18,
+      "direction": "FORWARD",
+      "pause_ms": 3000,
+      "expected_step": 20,
+      "expected_events": 18,
+      "actual_step": 20,
+      "actual_events": 18,
+      "sent_commands": 18,
+      "status": "PASS"
+    },
+    {
+      "case": 19,
+      "direction": "BACK",
+      "pause_ms": 400,
+      "expected_step": 19,
+      "expected_events": 19,
+      "actual_step": 19,
+      "actual_events": 19,
+      "sent_commands": 19,
+      "status": "PASS"
+    },
+    {
+      "case": 20,
+      "direction": "FORWARD",
+      "pause_ms": 1000,
+      "expected_step": 20,
+      "expected_events": 20,
+      "actual_step": 20,
+      "actual_events": 20,
+      "sent_commands": 20,
+      "status": "PASS"
+    }
+  ],
+  "history": [
+    {
+      "at_utc": "2026-11-17T06:19:08.225724+00:00",
+      "step": 20,
+      "event": "load"
+    },
+    {
+      "at_utc": "2026-11-17T06:19:42.658380+00:00",
+      "step": 20,
+      "event": "load"
+    },
+    {
+      "at_utc": "2026-11-17T06:19:44.745275+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:19:48.932620+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:19:54.495309+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:19:58.137745+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:01.762586+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:07.929730+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:10.932186+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:15.140522+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:20.748208+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:24.340801+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:27.934191+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:34.136753+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:37.141798+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:41.340813+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:46.956573+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:50.510693+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:20:54.149746+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:21:00.344266+00:00",
+      "step": 20,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:21:03.348552+00:00",
+      "step": 19,
+      "event": "popstate"
+    },
+    {
+      "at_utc": "2026-11-17T06:21:07.503295+00:00",
+      "step": 20,
+      "event": "popstate"
+    }
+  ],
+  "executions": [
+    {
+      "command_id": "command-000004",
+      "context_version": 0,
+      "completed_at_ms": 443580015,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000005",
+      "context_version": 0,
+      "completed_at_ms": 443581515,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000007",
+      "context_version": 0,
+      "completed_at_ms": 443584203,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000009",
+      "context_version": 0,
+      "completed_at_ms": 443589781,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000010",
+      "context_version": 0,
+      "completed_at_ms": 443591265,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000012",
+      "context_version": 0,
+      "completed_at_ms": 443593421,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000014",
+      "context_version": 0,
+      "completed_at_ms": 443597031,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000015",
+      "context_version": 0,
+      "completed_at_ms": 443598515,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000017",
+      "context_version": 0,
+      "completed_at_ms": 443603203,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000019",
+      "context_version": 0,
+      "completed_at_ms": 443606203,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000020",
+      "context_version": 0,
+      "completed_at_ms": 443607703,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000022",
+      "context_version": 0,
+      "completed_at_ms": 443610421,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000024",
+      "context_version": 0,
+      "completed_at_ms": 443616031,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000025",
+      "context_version": 0,
+      "completed_at_ms": 443617515,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000027",
+      "context_version": 0,
+      "completed_at_ms": 443619609,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000029",
+      "context_version": 0,
+      "completed_at_ms": 443623203,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000030",
+      "context_version": 0,
+      "completed_at_ms": 443624703,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000032",
+      "context_version": 0,
+      "completed_at_ms": 443629406,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000034",
+      "context_version": 0,
+      "completed_at_ms": 443632421,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000035",
+      "context_version": 0,
+      "completed_at_ms": 443633906,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000037",
+      "context_version": 0,
+      "completed_at_ms": 443636609,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000039",
+      "context_version": 0,
+      "completed_at_ms": 443642218,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000040",
+      "context_version": 0,
+      "completed_at_ms": 443643703,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000042",
+      "context_version": 0,
+      "completed_at_ms": 443645781,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000044",
+      "context_version": 0,
+      "completed_at_ms": 443649421,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000045",
+      "context_version": 0,
+      "completed_at_ms": 443650906,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000047",
+      "context_version": 0,
+      "completed_at_ms": 443655609,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000049",
+      "context_version": 0,
+      "completed_at_ms": 443658625,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "gesture-000050",
+      "context_version": 0,
+      "completed_at_ms": 443660109,
+      "status": "BLOCKED",
+      "reason": "REARM_REQUIRED",
+      "detail": ""
+    },
+    {
+      "command_id": "command-000052",
+      "context_version": 0,
+      "completed_at_ms": 443662781,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    }
+  ],
+  "frames": 1718,
+  "max_frame_gap_ms": 109,
+  "camera_tested": false,
+  "human_accuracy_evaluated": false,
+  "foreground_hwnd": 34868582,
+  "state": {
+    "revision": 1820,
+    "context_version": 1,
+    "mode": "BROWSER",
+    "phase": "RUNNING",
+    "activation": "WAITING",
+    "ready": false,
+    "execution_mode": "WINDOWS_REAL",
+    "camera_status": "DISCONNECTED",
+    "camera_epoch": 0,
+    "blocked_reasons": [],
+    "confirmation_pending": false,
+    "release_pending": false,
+    "keyboard_state": {
+      "revision": 23,
+      "observed_at_ms": 443664812,
+      "owned_keys": [],
+      "release_status": "CONFIRMED",
+      "release_request_id": "release-000053"
+    },
+    "dialog_lock": false,
+    "last_stop_reason": "Autonomous QA complete",
+    "last_stop_at_ms": 443664812,
+    "last_candidate": "펼친 손 · 자세 해제",
+    "last_execution": {
+      "command_id": "command-000052",
+      "context_version": 0,
+      "completed_at_ms": 443662781,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    "visible_hand_ids": [
+      "h1"
+    ]
+  }
+}
