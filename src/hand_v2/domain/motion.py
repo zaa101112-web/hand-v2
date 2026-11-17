@@ -12,14 +12,27 @@ class MotionRecognizer:
         self.key=None;self.since=None;self.path=[];self.fired=False
         self.ema=TimeEMA(60);self.curved=False;self.axis=None
         self.initial_direction=None
+        self.pose_since=None;self.anchor=None;self.anchor_at=None
 
     def update(self,feature,at,width,height):
         key=(feature.hand_id,feature.pose)
         if key!=self.key:
-            self.reset();self.key=key;self.since=at
+            self.reset();self.key=key;self.pose_since=at
         point=self.ema.update(feature.pointer,at)
+        previous=self.path[-1][1] if self.path else None
         self.path.append((at,point));self.path=self.path[-256:]
         if self.fired:return None,1,'RELEASE_REQUIRED'
+        if self.anchor is None:
+            self.anchor=point;self.anchor_at=at
+            return None,0,'MOTION_READY'
+        if self.since is None:
+            # Start the motion clock after actual displacement, not when the
+            # user first forms the pose. Stationary samples refresh its anchor.
+            if distance(point,self.anchor)<.02:
+                if previous is not None and distance(point,previous)<.002:
+                    self.anchor=point;self.anchor_at=at;self.path=[(at,point)]
+                return None,0,'MOTION_READY'
+            self.since=self.anchor_at
         elapsed=at-self.since
         start=self.path[0][1];dx,dy=point[0]-start[0],point[1]-start[1]
         length=sum(distance(a[1],b[1]) for a,b in zip(self.path,self.path[1:]))
@@ -38,7 +51,7 @@ class MotionRecognizer:
             self.fired=True;return None,0,'MOTION_TOO_SLOW'
         axis=self.axis if feature.pose=='V' else 'x'
         primary,secondary=(dx,dy) if axis=='x' else (dy,dx)
-        if axis and 150<=elapsed<=600 and abs(primary)>=.15 and abs(primary)>=1.8*abs(secondary) and straight>=.90 and not self.curved:
+        if axis and at-self.pose_since>=120 and 150<=elapsed<=600 and abs(primary)>=.15 and abs(primary)>=1.8*abs(secondary) and straight>=.90 and not self.curved:
             self.fired=True
             if feature.pose=='INDEX':gesture=Gesture.LEFT if dx<0 else Gesture.RIGHT
             elif axis=='x':gesture=Gesture.TAB_LEFT if dx<0 else Gesture.TAB_RIGHT

@@ -1,0 +1,163 @@
+938 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.10
+938 INFO: Python: 3.12.10
+1329 INFO: Platform: Windows-11-10.0.26200-SP0
+1329 INFO: Python environment: C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.venv
+1331 INFO: wrote C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\HAND-v2.spec
+1338 INFO: Removing temporary files and cleaning cache in C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\cache\pyinstaller
+4887 INFO: generated new fontManager
+21362 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2',
+ 'C:\\Users\\zaa13\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip',
+ 'C:\\Users\\zaa13\\AppData\\Local\\Programs\\Python\\Python312\\DLLs',
+ 'C:\\Users\\zaa13\\AppData\\Local\\Programs\\Python\\Python312\\Lib',
+ 'C:\\Users\\zaa13\\AppData\\Local\\Programs\\Python\\Python312',
+ 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv',
+ 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages',
+ 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2',
+ 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\src']
+22976 INFO: Appending 'binaries' from .spec
+22979 INFO: Appending 'datas' from .spec
+23178 INFO: checking Analysis
+23178 INFO: Building Analysis because Analysis-00.toc is non existent
+23179 INFO: Looking for Python shared library...
+23179 INFO: Using Python shared library: C:\Users\zaa13\AppData\Local\Programs\Python\Python312\python312.dll
+23179 INFO: Running Analysis Analysis-00.toc
+23179 INFO: Target bytecode optimization level: 0
+23179 INFO: Initializing module dependency graph...
+23184 INFO: Initializing module graph hook caches...
+23315 INFO: Analyzing modules for base_library.zip ...
+27788 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+29345 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+31484 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+33996 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+36482 INFO: Caching module dependency graph...
+36530 INFO: Analyzing C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\run.py
+36758 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+37142 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+37895 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+38026 INFO: Processing standard module hook 'hook-cv2.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+40225 INFO: Processing standard module hook 'hook-numpy.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+41565 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+41573 INFO: SetuptoolsInfo: initializing cached setuptools info...
+47359 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+47627 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+48059 INFO: Processing standard module hook 'hook-webbrowser.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+51427 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+53683 INFO: Processing standard module hook 'hook-sounddevice.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+53888 INFO: Processing pre-safe-import-module hook 'hook-tensorflow.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\pre_safe_import_module'
+54380 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+55262 INFO: Processing standard module hook 'hook-matplotlib.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+56793 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+57709 INFO: Processing standard module hook 'hook-matplotlib.backend_bases.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+58067 INFO: Processing standard module hook 'hook-PIL.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+58269 INFO: Processing standard module hook 'hook-PIL.Image.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+60025 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+60752 INFO: Processing standard module hook 'hook-PIL.ImageFilter.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+63043 INFO: Processing standard module hook 'hook-matplotlib.backends.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+63305 INFO: Processing standard module hook 'hook-matplotlib.pyplot.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+63661 INFO: Processing standard module hook 'hook-matplotlib.figure.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+65385 INFO: Processing standard module hook 'hook-dateutil.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+65658 INFO: Processing standard module hook 'hook-zoneinfo.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+69416 INFO: Processing pre-safe-import-module hook 'hook-gi.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+70385 INFO: Processing standard module hook 'hook-PySide6.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+70901 INFO: Processing standard module hook 'hook-shiboken6.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+71163 INFO: Processing standard module hook 'hook-PySide6.QtNetwork.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+75634 INFO: Processing standard module hook 'hook-PySide6.QtCore.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+80664 INFO: Processing standard module hook 'hook-PySide6.QtWidgets.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+86854 INFO: Processing standard module hook 'hook-PySide6.QtGui.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+126549 INFO: Analyzing hidden import 'mediapipe.tasks.c'
+126555 INFO: Analyzing hidden import 'mediapipe.tasks.python.audio.audio_embedder'
+126579 INFO: Analyzing hidden import 'mediapipe.tasks.python.benchmark'
+126585 INFO: Analyzing hidden import 'mediapipe.tasks.python.benchmark.benchmark_utils'
+126607 INFO: Analyzing hidden import 'mediapipe.tasks.python.benchmark.vision'
+126615 INFO: Analyzing hidden import 'mediapipe.tasks.python.benchmark.vision.benchmark'
+126666 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata'
+126672 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata'
+128335 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata_displayer_cli'
+128526 INFO: Processing standard module hook 'hook-xml.dom.domreg.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+129670 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata_writers'
+129676 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata_writers.image_classifier'
+129814 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata_writers.image_segmenter'
+129853 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata_writers.model_asset_bundle_utils'
+129881 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata_writers.object_detector'
+129975 INFO: Analyzing hidden import 'mediapipe.tasks.python.metadata.metadata_writers.text_classifier'
+129981 INFO: Analyzing hidden import 'mediapipe.tasks.python.test'
+129987 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.audio'
+129996 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.audio.audio_classifier_test'
+130596 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.text'
+130602 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.text.language_detector_test'
+130642 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.text.text_classifier_test'
+130689 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.text.text_embedder_test'
+130716 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision'
+130723 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.face_detector_test'
+130798 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.face_landmarker_test'
+130841 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.hand_landmarker_test'
+130894 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.holistic_landmarker_test'
+130943 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.image_classifier_test'
+131000 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.image_embedder_test'
+131052 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.image_segmenter_test'
+131092 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.image_test'
+131112 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.interactive_segmenter_legacy_test'
+131167 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.object_detector_test'
+131222 INFO: Analyzing hidden import 'mediapipe.tasks.python.test.vision.pose_landmarker_test'
+131318 INFO: Analyzing hidden import 'cv2.config'
+131322 INFO: Analyzing hidden import 'cv2.config-3'
+131337 INFO: Analyzing hidden import 'cv2.cv2'
+131342 INFO: Analyzing hidden import 'cv2.data'
+131381 INFO: Analyzing hidden import 'cv2.load_config_py2'
+131392 INFO: Analyzing hidden import 'cv2.mat_wrapper'
+131405 INFO: Analyzing hidden import 'cv2.misc'
+131472 INFO: Analyzing hidden import 'cv2.typing'
+131533 INFO: Analyzing hidden import 'cv2.utils'
+131557 INFO: Processing module hooks (post-graph stage)...
+131599 INFO: Processing standard module hook 'hook-matplotlib.backends.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+131603 INFO: Matplotlib backend selection method: automatic discovery of used backends
+133302 INFO: Trying determine the default backend as first importable candidate from the list: ['QtAgg', 'Qt5Agg', 'Gtk4Agg', 'Gtk3Agg', 'TkAgg', 'WxAgg']
+137526 INFO: Selected matplotlib backends: ['QtAgg']
+137526 INFO: Extra dists for selected matplotlib backends: []
+137535 INFO: Processing standard module hook 'hook-matplotlib.backends.backend_qtagg.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+137551 INFO: Processing standard module hook 'hook-matplotlib.backends.qt_compat.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+137555 INFO: hook-matplotlib.backends.qt_compat: selected 'PySide6' as Qt bindings because hook for 'PySide6' has been run before.
+137579 INFO: Processing standard module hook 'hook-PySide6.QtSvg.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+139743 INFO: Processing standard module hook 'hook-PIL.SpiderImagePlugin.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+140062 INFO: Processing standard module hook 'hook-tzdata.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+145160 INFO: Performing binary vs. data reclassification (1194 entries)
+155327 INFO: Looking for ctypes DLLs
+155939 INFO: Analyzing run-time hooks ...
+155948 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+155985 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+156007 INFO: Including run-time hook 'pyi_rth_pyside6.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+156017 INFO: Processing pre-find-module-path hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+156052 INFO: Processing standard module hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+156077 INFO: Including run-time hook 'pyi_rth_mplconfig.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+156144 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+156332 INFO: Creating base_library.zip...
+156523 INFO: Looking for dynamic libraries
+164913 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\shiboken6', 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\numpy.libs', 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\cv2\\../../x64/vc17/bin']
+164913 INFO: Extra DLL search directories (PATH): ['C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\cv2\\../../x64/vc17/bin', 'C:\\Users\\zaa13\\OneDrive\\문서\\ChatGPT\\컴퓨터비전\\hand-v2\\.venv\\Lib\\site-packages\\PySide6']
+172901 INFO: Warnings written to C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\work\HAND-v2\warn-HAND-v2.txt
+173059 INFO: Graph cross-reference written to C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\work\HAND-v2\xref-HAND-v2.html
+173232 INFO: checking PYZ
+173233 INFO: Building PYZ because PYZ-00.toc is non existent
+173233 INFO: Building PYZ (ZlibArchive) C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\work\HAND-v2\PYZ-00.pyz
+175362 INFO: Building PYZ (ZlibArchive) C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\work\HAND-v2\PYZ-00.pyz completed successfully.
+175430 INFO: checking PKG
+175431 INFO: Building PKG because PKG-00.toc is non existent
+175431 INFO: Building PKG (CArchive) HAND-v2.pkg
+175571 INFO: Building PKG (CArchive) HAND-v2.pkg completed successfully.
+175575 INFO: Bootloader C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+175575 INFO: checking EXE
+175576 INFO: Building EXE because EXE-00.toc is non existent
+175576 INFO: Building EXE from EXE-00.toc
+175578 INFO: Copying bootloader EXE to C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\work\HAND-v2\HAND-v2.exe
+175815 INFO: Copying icon to EXE
+175958 INFO: Copying 0 resources to EXE
+175959 INFO: Embedding manifest in EXE
+176086 INFO: Appending PKG archive to EXE
+176295 INFO: Fixing EXE headers
+177060 INFO: Building EXE from EXE-00.toc completed successfully.
+177087 INFO: checking COLLECT
+177088 INFO: Building COLLECT because COLLECT-00.toc is non existent
+177090 INFO: Building COLLECT COLLECT-00.toc
+193035 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+193121 INFO: Build complete! The results are available in: C:\Users\zaa13\OneDrive\문서\ChatGPT\컴퓨터비전\hand-v2\.build-staging\20261117-093902-909768\dist

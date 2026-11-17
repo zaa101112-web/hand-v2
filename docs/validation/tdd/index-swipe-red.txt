@@ -1,0 +1,182 @@
+FFFF....FFFFFF.                                                          [100%]
+================================== FAILURES ===================================
+_ test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[133.8-147.2] _
+
+mcp = 133.8, ip = 147.2
+
+    @pytest.mark.parametrize('mcp,ip',[(133.8,147.2),(140,155),(155,140),(145,155)])
+    def test_index_with_bent_thumb_does_not_require_tightly_closed_thumb(mcp,ip):
+>       assert describe_hand(bent_thumb_hand(mcp,ip),640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_swipe_regression.py:30: AssertionError
+__ test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[140-155] __
+
+mcp = 140, ip = 155
+
+    @pytest.mark.parametrize('mcp,ip',[(133.8,147.2),(140,155),(155,140),(145,155)])
+    def test_index_with_bent_thumb_does_not_require_tightly_closed_thumb(mcp,ip):
+>       assert describe_hand(bent_thumb_hand(mcp,ip),640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_swipe_regression.py:30: AssertionError
+__ test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[155-140] __
+
+mcp = 155, ip = 140
+
+    @pytest.mark.parametrize('mcp,ip',[(133.8,147.2),(140,155),(155,140),(145,155)])
+    def test_index_with_bent_thumb_does_not_require_tightly_closed_thumb(mcp,ip):
+>       assert describe_hand(bent_thumb_hand(mcp,ip),640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_swipe_regression.py:30: AssertionError
+__ test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[145-155] __
+
+mcp = 145, ip = 155
+
+    @pytest.mark.parametrize('mcp,ip',[(133.8,147.2),(140,155),(155,140),(145,155)])
+    def test_index_with_bent_thumb_does_not_require_tightly_closed_thumb(mcp,ip):
+>       assert describe_hand(bent_thumb_hand(mcp,ip),640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_swipe_regression.py:30: AssertionError
+_ test_pose_can_be_held_before_swipe_without_expiring_motion[1000-INDEX-G03] __
+
+pose = 'INDEX', expected = <Gesture.LEFT: 'G03'>, hold_ms = 1000
+
+    @pytest.mark.parametrize('pose,expected',[('INDEX',Gesture.LEFT),('V',Gesture.TAB_LEFT)])
+    @pytest.mark.parametrize('hold_ms',[1000,4000])
+    def test_pose_can_be_held_before_swipe_without_expiring_motion(pose,expected,hold_ms):
+        r=GestureRecognizer();events=[]
+        for t in range(0,hold_ms+1,50):
+            assert r.process(sample_frame(1000+t,pose),True).gesture is None
+        for t in range(50,551,50):
+            result=r.process(sample_frame(1000+hold_ms+t,pose,.24*t/500),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.LEFT: 'G03'>]
+E         
+E         Right contains one more item: <Gesture.LEFT: 'G03'>
+E         Use -v to get more diff
+
+tests\unit\test_index_swipe_regression.py:55: AssertionError
+___ test_pose_can_be_held_before_swipe_without_expiring_motion[1000-V-G05] ____
+
+pose = 'V', expected = <Gesture.TAB_LEFT: 'G05'>, hold_ms = 1000
+
+    @pytest.mark.parametrize('pose,expected',[('INDEX',Gesture.LEFT),('V',Gesture.TAB_LEFT)])
+    @pytest.mark.parametrize('hold_ms',[1000,4000])
+    def test_pose_can_be_held_before_swipe_without_expiring_motion(pose,expected,hold_ms):
+        r=GestureRecognizer();events=[]
+        for t in range(0,hold_ms+1,50):
+            assert r.process(sample_frame(1000+t,pose),True).gesture is None
+        for t in range(50,551,50):
+            result=r.process(sample_frame(1000+hold_ms+t,pose,.24*t/500),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.TAB_LEFT: 'G05'>]
+E         
+E         Right contains one more item: <Gesture.TAB_LEFT: 'G05'>
+E         Use -v to get more diff
+
+tests\unit\test_index_swipe_regression.py:55: AssertionError
+_ test_pose_can_be_held_before_swipe_without_expiring_motion[4000-INDEX-G03] __
+
+pose = 'INDEX', expected = <Gesture.LEFT: 'G03'>, hold_ms = 4000
+
+    @pytest.mark.parametrize('pose,expected',[('INDEX',Gesture.LEFT),('V',Gesture.TAB_LEFT)])
+    @pytest.mark.parametrize('hold_ms',[1000,4000])
+    def test_pose_can_be_held_before_swipe_without_expiring_motion(pose,expected,hold_ms):
+        r=GestureRecognizer();events=[]
+        for t in range(0,hold_ms+1,50):
+            assert r.process(sample_frame(1000+t,pose),True).gesture is None
+        for t in range(50,551,50):
+            result=r.process(sample_frame(1000+hold_ms+t,pose,.24*t/500),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.LEFT: 'G03'>]
+E         
+E         Right contains one more item: <Gesture.LEFT: 'G03'>
+E         Use -v to get more diff
+
+tests\unit\test_index_swipe_regression.py:55: AssertionError
+___ test_pose_can_be_held_before_swipe_without_expiring_motion[4000-V-G05] ____
+
+pose = 'V', expected = <Gesture.TAB_LEFT: 'G05'>, hold_ms = 4000
+
+    @pytest.mark.parametrize('pose,expected',[('INDEX',Gesture.LEFT),('V',Gesture.TAB_LEFT)])
+    @pytest.mark.parametrize('hold_ms',[1000,4000])
+    def test_pose_can_be_held_before_swipe_without_expiring_motion(pose,expected,hold_ms):
+        r=GestureRecognizer();events=[]
+        for t in range(0,hold_ms+1,50):
+            assert r.process(sample_frame(1000+t,pose),True).gesture is None
+        for t in range(50,551,50):
+            result=r.process(sample_frame(1000+hold_ms+t,pose,.24*t/500),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.TAB_LEFT: 'G05'>]
+E         
+E         Right contains one more item: <Gesture.TAB_LEFT: 'G05'>
+E         Use -v to get more diff
+
+tests\unit\test_index_swipe_regression.py:55: AssertionError
+___ test_thumb_angle_changes_during_swipe_do_not_discard_index_path[1-G03] ____
+
+direction = 1, expected = <Gesture.LEFT: 'G03'>
+
+    @pytest.mark.parametrize('direction,expected',[(1,Gesture.LEFT),(-1,Gesture.RIGHT)])
+    def test_thumb_angle_changes_during_swipe_do_not_discard_index_path(direction,expected):
+        r=GestureRecognizer();events=[]
+        for t in range(0,501,50):
+            hand=bent_thumb_hand(125 if t%100==0 else 140,155,offset=direction*.24*t/500)
+            result=r.process(TrackingFrame(1000+t,1000+t,1,640,480,(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.LEFT: 'G03'>]
+E         
+E         Right contains one more item: <Gesture.LEFT: 'G03'>
+E         Use -v to get more diff
+
+tests\unit\test_index_swipe_regression.py:65: AssertionError
+___ test_thumb_angle_changes_during_swipe_do_not_discard_index_path[-1-G04] ___
+
+direction = -1, expected = <Gesture.RIGHT: 'G04'>
+
+    @pytest.mark.parametrize('direction,expected',[(1,Gesture.LEFT),(-1,Gesture.RIGHT)])
+    def test_thumb_angle_changes_during_swipe_do_not_discard_index_path(direction,expected):
+        r=GestureRecognizer();events=[]
+        for t in range(0,501,50):
+            hand=bent_thumb_hand(125 if t%100==0 else 140,155,offset=direction*.24*t/500)
+            result=r.process(TrackingFrame(1000+t,1000+t,1,640,480,(hand,)),True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[expected]
+E       AssertionError: assert [] == [<Gesture.RIGHT: 'G04'>]
+E         
+E         Right contains one more item: <Gesture.RIGHT: 'G04'>
+E         Use -v to get more diff
+
+tests\unit\test_index_swipe_regression.py:65: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_index_swipe_regression.py::test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[133.8-147.2]
+FAILED tests/unit/test_index_swipe_regression.py::test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[140-155]
+FAILED tests/unit/test_index_swipe_regression.py::test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[155-140]
+FAILED tests/unit/test_index_swipe_regression.py::test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[145-155]
+FAILED tests/unit/test_index_swipe_regression.py::test_pose_can_be_held_before_swipe_without_expiring_motion[1000-INDEX-G03]
+FAILED tests/unit/test_index_swipe_regression.py::test_pose_can_be_held_before_swipe_without_expiring_motion[1000-V-G05]
+FAILED tests/unit/test_index_swipe_regression.py::test_pose_can_be_held_before_swipe_without_expiring_motion[4000-INDEX-G03]
+FAILED tests/unit/test_index_swipe_regression.py::test_pose_can_be_held_before_swipe_without_expiring_motion[4000-V-G05]
+FAILED tests/unit/test_index_swipe_regression.py::test_thumb_angle_changes_during_swipe_do_not_discard_index_path[1-G03]
+FAILED tests/unit/test_index_swipe_regression.py::test_thumb_angle_changes_during_swipe_do_not_discard_index_path[-1-G04]
+10 failed, 5 passed in 1.08s

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from .features import describe_hand
+from .features import describe_hand,FingerState
 from .models import Gesture
 from .motion import MotionRecognizer
 from .sequences import PairRecognizer,FistOpenRecognizer
@@ -70,6 +70,8 @@ class GestureRecognizer:
             if features[0].pose in ('INDEX','V'):
                 gesture,progress,reason=self.motion.update(features[0],at,frame.image_width,frame.image_height)
                 label='검지를 좌우로 쓸거나 원을 그리세요' if features[0].pose=='INDEX' else 'V를 좌우 또는 위아래로 쓸어주세요'
+                if reason=='MOTION_READY':label='검지 인식됨 · 좌우로 움직이세요' if features[0].pose=='INDEX' else 'V 인식됨 · 움직일 준비'
+                if reason=='MOTION_TOO_SLOW':label='손을 펼친 뒤 조금 더 빠르게 쓸어주세요'
                 if reason=='RELEASE_REQUIRED':label='자세를 풀고 다시 동작하세요'
                 return Recognition(gesture,(features[0].hand_id,),False,label,progress,reason)
         else:self.fist.reset()
@@ -78,4 +80,10 @@ class GestureRecognizer:
         neutral=all(f.pose in ('OPEN','FIST','OTHER') for f in features)
         names={'V':'V 자세','OPEN':'펼친 손 · 자세 해제','FIST':'주먹 · 자세 해제','UNKNOWN':'손가락을 분명히 보여주세요','THUMB':'엄지 자세','L':'L 자세'}
         label=names.get(features[0].pose,'손동작 준비') if len(features)==1 else '두 손 인식 중'
+        if len(features)==1 and features[0].pose=='UNKNOWN':
+            f=features[0]
+            if f.palm_size<20:label='손 전체를 카메라에 조금 더 가까이 보여주세요'
+            elif f.fingers[1]==FingerState.UNKNOWN:label='검지를 끝까지 펴고 손바닥을 카메라 쪽으로 보여주세요'
+            elif f.fingers[0]==FingerState.UNKNOWN:label='엄지를 손바닥 쪽으로 조금 접어주세요'
+            else:label='나머지 손가락을 접어 자세를 분명히 해주세요'
         return Recognition(hand_ids=ids,neutral=neutral,candidate=label,reason='UNKNOWN_POSE' if any(f.pose=='UNKNOWN' for f in features) else '')

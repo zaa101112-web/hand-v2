@@ -1,0 +1,52 @@
+{
+  "at_utc": "2026-11-17T00:40:07.714788+00:00",
+  "scope": "M03/M04 index swipe correction, not a new 5 MD milestone",
+  "requirements": [
+    "REQ-01",
+    "G03",
+    "G04",
+    "G11",
+    "V2-T06",
+    "V2-T07",
+    "V2-T08",
+    "V2-T35"
+  ],
+  "user_report": "Index-only left swipe becomes ambiguous although release and other gestures are recognized",
+  "diagnosis": [
+    "Strict thumb UNKNOWN discarded otherwise valid index posture",
+    "Motion clock included time waiting with the pose before movement"
+  ],
+  "changes": [
+    "INDEX-only partial thumb bend <=145 degrees when the other four fingers are unambiguous",
+    "Time movement from displacement rather than first pose; preserve recognition and execution guards",
+    "Specific recognition feedback"
+  ],
+  "evidence": {
+    "red": "tdd/index-swipe-red.txt",
+    "red_failed": 10,
+    "first_green": "tdd/index-swipe-green.txt",
+    "first_green_failed": 1,
+    "targeted": "tdd/index-swipe-verified.txt",
+    "targeted_passed": 88,
+    "full": "tdd/index-swipe-final.txt",
+    "full_passed": 206
+  },
+  "fixture_provenance": "Authored landmark geometry informed by diagnostic angle ranges, not recorded user coordinates",
+  "build": {
+    "exe": "dist/HAND-v2-M04-20261117-index-fix/HAND-v2.exe",
+    "exe_sha256": "b5b8ab3fa974fba9c0a7ad87e1d08020b27c2483b6cbd63bd4fcb82714772bdb",
+    "manifest": "m04-index-fix-artifact-manifest.json",
+    "copy_verified_files": 1302,
+    "bundle_bytes": 408245365,
+    "offscreen_startup_exit_code": 0
+  },
+  "real_camera": "NOT_RETESTED: Windows locked; prior app still owns camera. Awaiting user unlock before app restart.",
+  "real_hand_chrome_effect": "AWAITING_USER_RETEST",
+  "limits": [
+    "Not a multi-person accuracy result",
+    "Not a clean-PC distribution test",
+    "Key transmission is not proof of Chrome page effects"
+  ],
+  "app_replacement": "Launcher updated; running old diagnostic app has not been restarted because Windows is locked.",
+  "source_manifest": "m04-index-fix-source-manifest.json"
+}

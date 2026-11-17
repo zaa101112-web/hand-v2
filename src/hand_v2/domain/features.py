@@ -66,6 +66,13 @@ def describe_hand(hand,width,height):
               (False,False,False,False,False):'FIST',(True,False,False,False,False):'THUMB',
               (True,True,False,False,False):'L'}
     pose='UNKNOWN' if FingerState.UNKNOWN in fingers else patterns.get(tuple(f==FingerState.EXTENDED for f in fingers),'OTHER')
+    # A one-finger pointing pose does not require squeezing the thumb shut.
+    # The three remaining fingers must still be unambiguously folded. Keep
+    # V/THREE/L and their safety/priority rules on the original strict classifier.
+    if (pose=='UNKNOWN' and size>=20 and fingers[0]==FingerState.UNKNOWN
+            and fingers[1:]==[FingerState.EXTENDED,FingerState.FOLDED,FingerState.FOLDED,FingerState.FOLDED]
+            and mcp is not None and ip is not None and min(mcp,ip)<=145+1e-9):
+        pose='INDEX'
     pointer=(1-hand.landmarks[8].x,hand.landmarks[8].y)
     center=(sum(1-hand.landmarks[i].x for i in (0,5,9,13,17))/5,sum(hand.landmarks[i].y for i in (0,5,9,13,17))/5)
     return HandFeatures(hand.hand_id,tuple(fingers),pose,size,pointer,center,distance(p[4],p[8])/max(size,1e-9))

@@ -1,0 +1,19 @@
+...F.................................................................... [ 91%]
+.......                                                                  [100%]
+================================== FAILURES ===================================
+__ test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[145-155] __
+
+mcp = 145, ip = 155
+
+    @pytest.mark.parametrize('mcp,ip',[(133.8,147.2),(140,155),(155,140),(145,155)])
+    def test_index_with_bent_thumb_does_not_require_tightly_closed_thumb(mcp,ip):
+>       assert describe_hand(bent_thumb_hand(mcp,ip),640,480).pose=='INDEX'
+E       AssertionError: assert 'UNKNOWN' == 'INDEX'
+E         
+E         - INDEX
+E         + UNKNOWN
+
+tests\unit\test_index_swipe_regression.py:30: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_index_swipe_regression.py::test_index_with_bent_thumb_does_not_require_tightly_closed_thumb[145-155]
+1 failed, 78 passed in 2.46s
