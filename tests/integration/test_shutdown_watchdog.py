@@ -18,7 +18,9 @@ from pathlib import Path
 from hand_v2.adapters.shutdown import ShutdownWatchdog
 def cleanup(): Path(sys.argv[1]).write_text('forced; key/file completion unconfirmed')
 guard=ShutdownWatchdog(cleanup)
-guard.arm(.2)
+# Keep a bounded two-second deadline while allowing 200ms for filesystem IO.
+# The previous 20ms cleanup reserve could exit between opening and flushing.
+guard.arm(2)
 time.sleep(30)
 '''
     env=dict(os.environ,PYTHONPATH=str(Path(__file__).parents[2]/'src'))

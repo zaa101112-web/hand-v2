@@ -1,0 +1,158 @@
+FFFFFFF..F                                                               [100%]
+================================== FAILURES ===================================
+_ test_repeat_motion_without_open_after_stationary_endpoint[INDEX-x-chords0] __
+
+pose = 'INDEX', axis = 'x', chords = [('ALT', 'LEFT'), ('ALT', 'RIGHT')]
+
+    @pytest.mark.parametrize('pose,axis,chords',[
+        ('INDEX','x',[('ALT','LEFT'),('ALT','RIGHT')]),
+        ('V','x',[('CTRL','SHIFT','TAB'),('CTRL','TAB')]),
+        ('V','y',[('PAGEDOWN',),('PAGEUP',)]),
+    ])
+    def test_repeat_motion_without_open_after_stationary_endpoint(pose,axis,chords):
+        r,v=rig();feed(r,v,'V',1000,1600)
+        def f(at,value):return moved_frame(at,pose,value if axis=='x' else 0,value if axis=='y' else 0)
+        frames=[f(t,0) for t in range(1650,2051,50)]
+        frames += [f(2050+t,.24*t/500) for t in range(50,501,50)]
+        frames += [f(t,.24) for t in range(2600,3551,50)]
+        frames += [f(3550+t,.24-.24*t/500) for t in range(50,501,50)]
+        frames += [f(t,0) for t in range(4100,6051,50)]
+        deliver(r,v,frames)
+>       assert r.keyboard.sent_chords==chords
+E       AssertionError: assert [] == [('ALT', 'LEF...LT', 'RIGHT')]
+E         
+E         Right contains 2 more items, first extra item: ('ALT', 'LEFT')
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:33: AssertionError
+___ test_repeat_motion_without_open_after_stationary_endpoint[V-x-chords1] ____
+
+pose = 'V', axis = 'x', chords = [('CTRL', 'SHIFT', 'TAB'), ('CTRL', 'TAB')]
+
+    @pytest.mark.parametrize('pose,axis,chords',[
+        ('INDEX','x',[('ALT','LEFT'),('ALT','RIGHT')]),
+        ('V','x',[('CTRL','SHIFT','TAB'),('CTRL','TAB')]),
+        ('V','y',[('PAGEDOWN',),('PAGEUP',)]),
+    ])
+    def test_repeat_motion_without_open_after_stationary_endpoint(pose,axis,chords):
+        r,v=rig();feed(r,v,'V',1000,1600)
+        def f(at,value):return moved_frame(at,pose,value if axis=='x' else 0,value if axis=='y' else 0)
+        frames=[f(t,0) for t in range(1650,2051,50)]
+        frames += [f(2050+t,.24*t/500) for t in range(50,501,50)]
+        frames += [f(t,.24) for t in range(2600,3551,50)]
+        frames += [f(3550+t,.24-.24*t/500) for t in range(50,501,50)]
+        frames += [f(t,0) for t in range(4100,6051,50)]
+        deliver(r,v,frames)
+>       assert r.keyboard.sent_chords==chords
+E       AssertionError: assert [] == [('CTRL', 'SH...CTRL', 'TAB')]
+E         
+E         Right contains 2 more items, first extra item: ('CTRL', 'SHIFT', 'TAB')
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:33: AssertionError
+___ test_repeat_motion_without_open_after_stationary_endpoint[V-y-chords2] ____
+
+pose = 'V', axis = 'y', chords = [('PAGEDOWN',), ('PAGEUP',)]
+
+    @pytest.mark.parametrize('pose,axis,chords',[
+        ('INDEX','x',[('ALT','LEFT'),('ALT','RIGHT')]),
+        ('V','x',[('CTRL','SHIFT','TAB'),('CTRL','TAB')]),
+        ('V','y',[('PAGEDOWN',),('PAGEUP',)]),
+    ])
+    def test_repeat_motion_without_open_after_stationary_endpoint(pose,axis,chords):
+        r,v=rig();feed(r,v,'V',1000,1600)
+        def f(at,value):return moved_frame(at,pose,value if axis=='x' else 0,value if axis=='y' else 0)
+        frames=[f(t,0) for t in range(1650,2051,50)]
+        frames += [f(2050+t,.24*t/500) for t in range(50,501,50)]
+        frames += [f(t,.24) for t in range(2600,3551,50)]
+        frames += [f(3550+t,.24-.24*t/500) for t in range(50,501,50)]
+        frames += [f(t,0) for t in range(4100,6051,50)]
+        deliver(r,v,frames)
+>       assert r.keyboard.sent_chords==chords
+E       AssertionError: assert [] == [('PAGEDOWN',), ('PAGEUP',)]
+E         
+E         Right contains 2 more items, first extra item: ('PAGEDOWN',)
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:33: AssertionError
+______________ test_held_index_and_immediate_bounce_never_repeat ______________
+
+    def test_held_index_and_immediate_bounce_never_repeat():
+        r,v=rig();feed(r,v,'V',1000,1600);feed(r,v,'INDEX',1650,2050)
+        feed(r,v,'INDEX',2100,2600,lambda t:.24*t/500)
+        feed(r,v,'INDEX',2650,3150,lambda t:.24-.24*t/500)
+        feed(r,v,'INDEX',3200,7000)
+>       assert r.keyboard.sent_chords==[('ALT','LEFT')]
+E       AssertionError: assert [] == [('ALT', 'LEFT')]
+E         
+E         Right contains one more item: ('ALT', 'LEFT')
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:41: AssertionError
+__________ test_two_hand_continuous_zoom_reverses_without_unpinching __________
+
+    def test_two_hand_continuous_zoom_reverses_without_unpinching():
+        r,v=rig();feed(r,v,'V',1000,1600)
+        deliver(r,v,zoom_sequence())
+>       assert r.keyboard.sent_chords==[('CTRL','NUM_ADD')]*2+[('CTRL','NUM_SUBTRACT')]*2
+E       AssertionError: assert [] == [('CTRL', 'NU...UM_SUBTRACT')]
+E         
+E         Right contains 4 more items, first extra item: ('CTRL', 'NUM_ADD')
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:53: AssertionError
+______ test_smoothing_tail_never_causes_stationary_zoom_or_false_reverse ______
+
+    def test_smoothing_tail_never_causes_stationary_zoom_or_false_reverse():
+        rec=GestureRecognizer();events=[]
+        for f in zoom_sequence():
+            result=rec.process(f,True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[Gesture.ZOOM_IN]*2+[Gesture.ZOOM_OUT]*2
+E       AssertionError: assert [<Gesture.ZOOM_IN: 'G09'>] == [<Gesture.ZOO...M_OUT: 'G10'>]
+E         
+E         Right contains 3 more items, first extra item: <Gesture.ZOOM_IN: 'G09'>
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:62: AssertionError
+____________ test_zoom_stop_and_one_hand_loss_cancel_old_distance _____________
+
+    def test_zoom_stop_and_one_hand_loss_cancel_old_distance():
+        r,v=rig();feed(r,v,'V',1000,1600)
+        deliver(r,v,[zoom_frame(t,.30) for t in range(1650,2051,50)])
+        deliver(r,v,[zoom_frame(t,.40) for t in range(2100,2551,50)])
+        one=zoom_frame(2600,.40)
+        deliver(r,v,[replace(one,hands=one.hands[:1])])
+        deliver(r,v,[zoom_frame(t,.55) for t in range(2650,3151,50)])
+>       assert len(r.keyboard.sent_chords)==1
+E       assert 0 == 1
+E        +  where 0 = len([])
+E        +    where [] = <hand_v2.adapters.fakes.RecordingKeyboard object at 0x0000020178FD3320>.sent_chords
+E        +      where <hand_v2.adapters.fakes.RecordingKeyboard object at 0x0000020178FD3320> = Runtime(controller=<hand_v2.application.controller.Controller object at 0x0000020178FD3260>, clock=<hand_v2.adapters.t...v2.application.ports.EventSink object at 0x0000020178FD32C0>, calibration=None, last_camera_log=0, shutdown_guard=None).keyboard
+
+tests\unit\test_continuous_gestures.py:72: AssertionError
+___________ test_zoom_rate_is_bounded_and_every_chord_releases_keys ___________
+
+    def test_zoom_rate_is_bounded_and_every_chord_releases_keys():
+        r,v=rig();feed(r,v,'V',1000,1600)
+        deliver(r,v,[zoom_frame(t,.18) for t in range(1650,2051,20)])
+        emitted=[]
+        for t in range(2070,3271,20):
+            deliver(r,v,[zoom_frame(t,.18*2**((t-2050)/650))])
+            if len(r.keyboard.sent_chords)>len(emitted):emitted.append(t)
+            assert not r.controller.state.keyboard_state.owned_keys
+>       assert len(emitted)>=3
+E       assert 0 >= 3
+E        +  where 0 = len([])
+
+tests\unit\test_continuous_gestures.py:102: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_continuous_gestures.py::test_repeat_motion_without_open_after_stationary_endpoint[INDEX-x-chords0]
+FAILED tests/unit/test_continuous_gestures.py::test_repeat_motion_without_open_after_stationary_endpoint[V-x-chords1]
+FAILED tests/unit/test_continuous_gestures.py::test_repeat_motion_without_open_after_stationary_endpoint[V-y-chords2]
+FAILED tests/unit/test_continuous_gestures.py::test_held_index_and_immediate_bounce_never_repeat
+FAILED tests/unit/test_continuous_gestures.py::test_two_hand_continuous_zoom_reverses_without_unpinching
+FAILED tests/unit/test_continuous_gestures.py::test_smoothing_tail_never_causes_stationary_zoom_or_false_reverse
+FAILED tests/unit/test_continuous_gestures.py::test_zoom_stop_and_one_hand_loss_cancel_old_distance
+FAILED tests/unit/test_continuous_gestures.py::test_zoom_rate_is_bounded_and_every_chord_releases_keys
+8 failed, 2 passed in 1.96s

@@ -15,8 +15,13 @@ class PracticePanel(QWidget):
         stop=QPushButton('연습 중단');stop.clicked.connect(lambda:runtime.stop('연습 중단'));row.addWidget(stop)
         self.tasks=QLabel();self.tasks.setWordWrap(True);v.addWidget(self.tasks)
         self.feedback=QLabel();self.feedback.setWordWrap(True);v.addWidget(self.feedback)
-        explanation=QLabel('V 0.6초 → 손 펼침 → 검지 좌우 쓸기 → 손 펼침 → 양손 집기 확대 → 숫자 3 0.35초.\n카메라가 없으면 아래 예시로 화면 흐름만 확인할 수 있습니다. 예시는 손 인식 검증으로 세지 않습니다.')
+        explanation=QLabel('V 0.6초 → 잠깐 멈춤 → 검지 좌우 쓸기. 동작 끝에서 잠깐 멈추면 손을 펼치지 않고 다음 동작을 할 수 있습니다. 양손 엄지·검지를 집은 채 간격을 계속 바꾸면 연속 확대·축소합니다.\n카메라가 없으면 아래 예시로 화면 흐름만 확인할 수 있습니다. 예시는 손 인식 검증으로 세지 않습니다.')
         explanation.setWordWrap(True);v.addWidget(explanation)
+        self.assessment_info=QLabel('연속 동작 측정 · 카메라를 켠 뒤 시작하세요.');self.assessment_info.setWordWrap(True);v.addWidget(self.assessment_info)
+        assessment_row=QHBoxLayout();v.addLayout(assessment_row)
+        self.assessment_start=QPushButton('연속 동작 8과제 측정');self.assessment_start.clicked.connect(self.start_assessment);assessment_row.addWidget(self.assessment_start)
+        self.assessment_copy=QPushButton('결과 JSON 복사');self.assessment_copy.clicked.connect(self.copy_assessment);assessment_row.addWidget(self.assessment_copy)
+        self.assessment_copy.setEnabled(False)
         demo_row=QHBoxLayout();v.addLayout(demo_row);self.gestures=QComboBox()
         for g in Gesture:self.gestures.addItem(g.value+' '+g.name,g)
         demo_row.addWidget(self.gestures)
@@ -32,6 +37,7 @@ class PracticePanel(QWidget):
         v.addStretch();self.layout_box=v
 
     def start_calibration(self):
+        if self.runtime.practice_assessment:self.runtime.practice_assessment.invalidate('CALIBRATION_STARTED')
         if self.runtime.calibration:
             self.runtime.calibration.start();self.applied=False;self.calibration_message.setText('카메라 앞에서 검지만 펴고 5초 동안 정지하세요. 이후 매번 손을 펼친 뒤 좌우 각각 10회 쓸어주세요.')
 
@@ -51,16 +57,48 @@ class PracticePanel(QWidget):
     def example(self):
         p=self.runtime.practice_runtime
         if not p:return
+        if self.runtime.practice_assessment:self.runtime.practice_assessment.invalidate('DEMO_INPUT')
         self.demo=True;p.controller.camera_connected(p.controller.state.camera_epoch)
-        now=p.clock.now_ms();g=self.gestures.currentData();s=p.controller.state
+        now=p.clock.now_ms();g=Gesture(self.gestures.currentData());s=p.controller.state
         p.controller.handle(GestureEvent(p.ids.next_id('demo'),g,('demo-hand',),now,now,s.context_version,s.camera_epoch))
         p.controller.flush_executor();self.refresh()
 
     def neutral(self):
         p=self.runtime.practice_runtime
+        if self.runtime.practice_assessment:self.runtime.practice_assessment.invalidate('DEMO_INPUT')
         if p:self.demo=True;p.controller.neutral(True)
 
+    def start_assessment(self):
+        r=self.runtime;p=r.practice_runtime;a=r.practice_assessment
+        if not p or not a:return
+        if r.controller.state.camera_status!='CONNECTED':
+            self.assessment_info.setText('먼저 카메라를 켜주세요.');return
+        if r.calibration:r.calibration.cancel()
+        p.controller.stop('연속 과제 시작');p.vision.recognizer.reset()
+        self.demo=False;a.start(r.clock.now_ms());self.refresh()
+
+    def copy_assessment(self):
+        from PySide6.QtWidgets import QApplication
+        import json
+        a=self.runtime.practice_assessment
+        if not a or a.active or a.started is None:return
+        report=a.report();report['settings']=self.runtime.settings
+        QApplication.clipboard().setText(json.dumps(report,ensure_ascii=False,indent=2))
+
+    def refresh_assessment(self):
+        a=self.runtime.practice_assessment
+        if not a:return
+        text=a.prompt()
+        report=a.report()
+        if report['complete'] and report['valid']:
+            text+=f"\n인식 {report['recognized']}/{report['expected']} · 가상 실행 {report['executed']}/{report['expected']} · 누락 {report['missed']} · 다른 동작 {report['wrong']} · 중복 {report['duplicates']}"
+            text+='\n카메라 연습 결과입니다. 실제 Chrome 효과·3명 정확도 검증과 구분합니다.'
+        self.assessment_info.setText(text)
+        self.assessment_start.setEnabled(not a.active)
+        self.assessment_copy.setEnabled(a.started is not None and not a.active)
+
     def refresh(self):
+        self.refresh_assessment()
         p=self.runtime.practice_runtime
         if not p:self.status.setText('입력 해제 확인 후 연습을 시작합니다. 실제 키 입력·저장 없음.');return
         s=p.controller.state;r=p.vision.last_recognition

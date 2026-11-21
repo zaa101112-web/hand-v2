@@ -33,6 +33,7 @@ class Runtime:
     config_store: object = None
     practice_runtime: object = None
     practice_progress: object = None
+    practice_assessment: object = None
     restart_camera: bool = False
     events: object = None
     calibration: object = None
@@ -69,6 +70,8 @@ class Runtime:
         self.practice_runtime=build_runtime(ExecutionMode.SIMULATED,clock=self.clock,settings=self.settings)
         from hand_v2.application.practice import PracticeProgress,PracticeActions
         self.practice_progress=PracticeProgress()
+        from hand_v2.domain.assessment import ContinuousAssessment
+        self.practice_assessment=ContinuousAssessment('LIVE_CAMERA_PRACTICE' if self.controller.state.execution_mode==ExecutionMode.REAL else 'SIMULATED')
         from hand_v2.domain.calibration import Calibration
         self.calibration=Calibration()
         p=self.practice_runtime
@@ -79,11 +82,13 @@ class Runtime:
         return True
 
     def stop(self,reason):
+        if self.practice_assessment:self.practice_assessment.invalidate('STOP_REQUEST')
         self.controller.stop(reason)
         if self.practice_runtime:self.practice_runtime.controller.stop(reason)
         if self.calibration:self.calibration.cancel()
 
     def exit_practice(self):
+        if self.practice_assessment:self.practice_assessment.invalidate('PRACTICE_CLOSED')
         if self.practice_runtime:
             self.practice_runtime.controller.stop('연습 종료');self.practice_runtime.close()
             self.practice_runtime=None
@@ -95,6 +100,7 @@ class Runtime:
         from hand_v2.domain.configuration import validate_config
         from hand_v2.domain.recognition import GestureRecognizer
         value=validate_config(settings)
+        if self.practice_assessment:self.practice_assessment.invalidate('SETTINGS_CHANGED')
         camera_changed=self.camera_index!=value['camera']['index']
         wanted=self.camera_wanted
         if camera_changed and self.camera:
@@ -113,6 +119,7 @@ class Runtime:
         if self.workspace:self.workspace.tick()
         if self.practice_runtime:
             self.practice_runtime.scheduler.run_due();self.practice_runtime.controller.tick()
+        if self.practice_assessment:self.practice_assessment.tick(self.clock.now_ms())
         if hasattr(self.keyboard, 'drain'):
             for kind,payload in self.keyboard.drain():
                 if kind=='command':
@@ -134,9 +141,17 @@ class Runtime:
                     if active is not self:
                         if active.controller.state.camera_epoch!=frame.camera_epoch:active.controller.begin_camera(frame.camera_epoch)
                         active.controller.camera_connected(frame.camera_epoch)
-                    active.vision.accept(frame)
+                    accepted=active.vision.accept(frame)
                     active.controller.flush_executor()
-                    if self.practice_progress and active is not self:self.practice_progress.observe(active.vision.last_recognition,active.controller.state)
+                    if accepted and self.practice_progress and active is not self:self.practice_progress.observe(active.vision.last_recognition,active.controller.state)
+                    if accepted and self.practice_assessment and active is not self:
+                        recognition=active.vision.last_recognition
+                        if recognition and recognition.gesture:
+                            from hand_v2.domain.models import Gesture,Status
+                            command=active.vision.last_command;result=active.controller.state.last_execution
+                            executed=bool(command and result and command.command_id==result.command_id and result.status in (Status.SENT,Status.APPLIED))
+                            if recognition.gesture in (Gesture.START,Gesture.STOP):executed=True
+                            self.practice_assessment.observe(frame.captured_at_ms,recognition.gesture,executed)
                     if self.calibration and active is not self:self.calibration.accept(frame)
                     self.frame_times.append(frame.captured_at_ms)
                     self.frame_times=[t for t in self.frame_times if frame.captured_at_ms-t<=1000]
@@ -147,6 +162,7 @@ class Runtime:
                                            frame_age_ms=self.clock.now_ms()-frame.captured_at_ms,fps=self.camera_fps)
                     if payload.preview_rgb and self.preview_enabled and self.preview_listener:self.preview_listener(payload)
                 elif kind=='error':
+                    if self.practice_assessment:self.practice_assessment.invalidate('CAMERA_FAILED')
                     self.controller.camera_failed(payload)
                     if self.practice_runtime:self.practice_runtime.controller.camera_failed(payload)
                     self.camera_fps=0
@@ -176,6 +192,7 @@ class Runtime:
         return self._start_camera()
 
     def stop_camera(self):
+        if self.practice_assessment:self.practice_assessment.invalidate('CAMERA_OFF')
         self.camera_wanted=False;self.retry_at=None;self.restart_camera=False
         if self.camera:self.camera.stop()
         self.camera_fps=0

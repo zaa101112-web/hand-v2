@@ -1,0 +1,269 @@
+{
+  "status": "PASS",
+  "error": null,
+  "checks": [
+    {
+      "task": 1,
+      "expected_commands": 1,
+      "sent": 1,
+      "page": {
+        "name": "B",
+        "step": 19,
+        "ratio": 1.5,
+        "scrollY": 0,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787473.328
+      },
+      "passed": true
+    },
+    {
+      "task": 2,
+      "expected_commands": 2,
+      "sent": 2,
+      "page": {
+        "name": "B",
+        "step": 20,
+        "ratio": 1.5,
+        "scrollY": 0,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787478.328
+      },
+      "passed": true
+    },
+    {
+      "task": 3,
+      "expected_commands": 3,
+      "sent": 3,
+      "page": {
+        "name": "A",
+        "step": 20,
+        "ratio": 1.5,
+        "scrollY": 0,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787483.328
+      },
+      "passed": true
+    },
+    {
+      "task": 4,
+      "expected_commands": 4,
+      "sent": 4,
+      "page": {
+        "name": "B",
+        "step": 20,
+        "ratio": 1.5,
+        "scrollY": 0,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787488.343
+      },
+      "passed": true
+    },
+    {
+      "task": 5,
+      "expected_commands": 5,
+      "sent": 5,
+      "page": {
+        "name": "B",
+        "step": 20,
+        "ratio": 1.5,
+        "scrollY": 792,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787493.328
+      },
+      "passed": true
+    },
+    {
+      "task": 6,
+      "expected_commands": 6,
+      "sent": 6,
+      "page": {
+        "name": "B",
+        "step": 20,
+        "ratio": 1.5,
+        "scrollY": 0,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787498.343
+      },
+      "passed": true
+    },
+    {
+      "task": 7,
+      "expected_commands": 8,
+      "sent": 8,
+      "page": {
+        "name": "B",
+        "step": 20,
+        "ratio": 1.875,
+        "scrollY": 0,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787503.328
+      },
+      "passed": true
+    },
+    {
+      "task": 8,
+      "expected_commands": 10,
+      "sent": 10,
+      "page": {
+        "name": "B",
+        "step": 20,
+        "ratio": 1.5,
+        "scrollY": 0,
+        "focused": true,
+        "visible": true,
+        "arm": false,
+        "received": 787508.343
+      },
+      "passed": true
+    }
+  ],
+  "trace": [
+    {
+      "at_ms": 609,
+      "gesture": "G01"
+    },
+    {
+      "at_ms": 4062,
+      "gesture": "G03"
+    },
+    {
+      "at_ms": 9062,
+      "gesture": "G04"
+    },
+    {
+      "at_ms": 14062,
+      "gesture": "G05"
+    },
+    {
+      "at_ms": 19062,
+      "gesture": "G06"
+    },
+    {
+      "at_ms": 24062,
+      "gesture": "G08"
+    },
+    {
+      "at_ms": 29062,
+      "gesture": "G07"
+    },
+    {
+      "at_ms": 34156,
+      "gesture": "G09"
+    },
+    {
+      "at_ms": 35906,
+      "gesture": "G09"
+    },
+    {
+      "at_ms": 39562,
+      "gesture": "G10"
+    },
+    {
+      "at_ms": 41109,
+      "gesture": "G10"
+    }
+  ],
+  "executions": [
+    {
+      "command_id": "command-000004",
+      "context_version": 0,
+      "completed_at_ms": 787469937,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000006",
+      "context_version": 0,
+      "completed_at_ms": 787474937,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000008",
+      "context_version": 0,
+      "completed_at_ms": 787479953,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=6/6; page effect unverified"
+    },
+    {
+      "command_id": "command-000010",
+      "context_version": 0,
+      "completed_at_ms": 787484937,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000012",
+      "context_version": 0,
+      "completed_at_ms": 787489937,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=2/2; page effect unverified"
+    },
+    {
+      "command_id": "command-000014",
+      "context_version": 0,
+      "completed_at_ms": 787494937,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=2/2; page effect unverified"
+    },
+    {
+      "command_id": "command-000016",
+      "context_version": 0,
+      "completed_at_ms": 787500031,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000018",
+      "context_version": 0,
+      "completed_at_ms": 787501781,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000020",
+      "context_version": 0,
+      "completed_at_ms": 787505437,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    },
+    {
+      "command_id": "command-000022",
+      "context_version": 0,
+      "completed_at_ms": 787506984,
+      "status": "SENT",
+      "reason": "OS_INPUT_SENT",
+      "detail": "accepted=4/4; page effect unverified"
+    }
+  ],
+  "source": "AUTHORED_LANDMARKS_PRODUCTION_RECOGNIZER_REAL_CHROME",
+  "human_accuracy": "NOT_RUN",
+  "shutdown_ok": true,
+  "max_frame_gap_ms": 62,
+  "foreground_hwnd": 3147914,
+  "camera_tested": false,
+  "owned_keys": []
+}

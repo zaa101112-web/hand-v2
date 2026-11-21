@@ -2,7 +2,7 @@ from hand_v2.domain.models import Gesture,Result,Status
 
 
 class PracticeProgress:
-    TASKS=(('V 시작',Gesture.START),('자세 해제',None),('검지 왼쪽 쓸기',Gesture.LEFT),
+    TASKS=(('V 시작',Gesture.START),('동작 준비',None),('검지 왼쪽 쓸기',Gesture.LEFT),
            ('검지 오른쪽 쓸기',Gesture.RIGHT),('양손 확대',Gesture.ZOOM_IN),('숫자 3 중단',Gesture.STOP))
     def __init__(self):self.completed=set();self.events=[]
     def observe(self,recognition,state):

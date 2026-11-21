@@ -13,6 +13,7 @@ class Recognition:
     candidate: str = '손동작 대기'
     progress: float = 0.0
     reason: str = ''
+    prepared: bool = False
 
 
 class GestureRecognizer:
@@ -35,7 +36,7 @@ class GestureRecognizer:
         event=None
         if progress>=1 and not self._hold_fired:
             event=gesture;self._hold_fired=True
-        return Recognition(event,(key[1],),False,label,progress)
+        return Recognition(event,(key[1],),False,label,progress,prepared=gesture==Gesture.THUMB)
 
     def process(self,frame,active,ready=True):
         at=frame.captured_at_ms
@@ -63,9 +64,10 @@ class GestureRecognizer:
         self._hold_key=None;self._hold_since=None;self._hold_fired=False
         if active and len(features)==2:
             self.motion.reset();self.fist.reset()
-            gesture,progress,reason=self.pair.update(features,frame.hands,frame.image_width,frame.image_height,at)
-            labels={'L_FRAME':'양손 L · 캡처 준비','PINCH_BASELINE':'양손 집기 · 기준 잡기','PINCH_ZOOM':'양손을 벌리거나 모으세요','RELEASE_REQUIRED':'양손 집기를 풀어주세요'}
-            return Recognition(gesture,tuple(f.hand_id for f in features),all(f.pose=='OPEN' for f in features),labels.get(reason,'두 손 인식 중'),progress,reason)
+            gesture,progress,reason=self.pair.update(features,frame.hands,frame.image_width,frame.image_height,at,ready)
+            labels={'L_FRAME':'양손 L · 캡처 준비','PINCH_BASELINE':'양손 집기 · 기준 잡기','PINCH_ZOOM':'양손 간격을 계속 벌리거나 모으세요','CONFIRMED':'양손 줌 · 간격을 더 바꾸면 다음 단계'}
+            prepared=reason in ('L_FRAME','PINCH_BASELINE','PINCH_ZOOM','CONFIRMED')
+            return Recognition(gesture,tuple(f.hand_id for f in features),all(f.pose=='OPEN' for f in features),labels.get(reason,'두 손 인식 중'),progress,reason,prepared)
         self.pair.reset()
         if active and len(features)==1:
             gesture=self.fist.update(features[0],at,ready)
@@ -75,13 +77,14 @@ class GestureRecognizer:
                 gesture,progress,reason=self.motion.update(features[0],at,frame.image_width,frame.image_height)
                 label='검지를 좌우로 쓸거나 원을 그리세요' if features[0].pose=='INDEX' else 'V를 좌우 또는 위아래로 쓸어주세요'
                 if reason=='MOTION_READY':label='검지 인식됨 · 좌우로 움직이세요' if features[0].pose=='INDEX' else 'V 인식됨 · 움직일 준비'
-                if reason=='MOTION_TOO_SLOW':label='손을 펼친 뒤 조금 더 빠르게 쓸어주세요'
-                if reason=='RELEASE_REQUIRED':label='자세를 풀고 다시 동작하세요'
-                return Recognition(gesture,(features[0].hand_id,),False,label,progress,reason)
+                if reason=='MOTION_TOO_SLOW':label='잠깐 멈춘 뒤 조금 더 빠르게 쓸어주세요'
+                if reason=='PAUSE_REQUIRED':label='동작 끝 · 잠깐 멈추면 다음 동작 준비'
+                return Recognition(gesture,(features[0].hand_id,),False,label,progress,reason,reason=='MOTION_READY')
         else:self.fist.reset()
         self.motion.reset()
         ids=tuple(f.hand_id for f in features)
-        # Rearm only with the explicit open-palm release shown in the UI.
+        # OPEN remains an optional preparation pose. A stable INDEX/V or
+        # valid two-hand preparation can also arm the next distinct movement.
         # A fist is part of G13 and often a return movement after a swipe;
         # treating it as neutral can restore tabs or arm an unintended reverse.
         neutral=all(f.pose=='OPEN' for f in features)

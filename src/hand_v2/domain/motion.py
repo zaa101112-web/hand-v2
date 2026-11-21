@@ -23,16 +23,15 @@ class MotionRecognizer:
         point=self.ema.update(feature.pointer,at)
         previous=self.path[-1][1] if self.path else None
         self.path.append((at,point));self.path=self.path[-256:]
-        if self.fired:return None,1,'RELEASE_REQUIRED'
         if self.since is not None and self._settled(at,width,height):
-            # Finger extension/repositioning may start a short path before the
-            # intended swipe. A genuine pause ends that unfinished path. Never
-            # reset a fired path here: release still owns command rearming.
-            self.since=None;self.path=[(at,point)]
+            # ADR-15: an endpoint pause closes a path, including a confirmed
+            # one. A fresh movement is still required; holding cannot repeat.
+            self.since=None;self.path=[(at,point)];self.fired=False
             self.anchor=point;self.anchor_at=at;self.direction_anchor=point
             self.initial_direction=None;self.curved=False;self.curve_reason='';self.axis=None
             self.preparation_resets+=1
             return None,0,'MOTION_READY'
+        if self.fired:return None,1,'PAUSE_REQUIRED'
         if self.anchor is None:
             self.anchor=point;self.anchor_at=at
             self.direction_anchor=point

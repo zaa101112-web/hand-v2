@@ -1,0 +1,33 @@
+.................................F...................................... [ 18%]
+........................................................................ [ 36%]
+........................................................................ [ 55%]
+........................................................................ [ 73%]
+........................................................................ [ 92%]
+...............................                                          [100%]
+================================== FAILURES ===================================
+___________ test_blocked_main_callback_exits_two_and_writes_failure ___________
+
+tmp_path = WindowsPath('C:/Users/zaa13/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/AC/#!sandbox.{3a189b7d-4e2e-425b-8212-9346d613ceba}/Temp/pytest-of-zaa13/pytest-0/test_blocked_main_callback_exi0')
+
+    def test_blocked_main_callback_exits_two_and_writes_failure(tmp_path):
+        marker=tmp_path/'watchdog.txt'
+        program='''import sys,time
+    from pathlib import Path
+    from hand_v2.adapters.shutdown import ShutdownWatchdog
+    def cleanup(): Path(sys.argv[1]).write_text('forced; key/file completion unconfirmed')
+    guard=ShutdownWatchdog(cleanup)
+    guard.arm(.2)
+    time.sleep(30)
+    '''
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).parents[2]/'src'))
+        result=subprocess.run([sys.executable,'-c',program,str(marker)],env=env,timeout=5,capture_output=True)
+        assert result.returncode==2
+>       assert 'unconfirmed' in marker.read_text()
+E       AssertionError: assert 'unconfirmed' in ''
+E        +  where '' = read_text()
+E        +    where read_text = WindowsPath('C:/Users/zaa13/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/AC/#!sandbox.{3a189b7d-4e2e-425b-8212-9346d613ceba}/Temp/pytest-of-zaa13/pytest-0/test_blocked_main_callback_exi0/watchdog.txt').read_text
+
+tests\integration\test_shutdown_watchdog.py:27: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_shutdown_watchdog.py::test_blocked_main_callback_exits_two_and_writes_failure
+1 failed, 390 passed in 16.12s

@@ -1,0 +1,68 @@
+....FFF..F.............................................................. [ 68%]
+.................................                                        [100%]
+================================== FAILURES ===================================
+__________ test_two_hand_continuous_zoom_reverses_without_unpinching __________
+
+    def test_two_hand_continuous_zoom_reverses_without_unpinching():
+        r,v=rig();feed(r,v,'V',1000,1600)
+        deliver(r,v,zoom_sequence())
+>       assert r.keyboard.sent_chords==[('CTRL','NUM_ADD')]*2+[('CTRL','NUM_SUBTRACT')]*2
+E       AssertionError: assert [('CTRL', 'AD..., 'SUBTRACT')] == [('CTRL', 'NU...UM_SUBTRACT')]
+E         
+E         At index 0 diff: ('CTRL', 'ADD') != ('CTRL', 'NUM_ADD')
+E         Right contains one more item: ('CTRL', 'NUM_SUBTRACT')
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:53: AssertionError
+______ test_smoothing_tail_never_causes_stationary_zoom_or_false_reverse ______
+
+    def test_smoothing_tail_never_causes_stationary_zoom_or_false_reverse():
+        rec=GestureRecognizer();events=[]
+        for f in zoom_sequence():
+            result=rec.process(f,True)
+            if result.gesture:events.append(result.gesture)
+>       assert events==[Gesture.ZOOM_IN]*2+[Gesture.ZOOM_OUT]*2
+E       AssertionError: assert [<Gesture.ZOO...M_OUT: 'G10'>] == [<Gesture.ZOO...M_OUT: 'G10'>]
+E         
+E         At index 1 diff: <Gesture.ZOOM_OUT: 'G10'> != <Gesture.ZOOM_IN: 'G09'>
+E         Right contains one more item: <Gesture.ZOOM_OUT: 'G10'>
+E         Use -v to get more diff
+
+tests\unit\test_continuous_gestures.py:62: AssertionError
+____________ test_zoom_stop_and_one_hand_loss_cancel_old_distance _____________
+
+    def test_zoom_stop_and_one_hand_loss_cancel_old_distance():
+        r,v=rig();feed(r,v,'V',1000,1600)
+        deliver(r,v,[zoom_frame(t,.30) for t in range(1650,2051,50)])
+        deliver(r,v,[zoom_frame(t,.40) for t in range(2100,2551,50)])
+        one=zoom_frame(2600,.40)
+        deliver(r,v,[replace(one,hands=one.hands[:1])])
+        deliver(r,v,[zoom_frame(t,.55) for t in range(2650,3151,50)])
+>       assert len(r.keyboard.sent_chords)==1
+E       assert 0 == 1
+E        +  where 0 = len([])
+E        +    where [] = <hand_v2.adapters.fakes.RecordingKeyboard object at 0x00000255AA1335F0>.sent_chords
+E        +      where <hand_v2.adapters.fakes.RecordingKeyboard object at 0x00000255AA1335F0> = Runtime(controller=<hand_v2.application.controller.Controller object at 0x00000255AA1335C0>, clock=<hand_v2.adapters.t...v2.application.ports.EventSink object at 0x00000255AA133380>, calibration=None, last_camera_log=0, shutdown_guard=None).keyboard
+
+tests\unit\test_continuous_gestures.py:72: AssertionError
+___________ test_zoom_rate_is_bounded_and_every_chord_releases_keys ___________
+
+    def test_zoom_rate_is_bounded_and_every_chord_releases_keys():
+        r,v=rig();feed(r,v,'V',1000,1600)
+        deliver(r,v,[zoom_frame(t,.18) for t in range(1650,2051,20)])
+        emitted=[]
+        for t in range(2070,3271,20):
+            deliver(r,v,[zoom_frame(t,.18*2**((t-2050)/650))])
+            if len(r.keyboard.sent_chords)>len(emitted):emitted.append(t)
+            assert not r.controller.state.keyboard_state.owned_keys
+>       assert len(emitted)>=3
+E       assert 1 >= 3
+E        +  where 1 = len([3050])
+
+tests\unit\test_continuous_gestures.py:102: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_continuous_gestures.py::test_two_hand_continuous_zoom_reverses_without_unpinching
+FAILED tests/unit/test_continuous_gestures.py::test_smoothing_tail_never_causes_stationary_zoom_or_false_reverse
+FAILED tests/unit/test_continuous_gestures.py::test_zoom_stop_and_one_hand_loss_cancel_old_distance
+FAILED tests/unit/test_continuous_gestures.py::test_zoom_rate_is_bounded_and_every_chord_releases_keys
+4 failed, 101 passed in 2.49s

@@ -1,0 +1,13 @@
+.....F                                                                   [100%]
+================================== FAILURES ===================================
+___ test_frame_capture_time_can_precede_ui_tick_without_losing_measurement ____
+
+    def test_frame_capture_time_can_precede_ui_tick_without_losing_measurement():
+        a=session();a.tick(1510);a.observe(1500,Gesture.LEFT,True);a.tick(3300)
+>       assert a.report()['recognized']==1
+E       assert 0 == 1
+
+tests\unit\test_continuous_assessment.py:66: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_continuous_assessment.py::test_frame_capture_time_can_precede_ui_tick_without_losing_measurement
+1 failed, 5 passed in 0.63s

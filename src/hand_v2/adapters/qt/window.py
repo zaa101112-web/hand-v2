@@ -127,9 +127,9 @@ class MainWindow(QMainWindow):
         self._page_indices={}
         self._add_page("control", self._control_page())
         guide=QWidget();g=QVBoxLayout(guide);g.addWidget(label("손동작 안내","Title"))
-        for text in ("V 0.6초 · 시작 / 숫자 3(엄지·검지·중지) 0.35초 · 중단", "검지 좌우 · 뒤로 / 앞으로, 이미지 모드에서는 이전 / 다음", "V 좌우 · 탭 이동 / V 위아래 · 페이지 이동", "양손 엄지·검지 집기 → 간격 벌리기/좁히기 · 한 단계 확대/축소", "검지 원 · 새로고침 / 엄지 0.6초 · 북마크 창", "주먹 0.25초 → 1.2초 이내 손 펼치기 · 닫은 탭 복구 / 이미지 화면 맞춤", "양손 L 0.8초 · 영역 캡처 시작, 실제 마우스/키보드로 영역 선택 후 Enter 저장"):
+        for text in ("V 0.6초 · 시작 / 숫자 3(엄지·검지·중지) 0.35초 · 중단", "검지 좌우 · 뒤로 / 앞으로, 이미지 모드에서는 이전 / 다음", "V 좌우 · 탭 이동 / V 위아래 · 페이지 이동", "양손 엄지·검지 집기 → 간격 벌리기/좁히기 · 간격을 계속 바꾸면 연속 확대/축소", "검지 원 · 새로고침 / 엄지 0.6초 · 북마크 창", "주먹 0.25초 → 1.2초 이내 손 펼치기 · 닫은 탭 복구 / 이미지 화면 맞춤", "양손 L 0.8초 · 영역 캡처 시작, 실제 마우스/키보드로 영역 선택 후 Enter 저장"):
             g.addWidget(label(text))
-        g.addWidget(label("각 명령 후 손을 펼쳐 자세를 해제하세요. 숫자 3, F8 또는 중단 버튼으로 중단합니다. 북마크 창을 닫은 뒤 작은 상태창에서 ‘계속’을 눌러야 다른 명령을 실행할 수 있습니다. 손을 내려도 활성 상태는 유지됩니다.","Muted"));g.addStretch()
+        g.addWidget(label("검지/V 동작 끝에서 잠깐 멈추면 다음 동작을 이어서 할 수 있습니다. 양손 집기는 풀지 않고 간격을 더 바꾸세요. 숫자 3, F8 또는 중단 버튼으로 중단합니다. 북마크 창을 닫은 뒤 작은 상태창에서 ‘계속’을 눌러야 다른 명령을 실행할 수 있습니다. 손을 내려도 활성 상태는 유지됩니다.","Muted"));g.addStretch()
         self._add_page("guide",guide)
         from .practice_panel import PracticePanel
         from .settings_panel import SettingsPanel
@@ -145,7 +145,7 @@ class MainWindow(QMainWindow):
 
     def _control_page(self):
         page=QWidget();v=QVBoxLayout(page);v.setContentsMargins(0,0,0,0);v.setSpacing(15)
-        v.addWidget(label("손동작 제어","Title"));v.addWidget(label("카메라로 손동작을 인식해 단축키를 실행합니다. 시작 후 손을 펼쳐 자세를 해제하세요.","Muted"))
+        v.addWidget(label("손동작 제어","Title"));v.addWidget(label("카메라로 손동작을 인식해 단축키를 실행합니다. 시작 후 잠깐 멈춰 동작을 준비하세요.","Muted"))
         modes=QHBoxLayout();self.mode_buttons={}
         for mode,title in ((Mode.BROWSER,"브라우저 · 페이지와 탭"),(Mode.IMAGE,"이미지·발표 · 사진 넘기기")):
             b=button(title,lambda checked=False,m=mode:self.select_mode(m));b.setCheckable(True);modes.addWidget(b);self.mode_buttons[mode]=b

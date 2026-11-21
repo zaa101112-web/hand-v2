@@ -39,16 +39,17 @@ class PairRecognizer:
         self.smoothing_tau_ms=smoothing_tau_ms;self.reset()
     def reset(self):
         self.key=None;self.pinch={};self.pinch_since=None;self.baseline=None
-        self.zoom_fired=False;self.zoom_direction=None;self.zoom_since=None;self.ema=TimeEMA(self.smoothing_tau_ms)
+        self.zoom_direction=None;self.zoom_since=None;self.ema=TimeEMA(self.smoothing_tau_ms)
         self.l_since=None;self.l_fired=False
 
-    def update(self,features,hands,width,height,at):
+    def update(self,features,hands,width,height,at,ready=True):
         key=tuple(sorted(f.hand_id for f in features))
         if key!=self.key:self.reset();self.key=key
         centers=[(f.center[0]*width,f.center[1]*height) for f in features]
         separation=distance(*centers);scale=sum(f.palm_size for f in features)/2
         if self._is_frame(features,hands,width,height,separation,scale):
             self.pinch={};self.pinch_since=None;self.baseline=None;self.ema.reset()
+            self.zoom_direction=None;self.zoom_since=None
             if self.l_since is None:self.l_since=at
             progress=min(1,(at-self.l_since)/800)
             gesture=None
@@ -60,9 +61,7 @@ class PairRecognizer:
             self.pinch[f.hand_id]=f.palm_size>=20 and (f.pinch_ratio<self.pinch_exit if previous else f.pinch_ratio<=self.pinch_enter)
         if not all(self.pinch.values()):
             self.pinch_since=None;self.baseline=None;self.ema.reset();self.zoom_direction=None;self.zoom_since=None
-            if not any(self.pinch.values()):self.zoom_fired=False
             return None,0,'PINCH_RELEASE'
-        if self.zoom_fired:return None,1,'RELEASE_REQUIRED'
         smoothed=self.ema.update((separation,),at)[0]
         if self.baseline is None:
             if separation<1.5*scale:
@@ -70,12 +69,16 @@ class PairRecognizer:
             if self.pinch_since is None:self.pinch_since=at
             if at-self.pinch_since>=120:self.baseline=smoothed
             return None,min(1,(at-self.pinch_since)/120),'PINCH_BASELINE'
-        ratio=smoothed/self.baseline
-        direction=Gesture.ZOOM_IN if ratio>=self.zoom_step_ratio else Gesture.ZOOM_OUT if ratio<=1/self.zoom_step_ratio else None
+        ratio=smoothed/self.baseline;raw_ratio=separation/self.baseline
+        # Require physical displacement as well as filtered evidence. After a
+        # step, EMA lag must neither add another step nor produce a reversal.
+        direction=(Gesture.ZOOM_IN if min(ratio,raw_ratio)>=self.zoom_step_ratio else
+                   Gesture.ZOOM_OUT if max(ratio,raw_ratio)<=1/self.zoom_step_ratio else None)
         if direction!=self.zoom_direction:
             self.zoom_direction=direction;self.zoom_since=at if direction else None
-        if direction and at-self.zoom_since>=80:
-            self.zoom_fired=True;return direction,1,'CONFIRMED'
+        if ready and direction and at-self.zoom_since>=80:
+            self.baseline=separation;self.zoom_direction=None;self.zoom_since=None
+            return direction,1,'CONFIRMED'
         return None,0 if direction is None else min(1,(at-self.zoom_since)/80),'PINCH_ZOOM'
 
     @staticmethod

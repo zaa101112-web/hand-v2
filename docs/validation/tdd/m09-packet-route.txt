@@ -1,0 +1,23 @@
+..F                                                                      [100%]
+================================== FAILURES ===================================
+_____ test_real_runtime_packet_route_scores_once_and_only_virtual_output ______
+
+    def test_real_runtime_packet_route_scores_once_and_only_virtual_output():
+        from hand_v2.adapters.vision.process import VisionPacket
+        from tests.continuous_samples import continuous_frames
+        class Camera:
+            session=None
+            pending=[]
+            def poll(self):
+                packets=self.pending;self.pending=[];return packets
+        r=build_runtime(clock=ManualClock(1000));r.controller.begin_camera(1);r.controller.camera_connected(1)
+        r.enter_practice();a=r.practice_assessment;a.start(1000);r.camera=Camera()
+        for frame in continuous_frames(50):
+>           r.clock.set(frame.captured_at_ms+10)
+            ^^^^^^^^^^^
+E           AttributeError: 'ManualClock' object has no attribute 'set'
+
+tests\integration\test_continuous_practice.py:39: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_continuous_practice.py::test_real_runtime_packet_route_scores_once_and_only_virtual_output
+1 failed, 2 passed in 0.99s

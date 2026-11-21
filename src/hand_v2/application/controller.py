@@ -271,7 +271,10 @@ class Controller:
         self._command_times[cmd.command_id]=(now,event.captured_at_ms)
         self.events.record('gesture',event_id=event.event_id,command_id=cmd.command_id,context=event.context_version,
                            epoch=event.camera_epoch,gesture=event.gesture,action=action,target=target,at_ms=now)
-        self._cooldown_until = now + (1500 if action in (Action.BOOKMARK, Action.CAPTURE) else 600)
+        # Zoom is incremental physical movement, not an OS key-repeat hold.
+        cooldown = (1500 if action in (Action.BOOKMARK, Action.CAPTURE) else
+                    200 if action in (Action.ZOOM_IN, Action.ZOOM_OUT) else 600)
+        self._cooldown_until = now + cooldown
         self._reset_neutral()
         self._set(ready=False)
         return cmd

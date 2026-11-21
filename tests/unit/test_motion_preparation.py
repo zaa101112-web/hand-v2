@@ -48,7 +48,7 @@ def test_small_preparation_reversal_then_pause_does_not_lock_circle_candidate():
     assert events==[Gesture.LEFT]
 
 
-def test_pause_after_success_never_rearms_a_second_command():
+def test_pause_after_success_starts_a_new_path_under_adr15():
     recognizer=GestureRecognizer();events=[]
     frames=[moved_frame(1000+t,'INDEX',.24*t/500) for t in range(0,501,50)]
     frames += [moved_frame(t,'INDEX',.24) for t in range(1550,3001,50)]
@@ -56,7 +56,7 @@ def test_pause_after_success_never_rearms_a_second_command():
     for frame in frames:
         result=recognizer.process(frame,True)
         if result.gesture:events.append(result.gesture)
-    assert events==[Gesture.LEFT]
+    assert events==[Gesture.LEFT,Gesture.RIGHT]
 
 
 @pytest.mark.parametrize('phase',[0,45,90,135,180,225,270,315])

@@ -10,7 +10,7 @@ def test_main_and_overlay_distinguish_release_from_ready_and_confirmation(qtbot)
     window=MainWindow(runtime);qtbot.addWidget(window)
     runtime.controller.activate()
     for label in (window.state_label,window.mini_panel.status):
-        assert '손' in label.text() and '펼' in label.text()
+        assert '잠깐 멈' in label.text()
         assert '동작 가능' not in label.text()
     runtime.controller.neutral(True)
     runtime.scheduler.advance_to(1180)

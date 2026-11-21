@@ -19,7 +19,7 @@ class SettingsPanel(QWidget):
         self.folder=QLineEdit();self.folder.setPlaceholderText('기본값: Windows 사진 폴더 / HAND-v2');self.form.addRow('캡처 저장 폴더',self.folder)
         choose=QPushButton('저장 폴더 선택');choose.clicked.connect(self.choose_folder);self.form.addRow('',choose)
         self.log=QComboBox();self.log.addItems(['DEBUG','INFO','WARNING','ERROR']);self.form.addRow('진단 로그 수준',self.log)
-        policy=QLabel('시작 600ms · 중단 350ms · 자세 해제 180ms · 입력 시효 250ms는 안전 정책으로 고정됩니다.\n카메라를 변경하면 제어 대기로 돌아갑니다. 그 밖의 변경 후에는 손을 펼쳐 다시 준비하세요.')
+        policy=QLabel('시작 600ms · 중단 350ms · 동작 준비 180ms · 입력 시효 250ms는 안전 정책으로 고정됩니다.\n카메라를 변경하면 제어 대기로 돌아갑니다. 그 밖의 변경 후에는 잠깐 멈춰 다시 준비하세요.')
         policy.setWordWrap(True);v.addWidget(policy)
         self.message=QLabel();self.message.setWordWrap(True);v.addWidget(self.message)
         self.save_button=QPushButton('설정 저장 및 적용');self.save_button.clicked.connect(self.save);v.addWidget(self.save_button);v.addStretch()

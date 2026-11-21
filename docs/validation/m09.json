@@ -1,0 +1,82 @@
+{
+  "milestone": "M09",
+  "date": "2026-11-21",
+  "status": "FINAL_USER_CHECK_CANDIDATE",
+  "plan_scope": "D41-D45 additional 5 MD estimated scope; not 5 elapsed developer days",
+  "requirements": [
+    "ADR-15",
+    "V2-T01",
+    "V2-T03",
+    "V2-T07",
+    "V2-T09",
+    "V2-T16",
+    "V2-T18",
+    "V2-T30",
+    "V2-T32",
+    "V2-T36",
+    "V2-T38"
+  ],
+  "automatic": {
+    "passed": 391,
+    "report": "tdd/m09-final-regression.txt"
+  },
+  "continuous_replay": {
+    "report": "m09-continuous-replay.json",
+    "source": "SYNTHETIC_LANDMARKS",
+    "cases": 24,
+    "expected": 240,
+    "executed": 240,
+    "missed": 0,
+    "wrong": 0,
+    "duplicates": 0
+  },
+  "test_notes": [
+    "Initial zoom test spacings below the existing palm-size minimum were corrected before asserting valid trajectories; runtime thresholds unchanged.",
+    "Shutdown fixture cleanup reserve increased from 20ms to 200ms after a truncated-file failure; production shutdown deadline unchanged.",
+    "Qt combo StrEnum conversion fixed after the new demo/assessment integration test exposed it."
+  ],
+  "human_accuracy": "NOT_RUN",
+  "independent_new_pc": "NOT_RUN",
+  "current_chrome": {
+    "status": "PASS",
+    "report": "m09-chrome.json",
+    "tasks": 8,
+    "commands": 10,
+    "source": "AUTHORED_LANDMARKS_PRODUCTION_RECOGNIZER_REAL_CHROME",
+    "human_accuracy": "NOT_RUN"
+  },
+  "prior_public_release_preserved": "m08-20261117-rc1",
+  "branch": "codex/continuous-gestures",
+  "build": {
+    "exe": "dist/HAND-v2-M09-20261121/HAND-v2.exe",
+    "exe_sha256": "f3b6c70e77f45d2929186972fa5f12d87dec7a346a69357296bf16bd839a79a3",
+    "verified_copy_files": 1302,
+    "bytes": 408378522,
+    "offscreen_smoke_exit_code": 0,
+    "manifest": "m09-artifact-manifest.json",
+    "source_manifest": "m09-source-manifest.json"
+  },
+  "bundle_camera": {
+    "success": true,
+    "index": 1,
+    "frames": 170,
+    "startup_seconds": 4.969,
+    "fps_after_start": 16.95,
+    "errors": [],
+    "stop": {
+      "success": true,
+      "forced": false,
+      "elapsed_ms": 1078
+    },
+    "report": "m09-bundle-camera.json",
+    "exe_sha256": "f3b6c70e77f45d2929186972fa5f12d87dec7a346a69357296bf16bd839a79a3",
+    "limitation": "Short startup/inference/stop probe without visible hands. 16.95fps is below the 20fps long-run target; not a five-minute performance pass."
+  },
+  "portable_archive": {
+    "path": "dist/HAND-v2-M09-20261121.zip",
+    "bytes": 162789399,
+    "sha256": "adcaa88e2ad1733f2084ee2f242c610503951fcc1295ad5cdb4defa297d4e37b",
+    "files": 1305,
+    "crc_verified": true
+  }
+}
